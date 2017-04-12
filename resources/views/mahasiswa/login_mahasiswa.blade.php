@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html >
-  <head>
+  <head> 
     <meta charset="UTF-8">
     <title>Login Form</title>
     <link href="{{ asset("/bootstrap-3.3.7-dist/css/bootstrap.css") }}" rel="stylesheet" type="text/css" />
