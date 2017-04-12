@@ -1,0 +1,59 @@
+\documentclass[12pt]{letter}
+\usepackage[legalpaper, top=55mm,bottom=15mm,left=35mm,right=18mm]{geometry}
+\usepackage{ifthen,mailmerge}
+
+\begin{document}
+% \ifequal{A}{B}{what if A=B}{what if A<>B}
+%\newcommand{\ifequal}[2]{\ifthenelse{\equal{#1}{#2}}}
+
+\mailfields{noSurat,namaPemohon,npmPemohon,prodi,namaAnggota1,npmAnggota1,namaAnggota2,npmAnggota2,namaAnggota3,npmAnggota3,tujuanKunjungan,kepada,alamat,matkul,judulTopik,instansi,tanggal,wdIII}
+
+\mailrepeat{
+Nomor : \field{noSurat}\\
+Hal\hspace{0.75cm}: Permohonan \field{tujuanKunjungan}\\
+Lamp\hspace{0.35cm}: -\\
+
+
+\textbf{Kepada YTH.\\
+KEPALA \field{kepada}\\
+\field{alamat}\\
+BANDUNG}
+
+ Dengan hormat,\\
+
+Bersama ini kami informasikan bahwa 4 orang mahasiswa kami, yaitu:
+
+	\begin{quote}
+		\textbf{\underline{KOORDINATOR}}\\
+		Nama\hspace{2.4cm}: \field{namaPemohon}\\
+		NPM\hspace{2.5cm}: \field{npmPemohon}\\
+		Program Studi\hspace{0.8cm}: \field{prodi}\\
+		
+		\textbf{\underline{ANGGOTA}}\\
+		\begin{tabular}{|l|l|l|l|}
+		\hline
+		\textbf{No.}&\textbf{Nama}&\textbf{NPM}\\ \hline
+		1&\field{namaAnggota1}&\field{npmAnggota1}\\ \hline
+		2&\field{namaAnggota2}&\field{npmAnggota2}\\ \hline
+		3&\field{namaAnggota3}&\field{npmAnggota3}\\ \hline
+	\end{tabular}
+	\end{quote}
+	saat ini sedang mengambil Matakuliah \field{matkul} dengan topik "\field{judulTopik}". Ybs. memerlukan informasi sehubungan dengan hal-hal yang terkait dengan masalah tersebut yang diterapkan di \field{instansi}.\
+	
+Untuk itu kami memohonkan ijin bagi mahasiswa kami tersebut agar diperbolehkan untuk melakukan \field{tujuanKunjungan} di \field{instansi}.\
+
+Atas perhatian dan kerjasamanya yang diberikan kami mengucapkan terima kasih.
+\vspace{2cm}
+		\begin{flushright}
+			Bandung, \field{tanggal}\\ 
+					Wakil Dekan III\\
+			\vspace{2cm}
+			\underline{\field{wdIII}}
+		\end{flushright}
+\thispagestyle{empty}
+	\newpage
+}
+ 
+\mailentry{noSurat,namaPemohon,npmPemohon,prodi,namaAnggota1,npmAnggota1,namaAnggota2,npmAnggota2,namaAnggota3,npmAnggota3,tujuanKunjungan,kepada,alamat,matkul,judulTopik,instansi,tanggal,wdIII}
+
+\end{document}

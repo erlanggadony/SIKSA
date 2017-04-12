@@ -1,0 +1,136 @@
+body{
+  background-color:#3f4863;
+}
+
+a, h2, h3{
+    font-family:arial, verdana, courier;
+}
+
+th{
+  text-align:center;
+}
+
+#banner{
+    width: 550px;
+    height: 100px;
+    display: block;
+    margin: auto;
+    margin-top: 5px;
+  /*background-color: #474545;*/
+}
+
+#btnAddTextField{
+    margin-left: 40px;
+}
+
+.addText{
+
+}
+.offset{
+  margin-left: 225px;
+}
+
+.navigation{
+  margin-top: 10px;
+  background-color: grey;
+  height: 41px;
+  /*padding-top: -5px;*/
+}
+
+
+.profile, .content, .contentPreview {
+  float: left;
+  background-color: white;
+  margin-top: 10px;
+}
+
+.content{
+  width: 850px;
+  margin-left: 50px;
+  margin-right: 5px;
+  height: 1500px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top:20px;
+}
+
+.contentPreview{
+  width: 850px;
+  margin-left: 50px;
+  margin-right: 5px;
+  height: 1500px;
+  padding-left:90px;
+  padding-right:90px;
+  padding-top:90px;
+  text-align: justify;
+}
+
+.profile{
+  height: 300px;
+  width: 200px;
+  margin-right: 50px;
+  margin-left: 5px;
+}
+
+h2, h3, h4{
+    text-align: center;
+}
+
+#profpict{
+  /*padding-left: 100px;*/
+  margin-top: 20px;
+}
+
+.search{
+  padding-right: 5px;
+}
+
+.footer{
+  width: 100%;
+  background-color: white;
+}
+
+.date{
+  width: 200px;
+}
+
+.inline{
+   list-style: none;
+}
+
+.inline a{
+   text-decoration: none;
+   color: black;
+}
+
+.inline li{
+   display: inline-block;
+   padding: 10px;
+   background-color: grey;
+   height: 40px;
+}
+
+.inline li:hover{
+   background-color: green;
+   color: white;
+}
+
+.text-center{
+   text-align: center;
+   font-weight: bold;
+}
+
+#syarat_ket_beasiswa{
+  list-style-type: lower-latin;
+}
+
+.prev{
+  padding-right: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  /*float: left;*/
+}
+
+.prevLabel{
+  font-weight: normal;
+}
