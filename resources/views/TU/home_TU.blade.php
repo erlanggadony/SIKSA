@@ -58,6 +58,7 @@
                       <th>PENERIMA</th>
                       <th>TANGGAL PEMBUATAN</th>
                       <th>DATA SURAT</th>
+                      <th>KONTROL</th>
                     </tr>
                     @foreach($pesanansurats as $pesanansurat)
                         <tr>
@@ -67,6 +68,13 @@
                           <td>{{ $pesanansurat->penerimaSurat }}</td>
                           <td>{{ $pesanansurat->created_at }}</td>
                           <td><textarea rows="5" cols="30" disabled readonly>{{ $pesanansurat->dataSurat }}</textarea></td>
+                          <td>
+                            <form action="/proses_surat" method="post">
+                              <input type="hidden" value="{{ $pesanansurat->dataSurat }}" name="prosesSurat">
+                              {!! csrf_field() !!}
+                              <button type="submit" class="btn btn-default">Tambah<br>Nomor<br>Surat</button>
+                            </form>
+                          </td>
                         </tr>
                     @endforeach
                   @endif

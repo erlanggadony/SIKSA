@@ -137,7 +137,7 @@ public function tampilkanSeluruhFormat(Request $request)
             'organisasiTujuan' => $request->organisasiTujuan,
             'thnAkademik' => $request->thnAkademik,
             'negaraTujuan' => $request->negaraTujuan,
-            'tanggalKunjungan' => $request->tanggalKunjungan,
+            'tanggalKunjungan' => $request->tanggalKunjungan
           ];
       }
       return json_encode($obj);
@@ -162,7 +162,7 @@ public function tampilkanSeluruhFormat(Request $request)
             'thnAkademik' => $thnAkademik,
             'jenisbeasiswa' => $jenisbeasiswa,
             'formatsurat_id' => $formatsurat_id,
-            'dataSurat' => $dataSurat,
+            'dataSurat' => $dataSurat
         ]);
       }
       else if($request->jenis_surat == "2"){
@@ -185,7 +185,7 @@ public function tampilkanSeluruhFormat(Request $request)
             'alamat' => $alamat,
             'semester' => $semester,
             'formatsurat_id' => $formatsurat_id,
-            'dataSurat' => $dataSurat,
+            'dataSurat' => $dataSurat
         ]);
       }
       else if($request->jenis_surat == "3"){
@@ -208,7 +208,7 @@ public function tampilkanSeluruhFormat(Request $request)
             'negaraTujuan' => $negaraTujuan,
             'tanggalKunjungan' => $tanggalKunjungan,
             'formatsurat_id' => $formatsurat_id,
-            'dataSurat' => $dataSurat,
+            'dataSurat' => $dataSurat
         ]);
       }
     }

@@ -23,7 +23,7 @@ Route::get('/login_mahasiswa', function () {
 Route::post('/login', 'AuthController@authenticate');
 //<----------------------------------------------------------MAHASISWA---------------------------------------------------------->
 
-// Route::group(['middleware' => 'auth'], function () {
+//
     // halaman utama mahasiswa
     Route::get('/home_mahasiswa', function () {
         return view('mahasiswa/home_mahasiswa');
@@ -40,8 +40,7 @@ Route::post('/login', 'AuthController@authenticate');
         return view('mahasiswa/data_izin_pengunduran_diri');
     });
     Route::get('/data_pembuatan_visa', function () {
-        return view('mahasiswa/data_pembuatan_vis
-        a');
+        return view('mahasiswa/data_pembuatan_visa');
     });
     //halaman untuk menampilkan preview surat
     Route::post('/preview', 'FormatsuratController@tampilkanIsiForm');
@@ -85,6 +84,7 @@ Route::post('/login', 'AuthController@authenticate');
     Route::post('/hapusMahasiswa', 'MahasiswaController@destroy');
     //untuk menghapus format surat dari database
     Route::post('/hapusFormatsurat', 'FormatsuratController@destroy');
+    Route::post('/proses_surat', 'PesanansuratController@sendDataSurat');
     Route::get('/history', function () {
         return view('TU/history');
     });
@@ -92,7 +92,7 @@ Route::post('/login', 'AuthController@authenticate');
     Route::get('/tambah_format_surat', function () {
         return view('TU/tambah_format_surat');
     });
-    Route::post('/uploadFormat', 'FormatsuratController@storeFormat';
+    Route::post('/uploadFormat', 'FormatsuratController@storeFormat');
     //halaman seluruh data mahasiswa
     Route::get('/data_mahasiswa', 'MahasiswaController@pilihMahasiswa');
 
@@ -125,4 +125,4 @@ Route::post('/login', 'AuthController@authenticate');
     Route::get('/catatan_dekan', function () {
         return view('pejabat/catatan_dekan');
     });
-// });
+//

@@ -71,6 +71,7 @@
                           <td>{{ $pesanan_surat->penerimaSurat }}</td>
                           <td>{{ $pesanan_surat->created_at }}</td>
                           <td>{{ $pesanan_surat->dataSurat }}</td>
+                          
                         </tr>
                     @endforeach
                 @endif

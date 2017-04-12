@@ -58,7 +58,10 @@ class PesanansuratController extends Controller
           ]);
   	}
 
-
+    public function sendDataSurat(Request $request){
+        $dataSurat = $request->prosesSurat;
+        return view('TU.proses_surat', ['dataSurat' => $dataSurat]);
+    }
 
     public function store(Request $request)
     {
