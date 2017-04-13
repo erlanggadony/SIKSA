@@ -70,6 +70,7 @@
                           <td><textarea rows="5" cols="30" disabled readonly>{{ $pesanansurat->dataSurat }}</textarea></td>
                           <td>
                             <form action="/proses_surat" method="post">
+                              <input type="hidden" value="{{ $pesanansurat->formatsurat_id }}" name="idFormatSurat">
                               <input type="hidden" value="{{ $pesanansurat->dataSurat }}" name="prosesSurat">
                               {!! csrf_field() !!}
                               <button type="submit" class="btn btn-default">Tambah<br>Nomor<br>Surat</button>

@@ -100,6 +100,8 @@ Route::post('/login', 'AuthController@authenticate');
     Route::get('/tambah_data_mahasiswa', function () {
         return view('TU/tambah_data_mahasiswa');
     });
+    Route::post('/generatePDF', 'HistorysuratController@buatPDF');
+
     //<----------------------------------------------------------PEJABAT ---------------------------------------------------------->
     // halaman utama pejabat
     Route::get('/home_pejabat', function () {

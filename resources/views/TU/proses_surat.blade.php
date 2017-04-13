@@ -27,20 +27,58 @@
       <div class="main">
           <div class="row">
             <div class="col-md-8 content">
-                <form class="form-horizontal" action="{{ url('/') }}" method="post">
-                    <div class="form-group">
-                        <label class="col-sm-3" for="noSurat">Nomor Surat</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" name="noSurat" required />
-                        </div>
+                <form class="form-horizontal" action="{{ url('/generatePDF') }}" method="post">
+                  <div class="form-group">
+                    <label class="col-sm-3 prevLabel">Nama</label>
+                    <div class="col-sm-9" name="nama">
+                        {{ $nama }}
                     </div>
-                    <input type="hidden" value="{{ $dataSurat }}" name="dataSurat">
-                    {!! csrf_field() !!}
-                    <div class="form-group">
-                        <div class="col-sm-offset-3 col-sm-10">
-                          <button type="submit" class="btn btn-success">Buat surat (PDF)</button>
-                        </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 prevLabel">Program Studi</label>
+                    <div class="col-sm-9" name="prodi">
+                        {{ $prodi }}
                     </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 prevLabel">NPM</label>
+                    <div class="col-sm-9" name="npm">
+                        {{ $npm }}
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 prevLabel">Semester</label>
+                    <div class="col-sm-9" name="semester">
+                        {{ $semester }}
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 prevLabel">Tahun Akademik</label>
+                    <div class="col-sm-9" name="thnAkademik">
+                        {{ $thnAkademik }}
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 prevLabel">Jenis Beasiswa</label>
+                    <div class="col-sm-9" name="jenisbeasiswa">
+                        {{ $jenisbeasiswa }}
+                    </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-3" for="noSurat">Nomor Surat</label>
+                      <div class="col-sm-6">
+                          <input type="text" class="form-control" name="noSurat" required />
+                      </div>
+                  </div>
+                  <input type="hidden" value="{{ $formatsurat_id }}" name="idFormatSurat">
+                  {!! csrf_field() !!}
+                  <br>
+                  <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-10">
+                      <button class="btn btn-default" onclick="goBack()">Kembali</button>
+                      <button type="submit" class="btn btn-success">Buat Surat (PDF)</button>
+                    </div>
+                  </div>
                 </form>
             </div>
             <div class="col-md-4 profile">.col-md-4</div>
@@ -62,5 +100,10 @@
     <div class="footer">
         hahahahahahahahahahahahahahahhahahahahahaha
     </div>
+    <script>
+      function goBack() {
+          window.history.back();
+      }
+    </script>
   </body>
 </html>

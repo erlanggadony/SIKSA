@@ -152,6 +152,7 @@ public function tampilkanSeluruhFormat(Request $request)
         $thnAkademik = $request->thnAkademik;
         $jenisbeasiswa = $request->jenisbeasiswa;
         $formatsurat_id = $request->jenis_surat;
+        // dd($formatsurat_id);
         $dataSurat = $this->buatJSON($request);
         // dd($dataSurat);
         return view('mahasiswa.preview_keterangan_beasiswa', [

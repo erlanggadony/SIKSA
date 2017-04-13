@@ -24,10 +24,6 @@
       $historysurats = Historysurat::where('penerimaSurat', $penerimaSurat)->get();
       return $historysurats;
     }
-    public function findMahasiswaByJenisSurat($pengirimSurat){
-      $historysurats = Historysurat::where('mahasiswa_id', $pengirimSurat)->get();
-      return $historysurats;
-    }
     public function findMahasiswaByTanggalPembuatan($tanggalPembuatan){
       $historysurats = Historysurat::where('timestamps', $tanggalPembuatan)->get();
       return $historysurats;

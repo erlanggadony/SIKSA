@@ -57,4 +57,10 @@ class HistorysuratController extends Controller
             'historysurats' => $historysurats,
         ]);
 	}
+
+  public function buatPDF(Request $request){
+    $format = file('format_surat_latex/surat_keterangan_beasiswa.tex');
+    // dd($format);
+
+  }
 }

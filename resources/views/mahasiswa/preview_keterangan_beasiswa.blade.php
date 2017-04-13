@@ -32,38 +32,38 @@
                 <form action = "{{ url('/kirimFormulir') }}" method="post">
                   <div class="form-group">
                     <label class="col-sm-3 prevLabel">Nama</label>
-                    <div class="col-sm-9">
+                    <div class="col-sm-9" name="nama">
                         {{ $nama }}
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="col-sm-3 prevLabel">Program Studi</label>
-                    <div class="col-sm-9">
+                    <div class="col-sm-9" name="prodi">
                         {{ $prodi }}
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="col-sm-3 prevLabel">NPM</label>
-                    <div class="col-sm-9">
+                    <div class="col-sm-9" name="npm">
                         {{ $npm }}
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="col-sm-3 prevLabel">Semester</label>
-                    <div class="col-sm-9">
+                    <div class="col-sm-9" name="semester">
                         {{ $semester }}
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="col-sm-3 prevLabel">Tahun Akademik</label>
-                    <div class="col-sm-9">
+                    <div class="col-sm-9" name="thnAkademik">
                         {{ $thnAkademik }}
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="col-sm-3 prevLabel">Jenis Beasiswa</label>
-                    <div class="col-sm-9">
-                        <p name = "jenisbeasiswa">{{ $jenisbeasiswa }}</p>
+                    <div class="col-sm-9" name="jenisbeasiswa">
+                        {{ $jenisbeasiswa }}
                     </div>
                   </div>
                   <input type="hidden" value="{{ $formatsurat_id }}" name="idFormat">
@@ -72,7 +72,7 @@
                   <br>
                   <div class="form-group">
                     <div class="col-sm-offset-3 col-sm-10">
-                      <button class="btn btn-default" onclick="goBack()">Go Back</button>
+                      <button class="btn btn-default" onclick="goBack()">Kembali</button>
                       <button type="submit" class="btn btn-success">Buat Surat</button>
                     </div>
                   </div>

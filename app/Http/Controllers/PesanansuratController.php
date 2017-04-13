@@ -60,7 +60,25 @@ class PesanansuratController extends Controller
 
     public function sendDataSurat(Request $request){
         $dataSurat = $request->prosesSurat;
-        return view('TU.proses_surat', ['dataSurat' => $dataSurat]);
+            $json = json_decode($dataSurat);
+            $nama = $json->nama;
+            $prodi = $json->prodi;
+            $npm = $json->npm;
+            $semester = $json->semester;
+            $thnAkademik = $json->thnAkademik;
+            $jenisbeasiswa = $json->jenisbeasiswa;
+            $formatsurat_id = $request->idFormatSurat;
+            // dd($formatsurat_id);
+            return view('TU.proses_surat', [
+                'nama' => $nama,
+                'prodi' => $prodi,
+                'npm' => $npm,
+                'semester' => $semester,
+                'thnAkademik' => $thnAkademik,
+                'jenisbeasiswa' => $jenisbeasiswa,
+                'formatsurat_id' => $formatsurat_id,
+            ]);
+
     }
 
     public function store(Request $request)
@@ -68,7 +86,8 @@ class PesanansuratController extends Controller
         $pesanansurat = new PesananSurat;
 
         $pesanansurat->mahasiswa_id = 'anonim';
-        $pesanansurat->formatsurats_id = $request->idFormat;
+        $pesanansurat->formatsurat_id = $request->idFormat;
+        // dd($pesanansurat->formatsurats_id);
         $pesanansurat->dataSurat = $request->dataSurat;
         // dd($request);
         $pesanansurat->save();
