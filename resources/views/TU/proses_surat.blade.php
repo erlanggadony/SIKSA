@@ -70,6 +70,7 @@
                           <input type="text" class="form-control" name="noSurat" required />
                       </div>
                   </div>
+                  <input type="hidden" value="{{ $format }}" id="format" name="format"> 
                   <input type="hidden" value="{{ $formatsurat_id }}" name="idFormatSurat">
                   {!! csrf_field() !!}
                   <br>
@@ -103,6 +104,11 @@
     <script>
       function goBack() {
           window.history.back();
+      }
+
+      function compile(){
+        var pdftex = new PDFTeX();
+        var latex_code =
       }
     </script>
   </body>

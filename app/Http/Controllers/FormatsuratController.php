@@ -213,4 +213,11 @@ public function tampilkanSeluruhFormat(Request $request)
         ]);
       }
     }
+    public function tampilkanFormat(Request $request){
+        $format;
+        if($request->showFormatID == "1"){
+            $format = file('format_surat_latex/surat_keterangan_beasiswa.tex');
+            dd($format);
+        }
+    }
 }

@@ -68,7 +68,8 @@ class PesanansuratController extends Controller
             $thnAkademik = $json->thnAkademik;
             $jenisbeasiswa = $json->jenisbeasiswa;
             $formatsurat_id = $request->idFormatSurat;
-            // dd($formatsurat_id);
+            $format = file('format_surat_latex/surat_keterangan_beasiswa.tex');
+            dd($format);
             return view('TU.proses_surat', [
                 'nama' => $nama,
                 'prodi' => $prodi,
@@ -77,6 +78,7 @@ class PesanansuratController extends Controller
                 'thnAkademik' => $thnAkademik,
                 'jenisbeasiswa' => $jenisbeasiswa,
                 'formatsurat_id' => $formatsurat_id,
+                'format' => $format
             ]);
 
     }

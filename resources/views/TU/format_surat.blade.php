@@ -65,7 +65,13 @@
                         <td>{{ $formatsurat->idFormatSurat }}</td>
                         <td>{{ $formatsurat->jenis_surat }}</td>
                         <td>{{ $formatsurat->keterangan }}</td>
-                        <td><a href = "{{ $formatsurat->format_surat_tex }}">klik disini</a></td>
+                        <td>
+                          <form action="/tampilkanFormat" method="post">
+                            <input type="hidden" value="{{ $formatsurat->id }}" name="showFormatID">
+                            {!! csrf_field() !!}
+                            <button type="submit" class="btn btn-link">Klik disini</button>
+                          </form>
+                        </td>
                         <td>
                           <button type="button" class="btn btn-default" aria-label="Edit">
                               <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>

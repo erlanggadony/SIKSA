@@ -84,6 +84,7 @@ Route::post('/login', 'AuthController@authenticate');
     Route::post('/hapusMahasiswa', 'MahasiswaController@destroy');
     //untuk menghapus format surat dari database
     Route::post('/hapusFormatsurat', 'FormatsuratController@destroy');
+    Route::post('/tampilkanFormat', 'FormatsuratController@tampilkanFormat');
     Route::post('/proses_surat', 'PesanansuratController@sendDataSurat');
     Route::get('/history', function () {
         return view('TU/history');
