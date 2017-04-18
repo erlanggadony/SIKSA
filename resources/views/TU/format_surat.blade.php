@@ -48,48 +48,51 @@
               <br>
               <div></div>
               <table class="table table-striped table-hover">
-                @if(count($formatsurats) == 0)
-                    <tr>
-                        <td colspan="5" align="center">No data found ...</td>
-                    </tr>
-                @else
-                    <tr>
-                      <th>ID FORMAT SURAT</th>
-                      <th>JENIS SURAT</th>
-                      <th>KETERANGAN</th>
-                      <th>FILE SURAT</th>
-                      <th colspan ="2"> KONTROL</th>
-                    </tr>
-                    @foreach($formatsurats as $formatsurat)
+                @if($formatsurats != null)
+                  @if(count($formatsurats) == 0)
                       <tr>
-                        <td>{{ $formatsurat->idFormatSurat }}</td>
-                        <td>{{ $formatsurat->jenis_surat }}</td>
-                        <td>{{ $formatsurat->keterangan }}</td>
-                        <td>
-                          <form action="/tampilkanFormat" method="post">
-                            <input type="hidden" value="{{ $formatsurat->id }}" name="showFormatID">
-                            {!! csrf_field() !!}
-                            <button type="submit" class="btn btn-link">Klik disini</button>
-                          </form>
-                        </td>
-                        <td>
-                          <button type="button" class="btn btn-default" aria-label="Edit">
-                              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                          </button>
-                        </td>
-                        <td>
-                          <form action="/hapusFormatsurat" method="post">
-                            <input type="hidden" value="{{ $formatsurat->id }}" name="deleteID">
-                            {!! csrf_field() !!}
-                            <button type="submit" class="btn btn-danger" aria-label="Remove" data-toggle="tooltip" title="Remove">
-                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                            </button>
-                          </form>
-                        </td>
+                          <td colspan="5" align="center">No data found ...</td>
                       </tr>
-                    @endforeach
+                  @else
+                      <tr>
+                        <th>ID FORMAT SURAT</th>
+                        <th>JENIS SURAT</th>
+                        <th>KETERANGAN</th>
+                        <th>FILE SURAT</th>
+                        <th colspan ="2"> KONTROL</th>
+                      </tr>
+                      @foreach($formatsurats as $formatsurat)
+                        <tr>
+                          <td>{{ $formatsurat->idFormatSurat }}</td>
+                          <td>{{ $formatsurat->jenis_surat }}</td>
+                          <td>{{ $formatsurat->keterangan }}</td>
+                          <td>
+                              <button type="submit" onclick="showModal({{ $formatsurat->id }})" class="btn btn-link">Klik disini</button>
+                          </td>
+                          <td>
+                            <button type="button" class="btn btn-default" aria-label="Edit">
+                                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                            </button>
+                          </td>
+                          <td>
+                            <form action="/hapusFormatsurat" method="post">
+                              <input type="hidden" value="{{ $formatsurat->id }}" name="deleteID">
+                              {!! csrf_field() !!}
+                              <button type="submit" class="btn btn-danger" aria-label="Remove" data-toggle="tooltip" title="Remove">
+                                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                              </button>
+                            </form>
+                          </td>
+                        </tr>
+                      @endforeach
+                  @endif
                 @endif
               </table>
+              <div id="myModal" class="modal">
+                <div class="modal-content" id="show">
+                  <span class="close">&times;</span>
+                </div>
+              </div>
             </div>
 
             <div class="col-md-4 profile">
@@ -112,5 +115,25 @@
     <div class="footer">
         hahahahahahahahahahahahahahahhahahahahahaha
     </div>
+    <script>
+        // Get the modal
+        var modal = document.getElementById('myModal');
+        var btn = document.getElementById("showFormatID");
+        var span = document.getElementsByClassName("close")[0];
+
+        function tutup() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        function showModal(id){
+            document.getElementById("show").innerHTML = `<span onclick='tutup()' class='close'>&times;</span>` + id;
+            modal.style.display = "block";
+        }
+    </script>
   </body>
 </html>

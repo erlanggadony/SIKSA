@@ -1,10 +1,8 @@
 \documentclass[12pt]{letter}
 \usepackage[legalpaper, top=55mm,bottom=15mm,left=35mm,right=18mm]{geometry}
-\usepackage{ifthen,mailmerge}
+\usepackage{mailmerge}
 
 \begin{document}
-% \ifequal{A}{B}{what if A=B}{what if A<>B}
-%\newcommand{\ifequal}[2]{\ifthenelse{\equal{#1}{#2}}}
 
 \mailfields{noSurat,namaPemohon,npmPemohon,prodi,namaAnggota1,npmAnggota1,namaAnggota2,npmAnggota2,namaAnggota3,npmAnggota3,tujuanKunjungan,kepada,alamat,matkul,judulTopik,instansi,tanggal,wdIII}
 

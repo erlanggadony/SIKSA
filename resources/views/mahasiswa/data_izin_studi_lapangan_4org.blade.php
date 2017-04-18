@@ -28,81 +28,87 @@
             <div class="col-md-8 content">
               <h1>Isi Data Diri Anda</h1>
               <br>
-              <form class="form-horizontal" action = "{{ url('/preview') }}" method="post">
+              <form class="form-horizontal" action="{{ url('/preview') }}" method="post">
                 <div class="form-group">
                   <label for="nama" class="col-sm-3">Nama</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="nama" name="nama">
+                    <input type="text" class="form-control" name="nama">
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="npm" class="col-sm-3">NPM</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="npm" name="npm">
+                    <input type="text" class="form-control" name="npm">
                   </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group prev">
                   <label for="prodi" class="col-sm-3">Program studi</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="prodi" name="prodi">
+                    <input type="text" class="form-control" name="prodi">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="fakultas" class="col-sm-3">Fakultas</label>
+                  <label for="matkul" class="col-sm-3">Mata kuliah</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="fakultas" name="fakultas">
+                    <input type="text" class="form-control" name="matkul">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="alamat" class="col-sm-3">Alamat</label>
+                  <label for="topik" class="col-sm-3">Topik</label>
                   <div class="col-sm-9">
-                    <textarea class="form-control" row="5" id="alamat" name="alamat"></textarea>
+                    <input type="text" class="form-control" name="topik">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="cutistudiken" class="col-sm-3">Cuti studi ke</label>
+                  <label for="organisasi" class="col-sm-3">Organisasi tujuan</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="cutistudiken" name="cutistudiken">
+                    <input type="text" class="form-control" name="organisasi">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="alasancutistudi" class="col-sm-3">Alasan cuti studi</label>
+                  <label for="alamatOrganisasi" class="col-sm-3">Alamat organisasi tujuan</label>
                   <div class="col-sm-9">
-                    <textarea class="form-control" row="5" id="alasancutistudi"name="alasancutistudi"></textarea>
+                    <textarea class="form-control" row="5" name="alamatOrganisasi"></textarea>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="dosenwali" class="col-sm-3">Dosen wali</label>
+                  <label for="keperluanKunjungan" class="col-sm-3">Keperluan kunjungan</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="dosenwali" name="dosenwali">
+                    <input type="text" class="form-control" name="keperluanKunjungan">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="smstr" class="col-sm-3">Semester</label>
-                  <div class="col-sm-9">
-                    <label class="radio-inline"><input type="radio" id="smstr" name="semester" value="ganjil" checked>Ganjil</label>
-                    <label class="radio-inline"><input type="radio" id="smstr" name="semester" value="genap" >Genap</label>
-                  </div>
+                    <label for="dataKelompok" class="col-sm-3">Data kelompok</label>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" name="namaAnggota1" placeholder="Nama anggota">
+                    </div>
+                    <div class="col-sm-2">
+                      <input type="text" class="form-control" name-"npmAnggota1" placeholder="NPM">
+                    </div>
                 </div>
                 <div class="form-group">
-                  <label for="thnAkademik" class="col-sm-3">Tahun akademik</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="thnAkademik" name="thnAkademik">
-                  </div>
+                    <div class="col-sm-offset-3 col-sm-5">
+                      <input type="text" class="form-control" name="namaAnggota2" placeholder="Nama anggota">
+                    </div>
+                    <div class="col-sm-2">
+                      <input type="text" class="form-control" name-"npmAnggota2" placeholder="NPM">
+                    </div>
                 </div>
                 <div class="form-group">
-                  <label for="lampiran_CutiStudi" class="col-sm-3">Unggah surat permohonan cuti studi</label>
-                  <div class="col-sm-9">
-                    <input type="file" class="form-control" id="lampiran_CutiStudi" name="lampiran_CutiStudi">
-                  </div>
+                    <div class="col-sm-offset-3 col-sm-5">
+                      <input type="text" class="form-control" name="namaAnggota3" placeholder="Nama anggota">
+                    </div>
+                    <div class="col-sm-2">
+                      <input type="text" class="form-control" name-"npmAnggota3" placeholder="NPM">
+                    </div>
                 </div>
+                <input type="hidden" value="{{ $formatsurat_id }}" name="idFormat">
                 {!! csrf_field() !!}
                 <div class="form-group">
                   <div class="col-sm-offset-3 col-sm-10">
                     <button type="submit" class="btn btn-primary">Lanjutkan</button>
                   </div>
                 </div>
-              </form>
             </div>
             <div class="col-md-4 profile">.col-md-4</div>
           </div>
@@ -124,4 +130,6 @@
         hahahahahahahahahahahahahahahhahahahahahaha
     </div>
   </body>
+  <script type="text/javascript" src="{{ asset("js/jquery-3.2.0.min.js") }}"></script>
+  <script type="text/javascript" src="{{ asset("js/custom.js") }}"></script>
 </html>

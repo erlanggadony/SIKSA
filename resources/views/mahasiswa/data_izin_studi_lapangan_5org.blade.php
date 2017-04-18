@@ -78,12 +78,36 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <div class="row" >
-                    <div class="offset col-xs-5">
-                      <input type="text" class="form-control" name="namaAnggota" placeholder="Nama anggota">
+                    <label for="dataKelompok" class="col-sm-3">Data kelompok</label>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" name="namaAnggota1" placeholder="Nama anggota">
                     </div>
-                    <div class="col-xs-2">
-                      <input type="text" class="form-control" name-"npmAnggota" placeholder="NPM">
+                    <div class="col-sm-2">
+                      <input type="text" class="form-control" name-"npmAnggota1" placeholder="NPM">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-5">
+                      <input type="text" class="form-control" name="namaAnggota2" placeholder="Nama anggota">
+                    </div>
+                    <div class="col-sm-2">
+                      <input type="text" class="form-control" name-"npmAnggota2" placeholder="NPM">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-5">
+                      <input type="text" class="form-control" name="namaAnggota3" placeholder="Nama anggota">
+                    </div>
+                    <div class="col-sm-2">
+                      <input type="text" class="form-control" name-"npmAnggota3" placeholder="NPM">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-5">
+                      <input type="text" class="form-control" name="namaAnggota4" placeholder="Nama anggota">
+                    </div>
+                    <div class="col-sm-2">
+                      <input type="text" class="form-control" name-"npmAnggota4" placeholder="NPM">
                     </div>
                 </div>
                 <input type="hidden" value="{{ $formatsurat_id }}" name="idFormat">
