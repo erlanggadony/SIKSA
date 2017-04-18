@@ -11,23 +11,7 @@ class Fakultas extends Model
       return $this->hasMany(Jurusan::class);
     }
 
-    //Dekan
     public function dosens(){
-      return $this->hasOne(Dosen::class);
-    }
-
-    //WD I
-    public function dosens(){
-      return $this->hasOne(Dosen::class);
-    }
-
-    //WD II
-    public function dosens(){
-      return $this->hasOne(Dosen::class);
-    }
-
-    //WD III
-    public function dosens(){
-      return $this->hasOne(Dosen::class);
+      return $this->hasMany(Dosen::class);
     }
 }

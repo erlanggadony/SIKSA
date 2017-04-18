@@ -14,4 +14,8 @@ class Dosen extends Model
     public function mahasiswas(){
       return $this->hasMany(Mahasiswa::class);
     }
+
+    public function fakultas(){
+      return $this->belongsTo(fakultas::class);
+    }
 }

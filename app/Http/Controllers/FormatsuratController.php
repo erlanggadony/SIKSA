@@ -105,6 +105,27 @@ public function tampilkanSeluruhFormat(Request $request)
         else if($request->jenis_surat == "3"){
           return view('mahasiswa.data_pembuatan_visa', ['formatsurat_id' => $request->jenis_surat]);
         }
+        else if($request->jenis_surat == "4"){
+          return view('mahasiswa.data_izin_studi_lapangan', ['formatsurat_id' => $request->jenis_surat]);
+        }
+        else if($request->jenis_surat == "5"){
+          return view('mahasiswa.data_pembuatan_visa', ['formatsurat_id' => $request->jenis_surat]);
+        }
+        else if($request->jenis_surat == "6"){
+          return view('mahasiswa.data_pembuatan_visa', ['formatsurat_id' => $request->jenis_surat]);
+        }
+        else if($request->jenis_surat == "7"){
+          return view('mahasiswa.data_pembuatan_visa', ['formatsurat_id' => $request->jenis_surat]);
+        }
+        else if($request->jenis_surat == "8"){
+          return view('mahasiswa.data_pembuatan_visa', ['formatsurat_id' => $request->jenis_surat]);
+        }
+        else if($request->jenis_surat == "9"){
+          return view('mahasiswa.data_izin_pengunduran_diri', ['formatsurat_id' => $request->jenis_surat]);
+        }
+        else if($request->jenis_surat == "10"){
+          return view('mahasiswa.data_izin_cuti_studi', ['formatsurat_id' => $request->jenis_surat]);
+        }
     }
 
     private function buatJSON($request){
@@ -216,8 +237,60 @@ public function tampilkanSeluruhFormat(Request $request)
     public function tampilkanFormat(Request $request){
         $format;
         if($request->showFormatID == "1"){
-            $format = file('format_surat_latex/surat_keterangan_beasiswa.tex');
-            dd($format);
+            $filename = 'format_surat_latex/surat_keterangan_beasiswa.tex';
+            $data = file($filename);
+            foreach ($data as $line_num=>$line){
+                echo $line.'<br>';
+            }
+        }
+        else if($request->showFormatID == "2"){
+            $filename = 'format_surat_latex/surat_keterangan_mahasiswa_aktif.tex';
+            $data = file($filename);
+            foreach ($data as $line_num=>$line){
+                echo $line.'<br/>';
+            }
+        }
+        else if($request->showFormatID == "3"){
+            $filename = 'format_surat_latex/surat_pengantar_pembuatan_visa.tex';
+            $data = file($filename);
+            foreach ($data as $line_num=>$line){
+                echo $line.'<br/>';
+            }
+        }
+        else if($request->showFormatID == "4"){
+            $filename = 'format_surat_latex/surat_pengantar_studi_lapangan_1orang.tex';
+            $data = file($filename);
+            foreach ($data as $line_num=>$line){
+                echo $line.'<br/>';
+            }
+        }
+        else if($request->showFormatID == "5"){
+            $filename = 'format_surat_latex/surat_pengantar_studi_lapangan_2orang.tex';
+            $data = file($filename);
+            foreach ($data as $line_num=>$line){
+                echo $line.'<br/>';
+            }
+        }
+        else if($request->showFormatID == "6"){
+            $filename = 'format_surat_latex/surat_pengantar_studi_lapangan_3orang.tex';
+            $data = file($filename);
+            foreach ($data as $line_num=>$line){
+                echo $line.'<br/>';
+            }
+        }
+        else if($request->showFormatID == "7"){
+            $filename = 'format_surat_latex/surat_pengantar_studi_lapangan_4orang.tex';
+            $data = file($filename);
+            foreach ($data as $line_num=>$line){
+                echo $line.'<br/>';
+            }
+        }
+        else if($request->showFormatID == "7"){
+            $filename = 'format_surat_latex/surat_pengantar_studi_lapangan_5orang.tex';
+            $data = file($filename);
+            foreach ($data as $line_num=>$line){
+                echo $line.'<br/>';
+            }
         }
     }
 }

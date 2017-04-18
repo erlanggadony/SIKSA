@@ -31,7 +31,7 @@
             <br>
             <form class="form-horizontal" action="{{ url('/isi_data_diri') }}" method="post">
               <div class="form-group">
-                <div class="col-sm-6">
+                <div class="col-sm-9">
                     @foreach($formatsurats as $formatsurat)
                     <div class="radio">
                       <label>
@@ -41,9 +41,10 @@
                     </div>
                     @endforeach
                 </div>
+              </div>
               {!! csrf_field() !!}
               <div class="form-group">
-                <div class="col-sm-2">
+                <div class="col-sm-6">
                   <button type="submit" class="btn btn-primary">Lanjutkan</button>
                 </div>
               </div>

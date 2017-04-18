@@ -41,7 +41,7 @@
                     <input type="text" class="form-control" name="npm">
                   </div>
                 </div>
-                <div class="form-group prev">
+                <div class="form-group">
                   <label for="prodi" class="col-sm-3">Program studi</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" name="prodi">
@@ -78,7 +78,6 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <div class="row" >
                     <div class="offset col-xs-5">
                       <input type="text" class="form-control" name="namaAnggota" placeholder="Nama anggota">
                     </div>
@@ -89,10 +88,11 @@
                 <input type="hidden" value="{{ $formatsurat_id }}" name="idFormat">
                 {!! csrf_field() !!}
                 <div class="form-group">
-                  <div class="col-sm-offset-3 col-sm-10">
+                  <div class="col-sm-offset-3 col-sm-9">
                     <button type="submit" class="btn btn-primary">Lanjutkan</button>
                   </div>
                 </div>
+              </form>
             </div>
             <div class="col-md-4 profile">.col-md-4</div>
           </div>
