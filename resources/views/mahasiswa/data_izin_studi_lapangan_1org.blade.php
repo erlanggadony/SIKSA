@@ -77,7 +77,7 @@
                     <input type="text" class="form-control" name="keperluanKunjungan">
                   </div>
                 </div>
-                <input type="hidden" value="{{ $formatsurat_id }}" name="idFormat">
+                <input type="hidden" value="{{ $formatsurat_id }}" name="jenis_surat">
                 {!! csrf_field() !!}
                 <div class="form-group">
                   <div class="col-sm-offset-3 col-sm-10">

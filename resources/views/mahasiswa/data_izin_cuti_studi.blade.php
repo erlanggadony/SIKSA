@@ -96,6 +96,7 @@
                     <input type="file" class="form-control" id="lampiran_CutiStudi" name="lampiran_CutiStudi">
                   </div>
                 </div>
+                <input type="hidden" value="{{ $formatsurat_id }}" name="jenis_surat">
                 {!! csrf_field() !!}
                 <div class="form-group">
                   <div class="col-sm-offset-3 col-sm-10">

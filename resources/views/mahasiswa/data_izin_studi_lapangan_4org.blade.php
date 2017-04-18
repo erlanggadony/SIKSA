@@ -83,7 +83,7 @@
                       <input type="text" class="form-control" name="namaAnggota1" placeholder="Nama anggota">
                     </div>
                     <div class="col-sm-2">
-                      <input type="text" class="form-control" name-"npmAnggota1" placeholder="NPM">
+                      <input type="text" class="form-control" name="npmAnggota1" placeholder="NPM">
                     </div>
                 </div>
                 <div class="form-group">
@@ -91,7 +91,7 @@
                       <input type="text" class="form-control" name="namaAnggota2" placeholder="Nama anggota">
                     </div>
                     <div class="col-sm-2">
-                      <input type="text" class="form-control" name-"npmAnggota2" placeholder="NPM">
+                      <input type="text" class="form-control" name="npmAnggota2" placeholder="NPM">
                     </div>
                 </div>
                 <div class="form-group">
@@ -99,10 +99,10 @@
                       <input type="text" class="form-control" name="namaAnggota3" placeholder="Nama anggota">
                     </div>
                     <div class="col-sm-2">
-                      <input type="text" class="form-control" name-"npmAnggota3" placeholder="NPM">
+                      <input type="text" class="form-control" name="npmAnggota3" placeholder="NPM">
                     </div>
                 </div>
-                <input type="hidden" value="{{ $formatsurat_id }}" name="idFormat">
+                <input type="hidden" value="{{ $formatsurat_id }}" name="jenis_surat">
                 {!! csrf_field() !!}
                 <div class="form-group">
                   <div class="col-sm-offset-3 col-sm-10">

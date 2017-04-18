@@ -18,9 +18,9 @@ class FormatsuratController extends Controller
     }
 
     /**
-	 * Display a listing of the resource.
+	 * Menampilkan seluruh format surat di halaman pilih jenis surat saat mahasiswa hendak memilih jenis surat
 	 *
-	 * @return Response
+	 * @return view
 	 */
 	public function pilihSurat(Request $request)
 	{
@@ -37,6 +37,11 @@ class FormatsuratController extends Controller
         ]);
 	}
 
+  /**
+  * Menampilkan seluruh format surat di halaman format surat milik TU
+  *
+  * @return view
+  */
 public function tampilkanSeluruhFormat(Request $request)
 {
       //$confirmation = Confirmation::where(['id' => 2])->first();
@@ -95,6 +100,9 @@ public function tampilkanSeluruhFormat(Request $request)
         $formatsurat->keterangan = $request->keterangan;
     }
 
+    /**
+    * Untuk menampilkan formulir berdasarkan jenis surat yang dipilih oleh mahasiswa
+    */
     public function tampilkanFormulir(Request $request){
         if($request->jenis_surat == "1"){
           return view('mahasiswa.data_keterangan_beasiswa', ['formatsurat_id' => $request->jenis_surat]);
@@ -106,6 +114,7 @@ public function tampilkanSeluruhFormat(Request $request)
           return view('mahasiswa.data_pembuatan_visa', ['formatsurat_id' => $request->jenis_surat]);
         }
         else if($request->jenis_surat == "4"){
+          // dd($request->jenis_surat);
           return view('mahasiswa.data_izin_studi_lapangan_1org', ['formatsurat_id' => $request->jenis_surat]);
         }
         else if($request->jenis_surat == "5"){
@@ -158,6 +167,9 @@ public function tampilkanSeluruhFormat(Request $request)
         }
     }
 
+    /**
+    * Untuk meng-generate JSON dari data input
+    */
     private function buatJSON($request){
       if($request->jenis_surat == "1"){
           $obj = [
@@ -193,82 +205,82 @@ public function tampilkanSeluruhFormat(Request $request)
       }
       else if($request->jenis_surat == "4"){
           $obj = [
-            'nama' => $request->nama;
-            'npm' => $request->npm;
-            'prodi' => $request->prodi;
-            'matkul' => $request->matkul;
-            'topik' => $request->topik;
-            'organisasi' => $request->organisasi;
-            'alamatOrganisasi' => $request->alamatOrganisasi;
-            'keperluanKunjungan' => $request->keperluanKunjungan;
+            'nama' => $request->nama,
+            'npm' => $request->npm,
+            'prodi' => $request->prodi,
+            'matkul' => $request->matkul,
+            'topik' => $request->topik,
+            'organisasi' => $request->organisasi,
+            'alamatOrganisasi' => $request->alamatOrganisasi,
+            'keperluanKunjungan' => $request->keperluanKunjungan,
           ];
       }
       else if($request->jenis_surat == "5"){
         $obj = [
-          'nama' => $request->nama;
-          'npm' => $request->npm;
-          'prodi' => $request->prodi;
-          'matkul' => $request->matkul;
-          'topik' => $request->topik;
-          'organisasi' => $request->organisasi;
-          'alamatOrganisasi' => $request->alamatOrganisasi;
-          'keperluanKunjungan' => $request->keperluanKunjungan;
-          'namaAnggota' => $request->namaAnggota;
-          'npmAnggota' => $request->npmAnggota;
+          'nama' => $request->nama,
+          'npm' => $request->npm,
+          'prodi' => $request->prodi,
+          'matkul' => $request->matkul,
+          'topik' => $request->topik,
+          'organisasi' => $request->organisasi,
+          'alamatOrganisasi' => $request->alamatOrganisasi,
+          'keperluanKunjungan' => $request->keperluanKunjungan,
+          'namaAnggota' => $request->namaAnggota,
+          'npmAnggota' => $request->npmAnggota,
         ];
       }
       else if($request->jenis_surat == "6"){
         $obj = [
-          'nama' => $request->nama;
-          'npm' => $request->npm;
-          'prodi' => $request->prodi;
-          'matkul' => $request->matkul;
-          'topik' => $request->topik;
-          'organisasi' => $request->organisasi;
-          'alamatOrganisasi' => $request->alamatOrganisasi;
-          'keperluanKunjungan' => $request->keperluanKunjungan;
-          'namaAnggota1' => $request->namaAnggota1;
-          'npmAnggota1' => $request->npmAnggota1;
-          'namaAnggota2' => $request->namaAnggota2;
-          'npmAnggota2' => $request->npmAnggota2;
+          'nama' => $request->nama,
+          'npm' => $request->npm,
+          'prodi' => $request->prodi,
+          'matkul' => $request->matkul,
+          'topik' => $request->topik,
+          'organisasi' => $request->organisasi,
+          'alamatOrganisasi' => $request->alamatOrganisasi,
+          'keperluanKunjungan' => $request->keperluanKunjungan,
+          'namaAnggota1' => $request->namaAnggota1,
+          'npmAnggota1' => $request->npmAnggota1,
+          'namaAnggota2' => $request->namaAnggota2,
+          'npmAnggota2' => $request->npmAnggota2
         ];
       }
       else if($request->jenis_surat == "7"){
         $obj = [
-          'nama' => $request->nama;
-          'npm' => $request->npm;
-          'prodi' => $request->prodi;
-          'matkul' => $request->matkul;
-          'topik' => $request->topik;
-          'organisasi' => $request->organisasi;
-          'alamatOrganisasi' => $request->alamatOrganisasi;
-          'keperluanKunjungan' => $request->keperluanKunjungan;
-          'namaAnggota1' => $request->namaAnggota1;
-          'npmAnggota1' => $request->npmAnggota1;
-          'namaAnggota2' => $request->namaAnggota2;
-          'npmAnggota2' => $request->npmAnggota2;
-          'namaAnggota3' => $request->namaAnggota3;
-          'npmAnggota3' => $request->npmAnggota3;
+          'nama' => $request->nama,
+          'npm' => $request->npm,
+          'prodi' => $request->prodi,
+          'matkul' => $request->matkul,
+          'topik' => $request->topik,
+          'organisasi' => $request->organisasi,
+          'alamatOrganisasi' => $request->alamatOrganisasi,
+          'keperluanKunjungan' => $request->keperluanKunjungan,
+          'namaAnggota1' => $request->namaAnggota1,
+          'npmAnggota1' => $request->npmAnggota1,
+          'namaAnggota2' => $request->namaAnggota2,
+          'npmAnggota2' => $request->npmAnggota2,
+          'namaAnggota3' => $request->namaAnggota3,
+          'npmAnggota3' => $request->npmAnggota3
         ];
       }
       else if($request->jenis_surat == "8"){
         $obj = [
-          'nama' => $request->nama;
-          'npm' => $request->npm;
-          'prodi' => $request->prodi;
-          'matkul' => $request->matkul;
-          'topik' => $request->topik;
-          'organisasi' => $request->organisasi;
-          'alamatOrganisasi' => $request->alamatOrganisasi;
-          'keperluanKunjungan' => $request->keperluanKunjungan;
-          'namaAnggota1' => $request->namaAnggota1;
-          'npmAnggota1' => $request->npmAnggota1;
-          'namaAnggota2' => $request->namaAnggota2;
-          'npmAnggota2' => $request->npmAnggota2;
-          'namaAnggota3' => $request->namaAnggota3;
-          'npmAnggota3' => $request->npmAnggota3;
-          'namaAnggota4' => $request->namaAnggota4;
-          'npmAnggota4' => $request->npmAnggota4;
+          'nama' => $request->nama,
+          'npm' => $request->npm,
+          'prodi' => $request->prodi,
+          'matkul' => $request->matkul,
+          'topik' => $request->topik,
+          'organisasi' => $request->organisasi,
+          'alamatOrganisasi' => $request->alamatOrganisasi,
+          'keperluanKunjungan' => $request->keperluanKunjungan,
+          'namaAnggota1' => $request->namaAnggota1,
+          'npmAnggota1' => $request->npmAnggota1,
+          'namaAnggota2' => $request->namaAnggota2,
+          'npmAnggota2' => $request->npmAnggota2,
+          'namaAnggota3' => $request->namaAnggota3,
+          'npmAnggota3' => $request->npmAnggota3,
+          'namaAnggota4' => $request->namaAnggota4,
+          'npmAnggota4' => $request->npmAnggota4
         ];
       }
       else if($request->jenis_surat == "9"){
@@ -280,6 +292,9 @@ public function tampilkanSeluruhFormat(Request $request)
       return json_encode($obj);
     }
 
+    /**
+    * Untuk menampilkan data yang telah diisikan pada formulir
+    */
     public function tampilkanIsiForm(Request $request){
       if($request->jenis_surat == "1"){
         $nama = $request->nama;
@@ -337,6 +352,7 @@ public function tampilkanSeluruhFormat(Request $request)
         $formatsurat_id = $request->jenis_surat;
         $dataSurat = $this->buatJSON($request);
         // dd($dataSurat);
+
         return view('mahasiswa.preview_pembuatan_visa', [
             'nama' => $nama,
             'tglLahir' => $tglLahir,
@@ -360,6 +376,7 @@ public function tampilkanSeluruhFormat(Request $request)
         $keperluanKunjungan = $request->keperluanKunjungan;
         $formatsurat_id = $request->jenis_surat;
         $dataSurat = $this->buatJSON($request);
+// dd($request);
         return view('mahasiswa.preview_izin_studi_lapangan_1org', [
             'nama' => $nama,
             'npm' => $npm,

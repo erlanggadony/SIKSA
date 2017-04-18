@@ -3,7 +3,8 @@
   <head>
       <title>Format Surat</title>
       <link href="{{ asset("/bootstrap-3.3.7-dist/css/bootstrap.css") }}" rel="stylesheet" type="text/css" />
-      <link href="{{ asset("/css/styles_list_surat.css") }}" rel="stylesheet" type="text/css">
+      <link href="{{ asset("/css/styles_list_surat.css") }}" rel="stylesheet" type="text/css" />
+      <script src="{{ asset("/js/jquery-3.2.0.min.js") }}" type="text/javascript"></script>
 
   </head>
 
@@ -131,8 +132,15 @@
             }
         }
         function showModal(id){
-            document.getElementById("show").innerHTML = `<span onclick='tutup()' class='close'>&times;</span>` + id;
+          var jqxhr = $.get( "http://127.0.0.1:8000/Api/showFormatSurat?id=" + id, function() {
+          })
+          .done(function(data) {
+            document.getElementById("show").innerHTML = `<span onclick='tutup()' class='close'>&times;</span>` + data.stringFormat;
             modal.style.display = "block";
+          })
+          .fail(function(error) {
+            alert( "Error : " + error);
+          })
         }
     </script>
   </body>

@@ -10,6 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group(['prefix' => 'Api'], function(){
+    Route::get('/showFormatSurat', 'Api\FormatsuratAPIController@tampilkanFormat');
+});
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,7 +24,7 @@ Route::get('/login_mahasiswa', function () {
     return view('mahasiswa/login_mahasiswa');
 });
 Route::post('/login', 'AuthController@authenticate');
-//<----------------------------------------------------------MAHASISWA---------------------------------------------------------->
+//<-------------------------------------------------------MAHASISWA------------------------------------------------------->
 
 //
     // halaman utama mahasiswa
@@ -73,7 +76,7 @@ Route::post('/login', 'AuthController@authenticate');
     });
     Route::post('/kirimFormulir', 'PesanansuratController@store');
 
-    //<---------------------------------------------------------PETUGAS TU--------------------------------------------------------->
+//<-------------------------------------------------------PETUGAS TU------------------------------------------------------>
     //halaman login TU
 
     // halaman utama pejabat
@@ -103,7 +106,7 @@ Route::post('/login', 'AuthController@authenticate');
     });
     Route::post('/generatePDF', 'HistorysuratController@buatPDF');
 
-    //<----------------------------------------------------------PEJABAT ---------------------------------------------------------->
+//<--------------------------------------------------------PEJABAT-------------------------------------------------------->
     // halaman utama pejabat
     Route::get('/home_pejabat', function () {
         return view('pejabat/home_pejabat');

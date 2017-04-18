@@ -32,68 +32,59 @@
                 <div class="form-group">
                   <label for="nama" class="col-sm-3 prevLabel">Nama</label>
                   <div class="col-sm-9">
-                    Rizki Ekaputri Amalia
+                    {{ $nama }}
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="npm" class="col-sm-3 prevLabel">NPM</label>
                   <div class="col-sm-9">
-                    2011730069
+                    {{ $npm }}
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="npm" class="col-sm-3 prevLabel">Program Studi</label>
                   <div class="col-sm-9">
-                    Teknik Informatika
+                    {{ $prodi }}
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="npm" class="col-sm-3 prevLabel">Mata Kuliah</label>
                   <div class="col-sm-9">
-                    Skripsi I
+                    {{ $matkul }}
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="npm" class="col-sm-3 prevLabel">Topik</label>
                   <div class="col-sm-9">
-                    Pemodelan dan Simulasi Antrian Pasien di Rumah Sakit Khusus Gigi dan Mulut Bandung
+                    {{ $topik}}
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="npm" class="col-sm-3 prevLabel">Organisasi Tujuan</label>
                   <div class="col-sm-9">
-                    Badan Kesatuan Bangsa dan Pemberdayaan Masyarakat
+                    {{ $organisasi }}
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="npm" class="col-sm-3 prevLabel">Alamat Organisasi</label>
                   <div class="col-sm-9">
-                    Jl. Wastukencana no. 2 Bandung
+                    {{ $alamatOrganisasi}}
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="npm" class="col-sm-3 prevLabel">Alasan Kunjungan</label>
+                  <label for="npm" class="col-sm-3 prevLabel">Keperluan Kunjungan</label>
                   <div class="col-sm-9">
-                    Wawancara, survey dan observasi
+                    {{ $keperluanKunjungan }}
                   </div>
                 </div>
+                <input type="hidden" value="{{ $formatsurat_id }}" name="idFormat">
+                <input type="hidden" value="{{ $dataSurat }}" name="dataSurat">
+                {!! csrf_field() !!}
+                <br>
                 <div class="form-group">
-                  <label for="npm" class="col-sm-3 prevLabel">Anggota Kelompok</label>
-                  <div class="col-sm-9">
-                    <table class="table table-bordered table-hover">
-                      <tr>
-                        <th style="text-align:center;background-color:#eee">NPM</th>
-                        <th style="text-align:center;background-color:#eee">Nama</th>
-                      </tr>
-                      <tr>
-                        <td>2012730071</td>
-                        <td>nama saya budi</td>
-                      </tr>
-                      <tr>
-                        <td>2013730071</td>
-                        <td>nama saya ani</td>
-                      </tr>
-                    </table>
+                  <div class="col-sm-offset-3 col-sm-10">
+                    <button class="btn btn-default" onclick="goBack()">Kembali</button>
+                    <button type="submit" class="btn btn-success">Buat Surat</button>
                   </div>
                 </div>
             </div>
@@ -116,5 +107,10 @@
     <div class="footer">
         hahahahahahahahahahahahahahahhahahahahahaha
     </div>
+    <script>
+      function goBack() {
+          window.history.back();
+      }
+    </script>
   </body>
 </html>

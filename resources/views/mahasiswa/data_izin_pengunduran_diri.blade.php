@@ -36,7 +36,7 @@
               <br>
               Dengan ini saya,
               </p>
-              <form class="form-horizontal">
+              <form class="form-horizontal" action="{{ url('/preview') }}" method="post">
                 <div class="form-group">
                   <label for="nama" class="col-sm-3">Nama</label>
                   <div class="col-sm-9">
@@ -86,6 +86,8 @@
                     <input type="file" class="form-control" id="lapiran_PengunduranDiri">
                   </div>
                 </div>
+                <input type="hidden" value="{{ $formatsurat_id }}" name="jenis_surat">
+                {!! csrf_field() !!}
                 <div class="form-group">
                   <div class="col-sm-offset-3 col-sm-10">
                     <button type="submit" class="btn btn-primary">Lanjutkan</button>
