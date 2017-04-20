@@ -183,7 +183,7 @@
                         <input type="text" class="form-control" placeholder="sks">
                       </div>
                   </div>
-                  <div class=" form-group">
+                  <div class="form-group">
                       <div class="col-sm-offset-3 col-sm-5">
                         <input type="text" class="form-control" placeholder="Nama mata kuliah">
                       </div>

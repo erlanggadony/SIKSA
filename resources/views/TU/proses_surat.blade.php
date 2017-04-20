@@ -70,7 +70,7 @@
                           <input type="text" class="form-control" name="noSurat" required />
                       </div>
                   </div>
-                  <input type="hidden" value="{{ $format }}" id="format" name="format"> 
+                  <input type="hidden" value="{{ $dataSurat }}" id="format" name="data"> 
                   <input type="hidden" value="{{ $formatsurat_id }}" name="idFormatSurat">
                   {!! csrf_field() !!}
                   <br>

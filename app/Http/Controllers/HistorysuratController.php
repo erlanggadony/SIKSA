@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Repositories\HistorysuratRepository;
 use App\Historysurat;
+use Storage;
 
 class HistorysuratController extends Controller
 {
@@ -29,7 +30,6 @@ class HistorysuratController extends Controller
         //dd($confirmation->order->tickets);
         //dd($confirmation);
         //--
-
         $historysurats;
         if($request->kategori_history_surat == "noSurat"){
           $historysurats = $this->historysuratRepo->findPesananSuratByNomorSurat($request->searchBox);
@@ -59,6 +59,17 @@ class HistorysuratController extends Controller
 	}
 
   public function buatPDF(Request $request){
-    
+          $dataSurat = $request->data;
+          $json = json_decode($dataSurat);
+          $nama = $json->nama;
+          $prodi = $json->prodi;
+          $npm = $json->npm;
+          $semester = $json->semester;
+          $thnAkademik = $json->thnAkademik;
+          $jenisbeasiswa = $json->jenisbeasiswa;
+          $noSurat = $request->noSurat;
+          $fileSurat = file('format_surat_latex/surat_keterangan_beasiswa.tex');
+          $fileSuratBaru = $fileSurat;
+          
   }
 }

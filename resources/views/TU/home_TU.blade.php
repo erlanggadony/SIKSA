@@ -67,7 +67,7 @@
                           <td>{{ $pesanansurat->mahasiswa_id }}</td>
                           <td>{{ $pesanansurat->penerimaSurat }}</td>
                           <td>{{ $pesanansurat->created_at }}</td>
-                          <td><textarea rows="5" cols="30" disabled readonly>{{ $pesanansurat->dataSurat }}</textarea></td>
+                          <td><textarea rows="5" cols="30" style="border: none" readonly>{{ $pesanansurat->dataSurat }}</textarea></td>
                           <td>
                             <form action="/proses_surat" method="post">
                               <input type="hidden" value="{{ $pesanansurat->formatsurat_id }}" name="idFormatSurat">

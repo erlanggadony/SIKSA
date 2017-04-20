@@ -25,8 +25,7 @@ class PesanansuratController extends Controller
         //dd($this->orders->getAllActive());
     }
 
-    public function tampilkanPesananSurat(Request $request)
-  	{
+    public function tampilkanPesananSurat(Request $request){
           //$confirmation = Confirmation::where(['id' => 2])->first();
 
           //dd($confirmation->order->tickets);
@@ -60,31 +59,29 @@ class PesanansuratController extends Controller
 
     public function sendDataSurat(Request $request){
         $dataSurat = $request->prosesSurat;
-            $json = json_decode($dataSurat);
-            $nama = $json->nama;
-            $prodi = $json->prodi;
-            $npm = $json->npm;
-            $semester = $json->semester;
-            $thnAkademik = $json->thnAkademik;
-            $jenisbeasiswa = $json->jenisbeasiswa;
-            $formatsurat_id = $request->idFormatSurat;
-            $format = file('format_surat_latex/surat_keterangan_beasiswa.tex');
-            dd($format);
-            return view('TU.proses_surat', [
-                'nama' => $nama,
-                'prodi' => $prodi,
-                'npm' => $npm,
-                'semester' => $semester,
-                'thnAkademik' => $thnAkademik,
-                'jenisbeasiswa' => $jenisbeasiswa,
-                'formatsurat_id' => $formatsurat_id,
-                'format' => $format
-            ]);
+        $json = json_decode($dataSurat);
+        $nama = $json->nama;
+        $prodi = $json->prodi;
+        $npm = $json->npm;
+        $semester = $json->semester;
+        $thnAkademik = $json->thnAkademik;
+        $jenisbeasiswa = $json->jenisbeasiswa;
+        $formatsurat_id = $request->idFormatSurat;
+        // dd($dataSurat);
+        return view('TU.proses_surat', [
+            'nama' => $nama,
+            'prodi' => $prodi,
+            'npm' => $npm,
+            'semester' => $semester,
+            'thnAkademik' => $thnAkademik,
+            'jenisbeasiswa' => $jenisbeasiswa,
+            'formatsurat_id' => $formatsurat_id,
+            'dataSurat' => $dataSurat
+        ]);
 
     }
 
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         $pesanansurat = new PesananSurat;
 
         $pesanansurat->mahasiswa_id = 'anonim';
