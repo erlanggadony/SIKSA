@@ -198,9 +198,47 @@ class PesanansuratController extends Controller
         ];
       }
       else if($request->jenis_surat == "9"){
+        $obj = [
+          'nama' => $request->nama,
+          'npm' => $request->npm,
+          'prodi' => $request->prodi,
+          'fakultas' => $request->fakultas,
+          'alamat' => $request->alamat,
+          'cutiStudiKe' => $request->cutiStudiKe,
+          'alasanCutiStudi' => $request->alasanCutiStudi,
+          'dosenWali' => $request->dosenWali,
+          'semester' => $request->semester,
+          'thnAkademik' => $request->thnAkademik,
+          'persetujuanDosenWali' => $request->persetujuanDosenWali,
+          'catatanDosenWali' => $request->catatanDosenWali,
+          'persetujuanKaprodi' => $request->persetujuanKaprodi,
+          'catatanKaprodi' => $request->catatanKaprodi,
+          'persetujuanWDII' => $request->persetujuanWDII,
+          'catatanWDII' => $request->catatanWDII,
+          'persetujuanWDI' => $request->persetujuanWDI,
+          'catatanWDI' => $request->catatanWDI,
+          'persetujuanDekan' => $request->persetujuanDekan
+        ];
       }
-      else if($request->showFormatID == "10"){
-          //
+      else if($request->jenis_surat == "10"){
+        $obj = [
+          'nama' => $request->nama,
+          'npm' => $request->npm,
+          'alamat' => $request->alamat,
+          'noTelepon' => $request->noTelepon,
+          'namaOrtu' => $request->namaOrtu,
+          'dosenWali' => $request->dosenWali,
+          'semester' => $request->semester,
+          'persetujuanDosenWali' => $request->persetujuanDosenWali,
+          'catatanDosenWali' => $request->catatanDosenWali,
+          'persetujuanKaprodi' => $request->persetujuanKaprodi,
+          'catatanKaprodi' => $request->catatanKaprodi,
+          'persetujuanWDII' => $request->persetujuanWDII,
+          'catatanWDII' => $request->catatanWDII,
+          'persetujuanWDI' => $request->persetujuanWDI,
+          'catatanWDI' => $request->catatanWDI,
+          'persetujuanDekan' => $request->persetujuanDekan
+        ];
       }
       return json_encode($obj);
     }
@@ -287,7 +325,7 @@ class PesanansuratController extends Controller
         $keperluanKunjungan = $request->keperluanKunjungan;
         $formatsurat_id = $request->jenis_surat;
         $dataSurat = $this->buatJSON($request);
-// dd($request);
+        // dd($request);
         return view('mahasiswa.preview_izin_studi_lapangan_1org', [
             'nama' => $nama,
             'npm' => $npm,
@@ -438,9 +476,108 @@ class PesanansuratController extends Controller
         ]);
       }
       else if($request->jenis_surat == "9"){
+        $nama = $request->nama;
+        $npm = $request->npm;
+        $prodi = $request->prodi;
+        $fakultas = $request->fakultas;
+        $alamat = $request->alamat;
+        $cutiStudiKe = $request->cutiStudiKe;
+        $alasanCutiStudi = $request->alasanCutiStudi;
+        $dosenWali = $request->dosenWali;
+        $semester = $request->semester;
+        $thnAkademik = $request->thnAkademik;
+        //upload
+        // $lampiran = $request->file('lampiran_CutiStudi');
+        // $destination_path = ('lampiran/cuti_studi/');
+        // $filename = $lampiran->getClientOriginalName();
+        // $namaDepan = explode(" ", $nama);
+        // $savedLampiran = ($namaDepan[0] . '_' . $namaDepan[1] . '_' .$filename);
+        // $lampiran->move($destination_path, $savedLampiran);
+
+        // $link = '127.0.0.1:8000/format_surat_latex/' . $filename;
+        $persetujuanDosenWali = '-';
+        $catatanDosenWali = '-';
+        $persetujuanKaprodi = '-';
+        $catatanKaprodi = '-';
+        $persetujuanWDII = '-';
+        $catatanWDII = '-';
+        $persetujuanWDI = '-';
+        $catatanWDI = '-';
+        $persetujuanDekan = '-';
+        $formatsurat_id = $request->jenis_surat;
+        $dataSurat = $this->buatJSON($request);
+        return view('mahasiswa.preview_izin_cuti_studi', [
+            'nama' => $nama,
+            'npm' => $npm,
+            'prodi' => $prodi,
+            'fakultas' => $fakultas,
+            'alamat' => $alamat,
+            'cutiStudiKe' => $cutiStudiKe,
+            'alasanCutiStudi' => $alasanCutiStudi,
+            'dosenWali' => $dosenWali,
+            'semester' => $semester,
+            'thnAkademik' => $thnAkademik,
+            'persetujuanDosenWali' => $persetujuanDosenWali,
+            'catatanDosenWali' => $catatanDosenWali,
+            'persetujuanKaprodi' => $persetujuanKaprodi,
+            'catatanKaprodi' => $catatanKaprodi,
+            'persetujuanWDII' => $persetujuanWDII,
+            'catatanWDII' => $catatanWDII,
+            'persetujuanWDI' => $persetujuanWDI,
+            'catatanWDI' => $catatanWDI,
+            'persetujuanDekan' => $persetujuanDekan,
+            'formatsurat_id' => $formatsurat_id,
+            'dataSurat' => $dataSurat
+        ]);
       }
-      else if($request->showFormatID == "10"){
-          //
+      else if($request->jenis_surat == "10"){
+        $nama = $request->nama;
+        $npm = $request->npm;
+        $alamat = $request->alamat;
+        $noTelepon = $request->noTelepon;
+        $namaOrtu = $request->namaOrtu;
+        $dosenWali = $request->dosenWali;
+        $semester = $request->semester;
+        //upload
+        // $lampiran = $request->file('lampiran_CutiStudi');
+        // $destination_path = ('lampiran/cuti_studi/');
+        // $filename = $lampiran->getClientOriginalName();
+        // $namaDepan = explode(" ", $nama);
+        // $savedLampiran = ($namaDepan[0] . '_' . $namaDepan[1] . '_' .$filename);
+        // $lampiran->move($destination_path, $savedLampiran);
+
+        // $link = '127.0.0.1:8000/format_surat_latex/' . $filename;
+        $persetujuanDosenWali = '-';
+        $catatanDosenWali = '-';
+        $persetujuanKaprodi = '-';
+        $catatanKaprodi = '-';
+        $persetujuanWDII = '-';
+        $catatanWDII = '-';
+        $persetujuanWDI = '-';
+        $catatanWDI = '-';
+        $persetujuanDekan = '-';
+        $formatsurat_id = $request->jenis_surat;
+        $dataSurat = $this->buatJSON($request);
+        return view('mahasiswa.preview_izin_pengunduran_diri', [
+            'nama' => $nama,
+            'npm' => $npm,
+            'alamat' => $alamat,
+            'noTelepon' => $noTelepon,
+            'namaOrtu' => $namaOrtu,
+            'dosenWali' => $dosenWali,
+            'semester' => $semester,
+            'persetujuanDosenWali' => $persetujuanDosenWali,
+            'catatanDosenWali' => $catatanDosenWali,
+            'persetujuanKaprodi' => $persetujuanKaprodi,
+            'catatanKaprodi' => $catatanKaprodi,
+            'persetujuanWDII' => $persetujuanWDII,
+            'catatanWDII' => $catatanWDII,
+            'persetujuanWDI' => $persetujuanWDI,
+            'catatanWDI' => $catatanWDI,
+            'persetujuanDekan' => $persetujuanDekan,
+            'formatsurat_id' => $formatsurat_id,
+            'dataSurat' => $dataSurat
+        ]);
       }
     }
 }

@@ -38,9 +38,9 @@
               </p>
               <form action = "{{ url('/kirimFormulir') }}" method="post">
                 <div class="form-group">
-                  <label for="nama" class="col-sm-3 prevLabel">NIRM</label>
-                  <div class="col-sm-9">
-                    {{ $nirm }}
+                  <label class="col-sm-3 prevLabel">NIRM</label>
+                  <div class="col-sm-9" >
+                    123456789
                   </div>
                 </div>
                 <div class="form-group">
@@ -53,12 +53,6 @@
                   <label for="nama" class="col-sm-3 prevLabel">Nama</label>
                   <div class="col-sm-9">
                     {{ $nama }}
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="npm" class="col-sm-3 prevLabel">NIRM</label>
-                  <div class="col-sm-9">
-                    {{ $prodi }}
                   </div>
                 </div>
                 <div class="form-group">
@@ -99,7 +93,7 @@
                 <div class="form-group prev">
                   <label for="npm" class="col-sm-3 prevLabel">WAKIL DEKAN II </label>
                   <div class="col-sm-9">
-                    {{ $persetujuanKaprodi }}<br>
+                    {{ $persetujuanWDII }}<br>
                     {{ $catatanKaprodi }}
                   </div>
                 </div>

@@ -60,21 +60,21 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="cutistudiken" class="col-sm-3">Cuti studi ke</label>
+                  <label for="cutiStudiKe" class="col-sm-3">Cuti studi ke</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="cutistudiken" name="cutistudiken">
+                    <input type="text" class="form-control" id="cutiStudiKe" name="cutiStudiKe">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="alasancutistudi" class="col-sm-3">Alasan cuti studi</label>
+                  <label for="alasanCutiStudi" class="col-sm-3">Alasan cuti studi</label>
                   <div class="col-sm-9">
-                    <textarea class="form-control" row="5" id="alasancutistudi"name="alasancutistudi"></textarea>
+                    <textarea class="form-control" row="5" id="alasanCutiStudi"name="alasanCutiStudi"></textarea>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="dosenwali" class="col-sm-3">Dosen wali</label>
+                  <label for="dosenWali" class="col-sm-3">Dosen wali</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="dosenwali" name="dosenwali">
+                    <input type="text" class="form-control" id="dosenWali" name="dosenWali">
                   </div>
                 </div>
                 <div class="form-group">

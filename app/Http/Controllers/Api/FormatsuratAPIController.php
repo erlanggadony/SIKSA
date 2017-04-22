@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Http\Requests;
+// use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Formatsurat;
 use App\Repositories\FormatsuratRepository;
@@ -23,7 +23,7 @@ class FormatsuratAPIController extends Controller{
         // dd($format);
         $link = $format->link_format_surat;
         $arr = explode("/", $link);
-        $filename = ($arr[1] . '/' .$arr[2]);
+        $filename = $arr[1] . '/' .$arr[2];
         // dd($filename);
         $data = file($filename);
 

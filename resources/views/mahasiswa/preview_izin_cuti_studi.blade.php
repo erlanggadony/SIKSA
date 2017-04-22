@@ -28,82 +28,102 @@
             <div class="col-md-8 contentPreview form-horizontal">
               <h4 style="font-weight:bold">FORMULIR PERMOHONAN CUTI STUDI</h4>
               <br>
-
+              <form action = "{{ url('/kirimFormulir') }}" method="post">
                 <div class="form-group">
                   <label for="nama" class="col-sm-3 prevLabel">Nama</label>
-                  <div class="col-sm-9">
-                    nama
+                  <div class="col-sm-9" name="nama">
+                    {{ $nama }}
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="npm" class="col-sm-3 prevLabel">NPM</label>
-                  <div class="col-sm-9">
-                    2012730071
+                  <div class="col-sm-9" name="npm">
+                    {{ $npm }}
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="npm" class="col-sm-3 prevLabel">Program Studi</label>
-                  <div class="col-sm-9">
-                    Teknik Informatika
+                  <label for="prodi" class="col-sm-3 prevLabel">Program Studi</label>
+                  <div class="col-sm-9" name="prodi">
+                    {{ $prodi }}
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="npm" class="col-sm-3 prevLabel">Fakultas</label>
-                  <div class="col-sm-9">
-                    FTIS
+                  <label for="fakultas" class="col-sm-3 prevLabel">Fakultas</label>
+                  <div class="col-sm-9" name="fakultas">
+                    {{ $fakultas }}
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="npm" class="col-sm-3 prevLabel">Alamat</label>
-                  <div class="col-sm-9">
-                    Jalan Mekarsari no. 17 RT 03 RW 10 Kelurahan Kebon Lega Kecamatan Bojongloa Kidul Bandung 40235
+                  <label for="alamat" class="col-sm-3 prevLabel">Alamat</label>
+                  <div class="col-sm-9" name="alamat">
+                    {{ $alamat}}
                   </div>
                 </div>
                 <div class="form-group prev">
-                  <label for="npm" class="col-sm-3 prevLabel">Alasan cuti studi ke </label>
-                  <div class="col-sm-9">
-                    1<br>
-                    Saya terpilih masuk ke dalam skuad sepak bola indonesia yang akan berpartisipasi dalam ajang piala dunia 2022 yang akan diselenggarakan di rusia
+                  <label for="alasanCutiStudi" class="col-sm-3 prevLabel">Alasan cuti studi ke </label>
+                  <div class="col-sm-9" name="alasanCutiStudi">
+                    {{ $cutiStudiKe }}<br>
+                    {{ $alasanCutiStudi }}
                   </div>
                 </div>
                 <div class="form-group prev">
-                  <label for="npm" class="col-sm-3 prevLabel">Catatan dosen wali </label>
-                  <div class="col-sm-9">
-                    Nama : Thomas Anung Basuki<br>
-                    good luck don! bermainlah dengan semangat, bawa pulang piala dunia ke indonesia. Semoga bisa jadi permain terbaik dan top scorer juga.
+                  <label for="catatanDosenWali" class="col-sm-3 prevLabel">Catatan dosen wali </label>
+                  <div class="col-sm-9" name="catatanDosenWali">
+                    Nama : {{ $dosenWali }}<br>
+                    {{ $persetujuanDosenWali }}<br>
+                    {{ $catatanDosenWali }}
                   </div>
                 </div>
                 <div class="form-group prev">
-                  <label for="npm" class="col-sm-3 prevLabel">Catatan kaprodi </label>
-                  <div class="col-sm-9">
-                    Semangat dan sukses. harumkan nama teknik informatika unpar!jangan lupa dengan tanggung jawab sebagai mahasiswa
+                  <label for="catatanKaprodi" class="col-sm-3 prevLabel">Catatan Kaprodi </label>
+                  <div class="col-sm-9" name="catatanKaprodi">
+                    {{ $persetujuanKaprodi }}<br>
+                    {{ $catatanKaprodi }}
                   </div>
                 </div>
                 <div class="form-group prev">
-                  <label for="npm" class="col-sm-3 prevLabel">Catatan Wakil dekan II </label>
-                  <div class="col-sm-9">
-                    Semoga sukses di turnamen piala duninyanya. harumkan nama ftis. Jangan lupa bayar uang kuliah tahap I untuk semseter depan tgl 2 agustus
+                  <label for="catatanWDII" class="col-sm-3 prevLabel">Catatan WD II</label>
+                  <div class="col-sm-9" name="catatanWDII">
+                    {{ $persetujuanWDII }}<br>
+                    {{ $catatanWDII }}
                   </div>
                 </div>
                 <div class="form-group prev">
-                  <label for="npm" class="col-sm-3 prevLabel">Catatan Wakil dekan I </label>
-                  <div class="col-sm-9">
-                    Semoga sukses di turnamen piala duninyanya.  harumkan nama ftis. Jangan lupa datang frs untuk semester depan dimulai  dari tanggal 17-21 agustus
+                  <label for="catatanWDI" class="col-sm-3 prevLabel">Catatan WD I</label>
+                  <div class="col-sm-9" name="catatanWDI">
+                    {{ $persetujuanWDI }}<br>
+                    {{ $catatanWDI }}
                   </div>
                 </div>
                 <div class="form-group prev">
-                  <label for="npm" class="col-sm-3 prevLabel">Semester</label>
-                  <div class="col-sm-9">
-                    Genap<br>
+                  <label for="persetujuanDekan" class="col-sm-3 prevLabel">Persetujuan Dekan</label>
+                  <div class="col-sm-9" name="persetujuanDekan" >
+                    {{ $persetujuanDekan }}
                   </div>
                 </div>
-
                 <div class="form-group prev">
-                  <label for="npm" class="col-sm-3 prevLabel">Tahun Akademik</label>
-                  <div class="col-sm-9">
-                    2016-2017
+                  <label for="semester" class="col-sm-3 prevLabel">Semester</label>
+                  <div class="col-sm-9" name="semester">
+                    {{ $semester }}
                   </div>
                 </div>
+                <div class="form-group prev">
+                  <label for="thnAkademik" class="col-sm-3 prevLabel">Tahun Akademik</label>
+                  <div class="col-sm-9" name="thnAkademik">
+                    {{ $thnAkademik }}
+                  </div>
+                </div>
+                <input type="hidden" value="{{ $formatsurat_id }}" name="idFormat">
+                <input type="hidden" value="{{ $dataSurat }}" name="dataSurat">
+                {!! csrf_field() !!}
+                <br>
+                <div class="form-group">
+                  <div class="col-sm-offset-3 col-sm-10">
+                    <button class="btn btn-default" onclick="goBack()">Kembali</button>
+                    <button type="submit" class="btn btn-success">Buat Surat</button>
+                  </div>
+                </div>
+              </form>
             </div>
             <div class="col-md-4 profile">.col-md-4</div>
           </div>
@@ -124,5 +144,10 @@
     <div class="footer">
         hahahahahahahahahahahahahahahhahahahahahaha
     </div>
+    <script>
+      function goBack() {
+          window.history.back();
+      }
+    </script>
   </body>
 </html>
