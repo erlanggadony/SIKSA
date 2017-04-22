@@ -66,8 +66,7 @@ class MahasiswaController extends Controller
     /**
     * Delete the selected data
     */
-    public function destroy(Request $request)
-    {
+    public function destroy(Request $request){
         //
         // dd($request->deleteID);
         $mahasiswa = $this->getModel($request->deleteID);
@@ -85,5 +84,28 @@ class MahasiswaController extends Controller
             abort(404);
         }
         return $model;
+    }
+
+    public function uploadMahasiswa(Request $request){
+      $mahasiswa = new Mahasiswa;
+      $dataMhs = $request->file('uploadDataMhs');
+      $baris;
+      foreach ($dataMhs as $line_num => $line) {
+          $baris .= $line.'<br>';
+          $data = explode("/", $baris);  //ubah pemisahnya dengan yg ada di sql
+          $mahasiswa->nirm = $data[0];
+          $mahasiswa->npm = $data[1];
+          $mahasiswa->nama_mahasiswa = $data[2];
+          $mahasiswa->jurusan_id = $data[3];
+          $mahasiswa->fakultas_id = $data[4];
+          $mahasiswa->angkatan = $data[5];
+          $mahasiswa->kota_lahir = $data[6];
+          $mahasiswa->tanggal_lahir = $data[7];
+          $mahasiswa->foto_mahasiswa = $data[8];
+          $mahasiswa->dosen_id = $data[9];
+          $mahasiswa->username = $data[10];
+          $mahasiswa->password = $data[11];
+      }
+      return redirect('/data_mahasiswa')->with('success_message', 'Data mahasiswa telah di upload');
     }
 }

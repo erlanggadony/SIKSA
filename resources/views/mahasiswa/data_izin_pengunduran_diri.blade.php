@@ -36,41 +36,35 @@
               <br>
               Dengan ini saya,
               </p>
-              <form class="form-horizontal" action="{{ url('/preview') }}" method="post">
+              <form class="form-horizontal" action="{{ url('/preview') }}" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                   <label for="nama" class="col-sm-3">Nama</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="nama">
+                    <input type="text" class="form-control" id="nama" name="nama">
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="npm" class="col-sm-3">NPM</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="npm">
+                    <input type="text" class="form-control" id="npm" name="npm">
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="alamat" class="col-sm-3">Alamat</label>
                   <div class="col-sm-9">
-                    <textarea class="form-control" row="5" id="alamat"></textarea>
+                    <textarea class="form-control" row="5" id="alamat" name="alamat"></textarea>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="notelepon" class="col-sm-3">Nomor telepon </label>
+                  <label for="noTelepon" class="col-sm-3">Nomor telepon </label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="notelepon">
+                    <input type="text" class="form-control" id="noTelepon" name="noTelepon">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="namaortu" class="col-sm-3">Nama orang tua</label>
+                  <label for="namaOrtu" class="col-sm-3">Nama orang tua</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="namaortu">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="tanggal" class="col-sm-3">Tanggal pembuatan surat</label>
-                  <div class="col-sm-9">
-                    <input type="date" class="form-control date" id="tanggal">
+                    <input type="text" class="form-control" id="namaOrtu" name="namaOrtu">
                   </div>
                 </div>
                 <div class="form-group">
@@ -83,7 +77,7 @@
                 <div class="form-group">
                   <label for="smstr" class="col-sm-3">Unggah surat permohonan pengunduran diri</label>
                   <div class="col-sm-9">
-                    <input type="file" class="form-control" id="lapiran_PengunduranDiri">
+                    <input type="file" class="form-control" id="lampiran_PengunduranDiri" name="lampiran_PengunduranDiri">
                   </div>
                 </div>
                 <input type="hidden" value="{{ $formatsurat_id }}" name="jenis_surat">

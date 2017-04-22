@@ -36,7 +36,7 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="prodi" class="col-sm-3">Jurusan</label>
+                  <label for="prodi" class="col-sm-3">Program studi</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="prodi" name="prodi">
                   </div>

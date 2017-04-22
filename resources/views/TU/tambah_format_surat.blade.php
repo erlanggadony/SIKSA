@@ -30,35 +30,35 @@
             <div class="col-md-8 content">
               <h1>Input Format Surat</h1>
               <br><br>
-              <form class="form-horizontal" action="{{ url('/uploadFormat')}}" method="post">
+              <form class="form-horizontal" action="{{ url('/uploadFormat')}}" method="post"  enctype="multipart/form-data">
                 <div class="form-group">
                   <label for="idFormatSurat" class="col-sm-3">ID Format Surat</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="idFormatSurat" name="idFormatSurat">
+                    <input type="text" class="form-control" id="idFormatSurat" name="idFormatSurat" required>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="jenis_surat" class="col-sm-3">Jenis Surat</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="jenis_surat" name="jenis_surat">
+                    <input type="text" class="form-control" id="jenis_surat" name="jenis_surat" required />
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-3" for="keterangan">Keterangan</label>
                   <div class="col-sm-9">
-                    <textarea class="form-control" row="3" id="keterangan" name="keterangan"></textarea>
+                    <textarea class="form-control" row="3" id="keterangan" name="keterangan" required></textarea>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="nama" class="col-sm-3">Upload Format Surat</label>
                   <div class="col-sm-9">
-                    <input type="file" class="form-control" name="uploadformatsurat">
+                    <input type="file" class="form-control" name="uploadFormat" required />
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="col-sm-3"></div>
                   <div class="col-sm-9 checkbox">
-                    <label><input type="checkbox" /> Saya sudah yakin</label>
+                    <label><input type="checkbox" required/> Saya sudah yakin</label>
                   </div>
                 </div>
                 {!! csrf_field() !!}

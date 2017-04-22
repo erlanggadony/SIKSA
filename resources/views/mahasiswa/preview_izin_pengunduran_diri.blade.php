@@ -36,44 +36,47 @@
               <br>
               Dengan ini saya,
               </p>
+              <form action = "{{ url('/kirimFormulir') }}" method="post">
                 <div class="form-group">
-                  <label for="nama" class="col-sm-3 prevLabel">Nama</label>
+                  <label for="nama" class="col-sm-3 prevLabel">NIRM</label>
                   <div class="col-sm-9">
-                    nama
+                    {{ $nirm }}
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="npm" class="col-sm-3 prevLabel">NPM</label>
                   <div class="col-sm-9">
-                    2012730071
+                    {{ $npm }}
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="nama" class="col-sm-3 prevLabel">Nama</label>
+                  <div class="col-sm-9">
+                    {{ $nama }}
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="npm" class="col-sm-3 prevLabel">NIRM</label>
                   <div class="col-sm-9">
-                    Teknik Informatika
+                    {{ $prodi }}
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="npm" class="col-sm-3 prevLabel">Alamat</label>
                   <div class="col-sm-9">
-                    Jalan Mekarsari no. 17 RT 03 RW 10 Kelurahan Kebon Lega Kecamatan Bojongloa Kidul Bandung 40235
+                    {{ $alamat }}
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="npm" class="col-sm-3 prevLabel">Nomor Telepon</label>
                   <div class="col-sm-9">
-                    081234567890
+                    {{ $noTelepon }}
                   </div>
                 </div>
                 <div class="form-group">
-                  <div class="col-md-12">
-                    <br>
-                    mengajukan permohonan pengunduran diri sebagai mahasiswa Fakultas Teknologi Informasi dan Sains Uniersitas Katolik Parahyangan Jurusan _____, <div style="text-decoration:underline;">untuk seterusnya</div>, sejak semester _____, Tahun Akademik___,___, berhubung karena alasan : (surat keterangan terlampir).<br>
-                    <br>
-                    Demikian permohonan saya.<br>
-                    Atas bantuan Dekan, saya ucapkan terima kasih.
-                  </p>
+                  <label for="npm" class="col-sm-3 prevLabel">Nomor Telepon</label>
+                  <div class="col-sm-9">
+                    {{ $namaOrtu }}
                   </div>
                 </div>
                 <hr style="border-width: 2px;border-color:black">
@@ -82,33 +85,49 @@
                 <div class="form-group prev">
                   <label for="npm" class="col-sm-3 prevLabel">DOSEN WALI</label>
                   <div class="col-sm-9">
-                    good luck don! bermainlah dengan semangat, bawa pulang piala dunia ke indonesia. Semoga bisa jadi permain terbaik dan top scorer juga.
+                    {{ $persetujuanDosenWali }}<br>
+                    {{ $catatanDosenWali }}
                   </div>
                 </div>
                 <div class="form-group prev">
                   <label for="npm" class="col-sm-3 prevLabel">KAPRODI</label>
                   <div class="col-sm-9">
-                    Semangat dan sukses. harumkan nama teknik informatika unpar!jangan lupa dengan tanggung jawab sebagai mahasiswa
+                    {{ $persetujuanKaprodi }}<br>
+                    {{ $catatanKaprodi }}
                   </div>
                 </div>
                 <div class="form-group prev">
                   <label for="npm" class="col-sm-3 prevLabel">WAKIL DEKAN II </label>
                   <div class="col-sm-9">
-                    Semoga sukses di turnamen piala duninyanya. harumkan nama ftis. Jangan lupa bayar uang kuliah tahap I untuk semseter depan tgl 2 agustus
+                    {{ $persetujuanKaprodi }}<br>
+                    {{ $catatanKaprodi }}
                   </div>
                 </div>
                 <div class="form-group prev">
                   <label for="npm" class="col-sm-3 prevLabel">WAKIL DEKAN I</label>
                   <div class="col-sm-9">
-                    Semoga sukses di turnamen piala duninyanya.  harumkan nama ftis. Jangan lupa datang frs untuk semester depan dimulai  dari tanggal 17-21 agustus
+                    {{ $persetujuanKaprodi }}<br>
+                    {{ $catatanKaprodi }}
                   </div>
                 </div>
                 <div class="form-group prev">
                   <label for="npm" class="col-sm-3 prevLabel">DEKAN</label>
                   <div class="col-sm-9">
-                    Semoga sukses di turnamen piala duninyanya.  harumkan nama ftis. Jangan lupa datang frs untuk semester depan dimulai  dari tanggal 17-21 agustus
+                    {{ $persetujuanKaprodi }}<br>
+                    {{ $catatanKaprodi }}
                   </div>
                 </div>
+                <input type="hidden" value="{{ $formatsurat_id }}" name="idFormat">
+                <input type="hidden" value="{{ $dataSurat }}" name="dataSurat">
+                {!! csrf_field() !!}
+                <br>
+                <div class="form-group">
+                  <div class="col-sm-offset-3 col-sm-10">
+                    <button class="btn btn-default" onclick="goBack()">Kembali</button>
+                    <button type="submit" class="btn btn-success">Buat Surat</button>
+                  </div>
+                </div>
+              </form>
             </div>
             <div class="col-md-4 profile">.col-md-4</div>
           </div>
@@ -129,5 +148,10 @@
     <div class="footer">
         hahahahahahahahahahahahahahahhahahahahahaha
     </div>
+    <script>
+      function goBack() {
+          window.history.back();
+      }
+    </script>
   </body>
 </html>

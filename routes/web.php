@@ -39,41 +39,11 @@ Route::post('/login', 'AuthController@authenticate');
     Route::get('/data_perwakilan_perwalian', function () {
         return view('mahasiswa/data_perwakilan_perwalian');
     });
-    Route::get('/data_izin_pengunduran_diri', function () {
-        return view('mahasiswa/data_izin_pengunduran_diri');
-    });
     Route::get('/data_pembuatan_visa', function () {
         return view('mahasiswa/data_pembuatan_visa');
     });
     //halaman untuk menampilkan preview surat
-    Route::post('/preview', 'FormatsuratController@tampilkanIsiForm');
-    Route::get('/preview_izin_cuti_studi', function () {
-        return view('mahasiswa/preview_izin_cuti_studi');
-    });
-    Route::get('/preview_izin_pengunduran_diri', function () {
-        return view('mahasiswa/preview_izin_pengunduran_diri');
-    });
-    Route::get('/preview_keterangan', function () {
-        return view('mahasiswa/preview_keterangan');
-    });
-    Route::get('/preview_izin_studi_lapangan', function () {
-        return view('mahasiswa/preview_izin_studi_lapangan');
-    });
-    Route::get('/preview_izin_studi_lapangan_kelompok1', function () {
-        return view('mahasiswa/preview_izin_studi_lapangan_kelompok1');
-    });
-    Route::get('/preview_izin_studi_lapangan_kelompok2', function () {
-        return view('mahasiswa/preview_izin_studi_lapangan_kelompok2');
-    });
-    Route::get('/preview_izin_studi_lapangan_kelompok3', function () {
-        return view('mahasiswa/preview_izin_studi_lapangan_kelompok3');
-    });
-    Route::get('/preview_izin_studi_lapangan_kelompok4', function () {
-        return view('mahasiswa/preview_izin_studi_lapangan_kelompok4');
-    });
-    Route::get('/preview_perwakilan_perwalian', function () {
-        return view('mahasiswa/preview_perwakilan_perwalian');
-    });
+    Route::post('/preview', 'PesanansuratController@tampilkanPreview');
     Route::post('/kirimFormulir', 'PesanansuratController@store');
 
 //<-------------------------------------------------------PETUGAS TU------------------------------------------------------>
@@ -101,9 +71,7 @@ Route::post('/login', 'AuthController@authenticate');
     Route::get('/data_mahasiswa', 'MahasiswaController@pilihMahasiswa');
 
     // halaman untuk menambahkan data mahasiswa
-    Route::get('/tambah_data_mahasiswa', function () {
-        return view('TU/tambah_data_mahasiswa');
-    });
+    Route::post('/uploadDataMhs', 'MahasiswaController@uploadMahasiswa');
     Route::post('/generatePDF', 'HistorysuratController@buatPDF');
 
 //<--------------------------------------------------------PEJABAT-------------------------------------------------------->

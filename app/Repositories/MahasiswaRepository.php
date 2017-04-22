@@ -46,16 +46,16 @@
       $mahasiswas = Mahasiswa::where('dosen_id', $dosenWali)->get();
       return $mahasiswas;
     }
-    public function findById($id){
-      $mahasiswas = Mahasiswa::where('id', $id);
-      return $mahasiswas;
+    public function findMahasiswaById($id){
+      $mahasiswa = Mahasiswa::where('id', $id)->first();
+      return $mahasiswa;
     }
     public function findUsername($username){
-      $mahasiswas = Mahasiswa::where('username', $username);
+      $mahasiswas = Mahasiswa::where('username', $username)->get();
       return $mahasiswas;
     }
     public function findPasword($password){
-      $mahasiswas = Mahasiswa::where('password', $password);
+      $mahasiswas = Mahasiswa::where('password', $password)->get();
       return $mahasiswas;
     }
   }

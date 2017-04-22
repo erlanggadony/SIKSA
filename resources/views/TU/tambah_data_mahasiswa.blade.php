@@ -30,9 +30,9 @@
             <div class="col-md-8 content">
               <h1>Input Database Mahasiswa</h1>
               <br><br>
-              <form>
+              <form class="form-horizontal" action="{{ url('/uploadDataMhs')}}" method="post"  enctype="multipart/form-data">
                 <div class="form-group">
-                  <input type="file" name="uploaddatabasemahasiswa">
+                  <input type="file" name="uploadDataMhs">
                 </div>
                 <button type="submit" class="btn btn-primary">Upload Data Mahasiswa</button>
               </form>

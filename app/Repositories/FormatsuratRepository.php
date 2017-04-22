@@ -9,21 +9,25 @@
       $formatsurats = Formatsurat::all();
       return $formatsurats;
     }
-    public function findMahasiswaByIdFormatSurat($idFormatSurat){
+    public function findFormatsuratByIdFormatSurat($idFormatSurat){
       $formatsurats = Formatsurat::where('idFormatSurat', $idFormatSurat)->get();
       return $formatsurats;
     }
-    public function findMahasiswaByJenisSurat($jenis_surat){
+    public function findFormatsuratByJenisSurat($jenis_surat){
       $formatsurats = Formatsurat::where('jenis_surat', $jenis_surat)->get();
       return $formatsurats;
     }
-    public function findMahasiswaByKeteranganSurat($keterangan){
+    public function findFormatsuratByKeteranganSurat($keterangan){
       $formatsurats = Formatsurat::where('keterangan', $keterangan)->get();
       return $formatsurats;
     }
-    public function findById($id){
-      $formatsurats = Formatsurat::where('id', $id);
+    public function findFormatsuratByLinkSurat($link_format_surat){
+      $formatsurats = Formatsurat::where('link_format_surat', $link_format_surat)->get();
       return $formatsurats;
+    }
+    public function findById($id){
+      $formatsurat = Formatsurat::where('id', $id)->first();
+      return $formatsurat;
     }
   }
 
