@@ -28,7 +28,7 @@
             <div class="col-md-8 contentPreview form-horizontal">
               <h4 style="font-weight:bold;text-decoration:underline">FORMULIR PERMOHONAN STUDI LAPANGAN</h4>
               <br>
-
+              <form action = "{{ url('/kirimFormulir') }}" method="post">
                 <div class="form-group">
                   <label for="nama" class="col-sm-3 prevLabel">Nama</label>
                   <div class="col-sm-9">
@@ -87,6 +87,7 @@
                     <button type="submit" class="btn btn-success">Buat Surat</button>
                   </div>
                 </div>
+              </form>
             </div>
             <div class="col-md-4 profile">.col-md-4</div>
             </div>

@@ -29,142 +29,129 @@
               <h1>Isi Data Diri Anda</h1>
               <br>
               <form class="form-horizontal" action="{{ url('/preview') }}" method="post">
-                <div class="form-group">
-                    <label for="smstr" class="col-sm-3">Semester</label>
+                  <div class="form-group">
+                    <label for="semester" class="col-sm-3">Semester</label>
                     <div class="col-sm-9">
-                      <label class="radio-inline"><input type="radio" id="smstr" name="semester" value="ganjil" checked>Ganjil</label>
-                      <label class="radio-inline"><input type="radio" id="smstr" name="semester" value="genap" >Genap</label>
+                      <input type="text" class="form-control-static" id="semester" name="semseter" value="" readonly style="border: none" />
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="tahunakademik" class="col-sm-3">Tahun akademik</label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="tahunakademik">
+                      <input type="text" class="form-control date" id="thnAkademik" name="thnAkademik" value="" readonly style="border: none" />
                     </div>
                   </div>
                   <p class="col-sm-12" style="font-weight:bold">
                     IDENTITAS MAHASISWA YANG PERWALIANNYA DIWAKILKAN :
                   </p>
-                  <div class="form-group">
-                    <label for="nama" class="col-sm-3">Nama</label>
-                    <div class="col-sm-9">
-                      <input type="text" class="form-control" id="nama">
+                    <div class="form-group">
+                      <label for="nama" class="col-sm-3">Nama</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" id="nama" name="nama" value="" readonly style="border: none" />
+                      </div>
                     </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="npm" class="col-sm-3">NPM</label>
-                    <div class="col-sm-9">
-                      <input type="text" class="form-control" id="npm">
+                    <div class="form-group">
+                      <label for="npm" class="col-sm-3">NPM</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" id="npm" name="npm" value="" readonly style="border: none">
+                      </div>
                     </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="prodi" class="col-sm-3">Program studi</label>
-                    <div class="col-sm-9">
-                      <input type="text" class="form-control" id="prodi">
+                    <div class="form-group">
+                      <label for="prodi" class="col-sm-3">Program studi</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" id="prodi" name="prodi" value="" readonly style="border: none" />
+                      </div>
                     </div>
-                  </div>
                   <p class="col-md-12" style="font-weight:bold">
                     IDENTITAS MAHASISWA YANG DIBERI KUASA PERWALIAN :
                   </p>
                   <div class="form-group">
-                    <label for="namawakil" class="col-sm-3">Nama</label>
+                    <label for="namaWakil" class="col-sm-3">Nama</label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="namawakil">
+                      <input type="text" class="form-control" id="namaWakil" name="namaWakil" required>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="npmwakil" class="col-sm-3">NPM</label>
+                    <label for="npmWakil" class="col-sm-3">NPM</label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="npmwakil">
+                      <input type="text" class="form-control" id="npmWakil" name="npmWakil" required>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="prodiwakil" class="col-sm-3">Program studi</label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="prodiwakil">
+                      <input type="text" class="form-control" id="prodiWakil" name="prodiWakil" required>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="dosenwali" class="col-sm-3">Dosen wali</label>
+                    <label for="dosenWali" class="col-sm-3">Dosen wali</label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="dosenwali">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="wakildekan" class="col-sm-3">Wakil dekan I</label>
-                    <div class="col-sm-9">
-                      <input type="text" class="form-control" id="wakildekan">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="tanggal" class="col-sm-3">Tanggal pembuatan surat</label>
-                    <div class="col-sm-9">
-                      <input type="date" class="form-control date" id="tanggal">
+                      <input type="text" class="form-control" id="dosenWali" name="dosenWali" value="" readonly style="border: none" />
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="alasan" class="col-sm-3">Alasan tidak hadir perwalian</label>
                     <div class="col-sm-9">
-                      <textarea class="form-control" row="5" id="alasan"></textarea>
+                      <textarea class="form-control" row="5" id="alasan" name="alasan" required></textarea>
                     </div>
                   </div>
                   <div class=" form-group">
                     <label for="matkul" class="col-sm-3">Mata kuliah yang diambil</label>
                     <div class="row">
-                      <div class="col-sm-5">
-                        <input type="text" class="form-control" placeholder="Nama mata kuliah">
+                      <div class="col-xs-5">
+                        <input type="text" class="form-control" name="matkul1" placeholder="Nama mata kuliah" required>
                       </div>
                       <div class="col-xs-2">
-                        <input type="text" class="form-control" placeholder="sks">
+                        <input type="text" class="form-control" name="sks1" placeholder="sks" required>
                       </div>
                     </div>
                   </div>
                   <div class=" form-group">
                       <div class="col-sm-offset-3 col-sm-5">
-                        <input type="text" class="form-control" placeholder="Nama mata kuliah">
+                        <input type="text" class="form-control" name="matkul2" placeholder="Nama mata kuliah" required>
                       </div>
-                      <div class="col-sm-2">
-                        <input type="text" class="form-control" placeholder="sks">
-                      </div>
-                  </div>
-                  <div class=" form-group">
-                      <div class="col-sm-offset-3 col-sm-5">
-                        <input type="text" class="form-control" placeholder="Nama mata kuliah">
-                      </div>
-                      <div class="col-sm-2">
-                        <input type="text" class="form-control" placeholder="sks">
+                      <div class="col-xs-2">
+                        <input type="text" class="form-control" name="sks2" placeholder="sks" required>
                       </div>
                   </div>
                   <div class=" form-group">
                       <div class="col-sm-offset-3 col-sm-5">
-                        <input type="text" class="form-control" placeholder="Nama mata kuliah">
+                        <input type="text" class="form-control" name="matkul3" placeholder="Nama mata kuliah" required>
                       </div>
                       <div class="col-sm-2">
-                        <input type="text" class="form-control" placeholder="sks">
+                        <input type="text" class="form-control" name="sks3" placeholder="sks" required>
                       </div>
                   </div>
                   <div class=" form-group">
                       <div class="col-sm-offset-3 col-sm-5">
-                        <input type="text" class="form-control" placeholder="Nama mata kuliah">
+                        <input type="text" class="form-control" name="matkul4" placeholder="Nama mata kuliah" required>
                       </div>
                       <div class="col-sm-2">
-                        <input type="text" class="form-control" placeholder="sks">
+                        <input type="text" class="form-control" name="sks4" placeholder="sks" required>
                       </div>
                   </div>
                   <div class=" form-group">
                       <div class="col-sm-offset-3 col-sm-5">
-                        <input type="text" class="form-control" placeholder="Nama mata kuliah">
+                        <input type="text" class="form-control" name="matkul5" placeholder="Nama mata kuliah" required>
                       </div>
                       <div class="col-sm-2">
-                        <input type="text" class="form-control" placeholder="sks">
+                        <input type="text" class="form-control" name="sks5" placeholder="sks" required>
                       </div>
                   </div>
                   <div class=" form-group">
                       <div class="col-sm-offset-3 col-sm-5">
-                        <input type="text" class="form-control" placeholder="Nama mata kuliah">
+                        <input type="text" class="form-control" name="matkul6" placeholder="Nama mata kuliah" required>
                       </div>
                       <div class="col-sm-2">
-                        <input type="text" class="form-control" placeholder="sks">
+                        <input type="text" class="form-control" name="sks6" placeholder="sks" required>
+                      </div>
+                  </div>
+                  <div class=" form-group">
+                      <div class="col-sm-offset-3 col-sm-5">
+                        <input type="text" class="form-control" name="matkul7" placeholder="Nama mata kuliah" required>
+                      </div>
+                      <div class="col-sm-2">
+                        <input type="text" class="form-control" name="sks7" placeholder="sks" required>
                       </div>
                   </div>
                   <input type="hidden" value="{{ $formatsurat_id }}" name="jenis_surat">

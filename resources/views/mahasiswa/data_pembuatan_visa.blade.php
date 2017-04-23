@@ -32,43 +32,43 @@
                 <div class="form-group">
                   <label for="nama" class="col-sm-3">Nama</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="nama" name="nama">
+                    <input type="text" class="form-control" id="nama" name="nama" value="" readonly style="border: none" />
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="tglLahir" class="col-sm-3">Tanggal Lahir</label>
                   <div class="col-sm-9">
-                    <input type="date" class="form-control" id="tglLahir" name="tglLahir">
+                    <input type="date" class="form-control" id="tglLahir" name="tglLahir" value="" readonly style="border: none" />
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="kewarganegaraan" class="col-sm-3">Kewarganegaraan</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="kewarganegaraan" name="kewarganegaraan">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="organisasiTujuan" class="col-sm-3">Organisasi tujuan</label>
-                  <div class="col-sm-9">
-                  <input type="text" class="form-control" id="organisasiTujuan" name="organisasiTujuan">
+                    <input type="text" class="form-control" id="kewarganegaraan" name="kewarganegaraan" value="" readonly style="border: none" />
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="thnAkademik" class="col-sm-3">Tahun akademik</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control date" id="thnAkademik" name="thnAkademik">
+                    <input type="text" class="form-control date" id="thnAkademik" name="thnAkademik" value="" readonly style="border: none" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="organisasiTujuan" class="col-sm-3">Organisasi tujuan</label>
+                  <div class="col-sm-9">
+                  <input type="text" class="form-control" id="organisasiTujuan" name="organisasiTujuan" required>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="negaraTujuan" class="col-sm-3">Negara tujuan</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="negaraTujuan" name="negaraTujuan">
+                    <input type="text" class="form-control" id="negaraTujuan" name="negaraTujuan" required>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="tanggalKunjungan" class="col-sm-3">Tanggal kunjungan</label>
                   <div class="col-sm-9">
-                    <input type="date" class="form-control" id="tanggalKunjungan" name="tanggalKunjungan">
+                    <input type="date" class="form-control" id="tanggalKunjungan" name="tanggalKunjungan" required>
                   </div>
                 </div>
                 <input type="hidden" value="{{ $formatsurat_id }}" name="jenis_surat">

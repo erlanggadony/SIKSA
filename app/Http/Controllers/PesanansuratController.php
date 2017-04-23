@@ -73,7 +73,18 @@ class PesanansuratController extends Controller
     public function store(Request $request){
         $pesanansurat = new PesananSurat;
         $pesanansurat->mahasiswa_id = 'anonim';
-        $pesanansurat->formatsurat_id = $request->idFormat;
+        $format = $this->formatsuratRepo->findById($request->idFormat);
+        $pesanansurat->formatsurat_id = $format->jenis_surat;
+        $pesanansurat->perihal = '';
+        $pesanansurat->penerima = '';
+        if($request->idFormat == "1"){
+          $pesanansurat->perihal = '';
+          $pesanansurat->penerima = '$request->';
+        }
+        else if($request->idFormat == "2"){
+          $pesanansurat->perihal = '';
+          $pesanansurat->penerima = '';
+        }
         // dd($pesanansurat->formatsurats_id);
         $pesanansurat->dataSurat = $request->dataSurat;
         // dd($request);
@@ -238,6 +249,276 @@ class PesanansuratController extends Controller
           'persetujuanWDI' => $request->persetujuanWDI,
           'catatanWDI' => $request->catatanWDI,
           'persetujuanDekan' => $request->persetujuanDekan
+        ];
+      }
+      else if($request->jenis_surat == "11"){
+        $obj = [
+          'semester' => $request->semester,
+          'thnAkademik' => $request->thnAkademik,
+          'nama' => $request->nama,
+          'prodi' => $request->prodi,
+          'npm' => $request->npm,
+          'namaWakil' => $request->namaWakil,
+          'prodiWakil' => $request->prodiWakil,
+          'npmWakil' => $request->npmWakil,
+          'dosenWali' => $request->dosenWali,
+          'alasan' => $request->alasan,
+          'matkul' => $request->matkul,
+          'sks' => $request->sks,
+          'formatsurat_id' => $request->formatsurat_id,
+          'dataSurat' => $request->dataSurat
+        ];
+      }
+      else if($request->jenis_surat == "12"){
+        $obj = [
+          'semester' => $request->semester,
+          'thnAkademik' => $request->thnAkademik,
+          'nama' => $request->nama,
+          'prodi' => $request->prodi,
+          'npm' => $request->npm,
+          'namaWakil' => $request->namaWakil,
+          'prodiWakil' => $request->prodiWakil,
+          'npmWakil' => $request->npmWakil,
+          'dosenWali' => $request->dosenWali,
+          'alasan' => $request->alasan,
+          'matkul1' => $request->matkul1,
+          'sks1' => $request->sks1,
+          'matkul2' => $request->matkul2,
+          'sks2' => $request->sks2,
+          'formatsurat_id' => $request->formatsurat_id,
+          'dataSurat' => $request->dataSurat
+        ];
+      }
+      else if($request->jenis_surat == "13"){
+        $obj = [
+          'semester' => $request->semester,
+          'thnAkademik' => $request->thnAkademik,
+          'nama' => $request->nama,
+          'prodi' => $request->prodi,
+          'npm' => $request->npm,
+          'namaWakil' => $request->namaWakil,
+          'prodiWakil' => $request->prodiWakil,
+          'npmWakil' => $request->npmWakil,
+          'dosenWali' => $request->dosenWali,
+          'alasan' => $request->alasan,
+          'matkul1' => $request->matkul1,
+          'sks1' => $request->sks1,
+          'matkul2' => $request->matkul2,
+          'sks2' => $request->sks2,
+          'matkul3' => $request->matkul3,
+          'sks3' => $request->sks3,
+          'formatsurat_id' => $request->formatsurat_id,
+          'dataSurat' => $request->dataSurat
+        ];
+      }
+      else if($request->jenis_surat == "14"){
+        $obj = [
+          'semester' => $request->semester,
+          'thnAkademik' => $request->thnAkademik,
+          'nama' => $request->nama,
+          'prodi' => $request->prodi,
+          'npm' => $request->npm,
+          'namaWakil' => $request->namaWakil,
+          'prodiWakil' => $request->prodiWakil,
+          'npmWakil' => $request->npmWakil,
+          'dosenWali' => $request->dosenWali,
+          'alasan' => $request->alasan,
+          'matkul1' => $request->matkul1,
+          'sks1' => $request->sks1,
+          'matkul2' => $request->matkul2,
+          'sks2' => $request->sks2,
+          'matkul3' => $request->matkul3,
+          'sks3' => $request->sks3,
+          'matkul4' => $request->matkul4,
+          'sks4' => $request->sks4,
+          'formatsurat_id' => $request->formatsurat_id,
+          'dataSurat' => $request->dataSurat
+        ];
+      }
+      else if($request->jenis_surat == "15"){
+        $obj = [
+          'semester' => $request->semester,
+          'thnAkademik' => $request->thnAkademik,
+          'nama' => $request->nama,
+          'prodi' => $request->prodi,
+          'npm' => $request->npm,
+          'namaWakil' => $request->namaWakil,
+          'prodiWakil' => $request->prodiWakil,
+          'npmWakil' => $request->npmWakil,
+          'dosenWali' => $request->dosenWali,
+          'alasan' => $request->alasan,
+          'matkul1' => $request->matkul1,
+          'sks1' => $request->sks1,
+          'matkul2' => $request->matkul2,
+          'sks2' => $request->sks2,
+          'matkul3' => $request->matkul3,
+          'sks3' => $request->sks3,
+          'matkul4' => $request->matkul4,
+          'sks4' => $request->sks4,
+          'matkul5' => $request->matkul5,
+          'sks5' => $request->sks5,
+          'formatsurat_id' => $request->formatsurat_id,
+          'dataSurat' => $request->dataSurat
+        ];
+      }
+      else if($request->jenis_surat == "16"){
+        $obj = [
+          'semester' => $request->semester,
+          'thnAkademik' => $request->thnAkademik,
+          'nama' => $request->nama,
+          'prodi' => $request->prodi,
+          'npm' => $request->npm,
+          'namaWakil' => $request->namaWakil,
+          'prodiWakil' => $request->prodiWakil,
+          'npmWakil' => $request->npmWakil,
+          'dosenWali' => $request->dosenWali,
+          'alasan' => $request->alasan,
+          'matkul1' => $request->matkul1,
+          'sks1' => $request->sks1,
+          'matkul2' => $request->matkul2,
+          'sks2' => $request->sks2,
+          'matkul3' => $request->matkul3,
+          'sks3' => $request->sks3,
+          'matkul4' => $request->matkul4,
+          'sks4' => $request->sks4,
+          'matkul5' => $request->matkul5,
+          'sks5' => $request->sks5,
+          'matkul6' => $request->matkul6,
+          'sks6' => $request->sks6,
+          'formatsurat_id' => $request->formatsurat_id,
+          'dataSurat' => $request->dataSurat
+        ];
+      }
+      else if($request->jenis_surat == "17"){
+        $obj = [
+          'semester' => $request->semester,
+          'thnAkademik' => $request->thnAkademik,
+          'nama' => $request->nama,
+          'prodi' => $request->prodi,
+          'npm' => $request->npm,
+          'namaWakil' => $request->namaWakil,
+          'prodiWakil' => $request->prodiWakil,
+          'npmWakil' => $request->npmWakil,
+          'dosenWali' => $request->dosenWali,
+          'alasan' => $request->alasan,
+          'matkul1' => $request->matkul1,
+          'sks1' => $request->sks1,
+          'matkul2' => $request->matkul2,
+          'sks2' => $request->sks2,
+          'matkul3' => $request->matkul3,
+          'sks3' => $request->sks3,
+          'matkul4' => $request->matkul4,
+          'sks4' => $request->sks4,
+          'matkul5' => $request->matkul5,
+          'sks5' => $request->sks5,
+          'matkul6' => $request->matkul6,
+          'sks6' => $request->sks6,
+          'matkul7' => $request->matkul7,
+          'sks7' => $request->sks7,
+          'formatsurat_id' => $request->formatsurat_id,
+          'dataSurat' => $request->dataSurat
+        ];
+      }
+      else if($request->jenis_surat == "18"){
+        $obj = [
+          'semester' => $request->semester,
+          'thnAkademik' => $request->thnAkademik,
+          'nama' => $request->nama,
+          'prodi' => $request->prodi,
+          'npm' => $request->npm,
+          'namaWakil' => $request->namaWakil,
+          'prodiWakil' => $request->prodiWakil,
+          'npmWakil' => $request->npmWakil,
+          'dosenWali' => $request->dosenWali,
+          'alasan' => $request->alasan,
+          'matkul1' => $request->matkul1,
+          'sks1' => $request->sks1,
+          'matkul2' => $request->matkul2,
+          'sks2' => $request->sks2,
+          'matkul3' => $request->matkul3,
+          'sks3' => $request->sks3,
+          'matkul4' => $request->matkul4,
+          'sks4' => $request->sks4,
+          'matkul5' => $request->matkul5,
+          'sks5' => $request->sks5,
+          'matkul6' => $request->matkul6,
+          'sks6' => $request->sks6,
+          'matkul7' => $request->matkul7,
+          'sks7' => $request->sks7,
+          'matkul8' => $request->matkul8,
+          'sks8' => $request->sks8,
+          'formatsurat_id' => $request->formatsurat_id,
+          'dataSurat' => $request->dataSurat
+        ];
+      }
+      else if($request->jenis_surat == "19"){
+        $obj = [
+          'semester' => $request->semester,
+          'thnAkademik' => $request->thnAkademik,
+          'nama' => $request->nama,
+          'prodi' => $request->prodi,
+          'npm' => $request->npm,
+          'namaWakil' => $request->namaWakil,
+          'prodiWakil' => $request->prodiWakil,
+          'npmWakil' => $request->npmWakil,
+          'dosenWali' => $request->dosenWali,
+          'alasan' => $request->alasan,
+          'matkul1' => $request->matkul1,
+          'sks1' => $request->sks1,
+          'matkul2' => $request->matkul2,
+          'sks2' => $request->sks2,
+          'matkul3' => $request->matkul3,
+          'sks3' => $request->sks3,
+          'matkul4' => $request->matkul4,
+          'sks4' => $request->sks4,
+          'matkul5' => $request->matkul5,
+          'sks5' => $request->sks5,
+          'matkul6' => $request->matkul6,
+          'sks6' => $request->sks6,
+          'matkul7' => $request->matkul7,
+          'sks7' => $request->sks7,
+          'matkul8' => $request->matkul8,
+          'sks8' => $request->sks8,
+          'matkul9' => $request->matkul9,
+          'sks9' => $request->sks9,
+          'formatsurat_id' => $request->formatsurat_id,
+          'dataSurat' => $request->dataSurat
+        ];
+      }
+      else if($request->jenis_surat == "20"){
+        $obj = [
+          'semester' => $request->semester,
+          'thnAkademik' => $request->thnAkademik,
+          'nama' => $request->nama,
+          'prodi' => $request->prodi,
+          'npm' => $request->npm,
+          'namaWakil' => $request->namaWakil,
+          'prodiWakil' => $request->prodiWakil,
+          'npmWakil' => $request->npmWakil,
+          'dosenWali' => $request->dosenWali,
+          'alasan' => $request->alasan,
+          'matkul1' => $request->matkul1,
+          'sks1' => $request->sks1,
+          'matkul2' => $request->matkul2,
+          'sks2' => $request->sks2,
+          'matkul3' => $request->matkul3,
+          'sks3' => $request->sks3,
+          'matkul4' => $request->matkul4,
+          'sks4' => $request->sks4,
+          'matkul5' => $request->matkul5,
+          'sks5' => $request->sks5,
+          'matkul6' => $request->matkul6,
+          'sks6' => $request->sks6,
+          'matkul7' => $request->matkul7,
+          'sks7' => $request->sks7,
+          'matkul8' => $request->matkul8,
+          'sks8' => $request->sks8,
+          'matkul9' => $request->matkul9,
+          'sks9' => $request->sks9,
+          'matkul10' => $request->matkul10,
+          'sks10' => $request->sks10,
+          'formatsurat_id' => $request->formatsurat_id,
+          'dataSurat' => $request->dataSurat
         ];
       }
       return json_encode($obj);
@@ -575,6 +856,506 @@ class PesanansuratController extends Controller
             'persetujuanWDI' => $persetujuanWDI,
             'catatanWDI' => $catatanWDI,
             'persetujuanDekan' => $persetujuanDekan,
+            'formatsurat_id' => $formatsurat_id,
+            'dataSurat' => $dataSurat
+        ]);
+      }
+      else if($request->jenis_surat == "11"){
+        $semester = $request->semester;
+        $thnAkademik = $request->thnAkademik;
+        $nama = $request->nama;
+        $prodi = $request->prodi;
+        $npm = $request->npm;
+        $namaWakil = $request->namaWakil;
+        $prodiWakil = $request->prodiWakil;
+        $npmWakil = $request->npmWakil;
+        $dosenWali = $request->dosenWali;
+        $alasan = $request->alasan;
+        $matkul = $request->matkul;
+        $sks = $request->sks;
+        $formatsurat_id = $request->jenis_surat;
+        $dataSurat = $this->buatJSON($request);
+        return view('mahasiswa.preview_perwakilan_perwalian_1matkul', [
+            'semester' => $semester,
+            'thnAkademik' => $thnAkademik,
+            'nama' => $nama,
+            'prodi' => $prodi,
+            'npm' => $npm,
+            'namaWakil' => $namaWakil,
+            'prodiWakil' => $prodiWakil,
+            'npmWakil' => $npmWakil,
+            'dosenWali' => $dosenWali,
+            'alasan' => $alasan,
+            'matkul' => $matkul,
+            'sks' => $sks,
+            'formatsurat_id' => $formatsurat_id,
+            'dataSurat' => $dataSurat
+        ]);
+      }
+      else if($request->jenis_surat == "12"){
+        $semester = $request->semester;
+        $thnAkademik = $request->thnAkademik;
+        $nama = $request->nama;
+        $prodi = $request->prodi;
+        $npm = $request->npm;
+        $namaWakil = $request->namaWakil;
+        $prodiWakil = $request->prodiWakil;
+        $npmWakil = $request->npmWakil;
+        $dosenWali = $request->dosenWali;
+        $alasan = $request->alasan;
+        $matkul1 = $request->matkul1;
+        $sks1 = $request->sks1;
+        $matkul2 = $request->matkul2;
+        $sks2 = $request->sks2;
+        $formatsurat_id = $request->jenis_surat;
+        $dataSurat = $this->buatJSON($request);
+        return view('mahasiswa.preview_perwakilan_perwalian_2matkul', [
+            'semester' => $semester,
+            'thnAkademik' => $thnAkademik,
+            'nama' => $nama,
+            'prodi' => $prodi,
+            'npm' => $npm,
+            'namaWakil' => $namaWakil,
+            'prodiWakil' => $prodiWakil,
+            'npmWakil' => $npmWakil,
+            'dosenWali' => $dosenWali,
+            'alasan' => $alasan,
+            'matkul1' => $matkul1,
+            'sks1' => $sks1,
+            'matkul2' => $matkul2,
+            'sks2' => $sks2,
+            'formatsurat_id' => $formatsurat_id,
+            'dataSurat' => $dataSurat
+        ]);
+      }
+      else if($request->jenis_surat == "13"){
+        $semester = $request->semester;
+        $thnAkademik = $request->thnAkademik;
+        $nama = $request->nama;
+        $prodi = $request->prodi;
+        $npm = $request->npm;
+        $namaWakil = $request->namaWakil;
+        $prodiWakil = $request->prodiWakil;
+        $npmWakil = $request->npmWakil;
+        $dosenWali = $request->dosenWali;
+        $alasan = $request->alasan;
+        $matkul1 = $request->matkul1;
+        $sks1 = $request->sks1;
+        $matkul2 = $request->matkul2;
+        $sks2 = $request->sks2;
+        $matkul3 = $request->matkul3;
+        $sks3 = $request->sks3;
+        $formatsurat_id = $request->jenis_surat;
+        $dataSurat = $this->buatJSON($request);
+        return view('mahasiswa.preview_perwakilan_perwalian_3matkul', [
+            'semester' => $semester,
+            'thnAkademik' => $thnAkademik,
+            'nama' => $nama,
+            'prodi' => $prodi,
+            'npm' => $npm,
+            'namaWakil' => $namaWakil,
+            'prodiWakil' => $prodiWakil,
+            'npmWakil' => $npmWakil,
+            'dosenWali' => $dosenWali,
+            'alasan' => $alasan,
+            'matkul1' => $matkul1,
+            'sks1' => $sks1,
+            'matkul2' => $matkul2,
+            'sks2' => $sks2,
+            'matkul3' => $matkul3,
+            'sks3' => $sks3,
+            'formatsurat_id' => $formatsurat_id,
+            'dataSurat' => $dataSurat
+        ]);
+      }
+      else if($request->jenis_surat == "14"){
+        $semester = $request->semester;
+        $thnAkademik = $request->thnAkademik;
+        $nama = $request->nama;
+        $prodi = $request->prodi;
+        $npm = $request->npm;
+        $namaWakil = $request->namaWakil;
+        $prodiWakil = $request->prodiWakil;
+        $npmWakil = $request->npmWakil;
+        $dosenWali = $request->dosenWali;
+        $alasan = $request->alasan;
+        $matkul1 = $request->matkul1;
+        $sks1 = $request->sks1;
+        $matkul2 = $request->matkul2;
+        $sks2 = $request->sks2;
+        $matkul3 = $request->matkul3;
+        $sks3 = $request->sks3;
+        $matkul4 = $request->matkul4;
+        $sks4 = $request->sks4;
+        $formatsurat_id = $request->jenis_surat;
+        $dataSurat = $this->buatJSON($request);
+        return view('mahasiswa.preview_perwakilan_perwalian_4matkul', [
+            'semester' => $semester,
+            'thnAkademik' => $thnAkademik,
+            'nama' => $nama,
+            'prodi' => $prodi,
+            'npm' => $npm,
+            'namaWakil' => $namaWakil,
+            'prodiWakil' => $prodiWakil,
+            'npmWakil' => $npmWakil,
+            'dosenWali' => $dosenWali,
+            'alasan' => $alasan,
+            'matkul1' => $matkul1,
+            'sks1' => $sks1,
+            'matkul2' => $matkul2,
+            'sks2' => $sks2,
+            'matkul3' => $matkul3,
+            'sks3' => $sks3,
+            'matkul4' => $matkul4,
+            'sks4' => $sks4,
+            'formatsurat_id' => $formatsurat_id,
+            'dataSurat' => $dataSurat
+        ]);
+      }
+      else if($request->jenis_surat == "15"){
+        $semester = $request->semester;
+        $thnAkademik = $request->thnAkademik;
+        $nama = $request->nama;
+        $prodi = $request->prodi;
+        $npm = $request->npm;
+        $namaWakil = $request->namaWakil;
+        $prodiWakil = $request->prodiWakil;
+        $npmWakil = $request->npmWakil;
+        $dosenWali = $request->dosenWali;
+        $alasan = $request->alasan;
+        $matkul1 = $request->matkul1;
+        $sks1 = $request->sks1;
+        $matkul2 = $request->matkul2;
+        $sks2 = $request->sks2;
+        $matkul3 = $request->matkul3;
+        $sks3 = $request->sks3;
+        $matkul4 = $request->matkul4;
+        $sks4 = $request->sks4;
+        $matkul5 = $request->matkul5;
+        $sks5 = $request->sks5;
+        $formatsurat_id = $request->jenis_surat;
+        $dataSurat = $this->buatJSON($request);
+        return view('mahasiswa.preview_perwakilan_perwalian_5matkul', [
+            'semester' => $semester,
+            'thnAkademik' => $thnAkademik,
+            'nama' => $nama,
+            'prodi' => $prodi,
+            'npm' => $npm,
+            'namaWakil' => $namaWakil,
+            'prodiWakil' => $prodiWakil,
+            'npmWakil' => $npmWakil,
+            'dosenWali' => $dosenWali,
+            'alasan' => $alasan,
+            'matkul1' => $matkul1,
+            'sks1' => $sks1,
+            'matkul2' => $matkul2,
+            'sks2' => $sks2,
+            'matkul3' => $matkul3,
+            'sks3' => $sks3,
+            'matkul4' => $matkul4,
+            'sks4' => $sks4,
+            'matkul5' => $matkul5,
+            'sks5' => $sks5,
+            'formatsurat_id' => $formatsurat_id,
+            'dataSurat' => $dataSurat
+        ]);
+      }
+      else if($request->jenis_surat == "16"){
+        $semester = $request->semester;
+        $thnAkademik = $request->thnAkademik;
+        $nama = $request->nama;
+        $prodi = $request->prodi;
+        $npm = $request->npm;
+        $namaWakil = $request->namaWakil;
+        $prodiWakil = $request->prodiWakil;
+        $npmWakil = $request->npmWakil;
+        $dosenWali = $request->dosenWali;
+        $alasan = $request->alasan;
+        $matkul1 = $request->matkul1;
+        $sks1 = $request->sks1;
+        $matkul2 = $request->matkul2;
+        $sks2 = $request->sks2;
+        $matkul3 = $request->matkul3;
+        $sks3 = $request->sks3;
+        $matkul4 = $request->matkul4;
+        $sks4 = $request->sks4;
+        $matkul5 = $request->matkul5;
+        $sks5 = $request->sks5;
+        $matkul6 = $request->matkul6;
+        $sks6 = $request->sks6;
+        $formatsurat_id = $request->jenis_surat;
+        $dataSurat = $this->buatJSON($request);
+        return view('mahasiswa.preview_perwakilan_perwalian_6matkul', [
+            'semester' => $semester,
+            'thnAkademik' => $thnAkademik,
+            'nama' => $nama,
+            'prodi' => $prodi,
+            'npm' => $npm,
+            'namaWakil' => $namaWakil,
+            'prodiWakil' => $prodiWakil,
+            'npmWakil' => $npmWakil,
+            'dosenWali' => $dosenWali,
+            'alasan' => $alasan,
+            'matkul1' => $matkul1,
+            'sks1' => $sks1,
+            'matkul2' => $matkul2,
+            'sks2' => $sks2,
+            'matkul3' => $matkul3,
+            'sks3' => $sks3,
+            'matkul4' => $matkul4,
+            'sks4' => $sks4,
+            'matkul5' => $matkul5,
+            'sks5' => $sks5,
+            'matkul6' => $matkul6,
+            'sks6' => $sks6,
+            'formatsurat_id' => $formatsurat_id,
+            'dataSurat' => $dataSurat
+        ]);
+      }
+      else if($request->jenis_surat == "17"){
+        $semester = $request->semester;
+        $thnAkademik = $request->thnAkademik;
+        $nama = $request->nama;
+        $prodi = $request->prodi;
+        $npm = $request->npm;
+        $namaWakil = $request->namaWakil;
+        $prodiWakil = $request->prodiWakil;
+        $npmWakil = $request->npmWakil;
+        $dosenWali = $request->dosenWali;
+        $alasan = $request->alasan;
+        $matkul1 = $request->matkul1;
+        $sks1 = $request->sks1;
+        $matkul2 = $request->matkul2;
+        $sks2 = $request->sks2;
+        $matkul3 = $request->matkul3;
+        $sks3 = $request->sks3;
+        $matkul4 = $request->matkul4;
+        $sks4 = $request->sks4;
+        $matkul5 = $request->matkul5;
+        $sks5 = $request->sks5;
+        $matkul6 = $request->matkul6;
+        $sks6 = $request->sks6;
+        $matkul7 = $request->matkul7;
+        $sks7 = $request->sks7;
+        $formatsurat_id = $request->jenis_surat;
+        $dataSurat = $this->buatJSON($request);
+        return view('mahasiswa.preview_perwakilan_perwalian_7matkul', [
+            'semester' => $semester,
+            'thnAkademik' => $thnAkademik,
+            'nama' => $nama,
+            'prodi' => $prodi,
+            'npm' => $npm,
+            'namaWakil' => $namaWakil,
+            'prodiWakil' => $prodiWakil,
+            'npmWakil' => $npmWakil,
+            'dosenWali' => $dosenWali,
+            'alasan' => $alasan,
+            'matkul1' => $matkul1,
+            'sks1' => $sks1,
+            'matkul2' => $matkul2,
+            'sks2' => $sks2,
+            'matkul3' => $matkul3,
+            'sks3' => $sks3,
+            'matkul4' => $matkul4,
+            'sks4' => $sks4,
+            'matkul5' => $matkul5,
+            'sks5' => $sks5,
+            'matkul6' => $matkul6,
+            'sks6' => $sks6,
+            'matkul7' => $matkul7,
+            'sks7' => $sks7,
+            'formatsurat_id' => $formatsurat_id,
+            'dataSurat' => $dataSurat
+        ]);
+      }
+      else if($request->jenis_surat == "18"){
+        $semester = $request->semester;
+        $thnAkademik = $request->thnAkademik;
+        $nama = $request->nama;
+        $prodi = $request->prodi;
+        $npm = $request->npm;
+        $namaWakil = $request->namaWakil;
+        $prodiWakil = $request->prodiWakil;
+        $npmWakil = $request->npmWakil;
+        $dosenWali = $request->dosenWali;
+        $alasan = $request->alasan;
+        $matkul1 = $request->matkul1;
+        $sks1 = $request->sks1;
+        $matkul2 = $request->matkul2;
+        $sks2 = $request->sks2;
+        $matkul3 = $request->matkul3;
+        $sks3 = $request->sks3;
+        $matkul4 = $request->matkul4;
+        $sks4 = $request->sks4;
+        $matkul5 = $request->matkul5;
+        $sks5 = $request->sks5;
+        $matkul6 = $request->matkul6;
+        $sks6 = $request->sks6;
+        $matkul7 = $request->matkul7;
+        $sks7 = $request->sks7;
+        $matkul8 = $request->matkul8;
+        $sks8 = $request->sks8;
+        $formatsurat_id = $request->jenis_surat;
+        $dataSurat = $this->buatJSON($request);
+        return view('mahasiswa.preview_perwakilan_perwalian_8matkul', [
+            'semester' => $semester,
+            'thnAkademik' => $thnAkademik,
+            'nama' => $nama,
+            'prodi' => $prodi,
+            'npm' => $npm,
+            'namaWakil' => $namaWakil,
+            'prodiWakil' => $prodiWakil,
+            'npmWakil' => $npmWakil,
+            'dosenWali' => $dosenWali,
+            'alasan' => $alasan,
+            'matkul1' => $matkul1,
+            'sks1' => $sks1,
+            'matkul2' => $matkul2,
+            'sks2' => $sks2,
+            'matkul3' => $matkul3,
+            'sks3' => $sks3,
+            'matkul4' => $matkul4,
+            'sks4' => $sks4,
+            'matkul5' => $matkul5,
+            'sks5' => $sks5,
+            'matkul6' => $matkul6,
+            'sks6' => $sks6,
+            'matkul7' => $matkul7,
+            'sks7' => $sks7,
+            'matkul8' => $matkul8,
+            'sks8' => $sks8,
+            'formatsurat_id' => $formatsurat_id,
+            'dataSurat' => $dataSurat
+        ]);
+      }
+      else if($request->jenis_surat == "19"){
+        $semester = $request->semester;
+        $thnAkademik = $request->thnAkademik;
+        $nama = $request->nama;
+        $prodi = $request->prodi;
+        $npm = $request->npm;
+        $namaWakil = $request->namaWakil;
+        $prodiWakil = $request->prodiWakil;
+        $npmWakil = $request->npmWakil;
+        $dosenWali = $request->dosenWali;
+        $alasan = $request->alasan;
+        $matkul1 = $request->matkul1;
+        $sks1 = $request->sks1;
+        $matkul2 = $request->matkul2;
+        $sks2 = $request->sks2;
+        $matkul3 = $request->matkul3;
+        $sks3 = $request->sks3;
+        $matkul4 = $request->matkul4;
+        $sks4 = $request->sks4;
+        $matkul5 = $request->matkul5;
+        $sks5 = $request->sks5;
+        $matkul6 = $request->matkul6;
+        $sks6 = $request->sks6;
+        $matkul7 = $request->matkul7;
+        $sks7 = $request->sks7;
+        $matkul8 = $request->matkul8;
+        $sks8 = $request->sks8;
+        $matkul9 = $request->matkul9;
+        $sks9 = $request->sks9;
+        $formatsurat_id = $request->jenis_surat;
+        $dataSurat = $this->buatJSON($request);
+        return view('mahasiswa.preview_perwakilan_perwalian_9matkul', [
+            'semester' => $semester,
+            'thnAkademik' => $thnAkademik,
+            'nama' => $nama,
+            'prodi' => $prodi,
+            'npm' => $npm,
+            'namaWakil' => $namaWakil,
+            'prodiWakil' => $prodiWakil,
+            'npmWakil' => $npmWakil,
+            'dosenWali' => $dosenWali,
+            'alasan' => $alasan,
+            'matkul1' => $matkul1,
+            'sks1' => $sks1,
+            'matkul2' => $matkul2,
+            'sks2' => $sks2,
+            'matkul3' => $matkul3,
+            'sks3' => $sks3,
+            'matkul4' => $matkul4,
+            'sks4' => $sks4,
+            'matkul5' => $matkul5,
+            'sks5' => $sks5,
+            'matkul6' => $matkul6,
+            'sks6' => $sks6,
+            'matkul7' => $matkul7,
+            'sks7' => $sks7,
+            'matkul8' => $matkul8,
+            'sks8' => $sks8,
+            'matkul9' => $matkul9,
+            'sks9' => $sks9,
+            'formatsurat_id' => $formatsurat_id,
+            'dataSurat' => $dataSurat
+        ]);
+      }
+      else if($request->jenis_surat == "20"){
+        $semester = $request->semester;
+        $thnAkademik = $request->thnAkademik;
+        $nama = $request->nama;
+        $prodi = $request->prodi;
+        $npm = $request->npm;
+        $namaWakil = $request->namaWakil;
+        $prodiWakil = $request->prodiWakil;
+        $npmWakil = $request->npmWakil;
+        $dosenWali = $request->dosenWali;
+        $alasan = $request->alasan;
+        $matkul1 = $request->matkul1;
+        $sks1 = $request->sks1;
+        $matkul2 = $request->matkul2;
+        $sks2 = $request->sks2;
+        $matkul3 = $request->matkul3;
+        $sks3 = $request->sks3;
+        $matkul4 = $request->matkul4;
+        $sks4 = $request->sks4;
+        $matkul5 = $request->matkul5;
+        $sks5 = $request->sks5;
+        $matkul6 = $request->matkul6;
+        $sks6 = $request->sks6;
+        $matkul7 = $request->matkul7;
+        $sks7 = $request->sks7;
+        $matkul8 = $request->matkul8;
+        $sks8 = $request->sks8;
+        $matkul9 = $request->matkul9;
+        $sks9 = $request->sks9;
+        $matkul10 = $request->matkul10;
+        $sks10 = $request->sks10;
+        $formatsurat_id = $request->jenis_surat;
+        $dataSurat = $this->buatJSON($request);
+        return view('mahasiswa.preview_perwakilan_perwalian_10matkul', [
+            'semester' => $semester,
+            'thnAkademik' => $thnAkademik,
+            'nama' => $nama,
+            'prodi' => $prodi,
+            'npm' => $npm,
+            'namaWakil' => $namaWakil,
+            'prodiWakil' => $prodiWakil,
+            'npmWakil' => $npmWakil,
+            'dosenWali' => $dosenWali,
+            'alasan' => $alasan,
+            'matkul1' => $matkul1,
+            'sks1' => $sks1,
+            'matkul2' => $matkul2,
+            'sks2' => $sks2,
+            'matkul3' => $matkul3,
+            'sks3' => $sks3,
+            'matkul4' => $matkul4,
+            'sks4' => $sks4,
+            'matkul5' => $matkul5,
+            'sks5' => $sks5,
+            'matkul6' => $matkul6,
+            'sks6' => $sks6,
+            'matkul7' => $matkul7,
+            'sks7' => $sks7,
+            'matkul8' => $matkul8,
+            'sks8' => $sks8,
+            'matkul9' => $matkul9,
+            'sks9' => $sks9,
+            'matkul10' => $matkul10,
+            'sks10' => $sks10,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat
         ]);

@@ -28,17 +28,17 @@
             <div class="col-md-8 contentPreview form-horizontal">
               <h4 style="font-weight:bold;">FORMULIR PERWALIAN YANG DIWAKILKAN</h4>
               <br>
-
+              <form action = "{{ url('/kirimFormulir') }}" method="post">
                 <div class="form-group">
                   <label for="nama" class="col-sm-3 prevLabel">Semester</label>
                   <div class="col-sm-9">
-                    Genap
+                    {{ $semester }}
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="npm" class="col-sm-3 prevLabel">Tahun AKademik</label>
                   <div class="col-sm-9">
-                    2016-2017
+                    {{ $thnAkademik }}
                   </div>
                 </div>
                 <p class="col-sm-12" style="font-weight:bold">
@@ -47,19 +47,19 @@
                 <div class="form-group">
                   <label for="nama" class="col-sm-3 prevLabel">Nama</label>
                   <div class="col-sm-9">
-                    Delta Dirgantara Riyadi P.
+                    {{ $nama }}
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="npm" class="col-sm-3 prevLabel">NPM</label>
                   <div class="col-sm-9">
-                    2012730090
+                    {{ $npm }}
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="npm" class="col-sm-3 prevLabel">Program Studi</label>
                   <div class="col-sm-9">
-                    Teknik Informatika
+                    {{ $prodi }}
                   </div>
                 </div>
                 <p class="col-md-12" style="font-weight:bold">
@@ -68,25 +68,25 @@
                 <div class="form-group">
                   <label for="nama" class="col-sm-3 prevLabel">Nama</label>
                   <div class="col-sm-9">
-                    Rizqi Putra P. S.
+                    {{ $namaWakil }}
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="npm" class="col-sm-3 prevLabel">NPM</label>
                   <div class="col-sm-9">
-                    2012730078
+                    {{ $npmWakil }}
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="npm" class="col-sm-3 prevLabel">Program Studi</label>
                   <div class="col-sm-9">
-                    Teknik Informatika
+                    {{ $prodiWakil }}
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="npm" class="col-sm-3 prevLabel">Alasan tidak bisa hadir perwalian</label>
                   <div class="col-sm-9">
-                    Saya ada ekspedisi dari unit kegiatan mahasiswa mahitala UNPAR yang diselenggarakan di aceh
+                    {{ $alasan }}
                   </div>
                 </div>
                 <div class="form-group">
@@ -102,8 +102,62 @@
                       <tr>
                         <td>1</td>
                         <td>AIF201</td>
-                        <td>Sistem Operasi</td>
+                        <td>{{ $matkul1 }}</td>
+                        <td>{{ $sks }}</td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td>AIF201</td>
+                        <td>{{ $matkul2 }}</td>
+                        <td>{{ $sks2 }}</td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td>AIF201</td>
+                        <td>{{ $matkul3 }}</td>
+                        <td>{{ $sks3 }}</td>
+                      </tr>
+                      <tr>
                         <td>4</td>
+                        <td>AIF201</td>
+                        <td>{{ $matkul4 }}</td>
+                        <td>{{ $sks4 }}</td>
+                      </tr>
+                      <tr>
+                        <td>5</td>
+                        <td>AIF201</td>
+                        <td>{{ $matkul5 }}</td>
+                        <td>{{ $sks5 }}</td>
+                      </tr>
+                      <tr>
+                        <td>6</td>
+                        <td>AIF201</td>
+                        <td>{{ $matkul6 }}</td>
+                        <td>{{ $sks6 }}</td>
+                      </tr>
+                      <tr>
+                        <td>7</td>
+                        <td>AIF201</td>
+                        <td>{{ $matkul7 }}</td>
+                        <td>{{ $sks7 }}</td>
+                      </tr>
+                      <tr>
+                        <td>8</td>
+                        <td>AIF201</td>
+                        <td>{{ $matkul8 }}</td>
+                        <td>{{ $sks8 }}</td>
+                      </tr>
+                      <tr>
+                        <td>9</td>
+                        <td>AIF201</td>
+                        <td>{{ $matkul9 }}</td>
+                        <td>{{ $sks9 }}</td>
+                      </tr>
+                      <tr>
+                        <td>10</td>
+                        <td>AIF201</td>
+                        <td>{{ $matkul10 }}</td>
+                        <td>{{ $sks10 }}</td>
                       </tr>
                     </table>
                   </div>
@@ -116,6 +170,17 @@
                     </p>
                   </div>
                 </div>
+                <input type="hidden" value="{{ $formatsurat_id }}" name="idFormat">
+                <input type="hidden" value="{{ $dataSurat }}" name="dataSurat">
+                {!! csrf_field() !!}
+                <br>
+                <div class="form-group">
+                  <div class="col-sm-offset-3 col-sm-10">
+                    <button class="btn btn-default" onclick="goBack()">Kembali</button>
+                    <button type="submit" class="btn btn-success">Buat Surat</button>
+                  </div>
+                </div>
+              </form>
             </div>
             <div class="col-md-4 profile">.col-md-4</div>
             </div>
@@ -136,5 +201,10 @@
     <div class="footer">
         hahahahahahahahahahahahahahahhahahahahahaha
     </div>
+    <script>
+      function goBack() {
+          window.history.back();
+      }
+    </script>
   </body>
 </html>

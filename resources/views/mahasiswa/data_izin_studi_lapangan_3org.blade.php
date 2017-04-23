@@ -32,66 +32,66 @@
                 <div class="form-group">
                   <label for="nama" class="col-sm-3">Nama</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" name="nama">
+                    <input type="text" class="form-control" name="nama" value="" readonly style="border: none" />
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="npm" class="col-sm-3">NPM</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" name="npm">
+                    <input type="text" class="form-control" name="npm" value="" readonly style="border: none" />
                   </div>
                 </div>
                 <div class="form-group prev">
                   <label for="prodi" class="col-sm-3">Program studi</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" name="prodi">
+                    <input type="text" class="form-control" name="prodi" value="" readonly style="border: none" />
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="matkul" class="col-sm-3">Mata kuliah</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" name="matkul">
+                    <input type="text" class="form-control" name="matkul" required>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="topik" class="col-sm-3">Topik</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" name="topik">
+                    <input type="text" class="form-control" name="topik" required>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="organisasi" class="col-sm-3">Organisasi tujuan</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" name="organisasi">
+                    <input type="text" class="form-control" name="organisasi" required>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="alamatOrganisasi" class="col-sm-3">Alamat organisasi tujuan</label>
                   <div class="col-sm-9">
-                    <textarea class="form-control" row="5" name="alamatOrganisasi"></textarea>
+                    <textarea class="form-control" row="5" name="alamatOrganisasi" required></textarea>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="keperluanKunjungan" class="col-sm-3">Keperluan kunjungan</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" name="keperluanKunjungan">
+                    <input type="text" class="form-control" name="keperluanKunjungan" required>
                   </div>
                 </div>
                 <div class="form-group">
                     <label for="dataKelompok" class="col-sm-3">Data kelompok</label>
                     <div class="col-sm-5">
-                      <input type="text" class="form-control" name="namaAnggota1" placeholder="Nama anggota">
+                      <input type="text" class="form-control" name="namaAnggota1" placeholder="Nama anggota" required>
                     </div>
                     <div class="col-sm-2">
-                      <input type="text" class="form-control" name="npmAnggota1" placeholder="NPM">
+                      <input type="text" class="form-control" name="npmAnggota1" placeholder="NPM" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-3 col-sm-5">
-                      <input type="text" class="form-control" name="namaAnggota2" placeholder="Nama anggota">
+                      <input type="text" class="form-control" name="namaAnggota2" placeholder="Nama anggota" required>
                     </div>
                     <div class="col-sm-2">
-                      <input type="text" class="form-control" name="npmAnggota2" placeholder="NPM">
+                      <input type="text" class="form-control" name="npmAnggota2" placeholder="NPM" required>
                     </div>
                 </div>
                 <input type="hidden" value="{{ $formatsurat_id }}" name="jenis_surat">
@@ -122,6 +122,4 @@
         hahahahahahahahahahahahahahahhahahahahahaha
     </div>
   </body>
-  <script type="text/javascript" src="{{ asset("js/jquery-3.2.0.min.js") }}"></script>
-  <script type="text/javascript" src="{{ asset("js/custom.js") }}"></script>
 </html>

@@ -32,68 +32,67 @@
                 <div class="form-group">
                   <label for="nama" class="col-sm-3">Nama</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="nama" name="nama">
+                    <input type="text" class="form-control" id="nama" name="nama" value="" readonly style="border: none" />
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="npm" class="col-sm-3">NPM</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="npm" name="npm">
+                    <input type="text" class="form-control" id="npm" name="npm" value="" readonly style="border: none" />
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="prodi" class="col-sm-3">Program studi</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="prodi" name="prodi">
+                    <input type="text" class="form-control" id="prodi" name="prodi" value="" readonly style="border: none" />
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="fakultas" class="col-sm-3">Fakultas</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="fakultas" name="fakultas">
+                    <input type="text" class="form-control" id="fakultas" name="fakultas" value="" readonly style="border: none" />
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="alamat" class="col-sm-3">Alamat</label>
                   <div class="col-sm-9">
-                    <textarea class="form-control" row="5" id="alamat" name="alamat"></textarea>
+                    <textarea class="form-control" row="5" id="alamat" name="alamat" required></textarea>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="cutiStudiKe" class="col-sm-3">Cuti studi ke</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="cutiStudiKe" name="cutiStudiKe">
+                    <input type="text" class="form-control" id="cutiStudiKe" name="cutiStudiKe" required>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="alasanCutiStudi" class="col-sm-3">Alasan cuti studi</label>
                   <div class="col-sm-9">
-                    <textarea class="form-control" row="5" id="alasanCutiStudi"name="alasanCutiStudi"></textarea>
+                    <textarea class="form-control" row="5" id="alasanCutiStudi"name="alasanCutiStudi" required></textarea>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="dosenWali" class="col-sm-3">Dosen wali</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="dosenWali" name="dosenWali">
+                    <input type="text" class="form-control" id="dosenWali" name="dosenWali" value="" readonly style="border: none" />
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="smstr" class="col-sm-3">Semester</label>
+                  <label for="semester" class="col-sm-3">Semester</label>
                   <div class="col-sm-9">
-                    <label class="radio-inline"><input type="radio" id="smstr" name="semester" value="ganjil" checked>Ganjil</label>
-                    <label class="radio-inline"><input type="radio" id="smstr" name="semester" value="genap" >Genap</label>
+                    <input type="text" class="form-control-static" id="semester" name="semseter" value="" readonly style="border: none" />
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="thnAkademik" class="col-sm-3">Tahun akademik</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="thnAkademik" name="thnAkademik">
+                    <input type="text" class="form-control" id="thnAkademik" name="thnAkademik" value="" readonly style="border: none" />
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="lampiran_CutiStudi" class="col-sm-3">Unggah surat permohonan cuti studi</label>
                   <div class="col-sm-9">
-                    <input type="file" class="form-control" id="lampiran_CutiStudi" name="lampiran_CutiStudi">
+                    <input type="file" class="form-control" id="lampiran_CutiStudi" name="lampiran_CutiStudi" required>
                   </div>
                 </div>
                 <input type="hidden" value="{{ $formatsurat_id }}" name="jenis_surat">

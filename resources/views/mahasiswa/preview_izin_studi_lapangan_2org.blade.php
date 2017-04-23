@@ -28,71 +28,72 @@
             <div class="col-md-8 contentPreview form-horizontal">
               <h4 style="font-weight:bold;text-decoration:underline">FORMULIR PERMOHONAN STUDI LAPANGAN</h4>
               <br>
-
-              <div class="form-group">
-                <label for="nama" class="col-sm-3 prevLabel">Nama</label>
-                <div class="col-sm-9">
-                  {{ $nama }}
+              <form action = "{{ url('/kirimFormulir') }}" method="post">
+                <div class="form-group">
+                  <label for="nama" class="col-sm-3 prevLabel">Nama</label>
+                  <div class="col-sm-9">
+                    {{ $nama }}
+                  </div>
                 </div>
-              </div>
-              <div class="form-group">
-                <label for="npm" class="col-sm-3 prevLabel">NPM</label>
-                <div class="col-sm-9">
-                  {{ $npm }}
+                <div class="form-group">
+                  <label for="npm" class="col-sm-3 prevLabel">NPM</label>
+                  <div class="col-sm-9">
+                    {{ $npm }}
+                  </div>
                 </div>
-              </div>
-              <div class="form-group">
-                <label for="npm" class="col-sm-3 prevLabel">Program Studi</label>
-                <div class="col-sm-9">
-                  {{ $prodi }}
+                <div class="form-group">
+                  <label for="npm" class="col-sm-3 prevLabel">Program Studi</label>
+                  <div class="col-sm-9">
+                    {{ $prodi }}
+                  </div>
                 </div>
-              </div>
-              <div class="form-group">
-                <label for="npm" class="col-sm-3 prevLabel">Mata Kuliah</label>
-                <div class="col-sm-9">
-                  {{ $matkul }}
+                <div class="form-group">
+                  <label for="npm" class="col-sm-3 prevLabel">Mata Kuliah</label>
+                  <div class="col-sm-9">
+                    {{ $matkul }}
+                  </div>
                 </div>
-              </div>
-              <div class="form-group">
-                <label for="npm" class="col-sm-3 prevLabel">Topik</label>
-                <div class="col-sm-9">
-                  {{ $topik}}
+                <div class="form-group">
+                  <label for="npm" class="col-sm-3 prevLabel">Topik</label>
+                  <div class="col-sm-9">
+                    {{ $topik}}
+                  </div>
                 </div>
-              </div>
-              <div class="form-group">
-                <label for="npm" class="col-sm-3 prevLabel">Organisasi Tujuan</label>
-                <div class="col-sm-9">
-                  {{ $organisasi }}
+                <div class="form-group">
+                  <label for="npm" class="col-sm-3 prevLabel">Organisasi Tujuan</label>
+                  <div class="col-sm-9">
+                    {{ $organisasi }}
+                  </div>
                 </div>
-              </div>
-              <div class="form-group">
-                <label for="npm" class="col-sm-3 prevLabel">Alamat Organisasi</label>
-                <div class="col-sm-9">
-                  {{ $alamatOrganisasi}}
+                <div class="form-group">
+                  <label for="npm" class="col-sm-3 prevLabel">Alamat Organisasi</label>
+                  <div class="col-sm-9">
+                    {{ $alamatOrganisasi}}
+                  </div>
                 </div>
-              </div>
-              <div class="form-group">
-                <label for="npm" class="col-sm-3 prevLabel">Keperluan Kunjungan</label>
-                <div class="col-sm-9">
-                  {{ $keperluanKunjungan }}
+                <div class="form-group">
+                  <label for="npm" class="col-sm-3 prevLabel">Keperluan Kunjungan</label>
+                  <div class="col-sm-9">
+                    {{ $keperluanKunjungan }}
+                  </div>
                 </div>
-              </div>
-              <div class="form-group">
-                <label for="npm" class="col-sm-3 prevLabel">Anggota Kelompok</label>
-                <div class="col-sm-9">
-                  {{ $npmAnggota }} - {{ $namaAnggota }}
+                <div class="form-group">
+                  <label for="npm" class="col-sm-3 prevLabel">Anggota Kelompok</label>
+                  <div class="col-sm-9">
+                    {{ $npmAnggota }} - {{ $namaAnggota }}
+                  </div>
                 </div>
-              </div>
-              <input type="hidden" value="{{ $formatsurat_id }}" name="idFormat">
-              <input type="hidden" value="{{ $dataSurat }}" name="dataSurat">
-              {!! csrf_field() !!}
-              <br>
-              <div class="form-group">
-                <div class="col-sm-offset-3 col-sm-10">
-                  <button class="btn btn-default" onclick="goBack()">Kembali</button>
-                  <button type="submit" class="btn btn-success">Buat Surat</button>
+                <input type="hidden" value="{{ $formatsurat_id }}" name="idFormat">
+                <input type="hidden" value="{{ $dataSurat }}" name="dataSurat">
+                {!! csrf_field() !!}
+                <br>
+                <div class="form-group">
+                  <div class="col-sm-offset-3 col-sm-10">
+                    <button class="btn btn-default" onclick="goBack()">Kembali</button>
+                    <button type="submit" class="btn btn-success">Buat Surat</button>
+                  </div>
                 </div>
-              </div>
+              </form>
             </div>
             <div class="col-md-4 profile">.col-md-4</div>
             </div>
