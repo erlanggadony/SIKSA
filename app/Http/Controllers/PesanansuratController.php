@@ -20,6 +20,13 @@ class PesanansuratController extends Controller
         $this->mahasiswaRepo = $mahasiswaRepo;
         //dd($this->orders->getAllActive());
     }
+    public function tampilkanPesananDiPejabat(Request $request){
+      $pesanansurats = $this->pesanansuratRepo->findAllPesananSurat();
+      return view('pejabat.home_pejabat', [
+        'pesanansurats' => $pesanansurats
+      ]);
+    }
+
     public function tampilkanPesananSurat(Request $request){
           //$confirmation = Confirmation::where(['id' => 2])->first();
           //dd($confirmation->order->tickets);

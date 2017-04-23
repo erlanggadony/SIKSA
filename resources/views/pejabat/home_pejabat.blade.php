@@ -15,11 +15,9 @@
     <div class="navigation">
          <div class="navbar text-center">
             <ul class="inline">
-               <a href="/home_mahasiswa"><li>Home</li></a>
-               <a href="/pilih_jenis_surat"><li>Riwayat Surat</li></a>
-               <a href="/data_mahasiswa"><li>Data Mahasiswa</li></a>
-               <a href="/format_surat"><li>Format Surat</li></a>
-               <li>Logout</li>
+              <a href="/home_pejabat"><li>Home</li></a>
+              <a href="/history_pejabat"><li>History Surat</li></a>
+              <li>Logout</li>
             </ul>
          </div>
     </div>
@@ -58,15 +56,39 @@
               </form>
               <br>
               <table class="table table-striped">
-                <tr>
-                  <th>NOMOR SURAT</th>
-                  <th>TANGGAL PEMBUATAN</th>
-                  <th>PERIHAL</th>
-                  <th>KEPADA</th>
-                  <th>PEMBUAT SURAT</th>
-                  <th>JENIS SURAT</th>
-                </tr>
-
+                <tr>@if(count($pesanansurats) == 0)
+                    <tr>
+                        <td colspan="5" align="center">No data found ...</td>
+                    </tr>
+                @else
+                    <tr>
+                      <th>JENIS SURAT</th>
+                      <th>PERIHAL</th>
+                      <th>PEMOHON</th>
+                      <th>PENERIMA</th>
+                      <th>TANGGAL PEMBUATAN</th>
+                      <th>DATA SURAT</th>
+                      <th>KONTROL</th>
+                    </tr>
+                    @foreach($pesanansurats as $pesanansurat)
+                        <tr>
+                          <td>{{ $pesanansurat->formatsurat_id }}</td>
+                          <td>{{ $pesanansurat->perihal }}</td>
+                          <td>{{ $pesanansurat->mahasiswa_id }}</td>
+                          <td>{{ $pesanansurat->penerimaSurat }}</td>
+                          <td>{{ $pesanansurat->created_at }}</td>
+                          <td><textarea rows="5" cols="30" style="border: none" readonly>{{ $pesanansurat->dataSurat }}</textarea></td>
+                          <td>
+                            <form action="/tambahCatatan" method="post">
+                              <input type="hidden" value="{{ $pesanansurat->formatsurat_id }}" name="idFormatSurat">
+                              <input type="hidden" value="{{ $pesanansurat->dataSurat }}" name="prosesSurat">
+                              {!! csrf_field() !!}
+                              <button type="submit" class="btn btn-default">Tambah<br>Catatan</button>
+                            </form>
+                          </td>
+                        </tr>
+                    @endforeach
+                  @endif
               </table>
             </div>
             <div class="col-md-4 profile">.col-md-4</div>

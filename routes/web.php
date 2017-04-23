@@ -59,8 +59,8 @@ Route::post('/login', 'AuthController@authenticate');
     Route::post('/hapusFormatsurat', 'FormatsuratController@destroy');
     Route::post('/tampilkanFormat', 'FormatsuratController@tampilkanFormat');
     Route::post('/proses_surat', 'PesanansuratController@sendDataSurat');
-    Route::get('/history', function () {
-        return view('TU/history');
+    Route::get('/history_TU', function () {
+        return view('TU/history_TU');
     });
     // halaman untuk menambahkan format surat baru
     Route::get('/tambah_format_surat', function () {
@@ -76,27 +76,18 @@ Route::post('/login', 'AuthController@authenticate');
 
 //<--------------------------------------------------------PEJABAT-------------------------------------------------------->
     // halaman utama pejabat
-    Route::get('/home_pejabat', function () {
-        return view('pejabat/home_pejabat');
-    });
+    Route::get('/home_pejabat', 'PesanansuratController@tampilkanPesananDiPejabat');
     //halaman pengisisan catatan dosen wali
-    Route::get('/catatan_dosen_wali', function () {
-        return view('pejabat/catatan_dosen_wali');
-    });
+    Route::post('/catatanDosenWali', 'PesanansuratController@previewDosenWali');
     //halaman pengisisan catatan kaprodi
-    Route::get('/catatan_ketua_program_studi', function () {
-        return view('pejabat/catatan_ketua_program_studi');
-    });
+    Route::post('/catatanKaprodi', 'PesanansuratController@previewKaprodi');
     //halaman pengisisan catatan wakil dekan II
-    Route::get('/catatan_wakil_dekan_II', function () {
-        return view('pejabat/catatan_wakil_dekan_II');
-    });
+    Route::post('/catatanWDII', 'PesanansuratController@previewWDII');
     //halaman pengisisan catatan wakil dekan I
-    Route::get('/catatan_wakil_dekan_I', function () {
-        return view('pejabat/catatan_wakil_dekan_I');
-    });
+    Route::post('/catatanWDI', 'PesanansuratController@previewWDI');
     //halaman pengisisan catatan dekan
-    Route::get('/catatan_dekan', function () {
-        return view('pejabat/catatan_dekan');
+    Route::post('/catatanDekan', 'PesanansuratController@previewDekan');
+
+    Route::get('/history_pejabat', function () {
+        return view('pejabat/history_pejabat');
     });
-//

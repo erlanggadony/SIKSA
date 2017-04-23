@@ -14,11 +14,11 @@
     <div class="navigation">
          <div class="navbar text-center">
             <ul class="inline">
-               <a href="/home_TU"><li>Home</li></a>
-               <a href="/history"><li>History Surat</li></a>
-               <a href="/data_mahasiswa"><li>Data Mahasiswa</li></a>
-               <a href="/format_surat"><li>Format Surat</li></a>
-               <li>Logout</li>
+              <a href="/home_TU"><li>Home</li></a>
+              <a href="/history_TU"><li>History Surat</li></a>
+              <a href="/data_mahasiswa"><li>Data Mahasiswa</li></a>
+              <a href="/format_surat"><li>Format Surat</li></a>
+              <li>Logout</li>
             </ul>
          </div>
     </div>

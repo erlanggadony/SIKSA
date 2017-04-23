@@ -15,11 +15,9 @@
     <div class="navigation">
          <div class="navbar text-center">
             <ul class="inline">
-               <a href="/home_mahasiswa"><li>Home</li></a>
-               <a href="/pilih_jenis_surat"><li>Riwayat Surat</li></a>
-               <a href="/data_mahasiswa"><li>Data Mahasiswa</li></a>
-               <a href="/format_surat"><li>Format Surat</li></a>
-               <li>Logout</li>
+              <a href="/home_pejabat"><li>Home</li></a>
+              <a href="/history_pejabat"><li>History Surat</li></a>
+              <li>Logout</li>
             </ul>
          </div>
     </div>
@@ -30,13 +28,23 @@
             <div class="col-md-8 content">
               <h1>Isi Catatan Dosen Wali</h1>
               <br>
-              <form class="form-horizontal">
+              <form class="form-horizontal" method="post" action="/catatanDosenWali">
+                <div class="form-group">
+                  <label for="persetujuan" class="col-sm-3">Persetujuan</label>
+                  <div class="col-sm-9">
+                    <label class="radio-inline"><input type="radio" name="persetujuan" value="Setuju" checked>Setuju</label>
+                    <label class="radio-inline"><input type="radio" name="persetujuan" value="Tidak setuju" >Tidak setuju</label>
+                  </div>
+                </div>
                 <div class="form-group">
                   <label for="catatanDosenWali" class="col-sm-3">Catatan Dosen Wali</label>
                   <div class="col-sm-9">
                     <textarea class="form-control" id="catatanDosenWali" row="5" name="catatanDosenWali"></textarea>
                   </div>
                 </div>
+                <input type="hidden" value="{{ $formatsurat_id }}" name="jenis_surat">
+                <input type="hidden" value="{{ $dataSurat }}" name="dataSurat">
+                {!! csrf_field() !!}
                 <div class="form-group">
                   <div class="col-sm-offset-3 col-sm-10">
                     <button type="submit" class="btn btn-primary">Lanjutkan</button>
