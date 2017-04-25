@@ -42,13 +42,14 @@ th{
   float: left;
   background-color: white;
   margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .content{
   width: 850px;
   margin-left: 50px;
   margin-right: 5px;
-  height: 1500px;
+  height: 1429px;
   padding-left: 20px;
   padding-right: 20px;
   padding-top:20px;

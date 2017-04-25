@@ -94,6 +94,7 @@
                   <span class="close">&times;</span>
                 </div>
               </div>
+              <div style="text-align:center">{!! $formatsurats->links() !!}</div>
             </div>
 
             <div class="col-md-4 profile">

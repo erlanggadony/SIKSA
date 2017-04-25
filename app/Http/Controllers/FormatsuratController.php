@@ -23,7 +23,7 @@ class FormatsuratController extends Controller
 	 * @return view
 	 */
 	public function pilihSurat(Request $request){
-        $formatsurats = $this->formatsuratRepo->findAllFormatsurat();
+        $formatsurats = $this->formatsuratRepo->tampilkanFormat();
         return view('mahasiswa.pilih_jenis_surat',[
             'formatsurats' => $formatsurats,
         ]);

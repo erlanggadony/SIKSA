@@ -80,6 +80,7 @@
                     @endforeach
                   @endif
               </table>
+              <div style="text-align:center">{!! $pesanansurats->links() !!}</div>
             </div>
             <div class="col-md-4 profile">.col-md-4</div>
           </div>

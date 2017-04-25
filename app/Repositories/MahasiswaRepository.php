@@ -6,44 +6,62 @@
   class MahasiswaRepository{
 
     public function findAllMahasiswa(){
-      $mahasiswas = Mahasiswa::all();
+      $mahasiswas = Mahasiswa::orderBy('id', 'DESC')->paginate(15);
       return $mahasiswas;
     }
 
     public function findMahasiswaByNIRM($nirm){
-      $mahasiswas = Mahasiswa::where('nirm', $nirm)->get();
+      $mahasiswas = Mahasiswa::where('nirm', $nirm)
+                                  ->orderBy('id', 'ASC')
+                                  ->paginate(16);
       return $mahasiswas;
     }
     public function findMahasiswaByNPM($npm){
-      $mahasiswas = Mahasiswa::where('npm', $npm)->get();
+      $mahasiswas = Mahasiswa::where('npm', $npm)
+                                  ->orderBy('id', 'ASC')
+                                  ->paginate(16);
       return $mahasiswas;
     }
     public function findMahasiswaByNama($nama_mahasiswa){
-      $mahasiswas = Mahasiswa::where('nama_mahasiswa', $nama_mahasiswa)->get();
+      $mahasiswas = Mahasiswa::where('nama_mahasiswa', $nama_mahasiswa)
+                                  ->orderBy('id', 'ASC')
+                                  ->paginate(16);
       return $mahasiswas;
     }
     public function findMahasiswaByProdi($prodi){
-      $mahasiswas = Mahasiswa::where('jurusan_id', $prodi)->get();
+      $mahasiswas = Mahasiswa::where('jurusan_id', $prodi)
+                                  ->orderBy('id', 'ASC')
+                                  ->paginate(16);
       return $mahasiswas;
     }
     public function findMahasiswaByAngkatan($angkatan){
-      $mahasiswas = Mahasiswa::where('angkatan', $angkatan)->get();
+      $mahasiswas = Mahasiswa::where('angkatan', $angkatan)
+                                  ->orderBy('id', 'ASC')
+                                  ->paginate(16);
       return $mahasiswas;
     }
     public function findMahasiswaByKotaLahir($kota_lahir){
-      $mahasiswas = Mahasiswa::where('kota_lahir', $kota_lahir)->get();
+      $mahasiswas = Mahasiswa::where('kota_lahir', $kota_lahir)
+                                  ->orderBy('id', 'ASC')
+                                  ->paginate(16);
       return $mahasiswas;
     }
     public function findMahasiswaByTanggalLahir($tanggal_lahir){
-      $mahasiswas = Mahasiswa::where('tanggal_lahir', $tanggal_lahir)->get();
+      $mahasiswas = Mahasiswa::where('tanggal_lahir', $tanggal_lahir)
+                                  ->orderBy('id', 'ASC')
+                                  ->paginate(16);
       return $mahasiswas;
     }
     public function findMahasiswaByFakultas($fakultas){
-      $mahasiswas = Mahasiswa::where('fakultas_id', $fakultas)->get();
+      $mahasiswas = Mahasiswa::where('fakultas_id', $fakultas)
+                                  ->orderBy('id', 'ASC')
+                                  ->paginate(16);
       return $mahasiswas;
     }
     public function findMahasiswaByDosenWali($dosenWali){
-      $mahasiswas = Mahasiswa::where('dosen_id', $dosenWali)->get();
+      $mahasiswas = Mahasiswa::where('dosen_id', $dosenWali)
+                                  ->orderBy('id', 'ASC')
+                                  ->paginate(16);
       return $mahasiswas;
     }
     public function findMahasiswaById($id){
