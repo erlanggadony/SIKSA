@@ -60,8 +60,8 @@
                   </div>
                   <div class="form-group">
                     <label class="col-sm-3 prevLabel">Jenis Beasiswa</label>
-                    <div class="col-sm-9" name="jenisbeasiswa">
-                        {{ $jenisbeasiswa }}
+                    <div class="col-sm-9" name="penyediabeasiswa">
+                        {{ $penyediabeasiswa }}
                     </div>
                   </div>
                   <div class="form-group">

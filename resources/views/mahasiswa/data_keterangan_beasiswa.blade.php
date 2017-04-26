@@ -32,31 +32,31 @@
                 <div class="form-group">
                   <label for="nama" class="col-sm-3">Nama</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="nama" name="nama" value="" readonly style="border: none" />
+                    <input type="text" class="form-control" id="nama" name="nama" value="Dony" readonly style="border: none" />
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="prodi" class="col-sm-3">Program studi</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="prodi" name="prodi" value="" readonly style="border: none" />
+                    <input type="text" class="form-control" id="prodi" name="prodi" value="IT" readonly style="border: none" />
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="npm" class="col-sm-3">NPM</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="npm" name="npm" value="" readonly style="border: none">
+                    <input type="text" class="form-control" id="npm" name="npm" value="npm" readonly style="border: none">
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="semseter" class="col-sm-3">Semester</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control-static" id="semester" name="semseter" value="" readonly style="border: none" />
+                    <input type="text" class="form-control" id="semester" name="semester" value="semester" readonly style="border: none" />
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="thnAkademik" class="col-sm-3">Tahun akademik</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control date" id="thnAkademik" name="thnAkademik" value="" readonly style="border: none" />
+                    <input type="text" class="form-control date" id="thnAkademik" name="thnAkademik" value="tahun" readonly style="border: none" />
                   </div>
                 </div>
                 <div class="form-group">

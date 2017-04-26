@@ -87,10 +87,11 @@ class MahasiswaController extends Controller
     }
 
     public function uploadMahasiswa(Request $request){
-      $mahasiswa = new Mahasiswa;
+
       $dataMhs = $request->file('uploadDataMhs');
-      $baris;
+      $baris = '';
       foreach ($dataMhs as $line_num => $line) {
+          $mahasiswa = new Mahasiswa;
           $baris .= $line.'<br>';
           $data = explode("/", $baris);  //ubah pemisahnya dengan yg ada di sql
           $mahasiswa->nirm = $data[0];
@@ -104,7 +105,7 @@ class MahasiswaController extends Controller
           $mahasiswa->foto_mahasiswa = $data[8];
           $mahasiswa->dosen_id = $data[9];
           $mahasiswa->username = $data[10];
-          $mahasiswa->password = $data[11];
+          $mahasiswa->password = bycrypt($data[11]);
           $mahasiswa->save();
       }
       return redirect('/data_mahasiswa')->with('success_message', 'Data mahasiswa telah di upload');

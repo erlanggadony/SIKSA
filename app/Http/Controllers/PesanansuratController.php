@@ -78,15 +78,19 @@ class PesanansuratController extends Controller
         ]);
     }
     public function store(Request $request){
-        $pesanansurat = new PesananSurat;
-        $pesanansurat->mahasiswa_id = 'anonim';
-        $format = $this->formatsuratRepo->findById($request->idFormat);
-        $pesanansurat->formatsurat_id = $format->jenis_surat;
-        $pesanansurat->perihal = '';
-        $pesanansurat->penerima = '';
         if($request->idFormat == "1"){
-          $pesanansurat->perihal = '';
-          $pesanansurat->penerima = '$request->';
+          $pesanansurat = new PesananSurat;
+          $pesanansurat->perihal = '-';
+          $pesanansurat->mahasiswa_id = 'anonim';
+          $pesanansurat->formatsurat_id = $request->idFormat;
+          // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
+          // $pesanansurat->dataSurat = $request->data;
+          $pesanansurat->persetujuanDosenWali = 'true' ;
+          $pesanansurat->persetujuanKaprodi = 'true';
+          $pesanansurat->persetujuanWDII = 'true';
+          $pesanansurat->persetujuanWDI = 'true';
+          $pesanansurat->persetujuanDekan = 'true';
+          $pesanansurat->save();
         }
         else if($request->idFormat == "2"){
           $pesanansurat->perihal = '';
@@ -535,6 +539,7 @@ class PesanansuratController extends Controller
     */
     public function tampilkanPreview(Request $request){
       if($request->jenis_surat == "1"){
+        // dd($request->semester);
         $nama = $request->nama;
         $prodi = $request->prodi;
         $npm = $request->npm;

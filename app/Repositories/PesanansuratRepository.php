@@ -45,6 +45,10 @@
                                     ->paginate(15);
       return $pesanansurats;
     }
+    public function findPesananSuratById($id){
+      $pesanansurat = Pesanansurat::where('id', $id)->first();
+      return $pesanansurat;
+    }
   }
 
  ?>
