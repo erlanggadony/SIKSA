@@ -66,6 +66,10 @@ Route::post('/login', 'AuthController@authenticate');
     Route::get('/tambah_format_surat', function () {
         return view('TU/tambah_format_surat');
     });
+
+    Route::get('/tambah_data_mahasiswa', function () {
+        return view('TU/tambah_data_mahasiswa');
+    });
     Route::post('/uploadFormat', 'FormatsuratController@storeFormat');
     //halaman seluruh data mahasiswa
     Route::get('/data_mahasiswa', 'MahasiswaController@pilihMahasiswa');
@@ -87,6 +91,9 @@ Route::post('/login', 'AuthController@authenticate');
     Route::post('/catatanWDI', 'PesanansuratController@previewWDI');
     //halaman pengisisan catatan dekan
     Route::post('/catatanDekan', 'PesanansuratController@previewDekan');
+    Route::get('/catatan_dekan', function () {
+        return view('pejabat/catatan_dekan');
+    });
 
     Route::get('/history_pejabat', function () {
         return view('pejabat/history_pejabat');

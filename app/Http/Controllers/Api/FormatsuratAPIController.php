@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-// use App\Http\Requests;
+
 use App\Http\Controllers\Controller;
 use App\Formatsurat;
 use App\Repositories\FormatsuratRepository;
@@ -18,7 +18,7 @@ class FormatsuratAPIController extends Controller{
         //dd($this->orders->getAllActive());
     }
 
-    public function tampilkanFormat(Requests $request){
+    public function tampilkanFormat(Request $request){
         $format = $this->formatsuratRepo->findById($request->id);
         // dd($format);
         $link = $format->link_format_surat;

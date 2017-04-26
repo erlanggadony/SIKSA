@@ -63,7 +63,7 @@ class PesanansuratController extends Controller
         $npm = $json->npm;
         $semester = $json->semester;
         $thnAkademik = $json->thnAkademik;
-        $jenisbeasiswa = $json->jenisbeasiswa;
+        $penyediabeasiswa = $json->penyediabeasiswa;
         $formatsurat_id = $request->idFormatSurat;
         // dd($dataSurat);
         return view('TU.proses_surat', [
@@ -72,7 +72,7 @@ class PesanansuratController extends Controller
             'npm' => $npm,
             'semester' => $semester,
             'thnAkademik' => $thnAkademik,
-            'jenisbeasiswa' => $jenisbeasiswa,
+            'penyediabeasiswa' => $penyediabeasiswa,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat
         ]);
@@ -110,7 +110,7 @@ class PesanansuratController extends Controller
             'npm' => $request->npm,
             'semester' => $request->semester,
             'thnAkademik' => $request->thnAkademik,
-            'jenisbeasiswa' => $request->jenisbeasiswa,
+            'penyediabeasiswa' => $request->penyediabeasiswa,
           ];
       }
       else if($request->jenis_surat == "2"){
@@ -540,7 +540,7 @@ class PesanansuratController extends Controller
         $npm = $request->npm;
         $semester = $request->semester;
         $thnAkademik = $request->thnAkademik;
-        $jenisbeasiswa = $request->jenisbeasiswa;
+        $penyediabeasiswa = $request->penyediabeasiswa;
         $formatsurat_id = $request->jenis_surat;
         // dd($formatsurat_id);
         $dataSurat = $this->buatJSON($request);
@@ -551,7 +551,7 @@ class PesanansuratController extends Controller
             'npm' => $npm,
             'semester' => $semester,
             'thnAkademik' => $thnAkademik,
-            'jenisbeasiswa' => $jenisbeasiswa,
+            'penyediabeasiswa' => $penyediabeasiswa,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat
         ]);

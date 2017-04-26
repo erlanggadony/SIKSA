@@ -25,10 +25,15 @@
          </div>
     </div>
 
+    <div id="myModal" class="modal">
+      <div class="modal-content" id="show">
+        <span class="close">&times;</span>
+      </div>
+    </div>
     <div class="container">
       <div class="main">
           <div class="row">
-            <div class="col-md-8 content">
+            <div class="col-md-8 content" id ="test">
               <a href="{{ URL::to('/tambah_format_surat') }}" class="btn btn-default">Tambah Format Surat</a>
               <form class="form-inline" action= "{{ url('/format_surat') }}" method="get">
                 <div class="form-group">
@@ -47,7 +52,6 @@
                 </div>
               </form>
               <br>
-              <div></div>
               <table class="table table-striped table-hover">
                 @if($formatsurats != null)
                   @if(count($formatsurats) == 0)
@@ -71,9 +75,13 @@
                               <button type="submit" onclick="showModal({{ $formatsurat->id }})" class="btn btn-link">Klik disini</button>
                           </td>
                           <td>
-                            <button type="button" class="btn btn-default" aria-label="Edit">
-                                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                            </button>
+                            <form action="/hapusFormatsurat" method="post">
+                              <input type="hidden" value="{{ $formatsurat->id }}" name="edit ID">
+                              {!! csrf_field() !!}
+                              <button type="button" class="btn btn-default" aria-label="Edit" data-toggle="tooltip" title="Edit">
+                                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                              </button>
+                            </form>
                           </td>
                           <td>
                             <form action="/hapusFormatsurat" method="post">
@@ -89,13 +97,9 @@
                   @endif
                 @endif
               </table>
-              <div id="myModal" class="modal">
-                <div class="modal-content" id="show">
-                  <span class="close">&times;</span>
-                </div>
-              </div>
               <div style="text-align:center">{!! $formatsurats->links() !!}</div>
             </div>
+
 
             <div class="col-md-4 profile">
               <!-- <img id=profpict src="{{ asset("/images/2012730071.jpg") }}" />
@@ -117,6 +121,7 @@
     <div class="footer">
         hahahahahahahahahahahahahahahhahahahahahaha
     </div>
+    <script type="text/javascript" src="{{ asset("js/jquery-3.2.0.min.js") }}"></script>
     <script>
         // Get the modal
         var modal = document.getElementById('myModal');
@@ -137,11 +142,14 @@
           })
           .done(function(data) {
             document.getElementById("show").innerHTML = `<span onclick='tutup()' class='close'>&times;</span>` + data.stringFormat;
+            // $('#myModal').css({'position' : 'fixed'});
             modal.style.display = "block";
+            modal.style.position = "fixed";
+            // $('#test').css('position' : 'fixed');
           })
           .fail(function(error) {
             alert( "Error : " + error);
-          })
+          });
         }
     </script>
   </body>

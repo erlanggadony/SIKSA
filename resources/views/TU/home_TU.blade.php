@@ -99,7 +99,7 @@
       </div>
     </div>
     <div class="footer">
-        hahahahahahahahahahahahahahahhahahahahahaha
+        <div style="text-align:center">Copyright Dony Erlangga</div>
     </div>
   </body>
 </html>

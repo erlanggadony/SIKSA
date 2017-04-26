@@ -105,6 +105,7 @@ class MahasiswaController extends Controller
           $mahasiswa->dosen_id = $data[9];
           $mahasiswa->username = $data[10];
           $mahasiswa->password = $data[11];
+          $mahasiswa->save();
       }
       return redirect('/data_mahasiswa')->with('success_message', 'Data mahasiswa telah di upload');
     }

@@ -42,8 +42,7 @@
                     <textarea class="form-control" id="catatanDekan" row="5" name="catatanDekan"></textarea>
                   </div>
                 </div>
-                <input type="hidden" value="{{ $formatsurat_id }}" name="jenis_surat">
-                <input type="hidden" value="{{ $dataSurat }}" name="dataSurat">
+                
                 {!! csrf_field() !!}
                 <div class="form-group">
                   <div class="col-sm-offset-3 col-sm-10">

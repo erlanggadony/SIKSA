@@ -82,6 +82,23 @@ public function tampilkanSeluruhFormat(Request $request){
         return $model;
     }
 
+   public function update(Request $request){
+        $formatsurat = $this->findById($request->id);
+        $format = $request->file('uploadFormat');
+        // dd($format);
+        $destination_path = 'format_surat_latex/';
+        $filename = $format->getClientOriginalName();
+        // dd($filename);
+        $format->move($destination_path, $filename);
+
+        //store to db
+        $formatsurat->idFormatSurat = $request->idFormatSurat;
+        $formatsurat->jenis_surat = $request->jenis_surat;
+        $formatsurat->keterangan = $request->keterangan;
+        $formatsurat->link_format_surat = '127.0.0.1:8000/format_surat_latex/' . $filename;
+        $formatsurat->save();
+   }
+
     public function storeFormat(Request $request){
         $formatsurat = new Formatsurat;
 

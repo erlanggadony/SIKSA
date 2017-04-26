@@ -64,7 +64,7 @@
                 {!! csrf_field() !!}
                 <div class="form-group">
                   <div class="col-sm-3"></div>
-                  <div class="col-sm-9 checkbox">
+                  <div class="col-sm-9">
                     <button type="submit" class="btn btn-primary">Upload format surat (.TeX)</button>
                   </div>
                 </div>

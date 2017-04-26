@@ -60,9 +60,9 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="jenisbeasiswa" class="col-sm-3">Jenis beasiswa</label>
+                  <label for="penyediabeasiswa" class="col-sm-3">Penyedia beasiswa</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="jenisbeasiswa" required name="jenisbeasiswa" >
+                    <input type="text" class="form-control" id="penyediabeasiswa" required name="penyediabeasiswa" >
                   </div>
                 </div>
                 <input type="hidden" value="{{ $formatsurat_id }}" name="jenis_surat">

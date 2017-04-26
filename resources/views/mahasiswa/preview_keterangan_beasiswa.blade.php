@@ -61,9 +61,9 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-3 prevLabel">Jenis Beasiswa</label>
-                    <div class="col-sm-9" name="jenisbeasiswa">
-                        {{ $jenisbeasiswa }}
+                    <label class="col-sm-3 prevLabel">Penyedia Beasiswa</label>
+                    <div class="col-sm-9" name="penyediabeasiswa">
+                        {{ $penyediabeasiswa }}
                     </div>
                   </div>
                   <input type="hidden" value="{{ $formatsurat_id }}" name="idFormat">
