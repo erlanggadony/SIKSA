@@ -92,9 +92,10 @@ class HistorysuratController extends Controller
             }
         }
         // dd($stringFormat);
-        $file = fopen("arsip_surat/surat_keterangan_beasiswa.tex", "w");
+        $file = fopen("arsip_surat/" . $nama . "_surat_keterangan_beasiswa.tex", "w");
         fwrite($file, $stringFormat);
-        shell_exec('pdflatex "F:\Skripsi\Source code Skripsi\SIKSA\public\arsip_surat"');
+        fclose($file);
+        shell_exec('pdflatex -max-print-line=120 -interaction=nonstopmode -output-directory arsip_surat arsip_surat/' . $nama . '_surat_keterangan_beasiswa.tex');
         // fwrite($file, $stringFormat);
         // file_put_contents($file, $stringFormat);
         // $historysurat = new Historysurat;
@@ -106,6 +107,7 @@ class HistorysuratController extends Controller
         // $historysurat->penandatanganan =
         // $historysurat->pengambilan =
         // $historysurat->save();
+        return redirect('/history_TU');
       }
       else if($request->idFormatSurat == "2"){
         $dataSurat = $request->data;
