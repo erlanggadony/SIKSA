@@ -34,37 +34,37 @@
                 <div class="form-group">
                   <label for="nama" class="col-sm-3">Nama</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="nama" name="nama" value="" readonly style="border: none" />
+                    <input type="text" class="form-control" id="nama" name="nama" required/>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="prodi" class="col-sm-3">Program studi</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="prodi" name="prodi" value="" readonly style="border: none" />
+                    <input type="text" class="form-control" id="prodi" name="prodi" required/>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="npm" class="col-sm-3">NPM</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="npm" name="npm" value="" readonly style="border: none">
+                    <input type="text" class="form-control" id="npm" name="npm" required/>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="smstr" class="col-sm-3">Semester</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control-static" id="semester" name="semseter" value="" readonly style="border: none" />
+                    <input type="text" class="form-control" id="semester" name="semester" required />
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="kota_lahir" class="col-sm-3">Kota lahir</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="kota_lahir" name="kota_lahir" value="" readonly style="border: none">
+                    <input type="text" class="form-control" id="kota_lahir" name="kota_lahir" required/>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="tglLahir" class="col-sm-3">Tanggal lahir</label>
                   <div class="col-sm-9">
-                    <input type="date" class="form-control" id="tglLahir" name="tglLahir" value="" readonly style="border: none"></input>
+                    <input type="date" class="form-control" id="tglLahir" name="tglLahir" required ></input>
                   </div>
                 </div>
                 <div class="form-group">

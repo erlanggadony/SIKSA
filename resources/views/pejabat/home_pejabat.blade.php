@@ -58,7 +58,7 @@
               <table class="table table-striped">
                 <tr>@if(count($pesanansurats) == 0)
                     <tr>
-                        <td colspan="5" align="center">No data found ...</td>
+                        <td colspan="5" align="center">Tidak ada pesanan surat ...</td>
                     </tr>
                 @else
                     <tr>

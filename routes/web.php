@@ -13,7 +13,6 @@
 Route::group(['prefix' => 'Api'], function(){
     Route::get('/showFormatSurat', 'Api\FormatsuratAPIController@tampilkanFormat');
 });
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -25,8 +24,7 @@ Route::get('/login_mahasiswa', function () {
 });
 Route::post('/login', 'AuthController@authenticate');
 //<-------------------------------------------------------MAHASISWA------------------------------------------------------->
-
-//
+// Route::group(['middleware' => 'auth'], function () {
     // halaman utama mahasiswa
     Route::get('/home_mahasiswa', function () {
         return view('mahasiswa/home_mahasiswa');
@@ -47,8 +45,6 @@ Route::post('/login', 'AuthController@authenticate');
     Route::post('/kirimFormulir', 'PesanansuratController@store');
 
 //<-------------------------------------------------------PETUGAS TU------------------------------------------------------>
-    //halaman login TU
-
     // halaman utama pejabat
     Route::get('/home_TU', 'PesanansuratController@tampilkanPesananSurat');
     //halaman seluruh format surat
@@ -59,14 +55,11 @@ Route::post('/login', 'AuthController@authenticate');
     Route::post('/hapusFormatsurat', 'FormatsuratController@destroy');
     Route::post('/tampilkanFormat', 'FormatsuratController@tampilkanFormat');
     Route::post('/proses_surat', 'PesanansuratController@sendDataSurat');
-    Route::get('/history_TU', function () {
-        return view('TU/history_TU');
-    });
+    Route::get('/history_TU', 'HistorysuratController@pilihHistorySurat');
     // halaman untuk menambahkan format surat baru
     Route::get('/tambah_format_surat', function () {
         return view('TU/tambah_format_surat');
     });
-
     Route::get('/tambah_data_mahasiswa', function () {
         return view('TU/tambah_data_mahasiswa');
     });
@@ -94,7 +87,5 @@ Route::post('/login', 'AuthController@authenticate');
     Route::get('/catatan_dekan', function () {
         return view('pejabat/catatan_dekan');
     });
-
-    Route::get('/history_pejabat', function () {
-        return view('pejabat/history_pejabat');
-    });
+    Route::get('/history_pejabat', 'HistorysuratController@pilihHistorySurat');
+// });

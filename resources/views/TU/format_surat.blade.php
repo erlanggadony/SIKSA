@@ -75,8 +75,8 @@
                               <button type="submit" onclick="showModal({{ $formatsurat->id }})" class="btn btn-link">Klik disini</button>
                           </td>
                           <td>
-                            <form action="/hapusFormatsurat" method="post">
-                              <input type="hidden" value="{{ $formatsurat->id }}" name="edit ID">
+                            <form action="/editFormat" method="post">
+                              <input type="hidden" value="{{ $formatsurat->id }}" name="editID">
                               {!! csrf_field() !!}
                               <button type="button" class="btn btn-default" aria-label="Edit" data-toggle="tooltip" title="Edit">
                                   <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>

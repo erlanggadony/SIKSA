@@ -49,6 +49,41 @@
       $pesanansurat = Pesanansurat::where('id', $id)->first();
       return $pesanansurat;
     }
-  }
 
- ?>
+    public function pesananDosenWali($dosen_id){
+      $pesanansurats = PesananSurat::where()
+                                    ->orderBy('timestamps', 'DESC')
+                                    ->paginate(15);
+
+      return $pesanansurats;
+    }
+    public function pesananKaprodi($dosen_id){
+      $pesanansurats = PesananSurat::where()
+                                    ->orderBy('timestamps', 'DESC')
+                                    ->paginate(15);
+
+      return $pesanansurats;
+    }
+    public function pesananWDII($dosen_id){
+      $pesanansurats = PesananSurat::where()
+                                    ->orderBy('timestamps', 'DESC')
+                                    ->paginate(15);
+
+      return $pesanansurats;
+    }
+    public function pesananWDI($dosen_id){
+      $pesanansurats = PesananSurat::where()
+                                    ->orderBy('timestamps', 'DESC')
+                                    ->paginate(15);
+
+      return $pesanansurats;
+    }
+    public function pesananDekan(){
+      $pesanansurats = PesananSurat::where()
+                                    ->orderBy('timestamps', 'DESC')
+                                    ->paginate(15);
+
+      return $pesanansurats;
+    }
+  }
+?>

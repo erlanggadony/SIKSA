@@ -26,6 +26,13 @@ class HistorysuratController extends Controller
         //dd($this->orders->getAllActive());
     }
 
+    public function tampilkanHistoryDiPejabat(Request $request){
+      $pesanansurats = $this->historysuratRepo->findAllHistorySurat();
+      return view('pejabat.history_pejabat', [
+        'pesanansurats' => $pesanansurats
+      ]);
+    }
+
     /**
 	 * Display a listing of the resource.
 	 *
@@ -40,28 +47,28 @@ class HistorysuratController extends Controller
         //--
         $historysurats;
         if($request->kategori_history_surat == "noSurat"){
-          $historysurats = $this->historysuratRepo->findPesananSuratByNomorSurat($request->searchBox);
+          $historysurats = $this->historysuratRepo->findHistorySuratByNomorSurat($request->searchBox);
         }
         else if($request->kategori_history_surat == "jenis_surat"){
-          $historysurats = $this->historysuratRepo->findMahasiswaByJenisSurat($request->searchBox);
+          $historysurats = $this->historysuratRepo->findHistoryByJenisSurat($request->searchBox);
         }
         else if($request->kategori_history_surat == "perihal"){
-          $historysurats = $this->historysuratRepo->findMahasiswaByPerihal($request->searchBox);
+          $historysurats = $this->historysuratRepo->findHistoryByPerihal($request->searchBox);
         }
         else if($request->kategori_history_surat == "penerima_surat"){
-          $historysurats = $this->historysuratRepo->findPesananSuratByPenerimaSurat($request->searchBox);
+          $historysurats = $this->historysuratRepo->findHistorySuratByPenerimaSurat($request->searchBox);
         }
         else if($request->kategori_history_surat == "pengirimSurat"){
-          $historysurats = $this->historysuratRepo->findMahasiswaByPengirimSurat($request->searchBox);
+          $historysurats = $this->historysuratRepo->findHistoryByPengirimSurat($request->searchBox);
         }
         else if($request->kategori_history_surat == "tanggalPembuatan"){
-          $historysurats = $this->historysuratRepo->findMahasiswaByTanggalPembuatan($request->searchBox);
+          $historysurats = $this->historysuratRepo->findHistoryByTanggalPembuatan($request->searchBox);
         }
         else{
-          $historysurats = $this->historysuratRepo->findAllFormatsurat();
+          $historysurats = $this->historysuratRepo->findAllHistorysurat();
         }
         // dd($formatsurats);
-        return view('TU.history',[
+        return view('TU.history_TU',[
             'historysurats' => $historysurats,
         ]);
 	}
@@ -77,7 +84,7 @@ class HistorysuratController extends Controller
         $semester = $json->semester;
         $thnAkademik = $json->thnAkademik;
         $penyediabeasiswa = $json->penyediabeasiswa;
-        // $tanggal = $this->pesananSuratRepo->findPesananSuratById($request->id)->created_at;
+        // $tanggal = $this->pesananSuratRepo->findHistorySuratById($request->id)->created_at;
 
         $entry = '\mailentry{' . $noSurat . ',' . $nama . ',' . $prodi . ',' . $npm . ',' . $semester . ',' . $thnAkademik . ',' . $penyediabeasiswa . '}';
         $fileTemplate = file('format_surat_latex/surat_keterangan_beasiswa.tex');
@@ -92,22 +99,23 @@ class HistorysuratController extends Controller
             }
         }
         // dd($stringFormat);
-        $file = fopen("arsip_surat/" . $nama . "_surat_keterangan_beasiswa.tex", "w");
+        $file = fopen("arsip_surat/" . $noSurat. "_" . $nama . "_surat_keterangan_beasiswa.tex", "w");
         fwrite($file, $stringFormat);
         fclose($file);
-        shell_exec('pdflatex -max-print-line=120 -interaction=nonstopmode -output-directory arsip_surat arsip_surat/' . $nama . '_surat_keterangan_beasiswa.tex');
-        // fwrite($file, $stringFormat);
-        // file_put_contents($file, $stringFormat);
-        // $historysurat = new Historysurat;
-        // $historysurat->perihal = $this->pesananSuratRepo->findPesananSuratById($request->id)->perihal;
-        // $historysurat->penerimaSurat = $this->pesananSuratRepo->findPesananSuratById($request->id)->penerimaSurat;
-        // $historysurat->pemohon = $this->pesananSuratRepo->findPesananSuratById($request->id)->perihal;
-        // $historysurat->jenis_surat = $this->pesananSuratRepo->findPesananSuratById($request->id)->perihal;
-        // $historysurat->link_arsip_surat =
+        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $noSurat. '_' . $nama . '_surat_keterangan_beasiswa.tex');
+
+        //store to db
+        $historysurat = new Historysurat;
+        $historysurat->no_surat = $noSurat;
+        $historysurat->perihal = '-';
+        $historysurat->penerimaSurat = $penyediabeasiswa;
+        // $historysurat->pemohon = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
+        // $historysurat->jenis_surat = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
+        $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $nama . '_surat_keterangan_beasiswa.pdf';
         // $historysurat->penandatanganan =
         // $historysurat->pengambilan =
-        // $historysurat->save();
-        return redirect('/history_TU');
+        $historysurat->save();
+        return redirect('/history_TU');//->with('success_message', 'Surat berhasil dibuat!');
       }
       else if($request->idFormatSurat == "2"){
         $dataSurat = $request->data;
@@ -121,6 +129,7 @@ class HistorysuratController extends Controller
         $alamat = $json->alamat;
         $semester = $json->semester;
 
+        //input entry
         $entry = '\mailentry{' . $noSurat . ',' . $nama . ',' . $prodi . ',' . $npm . ',' . $kota_lahir . ',' . $tglLahir . ',' . $alamat . ',' . $semester . '}';
         $fileTemplate = file('format_surat_latex/surat_keterangan_mahasiswa_aktif.tex');
         $stringFormat = "";
@@ -133,10 +142,25 @@ class HistorysuratController extends Controller
                 $stringFormat .= $entry;
             }
         }
-        // dd($stringFormat);
-        $file = fopen("arsip_surat/surat_keterangan_mahasiswa_aktif.tex", "w");
+
+        //inject ke file baru
+        $file = fopen("arsip_surat/" . $noSurat. "_" . $nama . "_surat_keterangan_mahasiswa_aktif.tex", "w");
         fwrite($file, $stringFormat);
-        shell_exec('pdflatex "F:\Skripsi\Source code Skripsi\SIKSA\public\arsip_surat"');
+        fclose($file);
+        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $noSurat . '_' . $nama . '_surat_keterangan_mahasiswa_aktif.tex');
+
+        //store to db
+        $historysurat = new Historysurat;
+        $historysurat->no_surat = $noSurat;
+        $historysurat->perihal = '-';
+        $historysurat->penerimaSurat = $penyediabeasiswa;
+        // $historysurat->pemohon = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
+        // $historysurat->jenis_surat = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
+        $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $nama . '_surat_keterangan_mahasiswa_aktif.pdf';
+        // $historysurat->penandatanganan =
+        // $historysurat->pengambilan =
+        $historysurat->save();
+        return redirect('/history_TU');
       }
       else if($request->idFormatSurat == "3"){
         $dataSurat = $request->data;
@@ -162,11 +186,70 @@ class HistorysuratController extends Controller
             }
         }
         // dd($stringFormat);
-        $file = fopen("arsip_surat/surat_pengantar_pembuatan_visa.tex", "w");
+
+        $file = fopen("arsip_surat/" . $noSurat. "_" . $nama . "_surat_pengantar_pembuatan_visa.tex", "w");
         fwrite($file, $stringFormat);
-        shell_exec('pdflatex "F:\Skripsi\Source code Skripsi\SIKSA\public\arsip_surat"');
+        fclose($file);
+        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $noSurat . '_' . $nama . '_surat_pengantar_pembuatan_visa.tex');
+
+        //store to db
+        $historysurat = new Historysurat;
+        $historysurat->no_surat = $noSurat;
+        $historysurat->perihal = '-';
+        $historysurat->penerimaSurat = $penyediabeasiswa;
+        // $historysurat->pemohon = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
+        // $historysurat->jenis_surat = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
+        $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $nama . '_surat_pengantar_pembuatan_visa.pdf';
+        // $historysurat->penandatanganan =
+        // $historysurat->pengambilan =
+        $historysurat->save();
+        return redirect('/history_TU');
       }
       else if($request->idFormatSurat == "4"){
+        $dataSurat = $request->data;
+        $json = json_decode($dataSurat);
+        $noSurat = $request->noSurat;
+        $nama = $json->nama;
+        $npm = $json->npm;
+        $prodi = $json->prodi;
+        $matkul = $json->matkul;
+        $topik = $json->topik;
+        $organisasi = $json->organisasi;
+        $alamatOrganisasi = $json->alamatOrganisasi;
+        $keperluanKunjungan = $json->keperluanKunjungan;
+
+        $entry = '\mailentry{' .
+          $noSurat . ',' . $nama . ',' . $npm . ',' . $prodi . ',' . $matkul . ',' . $topik . ',' . $organisasi . ',' . $alamatOrganisasi . ',' . $keperluanKunjungan . ',' . '}';
+        $fileTemplate = file('format_surat_latex/surat_pengantar_studi_lapangan_1orang.tex');
+        $stringFormat = "";
+        $baris = count($fileTemplate);
+        // dd($baris);
+        foreach ($fileTemplate as $line_num => $line) {
+            // dd($line);
+            $stringFormat .= $line;
+            if($line_num == $baris-3){
+                $stringFormat .= $entry;
+            }
+        }
+        $file = fopen("arsip_surat/" . $noSurat. "_" . $nama . "_surat_pengantar_studi_lapangan_1orang.tex", "w");
+        fwrite($file, $stringFormat);
+        fclose($file);
+        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $noSurat . '_' . $nama . '_surat_pengantar_studi_lapangan_1orang.tex');
+
+        //store to db
+        $historysurat = new Historysurat;
+        $historysurat->no_surat = $noSurat;
+        $historysurat->perihal = '-';
+        $historysurat->penerimaSurat = $penyediabeasiswa;
+        // $historysurat->pemohon = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
+        // $historysurat->jenis_surat = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
+        $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $nama . '_surat_pengantar_studi_lapangan_1orang.pdf';
+        // $historysurat->penandatanganan =
+        // $historysurat->pengambilan =
+        $historysurat->save();
+        return redirect('/history_TU');
+      }
+      else if($request->idFormatSurat == "5"){
         $dataSurat = $request->data;
         $json = json_decode($dataSurat);
         $noSurat = $request->noSurat;
@@ -182,8 +265,19 @@ class HistorysuratController extends Controller
         $npmAnggota = $json->npmAnggota;
 
         $entry = '\mailentry{' .
-          $noSurat . ',' . $nama . ',' . $npm . ',' . $prodi . ',' . $matkul . ',' . $topik . ',' . $organisasi . ',' . $alamatOrganisasi . ',' . $keperluanKunjungan . ',' . $namaAnggota1 . ',' . $npmAnggota1 . ',' . '}';
-        $fileTemplate = file('format_surat_latex/surat_pengantar_studi_lapangan_1orang.tex');
+          $noSurat . ',' .
+          $nama . ',' .
+          $npm . ',' .
+          $prodi . ',' .
+          $matkul . ',' .
+          $topik . ',' .
+          $organisasi . ',' .
+          $alamatOrganisasi . ',' .
+          $keperluanKunjungan . ',' .
+          $namaAnggota . ',' .
+          $npmAnggota . ',' .
+          '}';
+        $fileTemplate = file('format_surat_latex/surat_pengantar_studi_lapangan_2orang.tex');
         $stringFormat = "";
         $baris = count($fileTemplate);
         // dd($baris);
@@ -195,13 +289,152 @@ class HistorysuratController extends Controller
             }
         }
         // dd($stringFormat);
-        $file = fopen("arsip_surat/surat_pengantar_studi_lapangan_1orang.tex", "w");
+        $file = fopen("arsip_surat/" . $noSurat. "_" . $nama . "_surat_pengantar_studi_lapangan_2orang.tex", "w");
         fwrite($file, $stringFormat);
-        shell_exec('pdflatex "F:\Skripsi\Source code Skripsi\SIKSA\public\arsip_surat"');
+        fclose($file);
+        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $noSurat . '_' . $nama . '_surat_pengantar_studi_lapangan_2orang.tex');
+
+        //store to db
+        $historysurat = new Historysurat;
+        $historysurat->no_surat = $noSurat;
+        $historysurat->perihal = '-';
+        $historysurat->penerimaSurat = $penyediabeasiswa;
+        // $historysurat->pemohon = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
+        // $historysurat->jenis_surat = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
+        $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $nama . '_surat_pengantar_studi_lapangan_2orang.pdf';
+        // $historysurat->penandatanganan =
+        // $historysurat->pengambilan =
+        $historysurat->save();
+        return redirect('/history_TU');
       }
-      else if($request->idFormatSurat == "5"){}
-      else if($request->idFormatSurat == "6"){}
-      else if($request->idFormatSurat == "7"){}
+      else if($request->idFormatSurat == "6"){
+        $dataSurat = $request->data;
+        $json = json_decode($dataSurat);
+        $noSurat = $request->noSurat;
+        $nama = $json->nama;
+        $npm = $json->npm;
+        $prodi = $json->prodi;
+        $matkul = $json->matkul;
+        $topik = $json->topik;
+        $organisasi = $json->organisasi;
+        $alamatOrganisasi = $json->alamatOrganisasi;
+        $keperluanKunjungan = $json->keperluanKunjungan;
+        $namaAnggota1 = $json->namaAnggota1;
+        $npmAnggota1 = $json->npmAnggota1;
+        $namaAnggota2 = $json->namaAnggota2;
+        $npmAnggota2 = $json->npmAnggota2;
+
+        $entry = '\mailentry{' .
+          $noSurat . ',' .
+          $nama . ',' .
+          $npm . ',' .
+          $prodi . ',' .
+          $matkul . ',' .
+          $topik . ',' .
+          $organisasi . ',' .
+          $alamatOrganisasi . ',' .
+          $keperluanKunjungan . ',' .
+          $namaAnggota1 . ',' .
+          $npmAnggota1 . ',' .
+          $namaAnggota2 . ',' .
+          $npmAnggota2 . ',' .
+          '}';
+        $fileTemplate = file('format_surat_latex/surat_pengantar_studi_lapangan_3orang.tex');
+        $stringFormat = "";
+        $baris = count($fileTemplate);
+        // dd($baris);
+        foreach ($fileTemplate as $line_num => $line) {
+            // dd($line);
+            $stringFormat .= $line;
+            if($line_num == $baris-3){
+                $stringFormat .= $entry;
+            }
+        }
+        // dd($stringFormat);
+        $file = fopen("arsip_surat/" . $noSurat. "_" . $nama . "_surat_pengantar_studi_lapangan_3orang.tex", "w");
+        fwrite($file, $stringFormat);
+        fclose($file);
+        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $noSurat . '_' . $nama . '_surat_pengantar_studi_lapangan_3orang.tex');
+
+        //store to db
+        $historysurat = new Historysurat;
+        $historysurat->no_surat = $noSurat;
+        $historysurat->perihal = '-';
+        $historysurat->penerimaSurat = $penyediabeasiswa;
+        // $historysurat->pemohon = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
+        // $historysurat->jenis_surat = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
+        $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $nama . '_surat_pengantar_studi_lapangan_3orang.pdf';
+        // $historysurat->penandatanganan =
+        // $historysurat->pengambilan =
+        $historysurat->save();
+        return redirect('/history_TU');
+      }
+      else if($request->idFormatSurat == "7"){
+        $dataSurat = $request->data;
+        $json = json_decode($dataSurat);
+        $noSurat = $request->noSurat;
+        $nama = $json->nama;
+        $npm = $json->npm;
+        $prodi = $json->prodi;
+        $matkul = $json->matkul;
+        $topik = $json->topik;
+        $organisasi = $json->organisasi;
+        $alamatOrganisasi = $json->alamatOrganisasi;
+        $keperluanKunjungan = $json->keperluanKunjungan;
+        $namaAnggota1 = $json->namaAnggota1;
+        $npmAnggota1 = $json->npmAnggota1;
+        $namaAnggota2 = $json->namaAnggota2;
+        $npmAnggota2 = $json->npmAnggota2;
+        $namaAnggota3 = $json->namaAnggota3;
+        $npmAnggota3 = $json->npmAnggota3;
+
+        $entry = '\mailentry{' .
+          $noSurat . ',' .
+          $nama . ',' .
+          $npm . ',' .
+          $prodi . ',' .
+          $matkul . ',' .
+          $topik . ',' .
+          $organisasi . ',' .
+          $alamatOrganisasi . ',' .
+          $keperluanKunjungan . ',' .
+          $namaAnggota1 . ',' .
+          $npmAnggota1 . ',' .
+          $namaAnggota2 . ',' .
+          $npmAnggota2 . ',' .
+          $namaAnggota3 . ',' .
+          $npmAnggota3 . ',' .
+          '}';
+        $fileTemplate = file('format_surat_latex/surat_pengantar_studi_lapangan_4orang.tex');
+        $stringFormat = "";
+        $baris = count($fileTemplate);
+        // dd($baris);
+        foreach ($fileTemplate as $line_num => $line) {
+            // dd($line);
+            $stringFormat .= $line;
+            if($line_num == $baris-3){
+                $stringFormat .= $entry;
+            }
+        }
+        // dd($stringFormat);
+        $file = fopen("arsip_surat/" . $noSurat. "_" . $nama . "_surat_pengantar_studi_lapangan_4orang.tex", "w");
+        fwrite($file, $stringFormat);
+        fclose($file);
+        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $noSurat . '_' . $nama . '_surat_pengantar_studi_lapangan_4orang.tex');
+
+        //store to db
+        $historysurat = new Historysurat;
+        $historysurat->no_surat = $noSurat;
+        $historysurat->perihal = '-';
+        $historysurat->penerimaSurat = $penyediabeasiswa;
+        // $historysurat->pemohon = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
+        // $historysurat->jenis_surat = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
+        $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $nama . '_surat_pengantar_studi_lapangan_4orang.pdf';
+        // $historysurat->penandatanganan =
+        // $historysurat->pengambilan =
+        $historysurat->save();
+        return redirect('/history_TU');
+      }
       else if($request->idFormatSurat == "8"){
         $dataSurat = $request->data;
         $json = json_decode($dataSurat);
@@ -254,9 +487,23 @@ class HistorysuratController extends Controller
             }
         }
         // dd($stringFormat);
-        $file = fopen("arsip_surat/surat_pengantar_studi_lapangan_5orang.tex", "w");
+        $file = fopen("arsip_surat/" . $noSurat. "_" . $nama . "_surat_pengantar_studi_lapangan_5orang.tex", "w");
         fwrite($file, $stringFormat);
-        shell_exec('pdflatex "F:\Skripsi\Source code Skripsi\SIKSA\public\arsip_surat"');
+        fclose($file);
+        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $noSurat . '_' . $nama . '_surat_pengantar_studi_lapangan_5orang.tex');
+
+        //store to db
+        $historysurat = new Historysurat;
+        $historysurat->no_surat = $noSurat;
+        $historysurat->perihal = '-';
+        $historysurat->penerimaSurat = $penyediabeasiswa;
+        // $historysurat->pemohon = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
+        // $historysurat->jenis_surat = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
+        $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $nama . '_surat_pengantar_studi_lapangan_5orang.pdf';
+        // $historysurat->penandatanganan =
+        // $historysurat->pengambilan =
+        $historysurat->save();
+        return redirect('/history_TU');
       }
       else if($request->idFormatSurat == "9"){
         $dataSurat = $request->data;
@@ -298,9 +545,23 @@ class HistorysuratController extends Controller
             }
         }
         // dd($stringFormat);
-        $file = fopen("arsip_surat/surat_izin_cuti_studi.tex", "w");
+        $file = fopen("arsip_surat/" . $noSurat. "_" . $nama . "_surat_izin_cuti_studi.tex", "w");
         fwrite($file, $stringFormat);
-        shell_exec('pdflatex "F:\Skripsi\Source code Skripsi\SIKSA\public\arsip_surat"');
+        fclose($file);
+        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $noSurat . '_' . $nama . '_surat_izin_cuti_studi.tex');
+
+        //store to db
+        $historysurat = new Historysurat;
+        $historysurat->no_surat = $noSurat;
+        $historysurat->perihal = '-';
+        $historysurat->penerimaSurat = $penyediabeasiswa;
+        // $historysurat->pemohon = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
+        // $historysurat->jenis_surat = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
+        $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $nama . '_surat_izin_cuti_studi.pdf';
+        // $historysurat->penandatanganan =
+        // $historysurat->pengambilan =
+        $historysurat->save();
+        return redirect('/history_TU');
       }
       else if($request->idFormatSurat == "10"){
         $dataSurat = $request->data;
@@ -327,9 +588,23 @@ class HistorysuratController extends Controller
             }
         }
         // dd($stringFormat);
-        $file = fopen("arsip_surat/surat_pengunduran_diri.tex", "w");
+        $file = fopen("arsip_surat/" . $noSurat. "_" . $nama . "_surat_pengunduran_diri.tex", "w");
         fwrite($file, $stringFormat);
-        shell_exec('pdflatex "F:\Skripsi\Source code Skripsi\SIKSA\public\arsip_surat"');
+        fclose($file);
+        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $noSurat . '_' . $nama . '_surat_pengunduran_diri.tex');
+
+        //store to db
+        $historysurat = new Historysurat;
+        $historysurat->no_surat = $noSurat;
+        $historysurat->perihal = '-';
+        $historysurat->penerimaSurat = $penyediabeasiswa;
+        // $historysurat->pemohon = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
+        // $historysurat->jenis_surat = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
+        $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $nama . '_surat_pengunduran_diri.pdf';
+        // $historysurat->penandatanganan =
+        // $historysurat->pengambilan =
+        $historysurat->save();
+        return redirect('/history_TU');
       }
       else if($request->idFormatSurat == "11"){
         $dataSurat = $request->data;
@@ -371,18 +646,632 @@ class HistorysuratController extends Controller
             }
         }
         // dd($stringFormat);
-        $file = fopen("arsip_surat/surat_perwakilan_perwalian_1mk.tex", "w");
+        $file = fopen("arsip_surat/" . $noSurat. "_" . $nama . "_surat_perwakilan_perwalian_1mk.tex", "w");
         fwrite($file, $stringFormat);
-        shell_exec('pdflatex "F:\Skripsi\Source code Skripsi\SIKSA\public\arsip_surat"');
+        fclose($file);
+        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $noSurat . '_' . $nama . '_surat_perwakilan_perwalian_1mk.tex');
+
+        //store to db
+        $historysurat = new Historysurat;
+        $historysurat->no_surat = $noSurat;
+        $historysurat->perihal = '-';
+        $historysurat->penerimaSurat = $penyediabeasiswa;
+        // $historysurat->pemohon = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
+        // $historysurat->jenis_surat = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
+        $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $nama . '_surat_perwakilan_perwalian_1mk.pdf';
+        // $historysurat->penandatanganan =
+        // $historysurat->pengambilan =
+        $historysurat->save();
+        return redirect('/history_TU');
       }
-      else if($request->idFormatSurat == "12"){}
-      else if($request->idFormatSurat == "13"){}
-      else if($request->idFormatSurat == "14"){}
-      else if($request->idFormatSurat == "15"){}
-      else if($request->idFormatSurat == "16"){}
-      else if($request->idFormatSurat == "17"){}
-      else if($request->idFormatSurat == "18"){}
-      else if($request->idFormatSurat == "19"){}
+      else if($request->idFormatSurat == "12"){
+        $dataSurat = $request->data;
+        $json = json_decode($dataSurat);
+        $noSurat = $request->noSurat;
+        $nama = $json->nama;
+        $prodi = $json->prodi;
+        $npm = $json->npm;
+        $namaWakil = $json->namaWakil;
+        $prodiWakil = $json->prodiWakil;
+        $npmWakil = $json->npmWakil;
+        $dosenWali = $json->dosenWali;
+        $alasan = $json->alasan;
+        $matkul1 = $json->matkul1;
+        $sks1 = $json->sks1;
+        $matkul2 = $json->matkul2;
+        $sks2 = $json->sks2;
+
+        $entry = '\mailentry{' .
+          $noSurat . ',' .
+          $nama . ',' .
+          $prodi . ',' .
+          $npm . ',' .
+          $namaWakil . ',' .
+          $prodiWakil . ',' .
+          $npmWakil . ',' .
+          $dosenWali . ',' .
+          $alasan . ',' .
+          $matkul1 . ',' .
+          $sks1 . ',' .
+          $matkul2 . ',' .
+          $sks2 . ',' .
+          '}';
+        $fileTemplate = file('format_surat_latex/surat_perwakilan_perwalian_2mk.tex');
+        $stringFormat = "";
+        $baris = count($fileTemplate);
+        // dd($baris);
+        foreach ($fileTemplate as $line_num => $line) {
+            // dd($line);
+            $stringFormat .= $line;
+            if($line_num == $baris-3){
+                $stringFormat .= $entry;
+            }
+        }
+        // dd($stringFormat);
+        $file = fopen("arsip_surat/" . $noSurat. "_" . $nama . "_surat_perwakilan_perwalian_2mk.tex", "w");
+        fwrite($file, $stringFormat);
+        fclose($file);
+        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $noSurat . '_' . $nama . '_surat_perwakilan_perwalian_2mk.tex');
+
+        //store to db
+        $historysurat = new Historysurat;
+        $historysurat->no_surat = $noSurat;
+        $historysurat->perihal = '-';
+        $historysurat->penerimaSurat = $penyediabeasiswa;
+        // $historysurat->pemohon = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
+        // $historysurat->jenis_surat = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
+        $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $nama . '_surat_perwakilan_perwalian_2mk.pdf';
+        // $historysurat->penandatanganan =
+        // $historysurat->pengambilan =
+        $historysurat->save();
+        return redirect('/history_TU');
+      }
+      else if($request->idFormatSurat == "13"){
+        $dataSurat = $request->data;
+        $json = json_decode($dataSurat);
+        $noSurat = $request->noSurat;
+        $nama = $json->nama;
+        $prodi = $json->prodi;
+        $npm = $json->npm;
+        $namaWakil = $json->namaWakil;
+        $prodiWakil = $json->prodiWakil;
+        $npmWakil = $json->npmWakil;
+        $dosenWali = $json->dosenWali;
+        $alasan = $json->alasan;
+        $matkul1 = $json->matkul1;
+        $sks1 = $json->sks1;
+        $matkul2 = $json->matkul2;
+        $sks2 = $json->sks2;
+        $matkul3 = $json->matkul3;
+        $sks3 = $json->sks3;
+
+        $entry = '\mailentry{' .
+          $noSurat . ',' .
+          $nama . ',' .
+          $prodi . ',' .
+          $npm . ',' .
+          $namaWakil . ',' .
+          $prodiWakil . ',' .
+          $npmWakil . ',' .
+          $dosenWali . ',' .
+          $alasan . ',' .
+          $matkul1 . ',' .
+          $sks1 . ',' .
+          $matkul2 . ',' .
+          $sks2 . ',' .
+          $matkul3 . ',' .
+          $sks3 . ',' .
+          '}';
+        $fileTemplate = file('format_surat_latex/surat_perwakilan_perwalian_3mk.tex');
+        $stringFormat = "";
+        $baris = count($fileTemplate);
+        // dd($baris);
+        foreach ($fileTemplate as $line_num => $line) {
+            // dd($line);
+            $stringFormat .= $line;
+            if($line_num == $baris-3){
+                $stringFormat .= $entry;
+            }
+        }
+        // dd($stringFormat);
+        $file = fopen("arsip_surat/" . $noSurat. "_" . $nama . "_surat_perwakilan_perwalian_3mk.tex", "w");
+        fwrite($file, $stringFormat);
+        fclose($file);
+        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $noSurat . '_' . $nama . '_surat_perwakilan_perwalian_3mk.tex');
+
+        //store to db
+        $historysurat = new Historysurat;
+        $historysurat->no_surat = $noSurat;
+        $historysurat->perihal = '-';
+        $historysurat->penerimaSurat = $penyediabeasiswa;
+        // $historysurat->pemohon = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
+        // $historysurat->jenis_surat = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
+        $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $nama . '_surat_perwakilan_perwalian_3mk.pdf';
+        // $historysurat->penandatanganan =
+        // $historysurat->pengambilan =
+        $historysurat->save();
+        return redirect('/history_TU');
+      }
+      else if($request->idFormatSurat == "14"){
+        $dataSurat = $request->data;
+        $json = json_decode($dataSurat);
+        $noSurat = $request->noSurat;
+        $nama = $json->nama;
+        $prodi = $json->prodi;
+        $npm = $json->npm;
+        $namaWakil = $json->namaWakil;
+        $prodiWakil = $json->prodiWakil;
+        $npmWakil = $json->npmWakil;
+        $dosenWali = $json->dosenWali;
+        $alasan = $json->alasan;
+        $matkul1 = $json->matkul1;
+        $sks1 = $json->sks1;
+        $matkul2 = $json->matkul2;
+        $sks2 = $json->sks2;
+        $matkul3 = $json->matkul3;
+        $sks3 = $json->sks3;
+        $matkul4 = $json->matkul4;
+        $sks4 = $json->sks4;
+
+        $entry = '\mailentry{' .
+          $noSurat . ',' .
+          $nama . ',' .
+          $prodi . ',' .
+          $npm . ',' .
+          $namaWakil . ',' .
+          $prodiWakil . ',' .
+          $npmWakil . ',' .
+          $dosenWali . ',' .
+          $alasan . ',' .
+          $matkul1 . ',' .
+          $sks1 . ',' .
+          $matkul2 . ',' .
+          $sks2 . ',' .
+          $matkul3 . ',' .
+          $sks3 . ',' .
+          $matkul4 . ',' .
+          $sks4 . ',' .
+          '}';
+        $fileTemplate = file('format_surat_latex/surat_perwakilan_perwalian_4mk.tex');
+        $stringFormat = "";
+        $baris = count($fileTemplate);
+        // dd($baris);
+        foreach ($fileTemplate as $line_num => $line) {
+            // dd($line);
+            $stringFormat .= $line;
+            if($line_num == $baris-3){
+                $stringFormat .= $entry;
+            }
+        }
+        // dd($stringFormat);
+        $file = fopen("arsip_surat/" . $noSurat. "_" . $nama . "_surat_perwakilan_perwalian_4mk.tex", "w");
+        fwrite($file, $stringFormat);
+        fclose($file);
+        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $noSurat . '_' . $nama . '_surat_perwakilan_perwalian_4mk.tex');
+
+        //store to db
+        $historysurat = new Historysurat;
+        $historysurat->no_surat = $noSurat;
+        $historysurat->perihal = '-';
+        $historysurat->penerimaSurat = $penyediabeasiswa;
+        // $historysurat->pemohon = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
+        // $historysurat->jenis_surat = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
+        $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $nama . '_surat_perwakilan_perwalian_4mk.pdf';
+        // $historysurat->penandatanganan =
+        // $historysurat->pengambilan =
+        $historysurat->save();
+        return redirect('/history_TU');
+      }
+      else if($request->idFormatSurat == "15"){
+        $dataSurat = $request->data;
+        $json = json_decode($dataSurat);
+        $noSurat = $request->noSurat;
+        $nama = $json->nama;
+        $prodi = $json->prodi;
+        $npm = $json->npm;
+        $namaWakil = $json->namaWakil;
+        $prodiWakil = $json->prodiWakil;
+        $npmWakil = $json->npmWakil;
+        $dosenWali = $json->dosenWali;
+        $alasan = $json->alasan;
+        $matkul1 = $json->matkul1;
+        $sks1 = $json->sks1;
+        $matkul2 = $json->matkul2;
+        $sks2 = $json->sks2;
+        $matkul3 = $json->matkul3;
+        $sks3 = $json->sks3;
+        $matkul4 = $json->matkul4;
+        $sks4 = $json->sks4;
+        $matkul5 = $json->matkul5;
+        $sks5 = $json->sks5;
+
+        $entry = '\mailentry{' .
+          $noSurat . ',' .
+          $nama . ',' .
+          $prodi . ',' .
+          $npm . ',' .
+          $namaWakil . ',' .
+          $prodiWakil . ',' .
+          $npmWakil . ',' .
+          $dosenWali . ',' .
+          $alasan . ',' .
+          $matkul1 . ',' .
+          $sks1 . ',' .
+          $matkul2 . ',' .
+          $sks2 . ',' .
+          $matkul3 . ',' .
+          $sks3 . ',' .
+          $matkul4 . ',' .
+          $sks4 . ',' .
+          $matkul5 . ',' .
+          $sks5 . ',' .
+          '}';
+        $fileTemplate = file('format_surat_latex/surat_perwakilan_perwalian_5mk.tex');
+        $stringFormat = "";
+        $baris = count($fileTemplate);
+        // dd($baris);
+        foreach ($fileTemplate as $line_num => $line) {
+            // dd($line);
+            $stringFormat .= $line;
+            if($line_num == $baris-3){
+                $stringFormat .= $entry;
+            }
+        }
+        // dd($stringFormat);
+        $file = fopen("arsip_surat/" . $noSurat. "_" . $nama . "_surat_perwakilan_perwalian_5mk.tex", "w");
+        fwrite($file, $stringFormat);
+        fclose($file);
+        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $noSurat . '_' . $nama . '_surat_perwakilan_perwalian_5mk.tex');
+
+        //store to db
+        $historysurat = new Historysurat;
+        $historysurat->no_surat = $noSurat;
+        $historysurat->perihal = '-';
+        $historysurat->penerimaSurat = $penyediabeasiswa;
+        // $historysurat->pemohon = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
+        // $historysurat->jenis_surat = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
+        $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $nama . '_surat_perwakilan_perwalian_5mk.pdf';
+        // $historysurat->penandatanganan =
+        // $historysurat->pengambilan =
+        $historysurat->save();
+        return redirect('/history_TU');
+      }
+      else if($request->idFormatSurat == "16"){
+        $dataSurat = $request->data;
+        $json = json_decode($dataSurat);
+        $noSurat = $request->noSurat;
+        $nama = $json->nama;
+        $prodi = $json->prodi;
+        $npm = $json->npm;
+        $namaWakil = $json->namaWakil;
+        $prodiWakil = $json->prodiWakil;
+        $npmWakil = $json->npmWakil;
+        $dosenWali = $json->dosenWali;
+        $alasan = $json->alasan;
+        $matkul1 = $json->matkul1;
+        $sks1 = $json->sks1;
+        $matkul2 = $json->matkul2;
+        $sks2 = $json->sks2;
+        $matkul3 = $json->matkul3;
+        $sks3 = $json->sks3;
+        $matkul4 = $json->matkul4;
+        $sks4 = $json->sks4;
+        $matkul5 = $json->matkul5;
+        $sks5 = $json->sks5;
+        $matkul6 = $json->matkul6;
+        $sks6 = $json->sks6;
+
+        $entry = '\mailentry{' .
+          $noSurat . ',' .
+          $nama . ',' .
+          $prodi . ',' .
+          $npm . ',' .
+          $namaWakil . ',' .
+          $prodiWakil . ',' .
+          $npmWakil . ',' .
+          $dosenWali . ',' .
+          $alasan . ',' .
+          $matkul1 . ',' .
+          $sks1 . ',' .
+          $matkul2 . ',' .
+          $sks2 . ',' .
+          $matkul3 . ',' .
+          $sks3 . ',' .
+          $matkul4 . ',' .
+          $sks4 . ',' .
+          $matkul5 . ',' .
+          $sks5 . ',' .
+          $matkul6 . ',' .
+          $sks6 . ',' .
+          '}';
+        $fileTemplate = file('format_surat_latex/surat_perwakilan_perwalian_6mk.tex');
+        $stringFormat = "";
+        $baris = count($fileTemplate);
+        // dd($baris);
+        foreach ($fileTemplate as $line_num => $line) {
+            // dd($line);
+            $stringFormat .= $line;
+            if($line_num == $baris-3){
+                $stringFormat .= $entry;
+            }
+        }
+        // dd($stringFormat);
+        $file = fopen("arsip_surat/" . $noSurat. "_" . $nama . "_surat_perwakilan_perwalian_6mk.tex", "w");
+        fwrite($file, $stringFormat);
+        fclose($file);
+        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $noSurat . '_' . $nama . '_surat_perwakilan_perwalian_6mk.tex');
+
+        //store to db
+        $historysurat = new Historysurat;
+        $historysurat->no_surat = $noSurat;
+        $historysurat->perihal = '-';
+        $historysurat->penerimaSurat = $penyediabeasiswa;
+        // $historysurat->pemohon = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
+        // $historysurat->jenis_surat = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
+        $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $nama . '_surat_perwakilan_perwalian_6mk.pdf';
+        // $historysurat->penandatanganan =
+        // $historysurat->pengambilan =
+        $historysurat->save();
+        return redirect('/history_TU');
+      }
+      else if($request->idFormatSurat == "17"){
+        $dataSurat = $request->data;
+        $json = json_decode($dataSurat);
+        $noSurat = $request->noSurat;
+        $nama = $json->nama;
+        $prodi = $json->prodi;
+        $npm = $json->npm;
+        $namaWakil = $json->namaWakil;
+        $prodiWakil = $json->prodiWakil;
+        $npmWakil = $json->npmWakil;
+        $dosenWali = $json->dosenWali;
+        $alasan = $json->alasan;
+        $matkul1 = $json->matkul1;
+        $sks1 = $json->sks1;
+        $matkul2 = $json->matkul2;
+        $sks2 = $json->sks2;
+        $matkul3 = $json->matkul3;
+        $sks3 = $json->sks3;
+        $matkul4 = $json->matkul4;
+        $sks4 = $json->sks4;
+        $matkul5 = $json->matkul5;
+        $sks5 = $json->sks5;
+        $matkul6 = $json->matkul6;
+        $sks6 = $json->sks6;
+        $matkul7 = $json->matkul7;
+        $sks7 = $json->sks7;
+
+        $entry = '\mailentry{' .
+          $noSurat . ',' .
+          $nama . ',' .
+          $prodi . ',' .
+          $npm . ',' .
+          $namaWakil . ',' .
+          $prodiWakil . ',' .
+          $npmWakil . ',' .
+          $dosenWali . ',' .
+          $alasan . ',' .
+          $matkul1 . ',' .
+          $sks1 . ',' .
+          $matkul2 . ',' .
+          $sks2 . ',' .
+          $matkul3 . ',' .
+          $sks3 . ',' .
+          $matkul4 . ',' .
+          $sks4 . ',' .
+          $matkul5 . ',' .
+          $sks5 . ',' .
+          $matkul6 . ',' .
+          $sks6 . ',' .
+          $matkul7 . ',' .
+          $sks7 . ',' .
+          '}';
+        $fileTemplate = file('format_surat_latex/surat_perwakilan_perwalian_7mk.tex');
+        $stringFormat = "";
+        $baris = count($fileTemplate);
+        // dd($baris);
+        foreach ($fileTemplate as $line_num => $line) {
+            // dd($line);
+            $stringFormat .= $line;
+            if($line_num == $baris-3){
+                $stringFormat .= $entry;
+            }
+        }
+        // dd($stringFormat);
+        $file = fopen("arsip_surat/" . $noSurat. "_" . $nama . "_surat_perwakilan_perwalian_7mk.tex", "w");
+        fwrite($file, $stringFormat);
+        fclose($file);
+        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $noSurat . '_' . $nama . '_surat_perwakilan_perwalian_7mk.tex');
+
+        //store to db
+        $historysurat = new Historysurat;
+        $historysurat->no_surat = $noSurat;
+        $historysurat->perihal = '-';
+        $historysurat->penerimaSurat = $penyediabeasiswa;
+        // $historysurat->pemohon = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
+        // $historysurat->jenis_surat = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
+        $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $nama . '_surat_perwakilan_perwalian_7mk.pdf';
+        // $historysurat->penandatanganan =
+        // $historysurat->pengambilan =
+        $historysurat->save();
+        return redirect('/history_TU');
+      }
+      else if($request->idFormatSurat == "18"){
+        $dataSurat = $request->data;
+        $json = json_decode($dataSurat);
+        $noSurat = $request->noSurat;
+        $nama = $json->nama;
+        $prodi = $json->prodi;
+        $npm = $json->npm;
+        $namaWakil = $json->namaWakil;
+        $prodiWakil = $json->prodiWakil;
+        $npmWakil = $json->npmWakil;
+        $dosenWali = $json->dosenWali;
+        $alasan = $json->alasan;
+        $matkul1 = $json->matkul1;
+        $sks1 = $json->sks1;
+        $matkul2 = $json->matkul2;
+        $sks2 = $json->sks2;
+        $matkul3 = $json->matkul3;
+        $sks3 = $json->sks3;
+        $matkul4 = $json->matkul4;
+        $sks4 = $json->sks4;
+        $matkul5 = $json->matkul5;
+        $sks5 = $json->sks5;
+        $matkul6 = $json->matkul6;
+        $sks6 = $json->sks6;
+        $matkul7 = $json->matkul7;
+        $sks7 = $json->sks7;
+        $matkul8 = $json->matkul8;
+        $sks8 = $json->sks8;
+
+        $entry = '\mailentry{' .
+          $noSurat . ',' .
+          $nama . ',' .
+          $prodi . ',' .
+          $npm . ',' .
+          $namaWakil . ',' .
+          $prodiWakil . ',' .
+          $npmWakil . ',' .
+          $dosenWali . ',' .
+          $alasan . ',' .
+          $matkul1 . ',' .
+          $sks1 . ',' .
+          $matkul2 . ',' .
+          $sks2 . ',' .
+          $matkul3 . ',' .
+          $sks3 . ',' .
+          $matkul4 . ',' .
+          $sks4 . ',' .
+          $matkul5 . ',' .
+          $sks5 . ',' .
+          $matkul6 . ',' .
+          $sks6 . ',' .
+          $matkul7 . ',' .
+          $sks7 . ',' .
+          $matkul8 . ',' .
+          $sks8 . ',' .
+          '}';
+        $fileTemplate = file('format_surat_latex/surat_perwakilan_perwalian_8mk.tex');
+        $stringFormat = "";
+        $baris = count($fileTemplate);
+        // dd($baris);
+        foreach ($fileTemplate as $line_num => $line) {
+            // dd($line);
+            $stringFormat .= $line;
+            if($line_num == $baris-3){
+                $stringFormat .= $entry;
+            }
+        }
+        // dd($stringFormat);
+        $file = fopen("arsip_surat/" . $noSurat. "_" . $nama . "_surat_perwakilan_perwalian_8mk.tex", "w");
+        fwrite($file, $stringFormat);
+        fclose($file);
+        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $noSurat . '_' . $nama . '_surat_perwakilan_perwalian_8mk.tex');
+
+        //store to db
+        $historysurat = new Historysurat;
+        $historysurat->no_surat = $noSurat;
+        $historysurat->perihal = '-';
+        $historysurat->penerimaSurat = $penyediabeasiswa;
+        // $historysurat->pemohon = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
+        // $historysurat->jenis_surat = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
+        $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $nama . '_surat_perwakilan_perwalian_8mk.pdf';
+        // $historysurat->penandatanganan =
+        // $historysurat->pengambilan =
+        $historysurat->save();
+        return redirect('/history_TU');
+      }
+      else if($request->idFormatSurat == "19"){
+        $dataSurat = $request->data;
+        $json = json_decode($dataSurat);
+        $noSurat = $request->noSurat;
+        $nama = $json->nama;
+        $prodi = $json->prodi;
+        $npm = $json->npm;
+        $namaWakil = $json->namaWakil;
+        $prodiWakil = $json->prodiWakil;
+        $npmWakil = $json->npmWakil;
+        $dosenWali = $json->dosenWali;
+        $alasan = $json->alasan;
+        $matkul1 = $json->matkul1;
+        $sks1 = $json->sks1;
+        $matkul2 = $json->matkul2;
+        $sks2 = $json->sks2;
+        $matkul3 = $json->matkul3;
+        $sks3 = $json->sks3;
+        $matkul4 = $json->matkul4;
+        $sks4 = $json->sks4;
+        $matkul5 = $json->matkul5;
+        $sks5 = $json->sks5;
+        $matkul6 = $json->matkul6;
+        $sks6 = $json->sks6;
+        $matkul7 = $json->matkul7;
+        $sks7 = $json->sks7;
+        $matkul8 = $json->matkul8;
+        $sks8 = $json->sks8;
+        $matkul9 = $json->matkul9;
+        $sks9 = $json->sks9;
+
+        $entry = '\mailentry{' .
+          $noSurat . ',' .
+          $nama . ',' .
+          $prodi . ',' .
+          $npm . ',' .
+          $namaWakil . ',' .
+          $prodiWakil . ',' .
+          $npmWakil . ',' .
+          $dosenWali . ',' .
+          $alasan . ',' .
+          $matkul1 . ',' .
+          $sks1 . ',' .
+          $matkul2 . ',' .
+          $sks2 . ',' .
+          $matkul3 . ',' .
+          $sks3 . ',' .
+          $matkul4 . ',' .
+          $sks4 . ',' .
+          $matkul5 . ',' .
+          $sks5 . ',' .
+          $matkul6 . ',' .
+          $sks6 . ',' .
+          $matkul7 . ',' .
+          $sks7 . ',' .
+          $matkul8 . ',' .
+          $sks8 . ',' .
+          $matkul9 . ',' .
+          $sks9 . ',' .
+          '}';
+        $fileTemplate = file('format_surat_latex/surat_perwakilan_perwalian_9mk.tex');
+        $stringFormat = "";
+        $baris = count($fileTemplate);
+        // dd($baris);
+        foreach ($fileTemplate as $line_num => $line) {
+            // dd($line);
+            $stringFormat .= $line;
+            if($line_num == $baris-3){
+                $stringFormat .= $entry;
+            }
+        }
+        // dd($stringFormat);
+        $file = fopen("arsip_surat/" . $noSurat. "_" . $nama . "_surat_perwakilan_perwalian_9mk.tex", "w");
+        fwrite($file, $stringFormat);
+        fclose($file);
+        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $noSurat . '_' . $nama . '_surat_perwakilan_perwalian_9mk.tex');
+
+        //store to db
+        $historysurat = new Historysurat;
+        $historysurat->no_surat = $noSurat;
+        $historysurat->perihal = '-';
+        $historysurat->penerimaSurat = $penyediabeasiswa;
+        // $historysurat->pemohon = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
+        // $historysurat->jenis_surat = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
+        $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $nama . '_surat_perwakilan_perwalian_9mk.pdf';
+        // $historysurat->penandatanganan =
+        // $historysurat->pengambilan =
+        $historysurat->save();
+        return redirect('/history_TU');
+      }
       else if($request->idFormatSurat == "20"){
         $dataSurat = $request->data;
         $json = json_decode($dataSurat);
@@ -459,9 +1348,23 @@ class HistorysuratController extends Controller
             }
         }
         // dd($stringFormat);
-        $file = fopen("arsip_surat/surat_perwakilan_perwalian_10mk.tex", "w");
+        $file = fopen("arsip_surat/" . $noSurat. "_" . $nama . "_surat_perwakilan_perwalian_10mk.tex", "w");
         fwrite($file, $stringFormat);
-        shell_exec('pdflatex "F:\Skripsi\Source code Skripsi\SIKSA\public\arsip_surat"');
+        fclose($file);
+        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $noSurat . '_' . $nama . '_surat_perwakilan_perwalian_10mk.tex');
+
+        //store to db
+        $historysurat = new Historysurat;
+        $historysurat->no_surat = $noSurat;
+        $historysurat->perihal = '-';
+        $historysurat->penerimaSurat = $penyediabeasiswa;
+        // $historysurat->pemohon = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
+        // $historysurat->jenis_surat = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
+        $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $nama . '_surat_perwakilan_perwalian_10mk.pdf';
+        // $historysurat->penandatanganan =
+        // $historysurat->pengambilan =
+        $historysurat->save();
+        return redirect('/history_TU');
       }
   }
 }

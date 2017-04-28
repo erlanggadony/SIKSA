@@ -56,6 +56,7 @@ class PesanansuratController extends Controller
           ]);
   	}
     public function sendDataSurat(Request $request){
+      if($request->idFormatSurat == "1"){
         $dataSurat = $request->prosesSurat;
         $json = json_decode($dataSurat);
         $nama = $json->nama;
@@ -76,6 +77,49 @@ class PesanansuratController extends Controller
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat
         ]);
+      }
+      else if($request->idFormatSurat == "2"){
+        $dataSurat = $request->prosesSurat;
+        $json = json_decode($dataSurat);
+        $nama = $json->nama;
+        $prodi = $json->prodi;
+        $npm = $json->npm;
+        $kota_lahir = $json->kota_lahir;
+        $tglLahir = $json->tglLahir;
+        $semester = $json->semester;
+        $alamat = $json->alamat;
+        $formatsurat_id = $request->idFormatSurat;
+        // dd($dataSurat);
+        return view('TU.proses_surat', [
+            'nama' => $nama,
+            'prodi' => $prodi,
+            'npm' => $npm,
+            'kota_lahir' => $kota_lahir,
+            'tglLahir' => $tglLahir,
+            'alamat' => $alamat,
+            'semester' => $semester,
+            'formatsurat_id' => $formatsurat_id,
+            'dataSurat' => $dataSurat
+        ]);
+      }
+      else if($request->idFormatSurat == "3"){}
+      else if($request->idFormatSurat == "4"){}
+      else if($request->idFormatSurat == "5"){}
+      else if($request->idFormatSurat == "6"){}
+      else if($request->idFormatSurat == "7"){}
+      else if($request->idFormatSurat == "8"){}
+      else if($request->idFormatSurat == "9"){}
+      else if($request->idFormatSurat == "10"){}
+      else if($request->idFormatSurat == "11"){}
+      else if($request->idFormatSurat == "12"){}
+      else if($request->idFormatSurat == "13"){}
+      else if($request->idFormatSurat == "14"){}
+      else if($request->idFormatSurat == "15"){}
+      else if($request->idFormatSurat == "16"){}
+      else if($request->idFormatSurat == "17"){}
+      else if($request->idFormatSurat == "18"){}
+      else if($request->idFormatSurat == "19"){}
+      else if($request->idFormatSurat == "20"){}
     }
     public function store(Request $request){
         if($request->idFormat == "1"){
@@ -85,21 +129,299 @@ class PesanansuratController extends Controller
           $pesanansurat->formatsurat_id = $request->idFormat;
           // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
           // $pesanansurat->dataSurat = $request->data;
-          $pesanansurat->persetujuanDosenWali = 'true' ;
-          $pesanansurat->persetujuanKaprodi = 'true';
-          $pesanansurat->persetujuanWDII = 'true';
-          $pesanansurat->persetujuanWDI = 'true';
-          $pesanansurat->persetujuanDekan = 'true';
+          $pesanansurat->dataSurat = $request->dataSurat;
+          $pesanansurat->persetujuanDosenWali = true ;
+          $pesanansurat->persetujuanKaprodi = true;
+          $pesanansurat->persetujuanWDII = true;
+          $pesanansurat->persetujuanWDI = true;
+          $pesanansurat->persetujuanDekan = true;
           $pesanansurat->save();
         }
         else if($request->idFormat == "2"){
-          $pesanansurat->perihal = '';
-          $pesanansurat->penerima = '';
+          $pesanansurat = new PesananSurat;
+          $pesanansurat->perihal = '-';
+          $pesanansurat->mahasiswa_id = 'anonim';
+          $pesanansurat->formatsurat_id = $request->idFormat;
+          // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
+          // $pesanansurat->dataSurat = $request->data;
+          $pesanansurat->dataSurat = $request->dataSurat;
+          $pesanansurat->persetujuanDosenWali = true ;
+          $pesanansurat->persetujuanKaprodi = true;
+          $pesanansurat->persetujuanWDII = true;
+          $pesanansurat->persetujuanWDI = true;
+          $pesanansurat->persetujuanDekan = true;
+          $pesanansurat->save();
         }
-        // dd($pesanansurat->formatsurats_id);
-        $pesanansurat->dataSurat = $request->dataSurat;
-        // dd($request);
-        $pesanansurat->save();
+        else if($request->idFormat == "3"){
+          $pesanansurat = new PesananSurat;
+          $pesanansurat->perihal = '-';
+          $pesanansurat->mahasiswa_id = 'anonim';
+          $pesanansurat->formatsurat_id = $request->idFormat;
+          // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
+          // $pesanansurat->dataSurat = $request->data;
+          $pesanansurat->dataSurat = $request->dataSurat;
+          $pesanansurat->persetujuanDosenWali = true ;
+          $pesanansurat->persetujuanKaprodi = true;
+          $pesanansurat->persetujuanWDII = true;
+          $pesanansurat->persetujuanWDI = true;
+          $pesanansurat->persetujuanDekan = true;
+          $pesanansurat->save();
+        }
+        else if($request->idFormat == "4"){
+          $pesanansurat = new PesananSurat;
+          $pesanansurat->perihal = '-';
+          $pesanansurat->mahasiswa_id = 'anonim';
+          $pesanansurat->formatsurat_id = $request->idFormat;
+          // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
+          // $pesanansurat->dataSurat = $request->data;
+          $pesanansurat->dataSurat = $request->dataSurat;
+          $pesanansurat->persetujuanDosenWali = true ;
+          $pesanansurat->persetujuanKaprodi = true;
+          $pesanansurat->persetujuanWDII = true;
+          $pesanansurat->persetujuanWDI = true;
+          $pesanansurat->persetujuanDekan = true;
+          $pesanansurat->save();
+        }
+        else if($request->idFormat == "5"){
+          $pesanansurat = new PesananSurat;
+          $pesanansurat->perihal = '-';
+          $pesanansurat->mahasiswa_id = 'anonim';
+          $pesanansurat->formatsurat_id = $request->idFormat;
+          // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
+          // $pesanansurat->dataSurat = $request->data;
+          $pesanansurat->dataSurat = $request->dataSurat;
+          $pesanansurat->persetujuanDosenWali = true ;
+          $pesanansurat->persetujuanKaprodi = true;
+          $pesanansurat->persetujuanWDII = true;
+          $pesanansurat->persetujuanWDI = true;
+          $pesanansurat->persetujuanDekan = true;
+          $pesanansurat->save();
+        }
+        else if($request->idFormat == "6"){
+          $pesanansurat = new PesananSurat;
+          $pesanansurat->perihal = '-';
+          $pesanansurat->mahasiswa_id = 'anonim';
+          $pesanansurat->formatsurat_id = $request->idFormat;
+          // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
+          // $pesanansurat->dataSurat = $request->data;
+          $pesanansurat->dataSurat = $request->dataSurat;
+          $pesanansurat->persetujuanDosenWali = true ;
+          $pesanansurat->persetujuanKaprodi = true;
+          $pesanansurat->persetujuanWDII = true;
+          $pesanansurat->persetujuanWDI = true;
+          $pesanansurat->persetujuanDekan = true;
+          $pesanansurat->save();
+        }
+        else if($request->idFormat == "7"){
+          $pesanansurat = new PesananSurat;
+          $pesanansurat->perihal = '-';
+          $pesanansurat->mahasiswa_id = 'anonim';
+          $pesanansurat->formatsurat_id = $request->idFormat;
+          // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
+          // $pesanansurat->dataSurat = $request->data;
+          $pesanansurat->dataSurat = $request->dataSurat;
+          $pesanansurat->persetujuanDosenWali = true ;
+          $pesanansurat->persetujuanKaprodi = true;
+          $pesanansurat->persetujuanWDII = true;
+          $pesanansurat->persetujuanWDI = true;
+          $pesanansurat->persetujuanDekan = true;
+          $pesanansurat->save();
+        }
+        else if($request->idFormat == "8"){
+          $pesanansurat = new PesananSurat;
+          $pesanansurat->perihal = '-';
+          $pesanansurat->mahasiswa_id = 'anonim';
+          $pesanansurat->formatsurat_id = $request->idFormat;
+          // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
+          // $pesanansurat->dataSurat = $request->data;
+          $pesanansurat->dataSurat = $request->dataSurat;
+          $pesanansurat->persetujuanDosenWali = true ;
+          $pesanansurat->persetujuanKaprodi = true;
+          $pesanansurat->persetujuanWDII = true;
+          $pesanansurat->persetujuanWDI = true;
+          $pesanansurat->persetujuanDekan = true;
+          $pesanansurat->save();
+        }
+        else if($request->idFormat == "9"){
+          $pesanansurat = new PesananSurat;
+          $pesanansurat->perihal = '-';
+          $pesanansurat->mahasiswa_id = 'anonim';
+          $pesanansurat->formatsurat_id = $request->idFormat;
+          // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
+          // $pesanansurat->dataSurat = $request->data;
+          $pesanansurat->dataSurat = $request->dataSurat;
+          $pesanansurat->persetujuanDosenWali = true ;
+          $pesanansurat->persetujuanKaprodi = true;
+          $pesanansurat->persetujuanWDII = true;
+          $pesanansurat->persetujuanWDI = true;
+          $pesanansurat->persetujuanDekan = true;
+          $pesanansurat->save();
+        }
+        else if($request->idFormat == "10"){
+          $pesanansurat = new PesananSurat;
+          $pesanansurat->perihal = '-';
+          $pesanansurat->mahasiswa_id = 'anonim';
+          $pesanansurat->formatsurat_id = $request->idFormat;
+          // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
+          // $pesanansurat->dataSurat = $request->data;
+          $pesanansurat->dataSurat = $request->dataSurat;
+          $pesanansurat->persetujuanDosenWali = true ;
+          $pesanansurat->persetujuanKaprodi = true;
+          $pesanansurat->persetujuanWDII = true;
+          $pesanansurat->persetujuanWDI = true;
+          $pesanansurat->persetujuanDekan = true;
+          $pesanansurat->save();
+        }
+        else if($request->idFormat == "11"){
+          $pesanansurat = new PesananSurat;
+          $pesanansurat->perihal = '-';
+          $pesanansurat->mahasiswa_id = 'anonim';
+          $pesanansurat->formatsurat_id = $request->idFormat;
+          // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
+          // $pesanansurat->dataSurat = $request->data;
+          $pesanansurat->dataSurat = $request->dataSurat;
+          $pesanansurat->persetujuanDosenWali = true ;
+          $pesanansurat->persetujuanKaprodi = true;
+          $pesanansurat->persetujuanWDII = true;
+          $pesanansurat->persetujuanWDI = true;
+          $pesanansurat->persetujuanDekan = true;
+          $pesanansurat->save();
+        }
+        else if($request->idFormat == "12"){
+          $pesanansurat = new PesananSurat;
+          $pesanansurat->perihal = '-';
+          $pesanansurat->mahasiswa_id = 'anonim';
+          $pesanansurat->formatsurat_id = $request->idFormat;
+          // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
+          // $pesanansurat->dataSurat = $request->data;
+          $pesanansurat->dataSurat = $request->dataSurat;
+          $pesanansurat->persetujuanDosenWali = true ;
+          $pesanansurat->persetujuanKaprodi = true;
+          $pesanansurat->persetujuanWDII = true;
+          $pesanansurat->persetujuanWDI = true;
+          $pesanansurat->persetujuanDekan = true;
+          $pesanansurat->save();
+        }
+        else if($request->idFormat == "13"){
+          $pesanansurat = new PesananSurat;
+          $pesanansurat->perihal = '-';
+          $pesanansurat->mahasiswa_id = 'anonim';
+          $pesanansurat->formatsurat_id = $request->idFormat;
+          // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
+          // $pesanansurat->dataSurat = $request->data;
+          $pesanansurat->dataSurat = $request->dataSurat;
+          $pesanansurat->persetujuanDosenWali = true ;
+          $pesanansurat->persetujuanKaprodi = true;
+          $pesanansurat->persetujuanWDII = true;
+          $pesanansurat->persetujuanWDI = true;
+          $pesanansurat->persetujuanDekan = true;
+          $pesanansurat->save();
+        }
+        else if($request->idFormat == "14"){
+          $pesanansurat = new PesananSurat;
+          $pesanansurat->perihal = '-';
+          $pesanansurat->mahasiswa_id = 'anonim';
+          $pesanansurat->formatsurat_id = $request->idFormat;
+          // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
+          // $pesanansurat->dataSurat = $request->data;
+          $pesanansurat->dataSurat = $request->dataSurat;
+          $pesanansurat->persetujuanDosenWali = true ;
+          $pesanansurat->persetujuanKaprodi = true;
+          $pesanansurat->persetujuanWDII = true;
+          $pesanansurat->persetujuanWDI = true;
+          $pesanansurat->persetujuanDekan = true;
+          $pesanansurat->save();
+        }
+        else if($request->idFormat == "15"){
+          $pesanansurat = new PesananSurat;
+          $pesanansurat->perihal = '-';
+          $pesanansurat->mahasiswa_id = 'anonim';
+          $pesanansurat->formatsurat_id = $request->idFormat;
+          // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
+          // $pesanansurat->dataSurat = $request->data;
+          $pesanansurat->dataSurat = $request->dataSurat;
+          $pesanansurat->persetujuanDosenWali = true ;
+          $pesanansurat->persetujuanKaprodi = true;
+          $pesanansurat->persetujuanWDII = true;
+          $pesanansurat->persetujuanWDI = true;
+          $pesanansurat->persetujuanDekan = true;
+          $pesanansurat->save();
+        }
+        else if($request->idFormat == "16"){
+          $pesanansurat = new PesananSurat;
+          $pesanansurat->perihal = '-';
+          $pesanansurat->mahasiswa_id = 'anonim';
+          $pesanansurat->formatsurat_id = $request->idFormat;
+          // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
+          // $pesanansurat->dataSurat = $request->data;
+          $pesanansurat->dataSurat = $request->dataSurat;
+          $pesanansurat->persetujuanDosenWali = true ;
+          $pesanansurat->persetujuanKaprodi = true;
+          $pesanansurat->persetujuanWDII = true;
+          $pesanansurat->persetujuanWDI = true;
+          $pesanansurat->persetujuanDekan = true;
+          $pesanansurat->save();
+        }
+        else if($request->idFormat == "17"){
+          $pesanansurat = new PesananSurat;
+          $pesanansurat->perihal = '-';
+          $pesanansurat->mahasiswa_id = 'anonim';
+          $pesanansurat->formatsurat_id = $request->idFormat;
+          // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
+          // $pesanansurat->dataSurat = $request->data;
+          $pesanansurat->dataSurat = $request->dataSurat;
+          $pesanansurat->persetujuanDosenWali = true ;
+          $pesanansurat->persetujuanKaprodi = true;
+          $pesanansurat->persetujuanWDII = true;
+          $pesanansurat->persetujuanWDI = true;
+          $pesanansurat->persetujuanDekan = true;
+          $pesanansurat->save();
+        }
+        else if($request->idFormat == "18"){
+          $pesanansurat = new PesananSurat;
+          $pesanansurat->perihal = '-';
+          $pesanansurat->mahasiswa_id = 'anonim';
+          $pesanansurat->formatsurat_id = $request->idFormat;
+          // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
+          // $pesanansurat->dataSurat = $request->data;
+          $pesanansurat->dataSurat = $request->dataSurat;
+          $pesanansurat->persetujuanDosenWali = true ;
+          $pesanansurat->persetujuanKaprodi = true;
+          $pesanansurat->persetujuanWDII = true;
+          $pesanansurat->persetujuanWDI = true;
+          $pesanansurat->persetujuanDekan = true;
+          $pesanansurat->save();
+        }
+        else if($request->idFormat == "19"){
+          $pesanansurat = new PesananSurat;
+          $pesanansurat->perihal = '-';
+          $pesanansurat->mahasiswa_id = 'anonim';
+          $pesanansurat->formatsurat_id = $request->idFormat;
+          // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
+          // $pesanansurat->dataSurat = $request->data;
+          $pesanansurat->dataSurat = $request->dataSurat;
+          $pesanansurat->persetujuanDosenWali = true ;
+          $pesanansurat->persetujuanKaprodi = true;
+          $pesanansurat->persetujuanWDII = true;
+          $pesanansurat->persetujuanWDI = true;
+          $pesanansurat->persetujuanDekan = true;
+          $pesanansurat->save();
+        }
+        else if($request->idFormat == "20"){
+          $pesanansurat = new PesananSurat;
+          $pesanansurat->perihal = '-';
+          $pesanansurat->mahasiswa_id = 'anonim';
+          $pesanansurat->formatsurat_id = $request->idFormat;
+          // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
+          // $pesanansurat->dataSurat = $request->data;
+          $pesanansurat->dataSurat = $request->dataSurat;
+          $pesanansurat->persetujuanDosenWali = true ;
+          $pesanansurat->persetujuanKaprodi = true;
+          $pesanansurat->persetujuanWDII = true;
+          $pesanansurat->persetujuanWDI = true;
+          $pesanansurat->persetujuanDekan = true;
+          $pesanansurat->save();
+        }
         return redirect('/home_mahasiswa')->with('success_message', 'Surat' . $pesanansurat->formatsurats_id . 'berhasil dibuat');
     }
 

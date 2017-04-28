@@ -6,7 +6,7 @@
   class MahasiswaRepository{
 
     public function findAllMahasiswa(){
-      $mahasiswas = Mahasiswa::orderBy('id', 'DESC')->paginate(15);
+      $mahasiswas = Mahasiswa::orderBy('id', 'ASC')->paginate(15);
       return $mahasiswas;
     }
 
@@ -75,6 +75,9 @@
     public function findPasword($password){
       $mahasiswas = Mahasiswa::where('password', $password)->get();
       return $mahasiswas;
+    }
+    public function dosenWaliMhs(){
+
     }
   }
 

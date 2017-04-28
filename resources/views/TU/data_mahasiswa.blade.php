@@ -63,6 +63,7 @@
                       <th>ANGKATAN</th>
                       <th>KOTA LAHIR</th>
                       <th>TANGGAL LAHIR</th>
+                      <th>DOSEN WALI</th>
                       <th>FOTO</th>
                       <th colspan ="2"> KONTROL</th>
                     </tr>
@@ -75,6 +76,7 @@
                         <td>{{ $mahasiswa->angkatan }}</td>
                         <td>{{ $mahasiswa->kota_lahir }}</td>
                         <td>{{ $mahasiswa->tanggal_lahir }}</td>
+                        <td>{{ $mahasiswa->nama_dosen }}</td>
                         <td style="text-align:center"><a href = "{{ $mahasiswa->foto }}">klik disini</a></td>
                         <td>
                           <button type="button" class="btn btn-default" aria-label="Edit" data-toggle="tooltip" title="Edit">
