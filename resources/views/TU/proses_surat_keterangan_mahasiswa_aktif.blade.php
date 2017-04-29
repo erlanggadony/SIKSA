@@ -1,6 +1,6 @@
 <!DOCTYPE html>
   <head>
-      <title>Data Mahasiswa</title>
+      <title>Isi data diri</title>
       <link href="{{ asset("/bootstrap-3.3.7-dist/css/bootstrap.css") }}" rel="stylesheet" type="text/css" />
       <link href="{{ asset("/css/styles_list_surat.css") }}" rel="stylesheet" type="text/css">
 
@@ -27,41 +27,43 @@
       <div class="main">
           <div class="row">
             <div class="col-md-8 content">
+                <h3 style="font-weight:bold;">Preview Akhir dan Isi Nomor Surat</h3>
+                <br>
                 <form class="form-horizontal" action="{{ url('/generatePDF') }}" method="post">
                   <div class="form-group">
-                    <label class="col-sm-3 prevLabel">Nama</label>
-                    <div class="col-sm-9" name="nama">
-                        {{ $nama }}
+                    <label class="col-sm-4 prevLabel">Nama</label>
+                    <div class="col-sm-8 prev">
+                      {{ $nama }}
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-3 prevLabel">Program Studi</label>
-                    <div class="col-sm-9" name="prodi">
-                        {{ $prodi }}
+                    <label class="col-sm-4 prevLabel">NPM</label>
+                    <div class="col-sm-8 prev">
+                      {{ $npm }}
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-3 prevLabel">NPM</label>
-                    <div class="col-sm-9" name="npm">
-                        {{ $npm }}
+                    <label class="col-sm-4 prevLabel">Program Studi</label>
+                    <div class="col-sm-8 prev">
+                      {{ $prodi }}
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-3 prevLabel">Semester</label>
-                    <div class="col-sm-9" name="semester">
-                        {{ $semester }}
+                    <label class="col-sm-4 prevLabel">Semester</label>
+                    <div class="col-sm-8">
+                      {{ $semester }}
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-3 prevLabel">Tahun Akademik</label>
-                    <div class="col-sm-9" name="thnAkademik">
-                        {{ $thnAkademik }}
+                    <label class="col-sm-4 prevLabel">Tempat, Tanggal Lahir</label>
+                    <div class="col-sm-8 prev">
+                      {{ $kota_lahir}}, {{ $tglLahir}}
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-3 prevLabel">Jenis Beasiswa</label>
-                    <div class="col-sm-9" name="penyediabeasiswa">
-                        {{ $penyediabeasiswa }}
+                    <label class="col-sm-4 prevLabel">Alamat di Bandung</label>
+                    <div class="col-sm-8">
+                      {{ $alamat }}
                     </div>
                   </div>
                   <div class="form-group">
@@ -81,7 +83,7 @@
                     </div>
                   </div>
                 </form>
-            </div>
+              </div>
             <div class="col-md-4 profile">.col-md-4</div>
           </div>
             <!-- <div id="profile">
@@ -104,11 +106,6 @@
     <script>
       function goBack() {
           window.history.back();
-      }
-
-      function compile(){
-        var pdftex = new PDFTeX();
-        var latex_code =
       }
     </script>
   </body>

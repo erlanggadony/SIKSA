@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,7 +32,6 @@ Route::post('/login', 'AuthController@authenticate');
     Route::get('/pilih_jenis_surat', 'FormatsuratController@pilihSurat');
     //halaman untuk pengisian data diri untuk masing-masing surat
     Route::post('/isi_data_diri', 'FormatsuratController@tampilkanFormulir');
-
     Route::get('/data_perwakilan_perwalian', function () {
         return view('mahasiswa/data_perwakilan_perwalian');
     });
@@ -43,7 +41,6 @@ Route::post('/login', 'AuthController@authenticate');
     //halaman untuk menampilkan preview surat
     Route::post('/preview', 'PesanansuratController@tampilkanPreview');
     Route::post('/kirimFormulir', 'PesanansuratController@store');
-
 //<-------------------------------------------------------PETUGAS TU------------------------------------------------------>
     // halaman utama pejabat
     Route::get('/home_TU', 'PesanansuratController@tampilkanPesananSurat');
@@ -66,11 +63,9 @@ Route::post('/login', 'AuthController@authenticate');
     Route::post('/uploadFormat', 'FormatsuratController@storeFormat');
     //halaman seluruh data mahasiswa
     Route::get('/data_mahasiswa', 'MahasiswaController@pilihMahasiswa');
-
     // halaman untuk menambahkan data mahasiswa
     Route::post('/uploadDataMhs', 'MahasiswaController@uploadMahasiswa');
     Route::post('/generatePDF', 'HistorysuratController@buatPDF');
-
 //<--------------------------------------------------------PEJABAT-------------------------------------------------------->
     // halaman utama pejabat
     Route::get('/home_pejabat', 'PesanansuratController@tampilkanPesananDiPejabat');

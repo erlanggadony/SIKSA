@@ -103,7 +103,7 @@
                           <td>1</td>
                           <td>AIF201</td>
                           <td>{{ $matkul1 }}</td>
-                          <td>{{ $sks }}</td>
+                          <td>{{ $sks1 }}</td>
                         </tr>
                         <tr>
                           <td>2</td>

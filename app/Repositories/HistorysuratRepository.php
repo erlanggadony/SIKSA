@@ -39,7 +39,15 @@
       return $historysurats;
     }
 
-    public function pesananDosenWali($dosen_id){
+    public function historyDosenWali($dosen_id){
+      $historysurats = Historysurat::where()
+                                    ->orderBy('timestamps', 'DESC')
+                                    ->paginate(15);
+
+      return $historysurats;
+    }
+
+    public function historyKaprodi($dosen_id){
       $historysurats = Historysurat::where()
                                     ->orderBy('timestamps', 'DESC')
                                     ->paginate(15);

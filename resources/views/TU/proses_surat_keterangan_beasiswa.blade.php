@@ -1,6 +1,6 @@
 <!DOCTYPE html>
   <head>
-      <title>Isi data diri</title>
+      <title>Data Mahasiswa</title>
       <link href="{{ asset("/bootstrap-3.3.7-dist/css/bootstrap.css") }}" rel="stylesheet" type="text/css" />
       <link href="{{ asset("/css/styles_list_surat.css") }}" rel="stylesheet" type="text/css">
 
@@ -10,7 +10,6 @@
     <div>
         <img id=banner src="{{ asset("/images/banner ftis.png") }}" />
     </div>
-
 
     <div class="navigation">
          <div class="navbar text-center">
@@ -33,44 +32,38 @@
                 <form class="form-horizontal" action="{{ url('/generatePDF') }}" method="post">
                   <div class="form-group">
                     <label class="col-sm-3 prevLabel">Nama</label>
-                    <div class="col-sm-9">
+                    <div class="col-sm-9" name="nama">
                         {{ $nama }}
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-3 prevLabel">Tanggal Lahir</label>
-                    <div class="col-sm-9">
-                        {{ $tglLahir }}
+                    <label class="col-sm-3 prevLabel">Program Studi</label>
+                    <div class="col-sm-9" name="prodi">
+                        {{ $prodi }}
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-3 prevLabel">Kewarganegaraan</label>
-                    <div class="col-sm-9">
-                        {{ $kewarganegaraan }}
+                    <label class="col-sm-3 prevLabel">NPM</label>
+                    <div class="col-sm-9" name="npm">
+                        {{ $npm }}
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-3 prevLabel">Organisasi tujuan</label>
-                    <div class="col-sm-9">
-                        {{ $organisasiTujuan }}
+                    <label class="col-sm-3 prevLabel">Semester</label>
+                    <div class="col-sm-9" name="semester">
+                        {{ $semester }}
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="col-sm-3 prevLabel">Tahun Akademik</label>
-                    <div class="col-sm-9">
+                    <div class="col-sm-9" name="thnAkademik">
                         {{ $thnAkademik }}
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-3 prevLabel">Negara tujuan</label>
-                    <div class="col-sm-9">
-                        {{ $negaraTujuan }}
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="col-sm-3 prevLabel">Tanggal kunjungan</label>
-                    <div class="col-sm-9">
-                        {{ $tanggalKunjungan }}
+                    <label class="col-sm-3 prevLabel">Jenis Beasiswa</label>
+                    <div class="col-sm-9" name="penyediabeasiswa">
+                        {{ $penyediabeasiswa }}
                     </div>
                   </div>
                   <div class="form-group">
@@ -113,6 +106,11 @@
     <script>
       function goBack() {
           window.history.back();
+      }
+
+      function compile(){
+        var pdftex = new PDFTeX();
+        var latex_code =
       }
     </script>
   </body>

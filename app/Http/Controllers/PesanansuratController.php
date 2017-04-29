@@ -67,7 +67,7 @@ class PesanansuratController extends Controller
         $penyediabeasiswa = $json->penyediabeasiswa;
         $formatsurat_id = $request->idFormatSurat;
         // dd($dataSurat);
-        return view('TU.proses_surat', [
+        return view('TU.proses_surat_keterangan_beasiswa', [
             'nama' => $nama,
             'prodi' => $prodi,
             'npm' => $npm,
@@ -90,7 +90,7 @@ class PesanansuratController extends Controller
         $alamat = $json->alamat;
         $formatsurat_id = $request->idFormatSurat;
         // dd($dataSurat);
-        return view('TU.proses_surat', [
+        return view('TU.proses_surat_keterangan_mahasiswa_aktif', [
             'nama' => $nama,
             'prodi' => $prodi,
             'npm' => $npm,
@@ -102,24 +102,813 @@ class PesanansuratController extends Controller
             'dataSurat' => $dataSurat
         ]);
       }
-      else if($request->idFormatSurat == "3"){}
-      else if($request->idFormatSurat == "4"){}
-      else if($request->idFormatSurat == "5"){}
-      else if($request->idFormatSurat == "6"){}
-      else if($request->idFormatSurat == "7"){}
-      else if($request->idFormatSurat == "8"){}
-      else if($request->idFormatSurat == "9"){}
-      else if($request->idFormatSurat == "10"){}
-      else if($request->idFormatSurat == "11"){}
-      else if($request->idFormatSurat == "12"){}
-      else if($request->idFormatSurat == "13"){}
-      else if($request->idFormatSurat == "14"){}
-      else if($request->idFormatSurat == "15"){}
-      else if($request->idFormatSurat == "16"){}
-      else if($request->idFormatSurat == "17"){}
-      else if($request->idFormatSurat == "18"){}
-      else if($request->idFormatSurat == "19"){}
-      else if($request->idFormatSurat == "20"){}
+      else if($request->idFormatSurat == "3"){
+        $dataSurat = $request->prosesSurat;
+        $json = json_decode($dataSurat);
+        $nama = $json->nama;
+        $tglLahir = $json->tglLahir;
+        $kewarganegaraan = $json->kewarganegaraan;
+        $organisasiTujuan = $json->organisasiTujuan;
+        $thnAkademik = $json->thnAkademik;
+        $negaraTujuan = $json->negaraTujuan;
+        $tanggalKunjungan = $json->tanggalKunjungan;
+        $formatsurat_id = $request->jenis_surat;
+        // dd($dataSurat);
+        return view('TU.proses_surat_pembuatan_visa', [
+            'nama' => $nama,
+            'tglLahir' => $tglLahir,
+            'kewarganegaraan' => $kewarganegaraan,
+            'organisasiTujuan' => $organisasiTujuan,
+            'thnAkademik' => $thnAkademik,
+            'negaraTujuan' => $negaraTujuan,
+            'tanggalKunjungan' => $tanggalKunjungan,
+            'formatsurat_id' => $formatsurat_id,
+            'dataSurat' => $dataSurat
+        ]);
+      }
+      else if($request->idFormatSurat == "4"){
+        $dataSurat = $request->prosesSurat;
+        $json = json_decode($dataSurat);
+        $nama = $json->nama;
+        $npm = $json->npm;
+        $prodi = $json->prodi;
+        $matkul = $json->matkul;
+        $topik = $json->topik;
+        $organisasi = $json->organisasi;
+        $alamatOrganisasi = $json->alamatOrganisasi;
+        $keperluanKunjungan = $json->keperluanKunjungan;
+        $formatsurat_id = $request->jenis_surat;
+        // dd($request);
+        return view('TU.proses_surat_izin_studi_lapangan_1orang', [
+            'nama' => $nama,
+            'npm' => $npm,
+            'prodi' => $prodi,
+            'matkul' => $matkul,
+            'topik' => $topik,
+            'organisasi' => $organisasi,
+            'alamatOrganisasi' => $alamatOrganisasi,
+            'keperluanKunjungan' => $keperluanKunjungan,
+            'formatsurat_id' => $formatsurat_id,
+            'dataSurat' => $dataSurat
+        ]);
+      }
+      else if($request->idFormatSurat == "5"){
+        $dataSurat = $request->prosesSurat;
+        $json = json_decode($dataSurat);
+        $nama = $json->nama;
+        $npm = $json->npm;
+        $prodi = $json->prodi;
+        $matkul = $json->matkul;
+        $topik = $json->topik;
+        $organisasi = $json->organisasi;
+        $alamatOrganisasi = $json->alamatOrganisasi;
+        $keperluanKunjungan = $json->keperluanKunjungan;
+        $namaAnggota = $json->namaAnggota;
+        $npmAnggota = $json->npmAnggota;
+        $formatsurat_id = $request->jenis_surat;
+        return view('TU.proses_surat', [
+            'nama' => $nama,
+            'npm' => $npm,
+            'prodi' => $prodi,
+            'matkul' => $matkul,
+            'topik' => $topik,
+            'organisasi' => $organisasi,
+            'alamatOrganisasi' => $alamatOrganisasi,
+            'keperluanKunjungan' => $keperluanKunjungan,
+            'namaAnggota' => $namaAnggota,
+            'npmAnggota' => $npmAnggota,
+            'formatsurat_id' => $formatsurat_id,
+            'dataSurat' => $dataSurat
+        ]);
+      }
+      else if($request->idFormatSurat == "6"){
+        $dataSurat = $request->prosesSurat;
+        $json = json_decode($dataSurat);
+        $nama = $json->nama;
+        $npm = $json->npm;
+        $prodi = $json->prodi;
+        $matkul = $json->matkul;
+        $topik = $json->topik;
+        $organisasi = $json->organisasi;
+        $alamatOrganisasi = $json->alamatOrganisasi;
+        $keperluanKunjungan = $json->keperluanKunjungan;
+        $namaAnggota1 = $json->namaAnggota1;
+        $npmAnggota1 = $json->npmAnggota1;
+        $namaAnggota2 = $json->namaAnggota2;
+        $npmAnggota2 = $json->npmAnggota2;
+        $formatsurat_id = $request->jenis_surat;
+        return view('TU.proses_surat', [
+            'nama' => $nama,
+            'npm' => $npm,
+            'prodi' => $prodi,
+            'matkul' => $matkul,
+            'topik' => $topik,
+            'organisasi' => $organisasi,
+            'alamatOrganisasi' => $alamatOrganisasi,
+            'keperluanKunjungan' => $keperluanKunjungan,
+            'namaAnggota1' => $namaAnggota1,
+            'npmAnggota1' => $npmAnggota1,
+            'namaAnggota2' => $namaAnggota2,
+            'npmAnggota2' => $npmAnggota2,
+            'formatsurat_id' => $formatsurat_id,
+            'dataSurat' => $dataSurat
+        ]);
+      }
+      else if($request->idFormatSurat == "7"){
+        $dataSurat = $request->prosesSurat;
+        $json = json_decode($dataSurat);
+        $nama = $json->nama;
+        $npm = $json->npm;
+        $prodi = $json->prodi;
+        $matkul = $json->matkul;
+        $topik = $json->topik;
+        $organisasi = $json->organisasi;
+        $alamatOrganisasi = $json->alamatOrganisasi;
+        $keperluanKunjungan = $json->keperluanKunjungan;
+        $namaAnggota1 = $json->namaAnggota1;
+        $npmAnggota1 = $json->npmAnggota1;
+        $namaAnggota2 = $json->namaAnggota2;
+        $npmAnggota2 = $json->npmAnggota2;
+        $namaAnggota3 = $json->namaAnggota3;
+        $npmAnggota3 = $json->npmAnggota3;
+        $formatsurat_id = $request->jenis_surat;
+        return view('TU.proses_surat', [
+            'nama' => $nama,
+            'npm' => $npm,
+            'prodi' => $prodi,
+            'matkul' => $matkul,
+            'topik' => $topik,
+            'organisasi' => $organisasi,
+            'alamatOrganisasi' => $alamatOrganisasi,
+            'keperluanKunjungan' => $keperluanKunjungan,
+            'namaAnggota1' => $namaAnggota1,
+            'npmAnggota1' => $npmAnggota1,
+            'namaAnggota2' => $namaAnggota2,
+            'npmAnggota2' => $npmAnggota2,
+            'namaAnggota3' => $namaAnggota3,
+            'npmAnggota3' => $npmAnggota3,
+            'formatsurat_id' => $formatsurat_id,
+            'dataSurat' => $dataSurat
+        ]);
+      }
+      else if($request->idFormatSurat == "8"){
+        $dataSurat = $request->prosesSurat;
+        $json = json_decode($dataSurat);
+        $nama = $json->nama;
+        $npm = $json->npm;
+        $prodi = $json->prodi;
+        $matkul = $json->matkul;
+        $topik = $json->topik;
+        $organisasi = $json->organisasi;
+        $alamatOrganisasi = $json->alamatOrganisasi;
+        $keperluanKunjungan = $json->keperluanKunjungan;
+        $namaAnggota1 = $json->namaAnggota1;
+        $npmAnggota1 = $json->npmAnggota1;
+        $namaAnggota2 = $json->namaAnggota2;
+        $npmAnggota2 = $json->npmAnggota2;
+        $namaAnggota3 = $json->namaAnggota3;
+        $npmAnggota3 = $json->npmAnggota3;
+        $namaAnggota4 = $json->namaAnggota4;
+        $npmAnggota4 = $json->npmAnggota4;
+        $formatsurat_id = $request->jenis_surat;
+        return view('TU.proses_surat', [
+            'nama' => $nama,
+            'npm' => $npm,
+            'prodi' => $prodi,
+            'matkul' => $matkul,
+            'topik' => $topik,
+            'organisasi' => $organisasi,
+            'alamatOrganisasi' => $alamatOrganisasi,
+            'keperluanKunjungan' => $keperluanKunjungan,
+            'namaAnggota1' => $namaAnggota1,
+            'npmAnggota1' => $npmAnggota1,
+            'namaAnggota2' => $namaAnggota2,
+            'npmAnggota2' => $npmAnggota2,
+            'namaAnggota3' => $namaAnggota3,
+            'npmAnggota3' => $npmAnggota3,
+            'namaAnggota4' => $namaAnggota4,
+            'npmAnggota4' => $npmAnggota4,
+            'formatsurat_id' => $formatsurat_id,
+            'dataSurat' => $dataSurat
+        ]);
+      }
+      else if($request->idFormatSurat == "9"){
+        $dataSurat = $request->prosesSurat;
+        $json = json_decode($dataSurat);
+        $nama = $json->nama;
+        $npm = $json->npm;
+        $prodi = $json->prodi;
+        $fakultas = $json->fakultas;
+        $alamat = $json->alamat;
+        $cutiStudiKe = $json->cutiStudiKe;
+        $alasanCutiStudi = $json->alasanCutiStudi;
+        $dosenWali = $json->dosenWali;
+        $semester = $json->semester;
+        $thnAkademik = $json->thnAkademik;
+        //upload
+        // $lampiran = $request->file('lampiran_CutiStudi');
+        // $destination_path = ('lampiran/cuti_studi/');
+        // $filename = $lampiran->getClientOriginalName();
+        // $namaDepan = explode(" ", $nama);
+        // $savedLampiran = ($namaDepan[0] . '_' . $namaDepan[1] . '_' .$filename);
+        // $lampiran->move($destination_path, $savedLampiran);
+
+        // $link = '127.0.0.1:8000/format_surat_latex/' . $filename;
+        $persetujuanDosenWali = '-';
+        $catatanDosenWali = '-';
+        $persetujuanKaprodi = '-';
+        $catatanKaprodi = '-';
+        $persetujuanWDII = '-';
+        $catatanWDII = '-';
+        $persetujuanWDI = '-';
+        $catatanWDI = '-';
+        $persetujuanDekan = '-';
+        $formatsurat_id = $request->jenis_surat;
+        return view('TU.proses_surat_izin_cuti_studi', [
+            'nama' => $nama,
+            'npm' => $npm,
+            'prodi' => $prodi,
+            'fakultas' => $fakultas,
+            'alamat' => $alamat,
+            'cutiStudiKe' => $cutiStudiKe,
+            'alasanCutiStudi' => $alasanCutiStudi,
+            'dosenWali' => $dosenWali,
+            'semester' => $semester,
+            'thnAkademik' => $thnAkademik,
+            'persetujuanDosenWali' => $persetujuanDosenWali,
+            'catatanDosenWali' => $catatanDosenWali,
+            'persetujuanKaprodi' => $persetujuanKaprodi,
+            'catatanKaprodi' => $catatanKaprodi,
+            'persetujuanWDII' => $persetujuanWDII,
+            'catatanWDII' => $catatanWDII,
+            'persetujuanWDI' => $persetujuanWDI,
+            'catatanWDI' => $catatanWDI,
+            'persetujuanDekan' => $persetujuanDekan,
+            'formatsurat_id' => $formatsurat_id,
+            'dataSurat' => $dataSurat
+        ]);
+      }
+      else if($request->idFormatSurat == "10"){
+        $dataSurat = $request->prosesSurat;
+        $json = json_decode($dataSurat);
+        $nama = $json->nama;
+        $npm = $json->npm;
+        $alamat = $json->alamat;
+        $noTelepon = $json->noTelepon;
+        $namaOrtu = $json->namaOrtu;
+        $dosenWali = $json->dosenWali;
+        $semester = $json->semester;
+        //upload
+        // $lampiran = $request->file('lampiran_CutiStudi');
+        // $destination_path = ('lampiran/cuti_studi/');
+        // $filename = $lampiran->getClientOriginalName();
+        // $namaDepan = explode(" ", $nama);
+        // $savedLampiran = ($namaDepan[0] . '_' . $namaDepan[1] . '_' .$filename);
+        // $lampiran->move($destination_path, $savedLampiran);
+
+        // $link = '127.0.0.1:8000/format_surat_latex/' . $filename;
+        $persetujuanDosenWali = '-';
+        $catatanDosenWali = '-';
+        $persetujuanKaprodi = '-';
+        $catatanKaprodi = '-';
+        $persetujuanWDII = '-';
+        $catatanWDII = '-';
+        $persetujuanWDI = '-';
+        $catatanWDI = '-';
+        $persetujuanDekan = '-';
+        $formatsurat_id = $request->jenis_surat;
+        $dataSurat = $this->buatJSON($request);
+        return view('TU.proses_surat_izin_pengunduran_diri', [
+            'nama' => $nama,
+            'npm' => $npm,
+            'alamat' => $alamat,
+            'noTelepon' => $noTelepon,
+            'namaOrtu' => $namaOrtu,
+            'dosenWali' => $dosenWali,
+            'semester' => $semester,
+            'persetujuanDosenWali' => $persetujuanDosenWali,
+            'catatanDosenWali' => $catatanDosenWali,
+            'persetujuanKaprodi' => $persetujuanKaprodi,
+            'catatanKaprodi' => $catatanKaprodi,
+            'persetujuanWDII' => $persetujuanWDII,
+            'catatanWDII' => $catatanWDII,
+            'persetujuanWDI' => $persetujuanWDI,
+            'catatanWDI' => $catatanWDI,
+            'persetujuanDekan' => $persetujuanDekan,
+            'formatsurat_id' => $formatsurat_id,
+            'dataSurat' => $dataSurat
+        ]);
+      }
+      else if($request->idFormatSurat == "11"){
+        $dataSurat = $request->prosesSurat;
+        $json = json_decode($dataSurat);
+        $semester = $json->semester;
+        $thnAkademik = $json->thnAkademik;
+        $nama = $json->nama;
+        $prodi = $json->prodi;
+        $npm = $json->npm;
+        $namaWakil = $json->namaWakil;
+        $prodiWakil = $json->prodiWakil;
+        $npmWakil = $json->npmWakil;
+        $dosenWali = $json->dosenWali;
+        $alasan = $json->alasan;
+        $matkul = $json->matkul;
+        $sks = $json->sks;
+        $formatsurat_id = $request->jenis_surat;
+        return view('TU.proses_surat_perwakilan_perwalian_1mk', [
+            'semester' => $semester,
+            'thnAkademik' => $thnAkademik,
+            'nama' => $nama,
+            'prodi' => $prodi,
+            'npm' => $npm,
+            'namaWakil' => $namaWakil,
+            'prodiWakil' => $prodiWakil,
+            'npmWakil' => $npmWakil,
+            'dosenWali' => $dosenWali,
+            'alasan' => $alasan,
+            'matkul' => $matkul,
+            'sks' => $sks,
+            'formatsurat_id' => $formatsurat_id,
+            'dataSurat' => $dataSurat
+        ]);
+      }
+      else if($request->idFormatSurat == "12"){
+        $dataSurat = $request->prosesSurat;
+        $json = json_decode($dataSurat);
+        $semester = $json->semester;
+        $thnAkademik = $json->thnAkademik;
+        $nama = $json->nama;
+        $prodi = $json->prodi;
+        $npm = $json->npm;
+        $namaWakil = $json->namaWakil;
+        $prodiWakil = $json->prodiWakil;
+        $npmWakil = $json->npmWakil;
+        $dosenWali = $json->dosenWali;
+        $alasan = $json->alasan;
+        $matkul1 = $json->matkul1;
+        $sks1 = $json->sks1;
+        $matkul2 = $json->matkul2;
+        $sks2 = $json->sks2;
+        $formatsurat_id = $request->jenis_surat;
+        return view('TU.proses_surat', [
+            'semester' => $semester,
+            'thnAkademik' => $thnAkademik,
+            'nama' => $nama,
+            'prodi' => $prodi,
+            'npm' => $npm,
+            'namaWakil' => $namaWakil,
+            'prodiWakil' => $prodiWakil,
+            'npmWakil' => $npmWakil,
+            'dosenWali' => $dosenWali,
+            'alasan' => $alasan,
+            'matkul1' => $matkul1,
+            'sks1' => $sks1,
+            'matkul2' => $matkul2,
+            'sks2' => $sks2,
+            'formatsurat_id' => $formatsurat_id,
+            'dataSurat' => $dataSurat
+        ]);
+      }
+      else if($request->idFormatSurat == "13"){
+        $dataSurat = $request->prosesSurat;
+        $json = json_decode($dataSurat);
+        $semester = $json->semester;
+        $thnAkademik = $json->thnAkademik;
+        $nama = $json->nama;
+        $prodi = $json->prodi;
+        $npm = $json->npm;
+        $namaWakil = $json->namaWakil;
+        $prodiWakil = $json->prodiWakil;
+        $npmWakil = $json->npmWakil;
+        $dosenWali = $json->dosenWali;
+        $alasan = $json->alasan;
+        $matkul1 = $json->matkul1;
+        $sks1 = $json->sks1;
+        $matkul2 = $json->matkul2;
+        $sks2 = $json->sks2;
+        $matkul3 = $request->matkul3;
+        $sks3 = $json->sks3;;
+        $formatsurat_id = $request->jenis_surat;
+        return view('TU.proses_surat', [
+            'semester' => $semester,
+            'thnAkademik' => $thnAkademik,
+            'nama' => $nama,
+            'prodi' => $prodi,
+            'npm' => $npm,
+            'namaWakil' => $namaWakil,
+            'prodiWakil' => $prodiWakil,
+            'npmWakil' => $npmWakil,
+            'dosenWali' => $dosenWali,
+            'alasan' => $alasan,
+            'matkul1' => $matkul1,
+            'sks1' => $sks1,
+            'matkul2' => $matkul2,
+            'sks2' => $sks2,
+            'matkul3' => $matkul3,
+            'sks3' => $sks3,
+            'formatsurat_id' => $formatsurat_id,
+            'dataSurat' => $dataSurat
+        ]);
+      }
+      else if($request->idFormatSurat == "14"){
+        $dataSurat = $request->prosesSurat;
+        $json = json_decode($dataSurat);
+        $semester = $json->semester;
+        $thnAkademik = $json->thnAkademik;
+        $nama = $json->nama;
+        $prodi = $json->prodi;
+        $npm = $json->npm;
+        $namaWakil = $json->namaWakil;
+        $prodiWakil = $json->prodiWakil;
+        $npmWakil = $json->npmWakil;
+        $dosenWali = $json->dosenWali;
+        $alasan = $json->alasan;
+        $matkul1 = $json->matkul1;
+        $sks1 = $json->sks1;
+        $matkul2 = $json->matkul2;
+        $sks2 = $json->sks2;
+        $matkul3 = $json->matkul3;
+        $sks3 = $json->sks3;
+        $matkul4 = $request->matkul4;
+        $sks4 = $json->sks4;;
+        $formatsurat_id = $request->jenis_surat;
+        return view('TU.proses_surat', [
+            'semester' => $semester,
+            'thnAkademik' => $thnAkademik,
+            'nama' => $nama,
+            'prodi' => $prodi,
+            'npm' => $npm,
+            'namaWakil' => $namaWakil,
+            'prodiWakil' => $prodiWakil,
+            'npmWakil' => $npmWakil,
+            'dosenWali' => $dosenWali,
+            'alasan' => $alasan,
+            'matkul1' => $matkul1,
+            'sks1' => $sks1,
+            'matkul2' => $matkul2,
+            'sks2' => $sks2,
+            'matkul3' => $matkul3,
+            'sks3' => $sks3,
+            'matkul4' => $matkul4,
+            'sks4' => $sks4,
+            'formatsurat_id' => $formatsurat_id,
+            'dataSurat' => $dataSurat
+        ]);
+      }
+      else if($request->idFormatSurat == "15"){
+        $dataSurat = $request->prosesSurat;
+        $json = json_decode($dataSurat);
+        $semester = $json->semester;
+        $thnAkademik = $json->thnAkademik;
+        $nama = $json->nama;
+        $prodi = $json->prodi;
+        $npm = $json->npm;
+        $namaWakil = $json->namaWakil;
+        $prodiWakil = $json->prodiWakil;
+        $npmWakil = $json->npmWakil;
+        $dosenWali = $json->dosenWali;
+        $alasan = $json->alasan;
+        $matkul1 = $json->matkul1;
+        $sks1 = $json->sks1;
+        $matkul2 = $json->matkul2;
+        $sks2 = $json->sks2;
+        $matkul3 = $json->matkul3;
+        $sks3 = $json->sks3;
+        $matkul4 = $request->matkul4;
+        $sks4 = $json->sks4;
+        $matkul5 = $json->matkul5;
+        $sks5 = $json->sks5;
+        $formatsurat_id = $request->jenis_surat;
+        return view('TU.proses_surat', [
+            'semester' => $semester,
+            'thnAkademik' => $thnAkademik,
+            'nama' => $nama,
+            'prodi' => $prodi,
+            'npm' => $npm,
+            'namaWakil' => $namaWakil,
+            'prodiWakil' => $prodiWakil,
+            'npmWakil' => $npmWakil,
+            'dosenWali' => $dosenWali,
+            'alasan' => $alasan,
+            'matkul1' => $matkul1,
+            'sks1' => $sks1,
+            'matkul2' => $matkul2,
+            'sks2' => $sks2,
+            'matkul3' => $matkul3,
+            'sks3' => $sks3,
+            'matkul4' => $matkul4,
+            'sks4' => $sks4,
+            'matkul5' => $matkul5,
+            'sks5' => $sks5,
+            'formatsurat_id' => $formatsurat_id,
+            'dataSurat' => $dataSurat
+        ]);
+      }
+      else if($request->idFormatSurat == "16"){
+        $dataSurat = $request->prosesSurat;
+        $json = json_decode($dataSurat);
+        $semester = $json->semester;
+        $thnAkademik = $json->thnAkademik;
+        $nama = $json->nama;
+        $prodi = $json->prodi;
+        $npm = $json->npm;
+        $namaWakil = $json->namaWakil;
+        $prodiWakil = $json->prodiWakil;
+        $npmWakil = $json->npmWakil;
+        $dosenWali = $json->dosenWali;
+        $alasan = $json->alasan;
+        $matkul1 = $json->matkul1;
+        $sks1 = $json->sks1;
+        $matkul2 = $json->matkul2;
+        $sks2 = $json->sks2;
+        $matkul3 = $json->matkul3;
+        $sks3 = $json->sks3;
+        $matkul4 = $request->matkul4;
+        $sks4 = $json->sks4;
+        $matkul5 = $json->matkul5;
+        $sks5 = $json->sks5;
+        $matkul6 = $json->matkul6;
+        $sks6 = $json->sks6;
+        $formatsurat_id = $request->jenis_surat;
+        return view('TU.proses_surat', [
+            'semester' => $semester,
+            'thnAkademik' => $thnAkademik,
+            'nama' => $nama,
+            'prodi' => $prodi,
+            'npm' => $npm,
+            'namaWakil' => $namaWakil,
+            'prodiWakil' => $prodiWakil,
+            'npmWakil' => $npmWakil,
+            'dosenWali' => $dosenWali,
+            'alasan' => $alasan,
+            'matkul1' => $matkul1,
+            'sks1' => $sks1,
+            'matkul2' => $matkul2,
+            'sks2' => $sks2,
+            'matkul3' => $matkul3,
+            'sks3' => $sks3,
+            'matkul4' => $matkul4,
+            'sks4' => $sks4,
+            'matkul5' => $matkul5,
+            'sks5' => $sks5,
+            'matkul6' => $matkul6,
+            'sks6' => $sks6,
+            'formatsurat_id' => $formatsurat_id,
+            'dataSurat' => $dataSurat
+        ]);
+      }
+      else if($request->idFormatSurat == "17"){
+        $dataSurat = $request->prosesSurat;
+        $json = json_decode($dataSurat);
+        $semester = $json->semester;
+        $thnAkademik = $json->thnAkademik;
+        $nama = $json->nama;
+        $prodi = $json->prodi;
+        $npm = $json->npm;
+        $namaWakil = $json->namaWakil;
+        $prodiWakil = $json->prodiWakil;
+        $npmWakil = $json->npmWakil;
+        $dosenWali = $json->dosenWali;
+        $alasan = $json->alasan;
+        $matkul1 = $json->matkul1;
+        $sks1 = $json->sks1;
+        $matkul2 = $json->matkul2;
+        $sks2 = $json->sks2;
+        $matkul3 = $json->matkul3;
+        $sks3 = $json->sks3;
+        $matkul4 = $request->matkul4;
+        $sks4 = $json->sks4;
+        $matkul5 = $json->matkul5;
+        $sks5 = $json->sks5;
+        $matkul6 = $json->matkul6;
+        $sks6 = $json->sks6;
+        $matkul7 = $json->matkul7;
+        $sks7 = $json->sks7;
+        $formatsurat_id = $request->jenis_surat;
+        return view('TU.proses_surat', [
+            'semester' => $semester,
+            'thnAkademik' => $thnAkademik,
+            'nama' => $nama,
+            'prodi' => $prodi,
+            'npm' => $npm,
+            'namaWakil' => $namaWakil,
+            'prodiWakil' => $prodiWakil,
+            'npmWakil' => $npmWakil,
+            'dosenWali' => $dosenWali,
+            'alasan' => $alasan,
+            'matkul1' => $matkul1,
+            'sks1' => $sks1,
+            'matkul2' => $matkul2,
+            'sks2' => $sks2,
+            'matkul3' => $matkul3,
+            'sks3' => $sks3,
+            'matkul4' => $matkul4,
+            'sks4' => $sks4,
+            'matkul5' => $matkul5,
+            'sks5' => $sks5,
+            'matkul6' => $matkul6,
+            'sks6' => $sks6,
+            'matkul7' => $matkul7,
+            'sks7' => $sks7,
+            'formatsurat_id' => $formatsurat_id,
+            'dataSurat' => $dataSurat
+        ]);
+      }
+      else if($request->idFormatSurat == "18"){
+        $dataSurat = $request->prosesSurat;
+        $json = json_decode($dataSurat);
+        $semester = $json->semester;
+        $thnAkademik = $json->thnAkademik;
+        $nama = $json->nama;
+        $prodi = $json->prodi;
+        $npm = $json->npm;
+        $namaWakil = $json->namaWakil;
+        $prodiWakil = $json->prodiWakil;
+        $npmWakil = $json->npmWakil;
+        $dosenWali = $json->dosenWali;
+        $alasan = $json->alasan;
+        $matkul1 = $json->matkul1;
+        $sks1 = $json->sks1;
+        $matkul2 = $json->matkul2;
+        $sks2 = $json->sks2;
+        $matkul3 = $json->matkul3;
+        $sks3 = $json->sks3;
+        $matkul4 = $request->matkul4;
+        $sks4 = $json->sks4;
+        $matkul5 = $json->matkul5;
+        $sks5 = $json->sks5;
+        $matkul6 = $json->matkul6;
+        $sks6 = $json->sks6;
+        $matkul7 = $json->matkul7;
+        $sks7 = $json->sks7;
+        $matkul8 = $json->matkul8;
+        $sks8 = $json->sks8;
+        $formatsurat_id = $request->jenis_surat;
+        return view('TU.proses_surat', [
+            'semester' => $semester,
+            'thnAkademik' => $thnAkademik,
+            'nama' => $nama,
+            'prodi' => $prodi,
+            'npm' => $npm,
+            'namaWakil' => $namaWakil,
+            'prodiWakil' => $prodiWakil,
+            'npmWakil' => $npmWakil,
+            'dosenWali' => $dosenWali,
+            'alasan' => $alasan,
+            'matkul1' => $matkul1,
+            'sks1' => $sks1,
+            'matkul2' => $matkul2,
+            'sks2' => $sks2,
+            'matkul3' => $matkul3,
+            'sks3' => $sks3,
+            'matkul4' => $matkul4,
+            'sks4' => $sks4,
+            'matkul5' => $matkul5,
+            'sks5' => $sks5,
+            'matkul6' => $matkul6,
+            'sks6' => $sks6,
+            'matkul7' => $matkul7,
+            'sks7' => $sks7,
+            'matkul8' => $matkul8,
+            'sks8' => $sks8,
+            'formatsurat_id' => $formatsurat_id,
+            'dataSurat' => $dataSurat
+        ]);
+      }
+      else if($request->idFormatSurat == "19"){
+        $dataSurat = $request->prosesSurat;
+        $json = json_decode($dataSurat);
+        $semester = $json->semester;
+        $thnAkademik = $json->thnAkademik;
+        $nama = $json->nama;
+        $prodi = $json->prodi;
+        $npm = $json->npm;
+        $namaWakil = $json->namaWakil;
+        $prodiWakil = $json->prodiWakil;
+        $npmWakil = $json->npmWakil;
+        $dosenWali = $json->dosenWali;
+        $alasan = $json->alasan;
+        $matkul1 = $json->matkul1;
+        $sks1 = $json->sks1;
+        $matkul2 = $json->matkul2;
+        $sks2 = $json->sks2;
+        $matkul3 = $json->matkul3;
+        $sks3 = $json->sks3;
+        $matkul4 = $request->matkul4;
+        $sks4 = $json->sks4;
+        $matkul5 = $json->matkul5;
+        $sks5 = $json->sks5;
+        $matkul6 = $json->matkul6;
+        $sks6 = $json->sks6;
+        $matkul7 = $json->matkul7;
+        $sks7 = $json->sks7;
+        $matkul8 = $json->matkul8;
+        $sks8 = $json->sks8;
+        $matkul9 = $json->matkul9;
+        $sks9 = $json->sks9;
+        $formatsurat_id = $request->jenis_surat;
+        return view('TU.proses_surat', [
+            'semester' => $semester,
+            'thnAkademik' => $thnAkademik,
+            'nama' => $nama,
+            'prodi' => $prodi,
+            'npm' => $npm,
+            'namaWakil' => $namaWakil,
+            'prodiWakil' => $prodiWakil,
+            'npmWakil' => $npmWakil,
+            'dosenWali' => $dosenWali,
+            'alasan' => $alasan,
+            'matkul1' => $matkul1,
+            'sks1' => $sks1,
+            'matkul2' => $matkul2,
+            'sks2' => $sks2,
+            'matkul3' => $matkul3,
+            'sks3' => $sks3,
+            'matkul4' => $matkul4,
+            'sks4' => $sks4,
+            'matkul5' => $matkul5,
+            'sks5' => $sks5,
+            'matkul6' => $matkul6,
+            'sks6' => $sks6,
+            'matkul7' => $matkul7,
+            'sks7' => $sks7,
+            'matkul8' => $matkul8,
+            'sks8' => $sks8,
+            'matkul9' => $matkul9,
+            'sks9' => $sks9,
+            'formatsurat_id' => $formatsurat_id,
+            'dataSurat' => $dataSurat
+        ]);
+      }
+      else if($request->idFormatSurat == "20"){
+        $dataSurat = $request->prosesSurat;
+        $json = json_decode($dataSurat);
+        $semester = $json->semester;
+        $thnAkademik = $json->thnAkademik;
+        $nama = $json->nama;
+        $prodi = $json->prodi;
+        $npm = $json->npm;
+        $namaWakil = $json->namaWakil;
+        $prodiWakil = $json->prodiWakil;
+        $npmWakil = $json->npmWakil;
+        $dosenWali = $json->dosenWali;
+        $alasan = $json->alasan;
+        $matkul1 = $json->matkul1;
+        $sks1 = $json->sks1;
+        $matkul2 = $json->matkul2;
+        $sks2 = $json->sks2;
+        $matkul3 = $json->matkul3;
+        $sks3 = $json->sks3;
+        $matkul4 = $request->matkul4;
+        $sks4 = $json->sks4;
+        $matkul5 = $json->matkul5;
+        $sks5 = $json->sks5;
+        $matkul6 = $json->matkul6;
+        $sks6 = $json->sks6;
+        $matkul7 = $json->matkul7;
+        $sks7 = $json->sks7;
+        $matkul8 = $json->matkul8;
+        $sks8 = $json->sks8;
+        $matkul9 = $json->matkul9;
+        $sks9 = $json->sks9;
+        $matkul10 = $json->matkul10;
+        $sks10 = $json->sks10;
+        $formatsurat_id = $request->jenis_surat;
+        return view('TU.proses_surat', [
+            'semester' => $semester,
+            'thnAkademik' => $thnAkademik,
+            'nama' => $nama,
+            'prodi' => $prodi,
+            'npm' => $npm,
+            'namaWakil' => $namaWakil,
+            'prodiWakil' => $prodiWakil,
+            'npmWakil' => $npmWakil,
+            'dosenWali' => $dosenWali,
+            'alasan' => $alasan,
+            'matkul1' => $matkul1,
+            'sks1' => $sks1,
+            'matkul2' => $matkul2,
+            'sks2' => $sks2,
+            'matkul3' => $matkul3,
+            'sks3' => $sks3,
+            'matkul4' => $matkul4,
+            'sks4' => $sks4,
+            'matkul5' => $matkul5,
+            'sks5' => $sks5,
+            'matkul6' => $matkul6,
+            'sks6' => $sks6,
+            'matkul7' => $matkul7,
+            'sks7' => $sks7,
+            'matkul8' => $matkul8,
+            'sks8' => $sks8,
+            'matkul9' => $matkul9,
+            'sks9' => $sks9,
+            'matkul10' => $matkul10,
+            'sks10' => $sks10,
+            'formatsurat_id' => $formatsurat_id,
+            'dataSurat' => $dataSurat
+        ]);
+      }
     }
     public function store(Request $request){
         if($request->idFormat == "1"){
@@ -250,11 +1039,11 @@ class PesanansuratController extends Controller
           // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
           // $pesanansurat->dataSurat = $request->data;
           $pesanansurat->dataSurat = $request->dataSurat;
-          $pesanansurat->persetujuanDosenWali = true ;
-          $pesanansurat->persetujuanKaprodi = true;
-          $pesanansurat->persetujuanWDII = true;
-          $pesanansurat->persetujuanWDI = true;
-          $pesanansurat->persetujuanDekan = true;
+          $pesanansurat->persetujuanDosenWali = false ;
+          $pesanansurat->persetujuanKaprodi = false;
+          $pesanansurat->persetujuanWDII = false;
+          $pesanansurat->persetujuanWDI = false;
+          $pesanansurat->persetujuanDekan = false;
           $pesanansurat->save();
         }
         else if($request->idFormat == "10"){
@@ -265,11 +1054,11 @@ class PesanansuratController extends Controller
           // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
           // $pesanansurat->dataSurat = $request->data;
           $pesanansurat->dataSurat = $request->dataSurat;
-          $pesanansurat->persetujuanDosenWali = true ;
-          $pesanansurat->persetujuanKaprodi = true;
-          $pesanansurat->persetujuanWDII = true;
-          $pesanansurat->persetujuanWDI = true;
-          $pesanansurat->persetujuanDekan = true;
+          $pesanansurat->persetujuanDosenWali = false ;
+          $pesanansurat->persetujuanKaprodi = false;
+          $pesanansurat->persetujuanWDII = false;
+          $pesanansurat->persetujuanWDI = false;
+          $pesanansurat->persetujuanDekan = false;
           $pesanansurat->save();
         }
         else if($request->idFormat == "11"){
