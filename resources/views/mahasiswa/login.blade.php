@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html >
-  <head> 
+  <head>
     <meta charset="UTF-8">
     <title>Login Form</title>
     <link href="{{ asset("/bootstrap-3.3.7-dist/css/bootstrap.css") }}" rel="stylesheet" type="text/css" />
@@ -11,7 +11,7 @@
     <div class="login">
       <img id = "logo-unpar" src="{{ asset("/images/logo-unpar.png") }}" />
     <h1>Login</h1>
-      <form method="post" action="{{ url('/login') }}">
+      <form method="post" action="{{ url('/home') }}">
         <div>
             <input type="text" name="username" class="form-control" value="{{ old('username') }}" placeholder="Username" required autofocus />
             @if($errors->has('username'))

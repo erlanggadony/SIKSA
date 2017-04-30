@@ -9,19 +9,22 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/reg', function(){
+  return view('auth/register');
+});
+Route::post('/register', 'Auth\RegisterController@register');
 Route::group(['prefix' => 'Api'], function(){
     Route::get('/showFormatSurat', 'Api\FormatsuratAPIController@tampilkanFormat');
 });
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/test', function () {
-    return view('mahasiswa/test');
+Route::get('/login', function () {
+    return view('mahasiswa/login');
 });
-Route::get('/login_mahasiswa', function () {
-    return view('mahasiswa/login_mahasiswa');
-});
-Route::post('/login', 'AuthController@authenticate');
+Route::get('/logout', 'AuthController@logout');
+Route::post('/home', 'AuthController@authenticate');
 //<-------------------------------------------------------MAHASISWA------------------------------------------------------->
 // Route::group(['middleware' => 'auth'], function () {
     // halaman utama mahasiswa
@@ -84,3 +87,11 @@ Route::post('/login', 'AuthController@authenticate');
     });
     Route::get('/history_pejabat', 'HistorysuratController@pilihHistorySurat');
 // });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');

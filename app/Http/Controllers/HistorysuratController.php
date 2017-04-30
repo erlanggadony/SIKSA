@@ -108,7 +108,7 @@ class HistorysuratController extends Controller
         $historysurat = new Historysurat;
         $historysurat->no_surat = $noSurat;
         $historysurat->perihal = '-';
-        $historysurat->penerimaSurat = $penyediabeasiswa;
+        $historysurat->penerimaSurat = '-';
         // $historysurat->pemohon = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
         // $historysurat->jenis_surat = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
         $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $nama . '_surat_keterangan_beasiswa.pdf';
@@ -131,6 +131,7 @@ class HistorysuratController extends Controller
 
         //input entry
         $entry = '\mailentry{' . $noSurat . ',' . $nama . ',' . $prodi . ',' . $npm . ',' . $kota_lahir . ',' . $tglLahir . ',' . $alamat . ',' . $semester . '}';
+        // dd($entry);
         $fileTemplate = file('format_surat_latex/surat_keterangan_mahasiswa_aktif.tex');
         $stringFormat = "";
         $baris = count($fileTemplate);
@@ -142,7 +143,7 @@ class HistorysuratController extends Controller
                 $stringFormat .= $entry;
             }
         }
-
+        // dd($stringFormat);
         //inject ke file baru
         $file = fopen("arsip_surat/" . $noSurat. "_" . $nama . "_surat_keterangan_mahasiswa_aktif.tex", "w");
         fwrite($file, $stringFormat);
@@ -153,7 +154,7 @@ class HistorysuratController extends Controller
         $historysurat = new Historysurat;
         $historysurat->no_surat = $noSurat;
         $historysurat->perihal = '-';
-        $historysurat->penerimaSurat = $penyediabeasiswa;
+        $historysurat->penerimaSurat = '-';
         // $historysurat->pemohon = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
         // $historysurat->jenis_surat = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
         $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $nama . '_surat_keterangan_mahasiswa_aktif.pdf';
@@ -196,7 +197,7 @@ class HistorysuratController extends Controller
         $historysurat = new Historysurat;
         $historysurat->no_surat = $noSurat;
         $historysurat->perihal = '-';
-        $historysurat->penerimaSurat = $penyediabeasiswa;
+        $historysurat->penerimaSurat = '-';
         // $historysurat->pemohon = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
         // $historysurat->jenis_surat = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
         $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $nama . '_surat_pengantar_pembuatan_visa.pdf';
@@ -240,7 +241,7 @@ class HistorysuratController extends Controller
         $historysurat = new Historysurat;
         $historysurat->no_surat = $noSurat;
         $historysurat->perihal = '-';
-        $historysurat->penerimaSurat = $penyediabeasiswa;
+        $historysurat->penerimaSurat = '-';
         // $historysurat->pemohon = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
         // $historysurat->jenis_surat = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
         $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $nama . '_surat_pengantar_studi_lapangan_1orang.pdf';
@@ -298,7 +299,7 @@ class HistorysuratController extends Controller
         $historysurat = new Historysurat;
         $historysurat->no_surat = $noSurat;
         $historysurat->perihal = '-';
-        $historysurat->penerimaSurat = $penyediabeasiswa;
+        $historysurat->penerimaSurat = '-';
         // $historysurat->pemohon = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
         // $historysurat->jenis_surat = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
         $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $nama . '_surat_pengantar_studi_lapangan_2orang.pdf';
@@ -360,7 +361,7 @@ class HistorysuratController extends Controller
         $historysurat = new Historysurat;
         $historysurat->no_surat = $noSurat;
         $historysurat->perihal = '-';
-        $historysurat->penerimaSurat = $penyediabeasiswa;
+        $historysurat->penerimaSurat = '-';
         // $historysurat->pemohon = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
         // $historysurat->jenis_surat = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
         $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $nama . '_surat_pengantar_studi_lapangan_3orang.pdf';
@@ -426,7 +427,7 @@ class HistorysuratController extends Controller
         $historysurat = new Historysurat;
         $historysurat->no_surat = $noSurat;
         $historysurat->perihal = '-';
-        $historysurat->penerimaSurat = $penyediabeasiswa;
+        $historysurat->penerimaSurat = '-';
         // $historysurat->pemohon = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
         // $historysurat->jenis_surat = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
         $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $nama . '_surat_pengantar_studi_lapangan_4orang.pdf';
@@ -496,7 +497,7 @@ class HistorysuratController extends Controller
         $historysurat = new Historysurat;
         $historysurat->no_surat = $noSurat;
         $historysurat->perihal = '-';
-        $historysurat->penerimaSurat = $penyediabeasiswa;
+        $historysurat->penerimaSurat = '-';
         // $historysurat->pemohon = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
         // $historysurat->jenis_surat = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
         $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $nama . '_surat_pengantar_studi_lapangan_5orang.pdf';
@@ -554,7 +555,7 @@ class HistorysuratController extends Controller
         $historysurat = new Historysurat;
         $historysurat->no_surat = $noSurat;
         $historysurat->perihal = '-';
-        $historysurat->penerimaSurat = $penyediabeasiswa;
+        $historysurat->penerimaSurat = '-';
         // $historysurat->pemohon = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
         // $historysurat->jenis_surat = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
         $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $nama . '_surat_izin_cuti_studi.pdf';
@@ -597,7 +598,7 @@ class HistorysuratController extends Controller
         $historysurat = new Historysurat;
         $historysurat->no_surat = $noSurat;
         $historysurat->perihal = '-';
-        $historysurat->penerimaSurat = $penyediabeasiswa;
+        $historysurat->penerimaSurat = '-';
         // $historysurat->pemohon = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
         // $historysurat->jenis_surat = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
         $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $nama . '_surat_pengunduran_diri.pdf';
@@ -655,7 +656,7 @@ class HistorysuratController extends Controller
         $historysurat = new Historysurat;
         $historysurat->no_surat = $noSurat;
         $historysurat->perihal = '-';
-        $historysurat->penerimaSurat = $penyediabeasiswa;
+        $historysurat->penerimaSurat = '-';
         // $historysurat->pemohon = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
         // $historysurat->jenis_surat = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
         $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $nama . '_surat_perwakilan_perwalian_1mk.pdf';
@@ -717,7 +718,7 @@ class HistorysuratController extends Controller
         $historysurat = new Historysurat;
         $historysurat->no_surat = $noSurat;
         $historysurat->perihal = '-';
-        $historysurat->penerimaSurat = $penyediabeasiswa;
+        $historysurat->penerimaSurat = '-';
         // $historysurat->pemohon = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
         // $historysurat->jenis_surat = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
         $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $nama . '_surat_perwakilan_perwalian_2mk.pdf';
@@ -783,7 +784,7 @@ class HistorysuratController extends Controller
         $historysurat = new Historysurat;
         $historysurat->no_surat = $noSurat;
         $historysurat->perihal = '-';
-        $historysurat->penerimaSurat = $penyediabeasiswa;
+        $historysurat->penerimaSurat = '-';
         // $historysurat->pemohon = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
         // $historysurat->jenis_surat = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
         $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $nama . '_surat_perwakilan_perwalian_3mk.pdf';
@@ -853,7 +854,7 @@ class HistorysuratController extends Controller
         $historysurat = new Historysurat;
         $historysurat->no_surat = $noSurat;
         $historysurat->perihal = '-';
-        $historysurat->penerimaSurat = $penyediabeasiswa;
+        $historysurat->penerimaSurat = '-';
         // $historysurat->pemohon = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
         // $historysurat->jenis_surat = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
         $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $nama . '_surat_perwakilan_perwalian_4mk.pdf';
@@ -927,7 +928,7 @@ class HistorysuratController extends Controller
         $historysurat = new Historysurat;
         $historysurat->no_surat = $noSurat;
         $historysurat->perihal = '-';
-        $historysurat->penerimaSurat = $penyediabeasiswa;
+        $historysurat->penerimaSurat = '-';
         // $historysurat->pemohon = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
         // $historysurat->jenis_surat = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
         $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $nama . '_surat_perwakilan_perwalian_5mk.pdf';
@@ -1005,7 +1006,7 @@ class HistorysuratController extends Controller
         $historysurat = new Historysurat;
         $historysurat->no_surat = $noSurat;
         $historysurat->perihal = '-';
-        $historysurat->penerimaSurat = $penyediabeasiswa;
+        $historysurat->penerimaSurat = '-';
         // $historysurat->pemohon = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
         // $historysurat->jenis_surat = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
         $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $nama . '_surat_perwakilan_perwalian_6mk.pdf';
@@ -1087,7 +1088,7 @@ class HistorysuratController extends Controller
         $historysurat = new Historysurat;
         $historysurat->no_surat = $noSurat;
         $historysurat->perihal = '-';
-        $historysurat->penerimaSurat = $penyediabeasiswa;
+        $historysurat->penerimaSurat = '-';
         // $historysurat->pemohon = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
         // $historysurat->jenis_surat = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
         $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $nama . '_surat_perwakilan_perwalian_7mk.pdf';
@@ -1173,7 +1174,7 @@ class HistorysuratController extends Controller
         $historysurat = new Historysurat;
         $historysurat->no_surat = $noSurat;
         $historysurat->perihal = '-';
-        $historysurat->penerimaSurat = $penyediabeasiswa;
+        $historysurat->penerimaSurat = '-';
         // $historysurat->pemohon = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
         // $historysurat->jenis_surat = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
         $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $nama . '_surat_perwakilan_perwalian_8mk.pdf';
@@ -1263,7 +1264,7 @@ class HistorysuratController extends Controller
         $historysurat = new Historysurat;
         $historysurat->no_surat = $noSurat;
         $historysurat->perihal = '-';
-        $historysurat->penerimaSurat = $penyediabeasiswa;
+        $historysurat->penerimaSurat = '-';
         // $historysurat->pemohon = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
         // $historysurat->jenis_surat = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
         $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $nama . '_surat_perwakilan_perwalian_9mk.pdf';
@@ -1357,7 +1358,7 @@ class HistorysuratController extends Controller
         $historysurat = new Historysurat;
         $historysurat->no_surat = $noSurat;
         $historysurat->perihal = '-';
-        $historysurat->penerimaSurat = $penyediabeasiswa;
+        $historysurat->penerimaSurat = '-';
         // $historysurat->pemohon = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
         // $historysurat->jenis_surat = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
         $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $nama . '_surat_perwakilan_perwalian_10mk.pdf';

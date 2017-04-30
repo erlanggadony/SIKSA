@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
-
+namespace App\Http\Controllers;
+use App\Repositories\TURepository;
+use App\Repositories\DosenRepository;
+use App\Repositories\MahasiswaRepository;
 use App\Mahasiswa;
+use App\Dosen;
 use Validator;
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
 
@@ -23,37 +24,39 @@ class AuthController extends Controller
     |
     */
 
-    use AuthenticatesAndRegistersUsers, ThrottlesLogins;
-    use App\Repositories\MahasiswaRepository;
-    use App\Mahasiswa;
+
     /**
      * Where to redirect users after login / registration.
      *
      * @var string
      */
-    protected $redirectTo = '/';
-    protected $username = 'username';
     protected $mahasiswaRepo;
+    protected $dosenRepo;
+    protected $TURepo;
 
     /**
      * Create a new authentication controller instance.
      *
      * @return void
      */
-    public function __construct(MahasiswaRepository $mahasiswaRepo)
-    {
+    public function __construct(MahasiswaRepository $mahasiswaRepo, DosenRepository $dosenRepo, TURepository $TURepo){
         $this->mahasiswaRepo = $mahasiswaRepo;
-    }
+        $this->dosenRepo = $dosenRepo;
+        $this->TURepo = $TURepo;
+    }contains('d')contains('d')
 
     public function authenticate(Request $request){
-        $tempMahasiswa = $this->mahasiswaRepo->findMahasiswaByUsername($request->username);4
-        // dd($username, $password);
-        return view ('/home_mahasiswa');
+      // dd($request);
+      $username = $request->username;
+      $password = $request->password;
+
+      
+
     }
 
     public function logout(){
         Auth::logout();
-        return redirect()->route('login_mahasiswa')
+        return redirect()->route('login');
     }
     /**
      * Get a validator for an incoming registration request.
@@ -65,9 +68,10 @@ class AuthController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required',
-            'username' => 'required'
-            'email' => 'required',
+            'username' => 'required',
+            // 'email' => 'required',
             'password' => 'required',
+            'jabatan' => 'required'
         ]);
     }
 
@@ -84,6 +88,7 @@ class AuthController extends Controller
             'username' > $data['username'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'jabatan' => $data['jabatan'],
         ]);
     }
 }

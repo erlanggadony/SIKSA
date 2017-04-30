@@ -112,7 +112,7 @@ class PesanansuratController extends Controller
         $thnAkademik = $json->thnAkademik;
         $negaraTujuan = $json->negaraTujuan;
         $tanggalKunjungan = $json->tanggalKunjungan;
-        $formatsurat_id = $request->jenis_surat;
+        $formatsurat_id = $request->idFormatSurat;
         // dd($dataSurat);
         return view('TU.proses_surat_pembuatan_visa', [
             'nama' => $nama,
@@ -137,9 +137,9 @@ class PesanansuratController extends Controller
         $organisasi = $json->organisasi;
         $alamatOrganisasi = $json->alamatOrganisasi;
         $keperluanKunjungan = $json->keperluanKunjungan;
-        $formatsurat_id = $request->jenis_surat;
+        $formatsurat_id = $request->idFormatSurat;
         // dd($request);
-        return view('TU.proses_surat_izin_studi_lapangan_1orang', [
+        return view('TU.proses_surat_izin_studi_lapangan_1org', [
             'nama' => $nama,
             'npm' => $npm,
             'prodi' => $prodi,
@@ -165,8 +165,8 @@ class PesanansuratController extends Controller
         $keperluanKunjungan = $json->keperluanKunjungan;
         $namaAnggota = $json->namaAnggota;
         $npmAnggota = $json->npmAnggota;
-        $formatsurat_id = $request->jenis_surat;
-        return view('TU.proses_surat', [
+        $formatsurat_id = $request->idFormatSurat;
+        return view('TU.proses_surat_izin_studi_lapangan_2org', [
             'nama' => $nama,
             'npm' => $npm,
             'prodi' => $prodi,
@@ -196,8 +196,8 @@ class PesanansuratController extends Controller
         $npmAnggota1 = $json->npmAnggota1;
         $namaAnggota2 = $json->namaAnggota2;
         $npmAnggota2 = $json->npmAnggota2;
-        $formatsurat_id = $request->jenis_surat;
-        return view('TU.proses_surat', [
+        $formatsurat_id = $request->idFormatSurat;
+        return view('TU.proses_surat_izin_studi_lapangan_3org', [
             'nama' => $nama,
             'npm' => $npm,
             'prodi' => $prodi,
@@ -231,8 +231,8 @@ class PesanansuratController extends Controller
         $npmAnggota2 = $json->npmAnggota2;
         $namaAnggota3 = $json->namaAnggota3;
         $npmAnggota3 = $json->npmAnggota3;
-        $formatsurat_id = $request->jenis_surat;
-        return view('TU.proses_surat', [
+        $formatsurat_id = $request->idFormatSurat;
+        return view('TU.proses_surat_izin_studi_lapangan_4org', [
             'nama' => $nama,
             'npm' => $npm,
             'prodi' => $prodi,
@@ -270,8 +270,8 @@ class PesanansuratController extends Controller
         $npmAnggota3 = $json->npmAnggota3;
         $namaAnggota4 = $json->namaAnggota4;
         $npmAnggota4 = $json->npmAnggota4;
-        $formatsurat_id = $request->jenis_surat;
-        return view('TU.proses_surat', [
+        $formatsurat_id = $request->idFormatSurat;
+        return view('TU.proses_surat_izin_studi_lapangan_5org', [
             'nama' => $nama,
             'npm' => $npm,
             'prodi' => $prodi,
@@ -323,7 +323,7 @@ class PesanansuratController extends Controller
         $persetujuanWDI = '-';
         $catatanWDI = '-';
         $persetujuanDekan = '-';
-        $formatsurat_id = $request->jenis_surat;
+        $formatsurat_id = $request->idFormatSurat;
         return view('TU.proses_surat_izin_cuti_studi', [
             'nama' => $nama,
             'npm' => $npm,
@@ -376,8 +376,7 @@ class PesanansuratController extends Controller
         $persetujuanWDI = '-';
         $catatanWDI = '-';
         $persetujuanDekan = '-';
-        $formatsurat_id = $request->jenis_surat;
-        $dataSurat = $this->buatJSON($request);
+        $formatsurat_id = $request->idFormatSurat;
         return view('TU.proses_surat_izin_pengunduran_diri', [
             'nama' => $nama,
             'npm' => $npm,
@@ -414,7 +413,7 @@ class PesanansuratController extends Controller
         $alasan = $json->alasan;
         $matkul = $json->matkul;
         $sks = $json->sks;
-        $formatsurat_id = $request->jenis_surat;
+        $formatsurat_id = $request->idFormatSurat;
         return view('TU.proses_surat_perwakilan_perwalian_1mk', [
             'semester' => $semester,
             'thnAkademik' => $thnAkademik,
@@ -449,8 +448,8 @@ class PesanansuratController extends Controller
         $sks1 = $json->sks1;
         $matkul2 = $json->matkul2;
         $sks2 = $json->sks2;
-        $formatsurat_id = $request->jenis_surat;
-        return view('TU.proses_surat', [
+        $formatsurat_id = $request->idFormatSurat;
+        return view('TU.proses_surat_perwakilan_perwalian_2mk', [
             'semester' => $semester,
             'thnAkademik' => $thnAkademik,
             'nama' => $nama,
@@ -488,8 +487,8 @@ class PesanansuratController extends Controller
         $sks2 = $json->sks2;
         $matkul3 = $request->matkul3;
         $sks3 = $json->sks3;;
-        $formatsurat_id = $request->jenis_surat;
-        return view('TU.proses_surat', [
+        $formatsurat_id = $request->idFormatSurat;
+        return view('TU.proses_surat_perwakilan_perwalian_3mk', [
             'semester' => $semester,
             'thnAkademik' => $thnAkademik,
             'nama' => $nama,
@@ -531,8 +530,8 @@ class PesanansuratController extends Controller
         $sks3 = $json->sks3;
         $matkul4 = $request->matkul4;
         $sks4 = $json->sks4;;
-        $formatsurat_id = $request->jenis_surat;
-        return view('TU.proses_surat', [
+        $formatsurat_id = $request->idFormatSurat;
+        return view('TU.proses_surat_perwakilan_perwalian_4mk', [
             'semester' => $semester,
             'thnAkademik' => $thnAkademik,
             'nama' => $nama,
@@ -578,8 +577,8 @@ class PesanansuratController extends Controller
         $sks4 = $json->sks4;
         $matkul5 = $json->matkul5;
         $sks5 = $json->sks5;
-        $formatsurat_id = $request->jenis_surat;
-        return view('TU.proses_surat', [
+        $formatsurat_id = $request->idFormatSurat;
+        return view('TU.proses_surat_perwakilan_perwalian_5mk', [
             'semester' => $semester,
             'thnAkademik' => $thnAkademik,
             'nama' => $nama,
@@ -629,8 +628,8 @@ class PesanansuratController extends Controller
         $sks5 = $json->sks5;
         $matkul6 = $json->matkul6;
         $sks6 = $json->sks6;
-        $formatsurat_id = $request->jenis_surat;
-        return view('TU.proses_surat', [
+        $formatsurat_id = $request->idFormatSurat;
+        return view('TU.proses_surat_perwakilan_perwalian_6mk', [
             'semester' => $semester,
             'thnAkademik' => $thnAkademik,
             'nama' => $nama,
@@ -684,8 +683,8 @@ class PesanansuratController extends Controller
         $sks6 = $json->sks6;
         $matkul7 = $json->matkul7;
         $sks7 = $json->sks7;
-        $formatsurat_id = $request->jenis_surat;
-        return view('TU.proses_surat', [
+        $formatsurat_id = $request->idFormatSurat;
+        return view('TU.proses_surat_perwakilan_perwalian_7mk', [
             'semester' => $semester,
             'thnAkademik' => $thnAkademik,
             'nama' => $nama,
@@ -743,8 +742,8 @@ class PesanansuratController extends Controller
         $sks7 = $json->sks7;
         $matkul8 = $json->matkul8;
         $sks8 = $json->sks8;
-        $formatsurat_id = $request->jenis_surat;
-        return view('TU.proses_surat', [
+        $formatsurat_id = $request->idFormatSurat;
+        return view('TU.proses_surat_perwakilan_perwalian_8mk', [
             'semester' => $semester,
             'thnAkademik' => $thnAkademik,
             'nama' => $nama,
@@ -806,8 +805,8 @@ class PesanansuratController extends Controller
         $sks8 = $json->sks8;
         $matkul9 = $json->matkul9;
         $sks9 = $json->sks9;
-        $formatsurat_id = $request->jenis_surat;
-        return view('TU.proses_surat', [
+        $formatsurat_id = $request->idFormatSurat;
+        return view('TU.proses_surat_perwakilan_perwalian_9mk', [
             'semester' => $semester,
             'thnAkademik' => $thnAkademik,
             'nama' => $nama,
@@ -873,8 +872,8 @@ class PesanansuratController extends Controller
         $sks9 = $json->sks9;
         $matkul10 = $json->matkul10;
         $sks10 = $json->sks10;
-        $formatsurat_id = $request->jenis_surat;
-        return view('TU.proses_surat', [
+        $formatsurat_id = $request->idFormatSurat;
+        return view('TU.proses_surat_perwakilan_perwalian_10mk', [
             'semester' => $semester,
             'thnAkademik' => $thnAkademik,
             'nama' => $nama,
@@ -1211,7 +1210,7 @@ class PesanansuratController extends Controller
           $pesanansurat->persetujuanDekan = true;
           $pesanansurat->save();
         }
-        return redirect('/home_mahasiswa')->with('success_message', 'Surat' . $pesanansurat->formatsurats_id . 'berhasil dibuat');
+        return redirect('/home_mahasiswa')->with('success_message', 'Surat berhasil dibuat');
     }
 
     /**

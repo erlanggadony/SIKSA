@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.2.1)  28 APR 2017 19:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.2.1)  30 APR 2017 19:13
 entering extended mode
-**./arsip_surat/i45yrie_Dony_surat_keterangan_beasiswa.tex
-(arsip_surat/i45yrie_Dony_surat_keterangan_beasiswa.tex
+**./arsip_surat/4__surat_pengantar_studi_lapangan_1orang.tex
+(arsip_surat/4__surat_pengantar_studi_lapangan_1orang.tex
 LaTeX2e <2016/03/31> patch level 3
 Babel <3.9r> and hyphenation patterns for 75 language(s) loaded.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\letter.cls"
@@ -54,8 +54,8 @@ Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 \c@MAILMcount=\count83
 \c@MAILMentry=\count84
 )
-No file i45yrie_Dony_surat_keterangan_beasiswa.aux.
-\openout1 = `i45yrie_Dony_surat_keterangan_beasiswa.aux'.
+No file 4__surat_pengantar_studi_lapangan_1orang.aux.
+\openout1 = `4__surat_pengantar_studi_lapangan_1orang.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
 LaTeX Font Info:    ... okay on input line 5.
@@ -78,14 +78,14 @@ LaTeX Font Info:    ... okay on input line 5.
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
 * h-part:(L,W,R)=(99.58464pt, 463.4954pt, 51.21495pt)
-* v-part:(T,H,B)=(150.79959pt, 818.30128pt, 42.67912pt)
+* v-part:(T,H,B)=(156.49014pt, 812.61073pt, 42.67912pt)
 * \paperwidth=614.295pt
 * \paperheight=1011.78pt
 * \textwidth=463.4954pt
-* \textheight=818.30128pt
+* \textheight=812.61073pt
 * \oddsidemargin=27.31465pt
 * \evensidemargin=27.31465pt
-* \topmargin=21.5296pt
+* \topmargin=27.22015pt
 * \headheight=12.0pt
 * \headsep=45.0pt
 * \topskip=12.0pt
@@ -103,6 +103,16 @@ LaTeX Font Info:    ... okay on input line 5.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 44--44
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 44--44
+
+ []
+
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <12> on input line 44.
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -112,23 +122,33 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 [1
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
-("F:\Skripsi\Source code Skripsi\SIKSA\public\arsip_surat\i45yrie_Dony_surat_ke
-terangan_beasiswa.aux") ) 
+Underfull \hbox (badness 10000) in paragraph at lines 44--44
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 44--44
+
+ []
+
+[2]
+("F:\Skripsi\Source code Skripsi\SIKSA\public\arsip_surat\4__surat_pengantar_st
+udi_lapangan_1orang.aux") ) 
 Here is how much of TeX's memory you used:
- 772 strings out of 493333
- 11206 string characters out of 3139169
- 68511 words of memory out of 3000000
- 4350 multiletter control sequences out of 15000+200000
- 6376 words of font info for 23 fonts, out of 3000000 for 9000
+ 782 strings out of 493333
+ 11360 string characters out of 3139169
+ 69512 words of memory out of 3000000
+ 4359 multiletter control sequences out of 15000+200000
+ 6683 words of font info for 24 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 23i,4n,19p,235b,112s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
-ts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr
-12.pfb>
-Output written on "F:/Skripsi/Source code Skripsi/SIKSA/public/arsip_surat/i45y
-rie_Dony_surat_keterangan_beasiswa.pdf" (1 page, 29053 bytes).
+ 23i,4n,19p,276b,116s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsf
+onts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
+cmr12.pfb>
+Output written on "F:/Skripsi/Source code Skripsi/SIKSA/public/arsip_surat/4__s
+urat_pengantar_studi_lapangan_1orang.pdf" (2 pages, 31429 bytes).
 PDF statistics:
- 14 PDF objects out of 1000 (max. 8388607)
+ 17 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

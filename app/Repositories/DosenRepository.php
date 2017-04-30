@@ -1,13 +1,17 @@
 <?php
   namespace App\Repositories;
 
-  use App\Mahasiswa;
+  use App\Dosen;
 
-  class DosenReposotory{
-    public function fidById($id){
-      $dosens = Dosen::where('id', $id)->first();
-      return $dosens;
+  class DosenRepository{
+    public function findDosenById($id){
+      $dosen = Dosen::where('id', $id)->first();
+      return $dosen;
     }
 
+    public function findDosenByUsername($username){
+      $dosen = Dosen::where('username', $username)->first();
+      return $dosen;
+    }
   }
 ?>

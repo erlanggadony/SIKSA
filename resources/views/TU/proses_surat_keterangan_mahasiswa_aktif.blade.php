@@ -31,38 +31,38 @@
                 <br>
                 <form class="form-horizontal" action="{{ url('/generatePDF') }}" method="post">
                   <div class="form-group">
-                    <label class="col-sm-4 prevLabel">Nama</label>
-                    <div class="col-sm-8 prev">
+                    <label class="col-sm-3 prevLabel">Nama</label>
+                    <div class="col-sm-9">
                       {{ $nama }}
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-4 prevLabel">NPM</label>
-                    <div class="col-sm-8 prev">
+                    <label class="col-sm-3 prevLabel">NPM</label>
+                    <div class="col-sm-9">
                       {{ $npm }}
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-4 prevLabel">Program Studi</label>
-                    <div class="col-sm-8 prev">
+                    <label class="col-sm-3 prevLabel">Program Studi</label>
+                    <div class="col-sm-9">
                       {{ $prodi }}
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-4 prevLabel">Semester</label>
-                    <div class="col-sm-8">
+                    <label class="col-sm-3 prevLabel">Semester</label>
+                    <div class="col-sm-9">
                       {{ $semester }}
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-4 prevLabel">Tempat, Tanggal Lahir</label>
-                    <div class="col-sm-8 prev">
+                    <label class="col-sm-3 prevLabel">Tempat, Tanggal Lahir</label>
+                    <div class="col-sm-9">
                       {{ $kota_lahir}}, {{ $tglLahir}}
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-4 prevLabel">Alamat di Bandung</label>
-                    <div class="col-sm-8">
+                    <label class="col-sm-3 prevLabel">Alamat di Bandung</label>
+                    <div class="col-sm-9">
                       {{ $alamat }}
                     </div>
                   </div>

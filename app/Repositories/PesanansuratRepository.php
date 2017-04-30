@@ -6,7 +6,7 @@
   class PesanansuratRepository{
 
     public function findAllPesananSurat(){
-      $pesanansurats = PesananSurat::orderBy('created_at', 'DESC')->paginate(15);
+      $pesanansurats = PesananSurat::orderBy('created_at', 'DESC')->paginate(9);
       return $pesanansurats;
     }
     public function findPesananSuratByIdPesanan($idPesanan){

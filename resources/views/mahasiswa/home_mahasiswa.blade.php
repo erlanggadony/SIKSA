@@ -16,7 +16,7 @@
             <ul class="inline">
                <a href="/home_mahasiswa"><li>Home</li></a>
                <a href="/pilih_jenis_surat"><li>Buat Surat</li></a>
-               <li>Logout</li>
+               <a href="/logout"><li>Logout</li></a>
             </ul>
          </div>
     </div>
