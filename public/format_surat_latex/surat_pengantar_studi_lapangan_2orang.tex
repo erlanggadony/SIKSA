@@ -3,7 +3,7 @@
 \usepackage{mailmerge}
 
 \begin{document}
-\mailfields{noSurat,namaPemohon,npmPemohon,namaAnggota,npmAnggota,tujuanKunjungan,kepada,alamat,matkul,judulTopik,instansi,tanggal,wdIII}
+\mailfields{noSurat,namaPemohon,npmPemohon,prodi,matkul,judulTopik,instansi,alamat,tujuanKunjungan,kepada,kota,namaAnggota,npmAnggota}
 
 \mailrepeat{
 Nomor : \field{noSurat}\\
@@ -14,7 +14,7 @@ Lamp\hspace{0.35cm}: -\\
 \textbf{Kepada YTH.\\
 KEPALA \field{kepada}\\
 \field{alamat}\\
-BANDUNG}
+\field{kota}}
 
  Dengan hormat,\\
 
@@ -29,13 +29,13 @@ Bersama ini kami informasikan bahwa 2 orang mahasiswa kami, yaitu:
 	\end{tabular}
 	\end{quote}
 	saat ini sedang mengambil Matakuliah \field{matkul} dengan topik "\field{judulTopik}". Ybs. memerlukan informasi sehubungan dengan hal-hal yang terkait dengan masalah tersebut yang diterapkan di \field{instansi}.\
-	
+
 Untuk itu kami memohonkan ijin bagi mahasiswa kami tersebut agar diperbolehkan untuk melakukan \field{tujuanKunjungan} di \field{instansi}.\
 
 Atas perhatian dan kerjasamanya yang diberikan kami mengucapkan terima kasih.
 \vspace{2cm}
 		\begin{flushright}
-			Bandung, \field{tanggal}\\ 
+			Bandung, \field{tanggal}\\
 					Wakil Dekan III\\
 			\vspace{2cm}
 			\underline{\field{wdIII}}
@@ -43,7 +43,5 @@ Atas perhatian dan kerjasamanya yang diberikan kami mengucapkan terima kasih.
 \thispagestyle{empty}
 	\newpage
 }
- 
-\mailentry{noSurat,namaPemohon,npmPemohon,namaAnggota,npmAnggota,tujuanKunjungan,kepada,alamat,matkul,judulTopik,instansi,tanggal,wdIII}
 
 \end{document}

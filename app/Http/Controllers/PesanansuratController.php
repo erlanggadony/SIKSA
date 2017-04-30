@@ -137,6 +137,8 @@ class PesanansuratController extends Controller
         $organisasi = $json->organisasi;
         $alamatOrganisasi = $json->alamatOrganisasi;
         $keperluanKunjungan = $json->keperluanKunjungan;
+        $kota = $json->kota;
+        $kepada = $json->kepada;
         $formatsurat_id = $request->idFormatSurat;
         // dd($request);
         return view('TU.proses_surat_izin_studi_lapangan_1org', [
@@ -148,6 +150,8 @@ class PesanansuratController extends Controller
             'organisasi' => $organisasi,
             'alamatOrganisasi' => $alamatOrganisasi,
             'keperluanKunjungan' => $keperluanKunjungan,
+            'kota' => $kota,
+            'kepada' => $kepada,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat
         ]);
@@ -163,6 +167,8 @@ class PesanansuratController extends Controller
         $organisasi = $json->organisasi;
         $alamatOrganisasi = $json->alamatOrganisasi;
         $keperluanKunjungan = $json->keperluanKunjungan;
+        $kota = $json->kota;
+        $kepada = $json->kepada;
         $namaAnggota = $json->namaAnggota;
         $npmAnggota = $json->npmAnggota;
         $formatsurat_id = $request->idFormatSurat;
@@ -175,6 +181,8 @@ class PesanansuratController extends Controller
             'organisasi' => $organisasi,
             'alamatOrganisasi' => $alamatOrganisasi,
             'keperluanKunjungan' => $keperluanKunjungan,
+            'kota' => $kota,
+            'kepada' => $kepada,
             'namaAnggota' => $namaAnggota,
             'npmAnggota' => $npmAnggota,
             'formatsurat_id' => $formatsurat_id,
@@ -192,6 +200,8 @@ class PesanansuratController extends Controller
         $organisasi = $json->organisasi;
         $alamatOrganisasi = $json->alamatOrganisasi;
         $keperluanKunjungan = $json->keperluanKunjungan;
+        $kota = $json->kota;
+        $kepada = $json->kepada;
         $namaAnggota1 = $json->namaAnggota1;
         $npmAnggota1 = $json->npmAnggota1;
         $namaAnggota2 = $json->namaAnggota2;
@@ -206,6 +216,8 @@ class PesanansuratController extends Controller
             'organisasi' => $organisasi,
             'alamatOrganisasi' => $alamatOrganisasi,
             'keperluanKunjungan' => $keperluanKunjungan,
+            'kota' => $kota,
+            'kepada' => $kepada,
             'namaAnggota1' => $namaAnggota1,
             'npmAnggota1' => $npmAnggota1,
             'namaAnggota2' => $namaAnggota2,
@@ -225,6 +237,8 @@ class PesanansuratController extends Controller
         $organisasi = $json->organisasi;
         $alamatOrganisasi = $json->alamatOrganisasi;
         $keperluanKunjungan = $json->keperluanKunjungan;
+        $kota = $json->kota;
+        $kepada = $json->kepada;
         $namaAnggota1 = $json->namaAnggota1;
         $npmAnggota1 = $json->npmAnggota1;
         $namaAnggota2 = $json->namaAnggota2;
@@ -241,6 +255,8 @@ class PesanansuratController extends Controller
             'organisasi' => $organisasi,
             'alamatOrganisasi' => $alamatOrganisasi,
             'keperluanKunjungan' => $keperluanKunjungan,
+            'kota' => $kota,
+            'kepada' => $kepada,
             'namaAnggota1' => $namaAnggota1,
             'npmAnggota1' => $npmAnggota1,
             'namaAnggota2' => $namaAnggota2,
@@ -262,6 +278,8 @@ class PesanansuratController extends Controller
         $organisasi = $json->organisasi;
         $alamatOrganisasi = $json->alamatOrganisasi;
         $keperluanKunjungan = $json->keperluanKunjungan;
+        $kota = $json->kota;
+        $kepada = $json->kepada;
         $namaAnggota1 = $json->namaAnggota1;
         $npmAnggota1 = $json->npmAnggota1;
         $namaAnggota2 = $json->namaAnggota2;
@@ -280,6 +298,8 @@ class PesanansuratController extends Controller
             'organisasi' => $organisasi,
             'alamatOrganisasi' => $alamatOrganisasi,
             'keperluanKunjungan' => $keperluanKunjungan,
+            'kota' => $kota,
+            'kepada' => $kepada,
             'namaAnggota1' => $namaAnggota1,
             'npmAnggota1' => $npmAnggota1,
             'namaAnggota2' => $namaAnggota2,
@@ -675,7 +695,7 @@ class PesanansuratController extends Controller
         $sks2 = $json->sks2;
         $matkul3 = $json->matkul3;
         $sks3 = $json->sks3;
-        $matkul4 = $request->matkul4;
+        $matkul4 = $json->matkul4;
         $sks4 = $json->sks4;
         $matkul5 = $json->matkul5;
         $sks5 = $json->sks5;
@@ -1259,6 +1279,8 @@ class PesanansuratController extends Controller
             'organisasi' => $request->organisasi,
             'alamatOrganisasi' => $request->alamatOrganisasi,
             'keperluanKunjungan' => $request->keperluanKunjungan,
+            'kota' => $request->kota,
+            'kepada' => $request->kepada
           ];
       }
       else if($request->jenis_surat == "5"){
@@ -1271,6 +1293,8 @@ class PesanansuratController extends Controller
           'organisasi' => $request->organisasi,
           'alamatOrganisasi' => $request->alamatOrganisasi,
           'keperluanKunjungan' => $request->keperluanKunjungan,
+          'kota' => $request->kota,
+          'kepada' => $request->kepada,
           'namaAnggota' => $request->namaAnggota,
           'npmAnggota' => $request->npmAnggota,
         ];
@@ -1285,6 +1309,8 @@ class PesanansuratController extends Controller
           'organisasi' => $request->organisasi,
           'alamatOrganisasi' => $request->alamatOrganisasi,
           'keperluanKunjungan' => $request->keperluanKunjungan,
+          'kota' => $request->kota,
+          'kepada' => $request->kepada,
           'namaAnggota1' => $request->namaAnggota1,
           'npmAnggota1' => $request->npmAnggota1,
           'namaAnggota2' => $request->namaAnggota2,
@@ -1301,6 +1327,8 @@ class PesanansuratController extends Controller
           'organisasi' => $request->organisasi,
           'alamatOrganisasi' => $request->alamatOrganisasi,
           'keperluanKunjungan' => $request->keperluanKunjungan,
+          'kota' => $request->kota,
+          'kepada' => $request->kepada,
           'namaAnggota1' => $request->namaAnggota1,
           'npmAnggota1' => $request->npmAnggota1,
           'namaAnggota2' => $request->namaAnggota2,
@@ -1319,6 +1347,8 @@ class PesanansuratController extends Controller
           'organisasi' => $request->organisasi,
           'alamatOrganisasi' => $request->alamatOrganisasi,
           'keperluanKunjungan' => $request->keperluanKunjungan,
+          'kota' => $request->kota,
+          'kepada' => $request->kepada,
           'namaAnggota1' => $request->namaAnggota1,
           'npmAnggota1' => $request->npmAnggota1,
           'namaAnggota2' => $request->namaAnggota2,
@@ -1726,6 +1756,8 @@ class PesanansuratController extends Controller
         $organisasi = $request->organisasi;
         $alamatOrganisasi = $request->alamatOrganisasi;
         $keperluanKunjungan = $request->keperluanKunjungan;
+        $kota = $request->kota;
+        $kepada = $request->kepada;
         $formatsurat_id = $request->jenis_surat;
         $dataSurat = $this->buatJSON($request);
         // dd($request);
@@ -1738,6 +1770,8 @@ class PesanansuratController extends Controller
             'organisasi' => $organisasi,
             'alamatOrganisasi' => $alamatOrganisasi,
             'keperluanKunjungan' => $keperluanKunjungan,
+            'kota' => $kota,
+            'kepada' => $kepada,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat
         ]);
@@ -1751,6 +1785,8 @@ class PesanansuratController extends Controller
         $organisasi = $request->organisasi;
         $alamatOrganisasi = $request->alamatOrganisasi;
         $keperluanKunjungan = $request->keperluanKunjungan;
+        $kota = $request->kota;
+        $kepada = $request->kepada;
         $namaAnggota = $request->namaAnggota;
         $npmAnggota = $request->npmAnggota;
         $formatsurat_id = $request->jenis_surat;
@@ -1764,6 +1800,8 @@ class PesanansuratController extends Controller
             'organisasi' => $organisasi,
             'alamatOrganisasi' => $alamatOrganisasi,
             'keperluanKunjungan' => $keperluanKunjungan,
+            'kota' => $kota,
+            'kepada' => $kepada,
             'namaAnggota' => $namaAnggota,
             'npmAnggota' => $npmAnggota,
             'formatsurat_id' => $formatsurat_id,
@@ -1779,6 +1817,8 @@ class PesanansuratController extends Controller
         $organisasi = $request->organisasi;
         $alamatOrganisasi = $request->alamatOrganisasi;
         $keperluanKunjungan = $request->keperluanKunjungan;
+        $kota = $request->kota;
+        $kepada = $request->kepada;
         $namaAnggota1 = $request->namaAnggota1;
         $npmAnggota1 = $request->npmAnggota1;
         $namaAnggota2 = $request->namaAnggota2;
@@ -1794,6 +1834,8 @@ class PesanansuratController extends Controller
             'organisasi' => $organisasi,
             'alamatOrganisasi' => $alamatOrganisasi,
             'keperluanKunjungan' => $keperluanKunjungan,
+            'kota' => $kota,
+            'kepada' => $kepada,
             'namaAnggota1' => $namaAnggota1,
             'npmAnggota1' => $npmAnggota1,
             'namaAnggota2' => $namaAnggota2,
@@ -1811,6 +1853,8 @@ class PesanansuratController extends Controller
         $organisasi = $request->organisasi;
         $alamatOrganisasi = $request->alamatOrganisasi;
         $keperluanKunjungan = $request->keperluanKunjungan;
+        $kota = $request->kota;
+        $kepada = $request->kepada;
         $namaAnggota1 = $request->namaAnggota1;
         $npmAnggota1 = $request->npmAnggota1;
         $namaAnggota2 = $request->namaAnggota2;
@@ -1828,6 +1872,8 @@ class PesanansuratController extends Controller
             'organisasi' => $organisasi,
             'alamatOrganisasi' => $alamatOrganisasi,
             'keperluanKunjungan' => $keperluanKunjungan,
+            'kota' => $kota,
+            'kepada' => $kepada,
             'namaAnggota1' => $namaAnggota1,
             'npmAnggota1' => $npmAnggota1,
             'namaAnggota2' => $namaAnggota2,
@@ -1847,6 +1893,8 @@ class PesanansuratController extends Controller
         $organisasi = $request->organisasi;
         $alamatOrganisasi = $request->alamatOrganisasi;
         $keperluanKunjungan = $request->keperluanKunjungan;
+        $kota = $request->kota;
+        $kepada = $request->kepada;
         $namaAnggota1 = $request->namaAnggota1;
         $npmAnggota1 = $request->npmAnggota1;
         $namaAnggota2 = $request->namaAnggota2;
@@ -1866,6 +1914,8 @@ class PesanansuratController extends Controller
             'organisasi' => $organisasi,
             'alamatOrganisasi' => $alamatOrganisasi,
             'keperluanKunjungan' => $keperluanKunjungan,
+            'kota' => $kota,
+            'kepada' => $kepada,
             'namaAnggota1' => $namaAnggota1,
             'npmAnggota1' => $npmAnggota1,
             'namaAnggota2' => $namaAnggota2,

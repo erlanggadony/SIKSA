@@ -217,10 +217,12 @@ class HistorysuratController extends Controller
         $topik = $json->topik;
         $organisasi = $json->organisasi;
         $alamatOrganisasi = $json->alamatOrganisasi;
+        $kepada = $json->kepada;
+        $kota = $json->kota;
         $keperluanKunjungan = $json->keperluanKunjungan;
 
         $entry = '\mailentry{' .
-          $noSurat . ',' . $nama . ',' . $npm . ',' . $prodi . ',' . $matkul . ',' . $topik . ',' . $organisasi . ',' . $alamatOrganisasi . ',' . $keperluanKunjungan . ',' . '}';
+          $noSurat . ',' . $nama . ',' . $npm . ',' . $prodi . ',' . $matkul . ',' . $topik . ',' . $organisasi . ',' . $alamatOrganisasi . ',' . $keperluanKunjungan . ',' .$kota . ',' . $kepada . ',' . '}';
         $fileTemplate = file('format_surat_latex/surat_pengantar_studi_lapangan_1orang.tex');
         $stringFormat = "";
         $baris = count($fileTemplate);
@@ -262,6 +264,8 @@ class HistorysuratController extends Controller
         $organisasi = $json->organisasi;
         $alamatOrganisasi = $json->alamatOrganisasi;
         $keperluanKunjungan = $json->keperluanKunjungan;
+        $kepada = $json->kepada;
+        $kota = $json->kota;
         $namaAnggota = $json->namaAnggota;
         $npmAnggota = $json->npmAnggota;
 
@@ -275,6 +279,8 @@ class HistorysuratController extends Controller
           $organisasi . ',' .
           $alamatOrganisasi . ',' .
           $keperluanKunjungan . ',' .
+          $kota . ',' .
+          $kepada . ',' .
           $namaAnggota . ',' .
           $npmAnggota . ',' .
           '}';
@@ -320,6 +326,8 @@ class HistorysuratController extends Controller
         $organisasi = $json->organisasi;
         $alamatOrganisasi = $json->alamatOrganisasi;
         $keperluanKunjungan = $json->keperluanKunjungan;
+        $kepada = $json->kepada;
+        $kota = $json->kota;
         $namaAnggota1 = $json->namaAnggota1;
         $npmAnggota1 = $json->npmAnggota1;
         $namaAnggota2 = $json->namaAnggota2;
@@ -335,6 +343,8 @@ class HistorysuratController extends Controller
           $organisasi . ',' .
           $alamatOrganisasi . ',' .
           $keperluanKunjungan . ',' .
+          $kota . ',' .
+          $kepada . ',' .
           $namaAnggota1 . ',' .
           $npmAnggota1 . ',' .
           $namaAnggota2 . ',' .
@@ -382,6 +392,8 @@ class HistorysuratController extends Controller
         $organisasi = $json->organisasi;
         $alamatOrganisasi = $json->alamatOrganisasi;
         $keperluanKunjungan = $json->keperluanKunjungan;
+        $kepada = $json->kepada;
+        $kota = $json->kota;
         $namaAnggota1 = $json->namaAnggota1;
         $npmAnggota1 = $json->npmAnggota1;
         $namaAnggota2 = $json->namaAnggota2;
@@ -399,6 +411,8 @@ class HistorysuratController extends Controller
           $organisasi . ',' .
           $alamatOrganisasi . ',' .
           $keperluanKunjungan . ',' .
+          $kota . ',' .
+          $kepada . ',' .
           $namaAnggota1 . ',' .
           $npmAnggota1 . ',' .
           $namaAnggota2 . ',' .
@@ -448,6 +462,8 @@ class HistorysuratController extends Controller
         $organisasi = $json->organisasi;
         $alamatOrganisasi = $json->alamatOrganisasi;
         $keperluanKunjungan = $json->keperluanKunjungan;
+        $kepada = $json->kepada;
+        $kota = $json->kota;
         $namaAnggota1 = $json->namaAnggota1;
         $npmAnggota1 = $json->npmAnggota1;
         $namaAnggota2 = $json->namaAnggota2;
@@ -467,6 +483,8 @@ class HistorysuratController extends Controller
           $organisasi . ',' .
           $alamatOrganisasi . ',' .
           $keperluanKunjungan . ',' .
+          $kota . ',' .
+          $kepada . ',' .
           $namaAnggota1 . ',' .
           $npmAnggota1 . ',' .
           $namaAnggota2 . ',' .
