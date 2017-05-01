@@ -35,7 +35,7 @@
                     @foreach($formatsurats as $formatsurat)
                     <div class="radio">
                       <label>
-                        <input type="radio"  name="jenis_surat" value="{{ $formatsurat->id }}">
+                        <input type="radio"  name="jenis_surat" value="{{ $formatsurat->id }}" required>
                         {{ $formatsurat->jenis_surat }}
                       </label>
                     </div>

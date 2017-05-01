@@ -844,7 +844,7 @@ class HistorysuratController extends Controller
           $alasan . ',' .
           $matkul1 . ',' .
           $sks1 . ',' .
-          $matkul2 . ',' .
+          $matkul2 . ','
           $sks2 . ',' .
           $matkul3 . ',' .
           $sks3 . ',' .
