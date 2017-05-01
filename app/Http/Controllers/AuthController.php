@@ -50,7 +50,7 @@ class AuthController extends Controller
       $username = $request->username;
       $password = $request->password;
 
-      
+
 
     }
 
@@ -69,7 +69,7 @@ class AuthController extends Controller
         return Validator::make($data, [
             'name' => 'required',
             'username' => 'required',
-            // 'email' => 'required',
+            'email' => 'required',
             'password' => 'required',
             'jabatan' => 'required'
         ]);

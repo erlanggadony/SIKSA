@@ -10,6 +10,9 @@ use App\Mahasiswa;
 use App\Formatsurat;
 use App\Historysurat;
 use Storage;
+use Illuminate\Support\Facades\Auth;
+use App\Dosen;
+use App\User;
 
 class HistorysuratController extends Controller
 {
@@ -30,6 +33,29 @@ class HistorysuratController extends Controller
       $pesanansurats = $this->historysuratRepo->findAllHistorySurat();
       return view('pejabat.history_pejabat', [
         'pesanansurats' => $pesanansurats
+      ]);
+    }
+
+    private function getRealUser($loggedInUser){
+      if($loggedInUser->jabatan == User::JABATAN_MHS){
+        $realUser = Mahasiswa::find($loggedInUser->ref);
+        dd($realUser);
+      }else if($loggedInUser->jabatan == User::JABATAN_DOS){
+        $realUser = Dosen::find($loggedInUser->ref);
+        dd($realUser);
+      }else{ // TU
+        // $realUser = User::find($loggedInUser->ref);
+        dd("TU: ");
+      }
+    }
+
+    public function tampilkanSeluruhSurat(Request $request){
+      $loggedInUser = Auth::user();
+
+      $realUser = $this->getRealUser($loggedInUser);
+
+      return view('mahasiswa/home_mahasiswa',[
+        'user' => $loggedInUser
       ]);
     }
 
@@ -68,7 +94,7 @@ class HistorysuratController extends Controller
           $historysurats = $this->historysuratRepo->findAllHistorysurat();
         }
         // dd($formatsurats);
-        return view('TU.history_TU',[
+        return view('pejabat.history_pejabat',[
             'historysurats' => $historysurats,
         ]);
 	}

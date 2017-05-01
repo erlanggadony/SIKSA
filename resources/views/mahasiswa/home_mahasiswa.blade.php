@@ -11,15 +11,8 @@
         <img id=banner src="{{ asset("/images/banner ftis.png") }}" />
     </div>
 
-    <div class="navigation">
-         <div class="navbar text-center">
-            <ul class="inline">
-               <a href="/home_mahasiswa"><li>Home</li></a>
-               <a href="/pilih_jenis_surat"><li>Buat Surat</li></a>
-               <a href="/logout"><li>Logout</li></a>
-            </ul>
-         </div>
-    </div>
+    <!-- Navigation here -->
+    @include('mahasiswa.menu')
 
     <div class="container">
       <div class="main">
@@ -53,7 +46,7 @@
 
               </table>
             </div>
-            <div class="col-md-4 profile">.col-md-4</div>
+            <div class="col-md-4 profile">{{ $user->name }}</div>
           </div>
             <!-- <div id="profile">
                 <img id=profpict src="{{ asset("/images/2012730071.jpg") }}" />

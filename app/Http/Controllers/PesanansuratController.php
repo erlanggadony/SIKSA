@@ -6,7 +6,10 @@ use App\Repositories\FormatsuratRepository;
 use App\Repositories\MahasiswaRepository;
 use App\Pesanansurat;
 use App\Formatsurat;
+use Illuminate\Support\Facades\Auth;
 use App\Mahasiswa;
+use App\User;
+use App\Dosen;
 class PesanansuratController extends Controller
 {
     //
@@ -22,9 +25,26 @@ class PesanansuratController extends Controller
     }
     public function tampilkanPesananDiPejabat(Request $request){
       $pesanansurats = $this->pesanansuratRepo->findAllPesananSurat();
+
+      $loggedInUser = Auth::user();
+      $realUser = $this->getRealUser($loggedInUser);
+
       return view('pejabat.home_pejabat', [
         'pesanansurats' => $pesanansurats
       ]);
+    }
+
+    private function getRealUser($loggedInUser){
+      if($loggedInUser->jabatan == User::JABATAN_MHS){
+        $realUser = Mahasiswa::find($loggedInUser->ref);
+        dd($realUser);
+      }else if($loggedInUser->jabatan == User::JABATAN_DOS){
+        $realUser = Dosen::find($loggedInUser->ref);
+        dd($realUser);
+      }else{ // TU
+        // $realUser = User::find($loggedInUser->ref);
+        dd("TU: ");
+      }
     }
 
     public function tampilkanPesananSurat(Request $request){

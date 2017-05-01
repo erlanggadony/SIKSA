@@ -20,17 +20,17 @@ Route::group(['prefix' => 'Api'], function(){
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/login', function () {
-    return view('mahasiswa/login');
+
+Route::get('/laravel-login', function(){
+  return view('auth.login');
 });
+
 Route::get('/logout', 'AuthController@logout');
 Route::post('/home', 'AuthController@authenticate');
 //<-------------------------------------------------------MAHASISWA------------------------------------------------------->
 // Route::group(['middleware' => 'auth'], function () {
     // halaman utama mahasiswa
-    Route::get('/home_mahasiswa', function () {
-        return view('mahasiswa/home_mahasiswa');
-    });
+    Route::get('/home_mahasiswa', 'HistorysuratController@tampilkanSeluruhSurat');
     //halaman untuk memilih jenis surat
     Route::get('/pilih_jenis_surat', 'FormatsuratController@pilihSurat');
     //halaman untuk pengisian data diri untuk masing-masing surat
@@ -87,10 +87,6 @@ Route::post('/home', 'AuthController@authenticate');
     });
     Route::get('/history_pejabat', 'HistorysuratController@pilihHistorySurat');
 // });
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index');
 
 Auth::routes();
 

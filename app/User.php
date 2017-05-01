@@ -9,6 +9,11 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    //jabatan const
+    const JABATAN_MHS = 'MHS';
+    const JABATAN_TU = 'TU';
+    const JABATAN_DOS = 'DOS';
+
     /**
      * The attributes that are mass assignable.
      *

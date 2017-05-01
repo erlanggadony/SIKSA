@@ -61,29 +61,29 @@ class RegisterController extends Controller
     }
 
     public function register(Request $request){
-      User::create(array(
-        'name' => Input::get('name'),
-        'username' => Input::get('username'),
+
+      $validator = validator($request->all());
+      // dd($validator);
+      if($validator->fails()){
+        return redirect('/login')
+        ->withErrors($validator)
+        ->withInput([
+          'username' => $request->username,
+          'name' => $request->name,
+          'jabatan' => $request->jabatan,
+        ]);
+      }
+      // dd("not fail");
+      $savedUser = User::create(array(
+        'name' => $request->name,
+        'username' => $request->username,
+        'jabatan' => $request->jabatan,
         // 'email' => Input::get('email'),
-        'password' => bcrypt(Input::get('password')),
-        'jabatan' => Input::get('jabatan')
+        'password' => bcrypt($request->password),
+        'jabatan' => $request->jabatan
       ));
-      return redirect('login');
+      // dd($savedUser);
+      return redirect('login')->with('success_message','Registrasi Berhasil');
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return User
-     */
-    protected function create(array $data){
-        return User::create([
-            'name' => $data['name'],
-            'username' => $data['username'],
-            // 'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-            'jabatan' => $data['jabatan']
-        ]);
-    }
 }

@@ -11,7 +11,25 @@
     <div class="login">
       <img id = "logo-unpar" src="{{ asset("/images/logo-unpar.png") }}" />
     <h1>Login</h1>
-      <form method="post" action="{{ url('/home') }}">
+
+
+      <form method="POST" action="{{ url('/login') }}">
+        <br>
+
+        @if (Session::has('success_message'))
+            <!-- Form Success Message -->
+            <div class="alert alert-success">
+                {!! Session::get('success_message') !!}
+            </div>
+        @endif
+        @if (Session::has('error_message'))
+            <!-- Form Error Message -->
+            <div class="alert alert-danger">
+                {!! Session::get('error_message') !!}
+            </div>
+        @endif
+
+
         <div>
             <input type="text" name="username" class="form-control" value="{{ old('username') }}" placeholder="Username" required autofocus />
             @if($errors->has('username'))

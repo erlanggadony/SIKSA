@@ -13,15 +13,8 @@
     </div>
 
 
-    <div class="navigation">
-         <div class="navbar text-center">
-            <ul class="inline">
-               <a href="/home_mahasiswa"><li>Home</li></a>
-               <a href="/pilih_jenis_surat"><li>Buat Surat</li></a>
-               <li>Logout</li>
-            </ul>
-         </div>
-    </div>
+    <!-- Navigation Here -->
+    @include('mahasiswa.menu')
 
     <div class="container">
       <div class="main">

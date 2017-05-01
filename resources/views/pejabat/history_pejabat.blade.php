@@ -13,15 +13,8 @@
         <img id=banner src="{{ asset("/images/banner ftis.png") }}" />
     </div>
 
-    <div class="navigation">
-         <div class="navbar text-center">
-            <ul class="inline">
-              <a href="/home_pejabat"><li>Home</li></a>
-              <a href="/history_pejabat"><li>History Surat</li></a>
-              <li>Logout</li>
-            </ul>
-         </div>
-    </div>
+    <!-- Navigation Here -->
+    @include('pejabat.menu')
 
     <div class="container">
       <div class="main">

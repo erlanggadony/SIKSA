@@ -11,7 +11,7 @@
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
+                            <label for="name" class="col-md-4 control-label">Nama</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
@@ -24,15 +24,34 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                        <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                            <label for="username" class="col-md-4 control-label">Username</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                                <input id="username" type="username" class="form-control" name="username" value="{{ old('username') }}" required>
 
-                                @if ($errors->has('email'))
+                                @if ($errors->has('username'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong>{{ $errors->first('username') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('jabatan') ? ' has-error' : '' }}">
+                            <label for="jabatan" class="col-md-4 control-label">Jabatan</label>
+
+                            <div class="col-md-6">
+                                <select class="form-control" name="jabatan" value="{{ old('jabatan') }}">
+                                  <option value="MHS">MAHASISWA</option>
+                                  <option value="DOS">DOSEN</option>
+                                  <option value="TU">TU</option>
+                                </select>
+                                <!-- <input id="jabatan" type="jabatan" class="form-control" name="jabatan" value="{{ old('jabatan') }}" required> -->
+
+                                @if ($errors->has('jabatan'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('jabatan') }}</strong>
                                     </span>
                                 @endif
                             </div>
