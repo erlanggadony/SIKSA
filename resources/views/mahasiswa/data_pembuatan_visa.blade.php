@@ -25,25 +25,25 @@
                 <div class="form-group">
                   <label for="nama" class="col-sm-3">Nama</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="nama" name="nama" value="DOny" readonly style="border: none" />
+                    <input type="text" class="form-control" id="nama" name="nama" value="{{ $user->nama_mahasiswa }}" readonly style="border: none" />
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="tglLahir" class="col-sm-3">Tanggal Lahir</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="tglLahir" name="tglLahir" value="12345" readonly style="border: none" />
+                    <input type="text" class="form-control" id="tglLahir" name="tglLahir" value="{{ $user->tanggal_lahir }}" readonly style="border: none" />
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="kewarganegaraan" class="col-sm-3">Kewarganegaraan</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="kewarganegaraan" name="kewarganegaraan" value="Jerman" readonly style="border: none" />
+                    <input type="text" class="form-control" id="kewarganegaraan" name="kewarganegaraan" value="{{ $user->nama_mahasiswa }}" readonly style="border: none" />
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="thnAkademik" class="col-sm-3">Tahun akademik</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control date" id="thnAkademik" name="thnAkademik" value="2000" readonly style="border: none" />
+                    <input type="text" class="form-control date" id="thnAkademik" name="thnAkademik" value="{{ $user->nama_mahasiswa }}" readonly style="border: none" />
                   </div>
                 </div>
                 <div class="form-group">
@@ -73,20 +73,8 @@
                 </div>
               </form>
             </div>
-            <div class="col-md-4 profile">.col-md-4</div>
+            @include('mahasiswa.profile_bar')
           </div>
-            <!-- <div id="profile">
-                <img id=profpict src="{{ asset("/images/2012730071.jpg") }}" />
-                <br>
-                <h2>Dony Erlangga</h2>
-                <h3>2012730071</h3>
-                </div>
-            </div>
-
-            <div id = "content">
-
-            </div> -->
-
       </div>
     </div>
     <div class="footer">

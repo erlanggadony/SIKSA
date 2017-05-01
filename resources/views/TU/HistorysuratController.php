@@ -13,7 +13,7 @@ use Storage;
 use Illuminate\Support\Facades\Auth;
 use App\Dosen;
 use App\User;
-use App\TU;
+
 class HistorysuratController extends Controller
 {
     //
@@ -28,38 +28,6 @@ class HistorysuratController extends Controller
         $this->formatsuratRepo = $formatsuratRepo;
         //dd($this->orders->getAllActive());
     }
-
-    public function tampilkanHistoryDiPejabat(Request $request){
-          $historysurats;
-          if($request->kategori_history_surat == "noSurat"){
-            $historysurats = $this->historysuratRepo->findHistorySuratByNomorSurat($request->searchBox);
-          }
-          else if($request->kategori_history_surat == "jenis_surat"){
-            $historysurats = $this->historysuratRepo->findHistoryByJenisSurat($request->searchBox);
-          }
-          else if($request->kategori_history_surat == "perihal"){
-            $historysurats = $this->historysuratRepo->findHistoryByPerihal($request->searchBox);
-          }
-          else if($request->kategori_history_surat == "penerima_surat"){
-            $historysurats = $this->historysuratRepo->findHistorySuratByPenerimaSurat($request->searchBox);
-          }
-          else if($request->kategori_history_surat == "pengirimSurat"){
-            $historysurats = $this->historysuratRepo->findHistoryByPengirimSurat($request->searchBox);
-          }
-          else if($request->kategori_history_surat == "tanggalPembuatan"){
-            $historysurats = $this->historysuratRepo->findHistoryByTanggalPembuatan($request->searchBox);
-          }
-          else{
-            $historysurats = $this->historysuratRepo->findAllHistorysurat();
-          }
-          // dd($formatsurats);
-          $loggedInUser = Auth::user();
-          $realUser = $this->getRealUser($loggedInUser);
-          return view('pejabat.history_pejabat', [
-            'historysurats' => $historysurats,
-            'user' => $realUser
-          ]);
-  	}
 
     public function tampilkanProfil(Request $request){
       $loggedInUser = Auth::user();
@@ -85,7 +53,7 @@ class HistorysuratController extends Controller
         // dd($realUser);
         return $realUser;
       }else{ // TU
-        $realUser = TU::find($loggedInUser->ref);
+        // $realUser = User::find($loggedInUser->ref);
         // dd($loggedInUser->jabatan);
         return $realUser;
       }
@@ -123,7 +91,7 @@ class HistorysuratController extends Controller
         // dd($formatsurats);
         $loggedInUser = Auth::user();
         $realUser = $this->getRealUser($loggedInUser);
-        return view('TU.history_TU', [
+        return view('pejabat.history_pejabat', [
           'historysurats' => $historysurats,
           'user' => $realUser
         ]);

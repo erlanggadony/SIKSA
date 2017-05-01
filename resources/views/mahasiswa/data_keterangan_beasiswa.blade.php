@@ -25,19 +25,19 @@
                 <div class="form-group">
                   <label for="nama" class="col-sm-3">Nama</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="nama" name="nama" value="Dony" readonly style="border: none" />
+                    <input type="text" class="form-control" id="nama" name="nama" value="{{ $user->nama_mahasiswa }}" readonly style="border: none" />
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="prodi" class="col-sm-3">Program studi</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="prodi" name="prodi" value="IT" readonly style="border: none" />
+                    <input type="text" class="form-control" id="prodi" name="prodi" value="{{ $user->jurusan_id }}" readonly style="border: none" />
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="npm" class="col-sm-3">NPM</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="npm" name="npm" value="npm" readonly style="border: none">
+                    <input type="text" class="form-control" id="npm" name="npm" value="{{ $user->npm }}" readonly style="border: none">
                   </div>
                 </div>
                 <div class="form-group">
@@ -67,20 +67,8 @@
                 </div>
               </form>
             </div>
-            <div class="col-md-4 profile">.col-md-4</div>
+            @include('mahasiswa.profile_bar')
           </div>
-            <!-- <div id="profile">
-                <img id=profpict src="{{ asset("/images/2012730071.jpg") }}" />
-                <br>
-                <h2>Dony Erlangga</h2>
-                <h3>2012730071</h3>
-                </div>
-            </div>
-
-            <div id = "content">
-
-            </div> -->
-
       </div>
     </div>
     <div class="footer">

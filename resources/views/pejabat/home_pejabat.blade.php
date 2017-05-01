@@ -71,11 +71,11 @@
                           <td>{{ $pesanansurat->created_at }}</td>
                           <td><textarea rows="5" cols="30" style="border: none" readonly>{{ $pesanansurat->dataSurat }}</textarea></td>
                           <td>
-                            <form action="/tambahCatatan" method="post">
+                            <form action="/persetujuan" method="post">
                               <input type="hidden" value="{{ $pesanansurat->formatsurat_id }}" name="idFormatSurat">
-                              <input type="hidden" value="{{ $pesanansurat->dataSurat }}" name="prosesSurat">
+                              <input type="hidden" value="{{ $pesanansurat->dataSurat }}" name="dataSurat">
                               {!! csrf_field() !!}
-                              <button type="submit" class="btn btn-default">Tambah<br>Catatan</button>
+                              <button type="submit" class="btn btn-default">Tambah<br>Persetujuan</button>
                             </form>
                           </td>
                         </tr>
@@ -83,20 +83,8 @@
                   @endif
               </table>
             </div>
-            <div class="col-md-4 profile">.col-md-4</div>
+              @include('pejabat.profile_bar')
           </div>
-            <!-- <div id="profile">
-                <img id=profpict src="{{ asset("/images/2012730071.jpg") }}" />
-                <br>
-                <h2>Dony Erlangga</h2>
-                <h3>2012730071</h3>
-                </div>
-            </div>
-
-            <div id = "content">
-
-            </div> -->
-
       </div>
     </div>
     <div class="footer">

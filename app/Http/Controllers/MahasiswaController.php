@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Repositories\MahasiswaRepository;
+use Illuminate\Support\Facades\Auth;
 use App\Mahasiswa;
-
+use App\User;
+use App\Dosen;
+use App\TU;
 class MahasiswaController extends Controller
 {
     //
@@ -18,8 +21,47 @@ class MahasiswaController extends Controller
         //dd($this->orders->getAllActive());
     }
 
-    public function pilihMahasiswa(Request $request)
-  	{
+    public function tambahDataMahasiswa(){
+      $loggedInUser = Auth::user();
+      // dd($loggedInUser);
+      $realUser = $this->getRealUser($loggedInUser);
+      return view('TU.tambah_data_mahasiswa', [
+        'user' => $realUser
+      ]);
+    }
+
+    public function tampilkanSeluruhSurat(Request $request){
+      $loggedInUser = Auth::user();
+      // dd($loggedInUser);
+      $realUser = $this->getRealUser($loggedInUser);
+      // dd($realUser);
+
+      return view('mahasiswa/home_mahasiswa',[
+        'user' => $realUser
+      ]);
+    }
+
+    private function getRealUser($loggedInUser){
+      // dd($loggedInUser);
+      $realUser='';
+      // dd($realUser);
+      if($loggedInUser->jabatan == User::JABATAN_MHS){
+        $realUser = Mahasiswa::find($loggedInUser->ref);
+        // dd($realUser);
+        return $realUser;
+      }else if($loggedInUser->jabatan == User::JABATAN_DOS){
+        $realUser = Dosen::find($loggedInUser->ref);
+        // dd($realUser);
+        return $realUser;
+      }else{ // TU
+        $realUser = TU::find($loggedInUser->ref);
+        // dd($loggedInUser->jabatan);
+        return $realUser;
+      }
+      // dd($realUser);
+    }
+
+    public function pilihMahasiswa(Request $request){
         //$confirmation = Confirmation::where(['id' => 2])->first();
 
         //dd($confirmation->order->tickets);
@@ -57,9 +99,12 @@ class MahasiswaController extends Controller
           $mahasiswas = $this->mahasiswaRepo->findAllMahasiswa();
         }
         // dd($mahasiswas);
+        $loggedInUser = Auth::user();
+        $realUser = $this->getRealUser($loggedInUser);
         return view('TU.data_mahasiswa',[
         // dd($formatsurats);
             'mahasiswas' => $mahasiswas,
+            'user' => $realUser
         ]);
   	}
 
@@ -96,24 +141,23 @@ class MahasiswaController extends Controller
         $data = explode("/", $baris);  //ubah pemisahnya dengan yg ada di sql
           $savedMahasiswa = Mahasiswa::create(array(
             'nirm' => $data[0],
-            $mahasiswa->npm = $data[1];
-            $mahasiswa->nama_mahasiswa = $data[2];
-            $mahasiswa->jurusan_id = $data[3];
-            $mahasiswa->fakultas_id = $data[4];
-            $mahasiswa->angkatan = $data[5];
-            $mahasiswa->kota_lahir = $data[6];
-            $mahasiswa->tanggal_lahir = $data[7];
-            $mahasiswa->foto_mahasiswa = $data[8];
-            $mahasiswa->dosen_id = $data[9];
-            $mahasiswa->username = $data[10];
-            $mahasiswa->password = bycrypt($data[11]);
+            'npm' => $data[1],
+            'nama_mahasiswa' => $data[2],
+            'jurusan_id' => $data[3],
+            'fakultas_id' => $data[4],
+            'angkatan' => $data[5],
+            'kota_lahir' => $data[6],
+            'tanggal_lahir' => $data[7],
+            'foto_mahasiswa' => $data[8],
+            'dosen_id' => $data[9],
+            'username' => $data[10]
           ));
 
-          dd($savedMahasiswa->id);,
+          // dd($savedMahasiswa->id);,
           $savedUser = User::create(array(
             'ref' => $savedMahasiswa->id,
-            $mahasiswa->username = $data[10];
-            $mahasiswa->password = bycrypt($data[11]);
+            'username' => $data[10],
+            'password' => bycrypt($data[11])
           ));
 
           // $mahasiswa = new Mahasiswa;

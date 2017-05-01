@@ -13,17 +13,7 @@
         <img id=banner src="{{ asset("/images/banner ftis.png") }}" />
     </div>
 
-    <div class="navigation">
-         <div class="navbar text-center">
-            <ul class="inline">
-              <a href="/home_TU"><li>Home</li></a>
-              <a href="/history_TU"><li>History Surat</li></a>
-              <a href="/data_mahasiswa"><li>Data Mahasiswa</li></a>
-              <a href="/format_surat"><li>Format Surat</li></a>
-              <li>Logout</li>
-            </ul>
-         </div>
-    </div>
+    @include('tu.menu')
 
     <div id="myModal" class="modal">
       <div class="modal-content" id="show">
@@ -99,23 +89,8 @@
               </table>
               <div style="text-align:center">{!! $formatsurats->links() !!}</div>
             </div>
-
-
-            <div class="col-md-4 profile">
-              <!-- <img id=profpict src="{{ asset("/images/2012730071.jpg") }}" />
-              <br>
-              <h2>Dony Erlangga</h2>
-              <h3>2012730071</h3> -->
-            </div>
+            @include('tu.profile_bar')
           </div>
-            <!-- <div id="profile">
-
-            </div>
-
-            <div id = "content">
-
-            </div> -->
-
       </div>
     </div>
     <div class="footer">

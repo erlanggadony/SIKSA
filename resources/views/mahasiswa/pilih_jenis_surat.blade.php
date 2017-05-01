@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
   <head>
       <title>Home</title>
@@ -28,7 +27,7 @@
                     @foreach($formatsurats as $formatsurat)
                     <div class="radio">
                       <label>
-                        <input type="radio"  name="jenis_surat" value="{{ $formatsurat->id }}">
+                        <input type="radio"  name="jenis_surat" value="{{ $formatsurat->id }}" required>
                         {{ $formatsurat->jenis_surat }}
                       </label>
                     </div>
@@ -43,21 +42,9 @@
               </div>
             </form>
           </div>
+          @include('mahasiswa.profile_bar')
         </div>
       </div>
-
-      <div class="col-md-4 profile">.col-md-4</div>
-            <!-- <div id="profile">
-                <img id=profpict src="{{ asset("/images/2012730071.jpg") }}" />
-                <br>
-                <h2>Dony Erlangga</h2>
-                <h3>2012730071</h3>
-                </div>
-            </div>
-
-            <div id = "content">
-
-            </div> -->
     </div>
     <div class="footer">
         hahahahahahahahahahahahahahahhahahahahahaha

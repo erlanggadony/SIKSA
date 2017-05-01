@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Mahasiswa;
 use App\User;
 use App\Dosen;
+use App\TU;
 class PesanansuratController extends Controller
 {
     //
@@ -30,28 +31,154 @@ class PesanansuratController extends Controller
       $realUser = $this->getRealUser($loggedInUser);
 
       return view('pejabat.home_pejabat', [
-        'pesanansurats' => $pesanansurats
+        'pesanansurats' => $pesanansurats,
+        'user' => $realUser
       ]);
     }
 
-    private function getRealUser($loggedInUser){
-      if($loggedInUser->jabatan == User::JABATAN_MHS){
-        $realUser = Mahasiswa::find($loggedInUser->ref);
-        dd($realUser);
-      }else if($loggedInUser->jabatan == User::JABATAN_DOS){
-        $realUser = Dosen::find($loggedInUser->ref);
-        dd($realUser);
-      }else{ // TU
-        // $realUser = User::find($loggedInUser->ref);
-        dd("TU: ");
+    public function tambahPersetujuan(Request $request){
+      $loggedInUser = Auth::user();
+      $realUser = $this->getRealUser($loggedInUser);
+
+      $dataSurat = $request->dataSurat;
+      $formatsurat_id = $request->idFormatSurat;
+      return view('pejabat.tambah_persetujuan',[
+        'dataSurat' => $dataSurat,
+        'formatsurat_id' => $formatsurat_id,
+        'user' => $realUser
+      ]);
+    }
+
+    public function previewCatatan(Request $request){
+      $loggedInUser = Auth::user();
+      $realUser = $this->getRealUser($loggedInUser);
+
+      if($request->jenis_surat == "9"){
+        $dataSurat = $request->dataSurat;
+        $json = json_decode($dataSurat);
+        $nama = $json->nama;
+        $npm = $json->npm;
+        $prodi = $json->prodi;
+        $fakultas = $json->fakultas;
+        $alamat = $json->alamat;
+        $cutiStudiKe = $json->cutiStudiKe;
+        $alasanCutiStudi = $json->alasanCutiStudi;
+        $dosenWali = $json->dosenWali;
+        $semester = $json->semester;
+        $thnAkademik = $json->thnAkademik;
+        $persetujuanDosenWali = $request->persetujuan;
+        $catatanDosenWali = $request->catatanDosenWali;
+        $persetujuanKaprodi = '-';
+        $catatanKaprodi = '-';
+        $persetujuanWDII = '-';
+        $catatanWDII = '-';
+        $persetujuanWDI = '-';
+        $catatanWDI = '-';
+        $persetujuanDekan = '-';
+        $formatsurat_id = $request->idFormatSurat;
+        $dataSurat = $this->buatJSON($request);
+        return view('pejabat.preview_izin_cuti_studi', [
+            'nama' => $nama,
+            'npm' => $npm,
+            'prodi' => $prodi,
+            'fakultas' => $fakultas,
+            'alamat' => $alamat,
+            'cutiStudiKe' => $cutiStudiKe,
+            'alasanCutiStudi' => $alasanCutiStudi,
+            'dosenWali' => $dosenWali,
+            'semester' => $semester,
+            'thnAkademik' => $thnAkademik,
+            'persetujuanDosenWali' => $persetujuanDosenWali,
+            'catatanDosenWali' => $catatanDosenWali,
+            'persetujuanKaprodi' => $persetujuanKaprodi,
+            'catatanKaprodi' => $catatanKaprodi,
+            'persetujuanWDII' => $persetujuanWDII,
+            'catatanWDII' => $catatanWDII,
+            'persetujuanWDI' => $persetujuanWDI,
+            'catatanWDI' => $catatanWDI,
+            'persetujuanDekan' => $persetujuanDekan,
+            'formatsurat_id' => $formatsurat_id,
+            'dataSurat' => $dataSurat,
+            'user' => $realUser
+        ]);
+      }
+      else if($request->jenis_surat == "10"){
+        $nama = $request->nama;
+        $npm = $request->npm;
+        $alamat = $request->alamat;
+        $noTelepon = $request->noTelepon;
+        $namaOrtu = $request->namaOrtu;
+        $dosenWali = $request->dosenWali;
+        $semester = $request->semester;
+        //upload
+        // $lampiran = $request->file('lampiran_CutiStudi');
+        // $destination_path = ('lampiran/cuti_studi/');
+        // $filename = $lampiran->getClientOriginalName();
+        // $namaDepan = explode(" ", $nama);
+        // $savedLampiran = ($namaDepan[0] . '_' . $namaDepan[1] . '_' .$filename);
+        // $lampiran->move($destination_path, $savedLampiran);
+
+        // $link = '127.0.0.1:8000/format_surat_latex/' . $filename;
+        $persetujuanDosenWali = '-';
+        $catatanDosenWali = '-';
+        $persetujuanKaprodi = '-';
+        $catatanKaprodi = '-';
+        $persetujuanWDII = '-';
+        $catatanWDII = '-';
+        $persetujuanWDI = '-';
+        $catatanWDI = '-';
+        $persetujuanDekan = '-';
+        $formatsurat_id = $request->jenis_surat;
+        $dataSurat = $this->buatJSON($request);
+        return view('mahasiswa.preview_izin_pengunduran_diri', [
+            'nama' => $nama,
+            'npm' => $npm,
+            'alamat' => $alamat,
+            'noTelepon' => $noTelepon,
+            'namaOrtu' => $namaOrtu,
+            'dosenWali' => $dosenWali,
+            'semester' => $semester,
+            'persetujuanDosenWali' => $persetujuanDosenWali,
+            'catatanDosenWali' => $catatanDosenWali,
+            'persetujuanKaprodi' => $persetujuanKaprodi,
+            'catatanKaprodi' => $catatanKaprodi,
+            'persetujuanWDII' => $persetujuanWDII,
+            'catatanWDII' => $catatanWDII,
+            'persetujuanWDI' => $persetujuanWDI,
+            'catatanWDI' => $catatanWDI,
+            'persetujuanDekan' => $persetujuanDekan,
+            'formatsurat_id' => $formatsurat_id,
+            'dataSurat' => $dataSurat,
+            'user' => $realUser
+        ]);
       }
     }
 
+    private function getRealUser($loggedInUser){
+      // dd($loggedInUser);
+      $realUser='';
+      // dd($realUser);
+      if($loggedInUser->jabatan == User::JABATAN_MHS){
+        $realUser = Mahasiswa::find($loggedInUser->ref);
+        // dd($realUser);
+        return $realUser;
+      }else if($loggedInUser->jabatan == User::JABATAN_DOS){
+        $realUser = Dosen::find($loggedInUser->ref);
+        // dd($realUser);
+        return $realUser;
+      }else{ // TU
+        $realUser = TU::find($loggedInUser->ref);
+        // dd($loggedInUser->jabatan);
+        return $realUser;
+      }
+      // dd($realUser);
+    }
+
     public function tampilkanPesananSurat(Request $request){
-          //$confirmation = Confirmation::where(['id' => 2])->first();
-          //dd($confirmation->order->tickets);
-          //dd($confirmation);
-          //--
+          $loggedInUser = Auth::user();
+          // dd($loggedInUser);
+          $realUser = $this->getRealUser($loggedInUser);
+
           $pesanansurats;
           if($request->kategori == "jenis_surat"){
             $pesanansurats = $this->pesanansuratRepo->findMahasiswaByJenisSurat($request->searchBox);
@@ -73,9 +200,14 @@ class PesanansuratController extends Controller
           }
           return view('TU.home_TU',[
               'pesanansurats' => $pesanansurats,
+              'user' => $realUser
           ]);
   	}
     public function sendDataSurat(Request $request){
+      $loggedInUser = Auth::user();
+      // dd($loggedInUser);
+      $realUser = $this->getRealUser($loggedInUser);
+
       if($request->idFormatSurat == "1"){
         $dataSurat = $request->prosesSurat;
         $json = json_decode($dataSurat);
@@ -95,7 +227,8 @@ class PesanansuratController extends Controller
             'thnAkademik' => $thnAkademik,
             'penyediabeasiswa' => $penyediabeasiswa,
             'formatsurat_id' => $formatsurat_id,
-            'dataSurat' => $dataSurat
+            'dataSurat' => $dataSurat,
+            'user' => $realUser
         ]);
       }
       else if($request->idFormatSurat == "2"){
@@ -119,7 +252,8 @@ class PesanansuratController extends Controller
             'alamat' => $alamat,
             'semester' => $semester,
             'formatsurat_id' => $formatsurat_id,
-            'dataSurat' => $dataSurat
+            'dataSurat' => $dataSurat,
+            'user' => $realUser
         ]);
       }
       else if($request->idFormatSurat == "3"){
@@ -143,7 +277,8 @@ class PesanansuratController extends Controller
             'negaraTujuan' => $negaraTujuan,
             'tanggalKunjungan' => $tanggalKunjungan,
             'formatsurat_id' => $formatsurat_id,
-            'dataSurat' => $dataSurat
+            'dataSurat' => $dataSurat,
+            'user' => $realUser
         ]);
       }
       else if($request->idFormatSurat == "4"){
@@ -173,7 +308,8 @@ class PesanansuratController extends Controller
             'kota' => $kota,
             'kepada' => $kepada,
             'formatsurat_id' => $formatsurat_id,
-            'dataSurat' => $dataSurat
+            'dataSurat' => $dataSurat,
+            'user' => $realUser
         ]);
       }
       else if($request->idFormatSurat == "5"){
@@ -206,7 +342,8 @@ class PesanansuratController extends Controller
             'namaAnggota' => $namaAnggota,
             'npmAnggota' => $npmAnggota,
             'formatsurat_id' => $formatsurat_id,
-            'dataSurat' => $dataSurat
+            'dataSurat' => $dataSurat,
+            'user' => $realUser
         ]);
       }
       else if($request->idFormatSurat == "6"){
@@ -243,7 +380,8 @@ class PesanansuratController extends Controller
             'namaAnggota2' => $namaAnggota2,
             'npmAnggota2' => $npmAnggota2,
             'formatsurat_id' => $formatsurat_id,
-            'dataSurat' => $dataSurat
+            'dataSurat' => $dataSurat,
+            'user' => $realUser
         ]);
       }
       else if($request->idFormatSurat == "7"){
@@ -284,7 +422,8 @@ class PesanansuratController extends Controller
             'namaAnggota3' => $namaAnggota3,
             'npmAnggota3' => $npmAnggota3,
             'formatsurat_id' => $formatsurat_id,
-            'dataSurat' => $dataSurat
+            'dataSurat' => $dataSurat,
+            'user' => $realUser
         ]);
       }
       else if($request->idFormatSurat == "8"){
@@ -329,7 +468,8 @@ class PesanansuratController extends Controller
             'namaAnggota4' => $namaAnggota4,
             'npmAnggota4' => $npmAnggota4,
             'formatsurat_id' => $formatsurat_id,
-            'dataSurat' => $dataSurat
+            'dataSurat' => $dataSurat,
+            'user' => $realUser
         ]);
       }
       else if($request->idFormatSurat == "9"){
@@ -385,7 +525,8 @@ class PesanansuratController extends Controller
             'catatanWDI' => $catatanWDI,
             'persetujuanDekan' => $persetujuanDekan,
             'formatsurat_id' => $formatsurat_id,
-            'dataSurat' => $dataSurat
+            'dataSurat' => $dataSurat,
+            'user' => $realUser
         ]);
       }
       else if($request->idFormatSurat == "10"){
@@ -435,7 +576,8 @@ class PesanansuratController extends Controller
             'catatanWDI' => $catatanWDI,
             'persetujuanDekan' => $persetujuanDekan,
             'formatsurat_id' => $formatsurat_id,
-            'dataSurat' => $dataSurat
+            'dataSurat' => $dataSurat,
+            'user' => $realUser
         ]);
       }
       else if($request->idFormatSurat == "11"){
@@ -468,7 +610,8 @@ class PesanansuratController extends Controller
             'matkul' => $matkul,
             'sks' => $sks,
             'formatsurat_id' => $formatsurat_id,
-            'dataSurat' => $dataSurat
+            'dataSurat' => $dataSurat,
+            'user' => $realUser
         ]);
       }
       else if($request->idFormatSurat == "12"){
@@ -505,7 +648,8 @@ class PesanansuratController extends Controller
             'matkul2' => $matkul2,
             'sks2' => $sks2,
             'formatsurat_id' => $formatsurat_id,
-            'dataSurat' => $dataSurat
+            'dataSurat' => $dataSurat,
+            'user' => $realUser
         ]);
       }
       else if($request->idFormatSurat == "13"){
@@ -546,7 +690,8 @@ class PesanansuratController extends Controller
             'matkul3' => $matkul3,
             'sks3' => $sks3,
             'formatsurat_id' => $formatsurat_id,
-            'dataSurat' => $dataSurat
+            'dataSurat' => $dataSurat,
+            'user' => $realUser
         ]);
       }
       else if($request->idFormatSurat == "14"){
@@ -591,7 +736,8 @@ class PesanansuratController extends Controller
             'matkul4' => $matkul4,
             'sks4' => $sks4,
             'formatsurat_id' => $formatsurat_id,
-            'dataSurat' => $dataSurat
+            'dataSurat' => $dataSurat,
+            'user' => $realUser
         ]);
       }
       else if($request->idFormatSurat == "15"){
@@ -640,7 +786,8 @@ class PesanansuratController extends Controller
             'matkul5' => $matkul5,
             'sks5' => $sks5,
             'formatsurat_id' => $formatsurat_id,
-            'dataSurat' => $dataSurat
+            'dataSurat' => $dataSurat,
+            'user' => $realUser
         ]);
       }
       else if($request->idFormatSurat == "16"){
@@ -693,7 +840,8 @@ class PesanansuratController extends Controller
             'matkul6' => $matkul6,
             'sks6' => $sks6,
             'formatsurat_id' => $formatsurat_id,
-            'dataSurat' => $dataSurat
+            'dataSurat' => $dataSurat,
+            'user' => $realUser
         ]);
       }
       else if($request->idFormatSurat == "17"){
@@ -750,7 +898,8 @@ class PesanansuratController extends Controller
             'matkul7' => $matkul7,
             'sks7' => $sks7,
             'formatsurat_id' => $formatsurat_id,
-            'dataSurat' => $dataSurat
+            'dataSurat' => $dataSurat,
+            'user' => $realUser
         ]);
       }
       else if($request->idFormatSurat == "18"){
@@ -811,7 +960,8 @@ class PesanansuratController extends Controller
             'matkul8' => $matkul8,
             'sks8' => $sks8,
             'formatsurat_id' => $formatsurat_id,
-            'dataSurat' => $dataSurat
+            'dataSurat' => $dataSurat,
+            'user' => $realUser
         ]);
       }
       else if($request->idFormatSurat == "19"){
@@ -876,7 +1026,8 @@ class PesanansuratController extends Controller
             'matkul9' => $matkul9,
             'sks9' => $sks9,
             'formatsurat_id' => $formatsurat_id,
-            'dataSurat' => $dataSurat
+            'dataSurat' => $dataSurat,
+            'user' => $realUser
         ]);
       }
       else if($request->idFormatSurat == "20"){
@@ -945,7 +1096,8 @@ class PesanansuratController extends Controller
             'matkul10' => $matkul10,
             'sks10' => $sks10,
             'formatsurat_id' => $formatsurat_id,
-            'dataSurat' => $dataSurat
+            'dataSurat' => $dataSurat,
+            'user' => $realUser
         ]);
       }
     }
@@ -1698,6 +1850,10 @@ class PesanansuratController extends Controller
     * Untuk menampilkan data yang telah diisikan pada formulir
     */
     public function tampilkanPreview(Request $request){
+      $loggedInUser = Auth::user();
+      // dd($loggedInUser);
+      $realUser = $this->getRealUser($loggedInUser);
+
       if($request->jenis_surat == "1"){
         // dd($request->semester);
         $nama = $request->nama;
@@ -1718,7 +1874,8 @@ class PesanansuratController extends Controller
             'thnAkademik' => $thnAkademik,
             'penyediabeasiswa' => $penyediabeasiswa,
             'formatsurat_id' => $formatsurat_id,
-            'dataSurat' => $dataSurat
+            'dataSurat' => $dataSurat,
+            'user' => $realUser
         ]);
       }
       else if($request->jenis_surat == "2"){
@@ -1741,7 +1898,8 @@ class PesanansuratController extends Controller
             'alamat' => $alamat,
             'semester' => $semester,
             'formatsurat_id' => $formatsurat_id,
-            'dataSurat' => $dataSurat
+            'dataSurat' => $dataSurat,
+            'user' => $realUser
         ]);
       }
       else if($request->jenis_surat == "3"){
@@ -1764,7 +1922,8 @@ class PesanansuratController extends Controller
             'negaraTujuan' => $negaraTujuan,
             'tanggalKunjungan' => $tanggalKunjungan,
             'formatsurat_id' => $formatsurat_id,
-            'dataSurat' => $dataSurat
+            'dataSurat' => $dataSurat,
+            'user' => $realUser
         ]);
       }
       else if($request->jenis_surat == "4"){
@@ -1793,7 +1952,8 @@ class PesanansuratController extends Controller
             'kota' => $kota,
             'kepada' => $kepada,
             'formatsurat_id' => $formatsurat_id,
-            'dataSurat' => $dataSurat
+            'dataSurat' => $dataSurat,
+            'user' => $realUser
         ]);
       }
       else if($request->jenis_surat == "5"){
@@ -1825,7 +1985,8 @@ class PesanansuratController extends Controller
             'namaAnggota' => $namaAnggota,
             'npmAnggota' => $npmAnggota,
             'formatsurat_id' => $formatsurat_id,
-            'dataSurat' => $dataSurat
+            'dataSurat' => $dataSurat,
+            'user' => $realUser
         ]);
       }
       else if($request->jenis_surat == "6"){
@@ -1861,7 +2022,8 @@ class PesanansuratController extends Controller
             'namaAnggota2' => $namaAnggota2,
             'npmAnggota2' => $npmAnggota2,
             'formatsurat_id' => $formatsurat_id,
-            'dataSurat' => $dataSurat
+            'dataSurat' => $dataSurat,
+            'user' => $realUser
         ]);
       }
       else if($request->jenis_surat == "7"){
@@ -1901,7 +2063,8 @@ class PesanansuratController extends Controller
             'namaAnggota3' => $namaAnggota3,
             'npmAnggota3' => $npmAnggota3,
             'formatsurat_id' => $formatsurat_id,
-            'dataSurat' => $dataSurat
+            'dataSurat' => $dataSurat,
+            'user' => $realUser
         ]);
       }
       else if($request->jenis_surat == "8"){
@@ -1945,7 +2108,8 @@ class PesanansuratController extends Controller
             'namaAnggota4' => $namaAnggota4,
             'npmAnggota4' => $npmAnggota4,
             'formatsurat_id' => $formatsurat_id,
-            'dataSurat' => $dataSurat
+            'dataSurat' => $dataSurat,
+            'user' => $realUser
         ]);
       }
       else if($request->jenis_surat == "9"){
@@ -2000,7 +2164,8 @@ class PesanansuratController extends Controller
             'catatanWDI' => $catatanWDI,
             'persetujuanDekan' => $persetujuanDekan,
             'formatsurat_id' => $formatsurat_id,
-            'dataSurat' => $dataSurat
+            'dataSurat' => $dataSurat,
+            'user' => $realUser
         ]);
       }
       else if($request->jenis_surat == "10"){
@@ -2049,7 +2214,8 @@ class PesanansuratController extends Controller
             'catatanWDI' => $catatanWDI,
             'persetujuanDekan' => $persetujuanDekan,
             'formatsurat_id' => $formatsurat_id,
-            'dataSurat' => $dataSurat
+            'dataSurat' => $dataSurat,
+            'user' => $realUser
         ]);
       }
       else if($request->jenis_surat == "11"){
@@ -2081,7 +2247,8 @@ class PesanansuratController extends Controller
             'matkul' => $matkul,
             'sks' => $sks,
             'formatsurat_id' => $formatsurat_id,
-            'dataSurat' => $dataSurat
+            'dataSurat' => $dataSurat,
+            'user' => $realUser
         ]);
       }
       else if($request->jenis_surat == "12"){
@@ -2117,7 +2284,8 @@ class PesanansuratController extends Controller
             'matkul2' => $matkul2,
             'sks2' => $sks2,
             'formatsurat_id' => $formatsurat_id,
-            'dataSurat' => $dataSurat
+            'dataSurat' => $dataSurat,
+            'user' => $realUser
         ]);
       }
       else if($request->jenis_surat == "13"){
@@ -2157,7 +2325,8 @@ class PesanansuratController extends Controller
             'matkul3' => $matkul3,
             'sks3' => $sks3,
             'formatsurat_id' => $formatsurat_id,
-            'dataSurat' => $dataSurat
+            'dataSurat' => $dataSurat,
+            'user' => $realUser
         ]);
       }
       else if($request->jenis_surat == "14"){
@@ -2201,7 +2370,8 @@ class PesanansuratController extends Controller
             'matkul4' => $matkul4,
             'sks4' => $sks4,
             'formatsurat_id' => $formatsurat_id,
-            'dataSurat' => $dataSurat
+            'dataSurat' => $dataSurat,
+            'user' => $realUser
         ]);
       }
       else if($request->jenis_surat == "15"){
@@ -2249,7 +2419,8 @@ class PesanansuratController extends Controller
             'matkul5' => $matkul5,
             'sks5' => $sks5,
             'formatsurat_id' => $formatsurat_id,
-            'dataSurat' => $dataSurat
+            'dataSurat' => $dataSurat,
+            'user' => $realUser
         ]);
       }
       else if($request->jenis_surat == "16"){
@@ -2301,7 +2472,8 @@ class PesanansuratController extends Controller
             'matkul6' => $matkul6,
             'sks6' => $sks6,
             'formatsurat_id' => $formatsurat_id,
-            'dataSurat' => $dataSurat
+            'dataSurat' => $dataSurat,
+            'user' => $realUser
         ]);
       }
       else if($request->jenis_surat == "17"){
@@ -2357,7 +2529,8 @@ class PesanansuratController extends Controller
             'matkul7' => $matkul7,
             'sks7' => $sks7,
             'formatsurat_id' => $formatsurat_id,
-            'dataSurat' => $dataSurat
+            'dataSurat' => $dataSurat,
+            'user' => $realUser
         ]);
       }
       else if($request->jenis_surat == "18"){
@@ -2417,7 +2590,8 @@ class PesanansuratController extends Controller
             'matkul8' => $matkul8,
             'sks8' => $sks8,
             'formatsurat_id' => $formatsurat_id,
-            'dataSurat' => $dataSurat
+            'dataSurat' => $dataSurat,
+            'user' => $realUser
         ]);
       }
       else if($request->jenis_surat == "19"){
@@ -2481,7 +2655,8 @@ class PesanansuratController extends Controller
             'matkul9' => $matkul9,
             'sks9' => $sks9,
             'formatsurat_id' => $formatsurat_id,
-            'dataSurat' => $dataSurat
+            'dataSurat' => $dataSurat,
+            'user' => $realUser
         ]);
       }
       else if($request->jenis_surat == "20"){
@@ -2549,7 +2724,8 @@ class PesanansuratController extends Controller
             'matkul10' => $matkul10,
             'sks10' => $sks10,
             'formatsurat_id' => $formatsurat_id,
-            'dataSurat' => $dataSurat
+            'dataSurat' => $dataSurat,
+            'user' => $realUser
         ]);
       }
     }

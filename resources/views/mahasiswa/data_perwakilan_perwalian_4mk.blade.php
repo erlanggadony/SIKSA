@@ -132,20 +132,8 @@
                   </div>
               </form>
             </div>
-            <div class="col-md-4 profile">.col-md-4</div>
+          @include('mahasiswa.profile_bar')
           </div>
-            <!-- <div id="profile">
-                <img id=profpict src="{{ asset("/images/2012730071.jpg") }}" />
-                <br>
-                <h2>Dony Erlangga</h2>
-                <h3>2012730071</h3>
-                </div>
-            </div>
-
-            <div id = "content">
-
-            </div> -->
-
       </div>
     </div>
     <div class="footer">

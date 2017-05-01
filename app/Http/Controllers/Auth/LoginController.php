@@ -94,7 +94,7 @@ class LoginController extends Controller{
               // dd($authUser->jabatan);
               return redirect('/home_pejabat');
             }else if($authUser->jabatan == User::JABATAN_TU){
-              dd($authUser->jabatan+" HAPUS DieDump INI !: LoginController.login :: line 97");
+              // dd($authUser->jabatan+" HAPUS DieDump INI !: LoginController.login :: line 97");
               return redirect('/home_TU');
             }else{ // $authUser->jabatan == User::JABATAN_MHS
               // dd($authUser->jabatan);

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html >
+<html>
   <head>
     <meta charset="UTF-8">
     <title>Login Form</title>
@@ -11,7 +11,6 @@
     <div class="login">
       <img id = "logo-unpar" src="{{ asset("/images/logo-unpar.png") }}" />
     <h1>Login</h1>
-
 
       <form method="POST" action="{{ url('/login') }}">
         <br>
@@ -28,7 +27,6 @@
                 {!! Session::get('error_message') !!}
             </div>
         @endif
-
 
         <div>
             <input type="text" name="username" class="form-control" value="{{ old('username') }}" placeholder="Username" required autofocus />

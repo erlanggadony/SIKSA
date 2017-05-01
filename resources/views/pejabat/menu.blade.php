@@ -16,13 +16,13 @@
      </div>
 </div>
 <br>
-<div class="row">
+<!-- <div class="row">
   <div class="col-md-offset-1 col-sm-offset-1 col-md-4 col-sm-5">
     <div style="color:white">
         Selamat Datang, {!! Auth::user()->name !!}
     </div>
   </div>
-</div>
+</div> -->
 <div class="row">
   <div class="col-md-offset-1 col-sm-offset-1 col-sm-4 col-md-4">
 

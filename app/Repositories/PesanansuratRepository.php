@@ -51,7 +51,7 @@
     }
 
     public function pesananDosenWali($dosen_id){
-      $pesanansurats = PesananSurat::where()
+      $pesanansurats = PesananSurat::where('id', $dosen_id)
                                     ->orderBy('timestamps', 'DESC')
                                     ->paginate(15);
 

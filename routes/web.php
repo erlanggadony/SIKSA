@@ -28,9 +28,8 @@ Route::get('/laravel-login', function(){
 Route::get('/logout', 'AuthController@logout');
 Route::post('/home', 'AuthController@authenticate');
 //<-------------------------------------------------------MAHASISWA------------------------------------------------------->
-// Route::group(['middleware' => 'auth'], function () {
     // halaman utama mahasiswa
-    Route::get('/home_mahasiswa', 'HistorysuratController@tampilkanSeluruhSurat');
+    Route::get('/home_mahasiswa', 'HistorysuratController@tampilkanProfil');
     //halaman untuk memilih jenis surat
     Route::get('/pilih_jenis_surat', 'FormatsuratController@pilihSurat');
     //halaman untuk pengisian data diri untuk masing-masing surat
@@ -57,12 +56,8 @@ Route::post('/home', 'AuthController@authenticate');
     Route::post('/proses_surat', 'PesanansuratController@sendDataSurat');
     Route::get('/history_TU', 'HistorysuratController@pilihHistorySurat');
     // halaman untuk menambahkan format surat baru
-    Route::get('/tambah_format_surat', function () {
-        return view('TU/tambah_format_surat');
-    });
-    Route::get('/tambah_data_mahasiswa', function () {
-        return view('TU/tambah_data_mahasiswa');
-    });
+    Route::get('/tambah_format_surat', 'FormatsuratController@tambahFormat');
+    Route::get('/tambah_data_mahasiswa', 'MahasiswaController@tambahDataMahasiswa');
     Route::post('/uploadFormat', 'FormatsuratController@storeFormat');
     //halaman seluruh data mahasiswa
     Route::get('/data_mahasiswa', 'MahasiswaController@pilihMahasiswa');
@@ -72,6 +67,8 @@ Route::post('/home', 'AuthController@authenticate');
 //<--------------------------------------------------------PEJABAT-------------------------------------------------------->
     // halaman utama pejabat
     Route::get('/home_pejabat', 'PesanansuratController@tampilkanPesananDiPejabat');
+    Route::post('/persetujuan', 'PesanansuratController@tambahPersetujuan');
+    Route::post('/preview', 'PesanansuratController@previewCatatan');
     //halaman pengisisan catatan dosen wali
     Route::post('/catatanDosenWali', 'PesanansuratController@previewDosenWali');
     //halaman pengisisan catatan kaprodi
@@ -85,7 +82,7 @@ Route::post('/home', 'AuthController@authenticate');
     Route::get('/catatan_dekan', function () {
         return view('pejabat/catatan_dekan');
     });
-    Route::get('/history_pejabat', 'HistorysuratController@pilihHistorySurat');
+    Route::get('/history_pejabat', 'HistorysuratController@tampilkanHistoryDiPejabat');
 // });
 
 Auth::routes();
