@@ -68,22 +68,11 @@ Route::post('/home', 'AuthController@authenticate');
     // halaman utama pejabat
     Route::get('/home_pejabat', 'PesanansuratController@tampilkanPesananDiPejabat');
     Route::post('/persetujuan', 'PesanansuratController@tambahPersetujuan');
-    Route::post('/preview', 'PesanansuratController@previewCatatan');
-    //halaman pengisisan catatan dosen wali
-    Route::post('/catatanDosenWali', 'PesanansuratController@previewDosenWali');
-    //halaman pengisisan catatan kaprodi
-    Route::post('/catatanKaprodi', 'PesanansuratController@previewKaprodi');
-    //halaman pengisisan catatan wakil dekan II
-    Route::post('/catatanWDII', 'PesanansuratController@previewWDII');
-    //halaman pengisisan catatan wakil dekan I
-    Route::post('/catatanWDI', 'PesanansuratController@previewWDI');
-    //halaman pengisisan catatan dekan
-    Route::post('/catatanDekan', 'PesanansuratController@previewDekan');
-    Route::get('/catatan_dekan', function () {
-        return view('pejabat/catatan_dekan');
-    });
+    Route::post('/previewCatatan', 'PesanansuratController@previewDosen');
+
     Route::get('/history_pejabat', 'HistorysuratController@tampilkanHistoryDiPejabat');
-// });
+    Route::post('/ubahStatusPenandatanganan', 'HistorysuratAPIController@ubahStatusPenandatanganan');
+    Route::post('/ubahStatusPengambilan', 'HistorysuratAPIController@ubahStatusPengambilan');
 
 Auth::routes();
 

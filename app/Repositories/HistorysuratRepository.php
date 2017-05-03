@@ -26,6 +26,12 @@
                                   ->paginate(16);
       return $historysurats;
     }
+    public function findHistorySuratByPemohonSurat($mahasiswa_id){
+      $historysurats = Historysurat::where('mahasiswa_id', $mahasiswa_id)
+                                  ->orderBy('created_at', 'DESC')
+                                  ->paginate(16);
+      return $historysurats;
+    }
     public function findHistorySuratByPenerimaSurat($penerimaSurat){
       $historysurats = Historysurat::where('penerimaSurat', $penerimaSurat)
                                   ->orderBy('created_at', 'DESC')
@@ -37,6 +43,11 @@
                                   ->orderBy('created_at', 'DESC')
                                   ->paginate(16);
       return $historysurats;
+    }
+
+    public function findHistoryById($id){
+      $historysurat = Historysurat::where('id', $id)->first();
+      return $historysurat;
     }
 
     public function historyDosenWali($dosen_id){
@@ -53,6 +64,12 @@
                                     ->paginate(15);
 
       return $historysurats;
+    }
+
+    public function historyMhs($id){
+      $historysurats = Historysurat::where('id', $id)
+                                    ->orderBy('timestamps', 'DESC')
+                                    ->paginate(15);
     }
   }
 

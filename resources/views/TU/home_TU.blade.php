@@ -39,7 +39,7 @@
               <table class="table table-striped">
                 @if(count($pesanansurats) == 0)
                     <tr>
-                        <td colspan="5" align="center">No data found ...</td>
+                        <td colspan="5" align="center">Tidak ada pesanan surat ...</td>
                     </tr>
                 @else
                     <tr>
@@ -53,13 +53,13 @@
                     </tr>
                     @foreach($pesanansurats as $pesanansurat)
                         <tr>
-                          <td>{{ $pesanansurat->formatsurat_id }}</td>
-                          <td>{{ $pesanansurat->perihal }}</td>
-                          <td>{{ $pesanansurat->mahasiswa_id }}</td>
-                          <td>{{ $pesanansurat->penerimaSurat }}</td>
-                          <td>{{ $pesanansurat->created_at }}</td>
-                          <td><textarea rows="5" cols="30" style="border: none" readonly>{{ $pesanansurat->dataSurat }}</textarea></td>
-                          <td>
+                          <td class="ctr">{{ $pesanansurat->formatsurat_id }}</td>
+                          <td class="ctr">{{ $pesanansurat->perihal }}</td>
+                          <td class="ctr">{{ $pesanansurat->mahasiswa_id }}</td>
+                          <td class="ctr">{{ $pesanansurat->penerimaSurat }}</td>
+                          <td class="ctr">{{ $pesanansurat->created_at }}</td>
+                          <td class="ctr"><textarea rows="5" cols="30" style="border: none" readonly>{{ $pesanansurat->dataSurat }}</textarea></td>
+                          <td class="ctr">
                             <form action="/proses_surat" method="post">
                               <input type="hidden" value="{{ $pesanansurat->formatsurat_id }}" name="idFormatSurat">
                               <input type="hidden" value="{{ $pesanansurat->dataSurat }}" name="prosesSurat">

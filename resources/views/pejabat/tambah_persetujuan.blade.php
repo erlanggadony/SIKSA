@@ -19,9 +19,9 @@
       <div class="main">
           <div class="row">
             <div class="col-md-8 content">
-              <h1>Isi Catatan Dekan</h1>
+              <h1>Isi Persetujuan & Catatan</h1>
               <br>
-              <form class="form-horizontal" method="post" action="/preview">
+              <form class="form-horizontal" method="post" action="/previewCatatan">
                 <div class="form-group">
                   <label for="persetujuan" class="col-sm-3">Persetujuan</label>
                   <div class="col-sm-9">
@@ -34,9 +34,9 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="catatanDekan" class="col-sm-3">Catatan Dekan</label>
+                  <label for="catatanDekan" class="col-sm-3">Catatan (Opsional)</label>
                   <div class="col-sm-9">
-                    <textarea class="form-control" id="catatanDekan" row="5" name="catatanDekan"></textarea>
+                    <textarea class="form-control" id="catatan" row="5" name="catatanDekan"></textarea>
                   </div>
                 </div>
                 {!! csrf_field() !!}
@@ -49,7 +49,7 @@
                 </div>
               </form>
             </div>
-            <div class="col-md-4 profile">.col-md-4</div>
+            @include('pejabat.profile_bar')
           </div>
       </div>
     </div>

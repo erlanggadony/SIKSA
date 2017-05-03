@@ -66,9 +66,11 @@ class HistorysuratController extends Controller
       // dd($loggedInUser);
       $realUser = $this->getRealUser($loggedInUser);
       // dd($realUser);
-
-      return view('mahasiswa/home_mahasiswa',[
-        'user' => $realUser
+      // dd($realUser->historysurats);
+      $history = $realUser->historysurats;
+      return view('mahasiswa.home_mahasiswa',[
+        'user' => $realUser,
+        'historysurats' => $history
       ]);
     }
 
@@ -130,6 +132,8 @@ class HistorysuratController extends Controller
 	}
 
   public function buatPDF(Request $request){
+      $loggedInUser = Auth::user();
+      $realUser = $this->getRealUser($loggedInUser);
       if($request->idFormatSurat == "1"){
         $dataSurat = $request->data;
         $json = json_decode($dataSurat);
@@ -164,12 +168,12 @@ class HistorysuratController extends Controller
         $historysurat = new Historysurat;
         $historysurat->no_surat = $noSurat;
         $historysurat->perihal = '-';
-        $historysurat->penerimaSurat = '-';
-        // $historysurat->pemohon = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
-        // $historysurat->jenis_surat = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
+        $historysurat->penerimaSurat = $json->penyediabeasiswa;
+        $historysurat->mahasiswa_id = $realUser->id;
+        $historysurat->formatsurats_id = $request->idFormatSurat;
         $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $nama . '_surat_keterangan_beasiswa.pdf';
-        // $historysurat->penandatanganan =
-        // $historysurat->pengambilan =
+        $historysurat->penandatanganan = false;
+        $historysurat->pengambilan = false;
         $historysurat->save();
         return redirect('/history_TU');//->with('success_message', 'Surat berhasil dibuat!');
       }
@@ -214,8 +218,8 @@ class HistorysuratController extends Controller
         // $historysurat->pemohon = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
         // $historysurat->jenis_surat = $this->pesananSuratRepo->findHistorySuratById($request->id)->perihal;
         $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $nama . '_surat_keterangan_mahasiswa_aktif.pdf';
-        // $historysurat->penandatanganan =
-        // $historysurat->pengambilan =
+        $historysurat->penandatanganan = false;
+        $historysurat->pengambilan = false;
         $historysurat->save();
         return redirect('/history_TU');
       }

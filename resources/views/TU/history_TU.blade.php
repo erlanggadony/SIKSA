@@ -57,13 +57,13 @@
                       </tr>
                       @foreach($historysurats as $historysurat)
                         <tr>
-                          <td>{{ $historysurat->no_surat }}</td>
-                          <td>{{ $historysurat->perihal }}</td>
-                          <td>{{ $historysurat->penerimaSurat }}</td>
-                          <td>{{ $historysurat->pemohon }}</td>
-                          <td>{{ $historysurat->jenis_surat }}</td>
-                          <td>{{ $historysurat->created_at }}</td>
-                          <td>
+                          <td class="ctr">{{ $historysurat->no_surat }}</td>
+                          <td class="ctr">{{ $historysurat->formatsurats_id }}</td>
+                          <td class="ctr">{{ $historysurat->perihal }}</td>
+                          <td class="ctr">{{ $historysurat->mahasiswa_id }}</td>
+                          <td class="ctr">{{ $historysurat->penerimaSurat }}</td>
+                          <td class="ctr">{{ $historysurat->created_at }}</td>
+                          <td class="ctr">
                               <button type="submit" value="{{ $historysurat->link_arsip_surat }}" class="btn btn-link">Klik disini</button>
                           </td>
                         </tr>

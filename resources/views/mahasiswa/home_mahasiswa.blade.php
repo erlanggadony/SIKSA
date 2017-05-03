@@ -31,18 +31,34 @@
                 </div>
                 <div class="form-group">
                   <label for="searchBox">Kata kunci :</label><br>
-                  <input type="text" name="searchBox" class="form-control" size="69" />
+                  <input type="text" name="searchBox" class="form-control" size="80" />
                   <button type="submit" name="findmail" class="btn btn-primary">Cari surat</button>
                 </div>
               </form>
               <br>
               <table class="table table-striped">
-                <tr>
-                  <th>TANGGAL PEMBUATAN</th>
-                  <th>PERIHAL</th>
-                  <th>KEPADA</th>
-                  <th>JENIS SURAT</th>
-                </tr>
+                @if($historysurats != null)
+                  @if(count($historysurats) == 0)
+                      <tr>
+                          <td colspan="5" align="center">Tidak ada history surat....</td>
+                      </tr>
+                  @else
+                      <tr>
+                        <th>TANGGAL PEMBUATAN</th>
+                        <th>PERIHAL</th>
+                        <th>KEPADA</th>
+                        <th>JENIS SURAT</th>
+                      </tr>
+                      @foreach($historysurats as $historysurat)
+                        <tr>
+                          <td class="ctr">{{ $historysurat->created_at }}</td>
+                          <td class="ctr">{{ $historysurat->perihal }}</td>
+                          <td class="ctr">{{ $historysurat->penerimaSurat }}</td>
+                          <td class="ctr">{{ $historysurat->formatsurats_id }}</td>
+                        </tr>
+                      @endforeach
+                  @endif
+                @endif
               </table>
             </div>
             @include('mahasiswa.profile_bar')

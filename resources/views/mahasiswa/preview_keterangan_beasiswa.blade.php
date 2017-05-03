@@ -61,6 +61,7 @@
                   </div>
                   <input type="hidden" value="{{ $formatsurat_id }}" name="idFormat">
                   <input type="hidden" value="{{ $dataSurat }}" name="dataSurat">
+                  <input type="hidden" value="{{ $penyediabeasiswa }}" name="provider">
                   {!! csrf_field() !!}
                   <br>
                   <div class="form-group">

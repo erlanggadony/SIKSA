@@ -46,7 +46,7 @@
                 @if($formatsurats != null)
                   @if(count($formatsurats) == 0)
                       <tr>
-                          <td colspan="5" align="center">No data found ...</td>
+                          <td colspan="5" align="center">Tidak ada format surat ...</td>
                       </tr>
                   @else
                       <tr>
@@ -58,22 +58,13 @@
                       </tr>
                       @foreach($formatsurats as $formatsurat)
                         <tr>
-                          <td>{{ $formatsurat->idFormatSurat }}</td>
-                          <td>{{ $formatsurat->jenis_surat }}</td>
-                          <td>{{ $formatsurat->keterangan }}</td>
-                          <td>
+                          <td class="ctr">{{ $formatsurat->idFormatSurat }}</td>
+                          <td class="ctr">{{ $formatsurat->jenis_surat }}</td>
+                          <td class="ctr">{{ $formatsurat->keterangan }}</td>
+                          <td class="ctr">
                               <button type="submit" onclick="showModal({{ $formatsurat->id }})" class="btn btn-link">Klik disini</button>
                           </td>
-                          <td>
-                            <form action="/editFormat" method="post">
-                              <input type="hidden" value="{{ $formatsurat->id }}" name="editID">
-                              {!! csrf_field() !!}
-                              <button type="button" class="btn btn-default" aria-label="Edit" data-toggle="tooltip" title="Edit">
-                                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                              </button>
-                            </form>
-                          </td>
-                          <td>
+                          <td class="ctr">
                             <form action="/hapusFormatsurat" method="post">
                               <input type="hidden" value="{{ $formatsurat->id }}" name="deleteID">
                               {!! csrf_field() !!}

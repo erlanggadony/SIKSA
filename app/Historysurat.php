@@ -7,7 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Historysurat extends Model
 {
     //
-    public function pesanansurats(){
+    public function pesanansurat(){
       return $this->belongsTo(PesananSurat::class);
+    }
+
+    public function mahasiswa(){
+      return $this->belongsTo(Mahasiswa::class);
     }
 }

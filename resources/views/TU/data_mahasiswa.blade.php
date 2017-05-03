@@ -42,7 +42,7 @@
               <table class="table table-striped table-hover">
                 @if(count($mahasiswas) == 0)
                     <tr>
-                        <td colspan="5" align="center">No data found ...</td>
+                        <td colspan="5" align="center">Tidak ada data mahasiswa ...</td>
                     </tr>
                 @else
                     <tr>
@@ -55,24 +55,19 @@
                       <th>TANGGAL LAHIR</th>
                       <th>DOSEN WALI</th>
                       <th>FOTO</th>
-                      <th colspan ="2"> KONTROL</th>
+                      <th>KONTROL</th>
                     </tr>
                     @foreach($mahasiswas as $mahasiswa)
                       <tr>
-                        <td>{{ $mahasiswa->nirm }}</td>
-                        <td>{{ $mahasiswa->npm }}</td>
-                        <td>{{ $mahasiswa->nama_mahasiswa }}</td>
-                        <td>{{ $mahasiswa->jurusan_id }}</td>
-                        <td>{{ $mahasiswa->angkatan }}</td>
-                        <td>{{ $mahasiswa->kota_lahir }}</td>
-                        <td>{{ $mahasiswa->tanggal_lahir }}</td>
-                        <td>{{ $mahasiswa->nama_dosen }}</td>
+                        <td class="ctr">{{ $mahasiswa->nirm }}</td>
+                        <td class="ctr">{{ $mahasiswa->npm }}</td>
+                        <td class="ctr">{{ $mahasiswa->nama_mahasiswa }}</td>
+                        <td class="ctr">{{ $mahasiswa->jurusan_id }}</td>
+                        <td class="ctr">{{ $mahasiswa->angkatan }}</td>
+                        <td class="ctr">{{ $mahasiswa->kota_lahir }}</td>
+                        <td class="ctr">{{ $mahasiswa->tanggal_lahir }}</td>
+                        <td class="ctr">{{ $mahasiswa->nama_dosen }}</td>
                         <td style="text-align:center"><a href = "{{ $mahasiswa->foto }}">klik disini</a></td>
-                        <td>
-                          <button type="button" class="btn btn-default" aria-label="Edit" data-toggle="tooltip" title="Edit">
-                              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                          </button>
-                        </td>
                         <td>
                           <form action="/hapusMahasiswa" method="post">
                             <input type="hidden" value="{{ $mahasiswa->id }}" name="deleteID">

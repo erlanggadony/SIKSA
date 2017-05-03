@@ -54,18 +54,22 @@
                         <th>PEMOHON</th>
                         <th>PENERIMA</th>
                         <th>TANGGAL PEMBUATAN</th>
-                        <th>ARSIP SURAT</th>
+                        <th>PENANDATANGANAN</th>
                       </tr>
                       @foreach($historysurats as $historysurat)
                         <tr>
-                          <td>{{ $historysurat->no_surat }}</td>
-                          <td>{{ $historysurat->perihal }}</td>
-                          <td>{{ $historysurat->penerimaSurat }}</td>
-                          <td>{{ $historysurat->pemohon }}</td>
-                          <td>{{ $historysurat->jenis_surat }}</td>
-                          <td>{{ $historysurat->created_at }}</td>
-                          <td>
-                              <button type="submit" value="{{ $historysurat->link_arsip_surat }}" class="btn btn-link">Klik disini</button>
+                          <td class="ctr">{{ $historysurat->no_surat }}</td>
+                          <td class="ctr">{{ $historysurat->formatsurats_id }}</td>
+                          <td class="ctr">{{ $historysurat->perihal }}</td>
+                          <td class="ctr">{{ $historysurat->mahasiswa_id }}</td>
+                          <td class="ctr">{{ $historysurat->penerimaSurat }}</td>
+                          <td class="ctr">{{ $historysurat->created_at }}</td>
+                          <td class="ctr">
+                            <form action="/ubahStatusPenandatanganan" method="post">
+                              <input type="hidden" value="{{ $formatsurat->id }}" name="signID">
+                              {!! csrf_field() !!}
+                              <button type="submit" value="{{ $historysurat->id }}" class="btn btn-default">Belum</button>
+                            </form>
                           </td>
                         </tr>
                       @endforeach

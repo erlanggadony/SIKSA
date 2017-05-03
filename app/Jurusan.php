@@ -19,11 +19,11 @@ class Jurusan extends Model
       return $this->hasMany(Dosen::class);
     }
 
-    public function fakultass(){
+    public function fakultas(){
       return $this->belongsTo(Fakultas::class);
     }
 
-    public function dosens(){
+    public function dosen(){
       return $this->hasOne(Dosen::class);
     }
 }

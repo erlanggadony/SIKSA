@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Dosen extends Model
 {
     //
-    public function jurusans(){
+    public function jurusan(){
       return $this->belongsTo(Jurusan::class);
     }
 
