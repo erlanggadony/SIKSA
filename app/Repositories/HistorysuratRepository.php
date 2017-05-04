@@ -46,7 +46,7 @@
     }
 
     public function findHistoryById($id){
-      $historysurat = Historysurat::where('id', $id)->first();
+      $historysurat = Historysurat::find($id);
       return $historysurat;
     }
 

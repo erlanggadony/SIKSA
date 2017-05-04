@@ -5,7 +5,6 @@
       <title>Data Mahasiswa</title>
       <link href="{{ asset("/bootstrap-3.3.7-dist/css/bootstrap.css") }}" rel="stylesheet" type="text/css" />
       <link href="{{ asset("/css/styles_list_surat.css") }}" rel="stylesheet" type="text/css">
-
   </head>
 
   <body>
@@ -55,6 +54,7 @@
                         <th>PENERIMA</th>
                         <th>TANGGAL PEMBUATAN</th>
                         <th>PENANDATANGANAN</th>
+                        <th>PENGAMBILAN</th>
                       </tr>
                       @foreach($historysurats as $historysurat)
                         <tr>
@@ -64,12 +64,23 @@
                           <td class="ctr">{{ $historysurat->mahasiswa_id }}</td>
                           <td class="ctr">{{ $historysurat->penerimaSurat }}</td>
                           <td class="ctr">{{ $historysurat->created_at }}</td>
+                          <td align="center">
+                            @if($historysurat->penandatanganan)
+                              <button type="submit" disabled class="btn btn-success" style="display:block">Sudah</button>
+                            @else
+                              <form action="{{url('/ubahStatusPenandatanganan')}}" method="post">
+                                <input type="hidden" value="{{ $historysurat->id }}" name="id">
+                                {!! csrf_field() !!}
+                                <button type="submit" class="btn btn-default " style="display:block">Belum</button>
+                              </form>
+                            @endif
+                          </td>
                           <td class="ctr">
-                            <form action="/ubahStatusPenandatanganan" method="post">
-                              <input type="hidden" value="{{ $formatsurat->id }}" name="signID">
-                              {!! csrf_field() !!}
-                              <button type="submit" value="{{ $historysurat->id }}" class="btn btn-default">Belum</button>
-                            </form>
+                            @if($historysurat->pengambilan)
+                              <p>Sudah</p>
+                            @else
+                              <p>Belum</p>
+                            @endif
                           </td>
                         </tr>
                       @endforeach

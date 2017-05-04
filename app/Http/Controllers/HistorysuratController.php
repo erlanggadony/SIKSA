@@ -74,6 +74,21 @@ class HistorysuratController extends Controller
       ]);
     }
 
+    public function ubahStatusPengambilan(Request $request){
+      $history = $this->historysuratRepo->findHistoryById($request->id);
+      // dd($history);
+      $history->pengambilan = true;
+      $history->save();
+      return redirect('/history_TU');
+    }
+
+    public function ubahStatusPenandatanganan(Request $request){
+      $history = $this->historysuratRepo->findHistoryById($request->id);
+      $history->penandatanganan = true;
+      $history->save();
+      return redirect('/history_pejabat');
+    }
+
     private function getRealUser($loggedInUser){
       // dd($loggedInUser);
       $realUser='';

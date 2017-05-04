@@ -4,8 +4,7 @@
   <head>
       <title>Data Mahasiswa</title>
       <link href="{{ asset("/bootstrap-3.3.7-dist/css/bootstrap.css") }}" rel="stylesheet" type="text/css" />
-      <link href="{{ asset("/css/styles_list_surat.css") }}" rel="stylesheet" type="text/css">
-
+      <link href="{{ asset("/css/styles_list_surat.css") }}" rel="stylesheet" type="text/css" />
   </head>
 
   <body>
@@ -53,7 +52,8 @@
                         <th>PEMOHON</th>
                         <th>PENERIMA</th>
                         <th>TANGGAL PEMBUATAN</th>
-                        <th>ARSIP SURAT</th>
+                        <th>PENANDATANGANAN</th>
+                        <th>PENGAMBILAN</th>
                       </tr>
                       @foreach($historysurats as $historysurat)
                         <tr>
@@ -64,7 +64,26 @@
                           <td class="ctr">{{ $historysurat->penerimaSurat }}</td>
                           <td class="ctr">{{ $historysurat->created_at }}</td>
                           <td class="ctr">
-                              <button type="submit" value="{{ $historysurat->link_arsip_surat }}" class="btn btn-link">Klik disini</button>
+                            @if($historysurat->penandatanganan)
+                              <p>Sudah</p>
+                            @else
+                              <p>Belum</p>
+                            @endif
+                          </td>
+                          <td align="center">
+                            @if($historysurat->pengambilan)
+                              <button type="submit" disabled class="btn btn-success">Sudah</button>
+                            @else
+                              @if($historysurat->penandatanganan == false)
+                                <button type="submit" disabled class="btn btn-default">Belum</button>
+                              @else
+                                <form method="post" action="{{url('/ubahStatusPengambilan')}}">
+                                  <input type="hidden" value="{{ $historysurat->id }}" name="id">
+                                  {!! csrf_field() !!}
+                                  <button type="submit" class="btn btn-default">Belum</button>
+                                </form>
+                              @endif
+                            @endif
                           </td>
                         </tr>
                       @endforeach

@@ -132,49 +132,37 @@ class MahasiswaController extends Controller
     }
 
     public function uploadMahasiswa(Request $request){
-
+      // dd($request);
       $dataMhs = $request->file('uploadDataMhs');
+      $mhs = file($dataMhs);
+      // dd($mhs);
       $baris = '';
-      foreach ($dataMhs as $line_num => $line) {
+      foreach ($mhs as $line_num => $line) {
+        $baris .= $line;
 
-        $baris .= $line.'<br>';
-        $data = explode("/", $baris);  //ubah pemisahnya dengan yg ada di sql
-          $savedMahasiswa = Mahasiswa::create(array(
-            'nirm' => $data[0],
-            'npm' => $data[1],
-            'nama_mahasiswa' => $data[2],
-            'jurusan_id' => $data[3],
-            'fakultas_id' => $data[4],
-            'angkatan' => $data[5],
-            'kota_lahir' => $data[6],
-            'tanggal_lahir' => $data[7],
-            'foto_mahasiswa' => $data[8],
-            'dosen_id' => $data[9],
-            'username' => $data[10]
-          ));
+        $data = explode(",", $baris);  //ubah pemisahnya dengan yg ada di sql
+        // dd($data);
 
-          // dd($savedMahasiswa->id);,
-          $savedUser = User::create(array(
-            'ref' => $savedMahasiswa->id,
-            'username' => $data[10],
-            'password' => bycrypt($data[11])
-          ));
+        $mahasiswa = new Mahasiswa;
 
-          // $mahasiswa = new Mahasiswa;
-          //
-          // $mahasiswa->nirm = $data[0];
-          // $mahasiswa->npm = $data[1];
-          // $mahasiswa->nama_mahasiswa = $data[2];
-          // $mahasiswa->jurusan_id = $data[3];
-          // $mahasiswa->fakultas_id = $data[4];
-          // $mahasiswa->angkatan = $data[5];
-          // $mahasiswa->kota_lahir = $data[6];
-          // $mahasiswa->tanggal_lahir = $data[7];
-          // $mahasiswa->foto_mahasiswa = $data[8];
-          // $mahasiswa->dosen_id = $data[9];
-          // $mahasiswa->username = $data[10];
-          // $mahasiswa->password = bycrypt($data[11]);
-          // $mahasiswa->save();
+        $mahasiswa->nirm = $data[0];
+        $mahasiswa->npm = $data[1];
+        $mahasiswa->nama_mahasiswa = $data[2];
+        $mahasiswa->jurusan_id = $data[3];
+        $mahasiswa->fakultas_id = $data[4];
+        $mahasiswa->angkatan = $data[5];
+        $mahasiswa->kota_lahir = $data[6];
+        $mahasiswa->tanggal_lahir = $data[7];
+        $mahasiswa->foto_mahasiswa = $data[8];
+        $mahasiswa->dosen_id = $data[9];
+        $mahasiswa->username = $data[10];
+        $mahasiswa->save();
+
+        $user = new User;
+        $user->name = $data[2];
+        $user->username = $data[10];
+        $user->password = $data[11];
+        $user->save();
       }
       return redirect('/data_mahasiswa')->with('success_message', 'Data mahasiswa telah di upload');
     }

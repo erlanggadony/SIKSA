@@ -4,32 +4,6 @@ jQuery(document).ready(function($){
 
   $(".showText").css("display: none;");
 
-  var addMatkul =
-  '<div class="row" style="margin-top: 15px;">'+
-    '<div class="offset col-xs-5">'+
-      '<input type="text" class="form-control" placeholder="Nama mata kuliah">'+
-    '</div>'+
-    '<div class="col-xs-2">'+
-      '<input type="text" class="form-control" placeholder="sks">'+
-    '</div>'+
-    '<button type="button" class="btn btn-default" aria-label="Remove">'+
-        '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>'+
-    '</button>'+
-  '</div>';
-
-  var addAnggota =
-  '<div class="row" style="margin-top: 15px;">'+
-    '<div class="offset col-xs-5">'+
-      '<input type="text" class="form-control" placeholder="Nama anggota">'+
-    '</div>'+
-    '<div class="col-xs-2">'+
-      '<input type="text" class="form-control" placeholder="NPM">'+
-    '</div>'+
-    '<button type="button" class="btn btn-default" id="removeTextField" aria-label="Remove">'+
-        '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>'+
-    '</button>'+
-  '</div>';
-
 
   $("#btnAddTextField").click(function(){
       $(".addTextField").append(addMatkul);
@@ -39,6 +13,13 @@ jQuery(document).ready(function($){
        }
   });
 
+  $("#pengambilan_belum").click(function(){
+    var clickButton = $(this).val();
+    if(clickButton == "belum"){
+      document.getElementById("pengambilan_belum").style.display = 'none';
+      document.getElementById("pengambilan_sudah").style.display = 'block';
+    }
+  });
 
   $(".addMember").click(function(){
     var clickButton = $(this).val();
@@ -55,13 +36,5 @@ jQuery(document).ready(function($){
       if (ctrAnggota == 0) {
          document.getElementById("btnAddAnggota").style.display = 'none';
        }
-  });
-
-  $(".jenis_surat").click(function(){
-    var clickButton = $(this).val();
-      // console.log(clickButton);
-    if(clickButton == "{{ $formatsurat->id }}"){
-        document.getElementById("showKeterangan")
-    }
   });
 });

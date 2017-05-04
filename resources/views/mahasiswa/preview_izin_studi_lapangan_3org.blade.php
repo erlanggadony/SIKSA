@@ -1,6 +1,6 @@
 <!DOCTYPE html>
   <head>
-      <title>Isi data diri</title>
+      <title>Preview</title>
       <link href="{{ asset("/bootstrap-3.3.7-dist/css/bootstrap.css") }}" rel="stylesheet" type="text/css" />
       <link href="{{ asset("/css/styles_list_surat.css") }}" rel="stylesheet" type="text/css">
 

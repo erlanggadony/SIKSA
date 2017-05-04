@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Login Form</title>
+    <title>Login</title>
     <link href="{{ asset("/bootstrap-3.3.7-dist/css/bootstrap.css") }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset("/css/style_login.css") }}" rel="stylesheet" type="text/css" />
   </head>
