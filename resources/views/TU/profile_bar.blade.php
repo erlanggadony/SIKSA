@@ -4,7 +4,7 @@
 
       </div>
       <div class="avatar">
-          <img alt="" src="http://lorempixel.com/100/100/people/9/">
+          <img alt="" src="http://simpleicon.com/wp-content/uploads/user1.png">
       </div>
       <div class="info">
           <div class="title">

@@ -37,51 +37,52 @@
                   <p class="col-sm-12" style="font-weight:bold">
                     IDENTITAS MAHASISWA YANG PERWALIANNYA DIWAKILKAN :
                   </p>
-                    <div class="form-group">
-                      <label for="nama" class="col-sm-3">Nama</label>
-                      <div class="col-sm-9">
-                        <input type="text" class="form-control" id="nama" name="nama" value="" readonly style="border: none" />
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="npm" class="col-sm-3">NPM</label>
-                      <div class="col-sm-9">
-                        <input type="text" class="form-control" id="npm" name="npm" value="" readonly style="border: none">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="prodi" class="col-sm-3">Program studi</label>
-                      <div class="col-sm-9">
-                        <input type="text" class="form-control" id="prodi" name="prodi" value="" readonly style="border: none" />
-                      </div>
-                    </div>
-                  <p class="col-md-12" style="font-weight:bold">
-                    IDENTITAS MAHASISWA YANG DIBERI KUASA PERWALIAN :
-                  </p>
                   <div class="form-group">
-                    <label for="namaWakil" class="col-sm-3">Nama</label>
+                    <label for="nama" class="col-sm-3">Nama</label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="namaWakil" name="namaWakil" required>
+                      <input type="text" class="form-control" id="nama" name="nama" required/>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="npmWakil" class="col-sm-3">NPM</label>
+                    <label for="npm" class="col-sm-3">NPM</label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="npmWakil" name="npmWakil" required>
+                      <input type="text" class="form-control" id="npm" name="npm" required/>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="prodiwakil" class="col-sm-3">Program studi</label>
+                    <label for="prodi" class="col-sm-3">Program studi</label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="prodiWakil" name="prodiWakil" required>
+                      <input type="text" class="form-control" id="prodi" name="prodi" required/>
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label for="dosenWali" class="col-sm-3">Dosen wali</label>
-                    <div class="col-sm-9">
-                      <input type="text" class="form-control" id="dosenWali" name="dosenWali" value="" readonly style="border: none" />
-                    </div>
+                <p class="col-md-12" style="font-weight:bold">
+                  IDENTITAS MAHASISWA YANG DIBERI KUASA PERWALIAN :
+                </p>
+                <div class="form-group">
+                  <label for="namaWakil" class="col-sm-3">Nama</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="namaWakil" name="namaWakil" value="{{ $user->nama_mahasiswa }}" readonly style="border: none" >
                   </div>
+                </div>
+                <div class="form-group">
+                  <label for="npmWakil" class="col-sm-3">NPM</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="npmWakil" name="npmWakil" value="{{ $user->npm }}" readonly style="border: none" >
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="prodiwakil" class="col-sm-3">Program studi</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="semester" name="dosenWali" required />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="dosenWali" class="col-sm-3">Dosen wali</label>
+                  <div class="col-sm-9">
+                    <span type="text" class="form-control" readonly style="border: none" >{{ $user->dosen->nama_dosen }}</span>
+                    <input type="hidden" name="dosenWali" value="{{ $user->dosen_id }}"/>
+                  </div>
+                </div>
                   <div class="form-group">
                     <label for="alasan" class="col-sm-3">Alasan tidak hadir perwalian</label>
                     <div class="col-sm-9">

@@ -35,8 +35,7 @@ class MahasiswaController extends Controller
       // dd($loggedInUser);
       $realUser = $this->getRealUser($loggedInUser);
       // dd($realUser);
-
-      return view('mahasiswa/home_mahasiswa',[
+      return view('mahasiswa.home_mahasiswa',[
         'user' => $realUser
       ]);
     }

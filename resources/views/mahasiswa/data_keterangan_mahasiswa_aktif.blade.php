@@ -33,7 +33,8 @@
                 <div class="form-group">
                   <label for="prodi" class="col-sm-3">Program studi</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="prodi" name="prodi" value="{{ $user->jurusan_id }}" readonly style="border: none" />
+                    <span type="text" class="form-control" readonly style="border: none" >{{ $user->jurusan->nama_jurusan }}</span>
+                    <input type="hidden" name="prodi" value="{{ $user->jurusan_id }}"/>
                   </div>
                 </div>
                 <div class="form-group">

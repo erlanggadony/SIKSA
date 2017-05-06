@@ -12,17 +12,7 @@
     </div>
 
 
-    <div class="navigation">
-         <div class="navbar text-center">
-            <ul class="inline">
-              <a href="/home_TU"><li>Home</li></a>
-              <a href="/history_TU"><li>History Surat</li></a>
-              <a href="/data_mahasiswa"><li>Data Mahasiswa</li></a>
-              <a href="/format_surat"><li>Format Surat</li></a>
-              <li>Logout</li>
-            </ul>
-         </div>
-    </div>
+    @include('tu.menu')
 
     <div class="container">
       <div class="main">
@@ -180,6 +170,7 @@
                 </div>
                 <input type="hidden" value="{{ $dataSurat }}" id="format" name="data">
                 <input type="hidden" value="{{ $formatsurat_id }}" name="idFormatSurat">
+                <input type="hidden" value="{{ $pemesan }}" name="pemesan">
                 {!! csrf_field() !!}
                 <br>
                 <div class="form-group">
@@ -189,23 +180,11 @@
                   </div>
                 </div>
               </form>
-            </div>
-            <div class="col-md-4 profile">.col-md-4</div>
-            </div>
-            <!-- <div id="profile">
-                <img id=profpict src="{{ asset("/images/2012730071.jpg") }}" />
-                <br>
-                <h2>Dony Erlangga</h2>
-                <h3>2012730071</h3>
-                </div>
-            </div>
-
-            <div id = "content">
-
-            </div> -->
-
-      </div>
+          </div>
+          @include('tu.profile_bar')
+        </div>
     </div>
+  </div>
     <div class="footer">
         hahahahahahahahahahahahahahahhahahahahahaha
     </div>

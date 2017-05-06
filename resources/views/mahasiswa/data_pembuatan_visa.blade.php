@@ -43,7 +43,7 @@
                 <div class="form-group">
                   <label for="thnAkademik" class="col-sm-3">Tahun akademik</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control date" id="thnAkademik" name="thnAkademik" value="{{ $user->nama_mahasiswa }}" readonly style="border: none" />
+                    <input type="text" class="form-control date" id="thnAkademik" name="thnAkademik" value="{{ $user->kewarganegaraan }}" readonly style="border: none" />
                   </div>
                 </div>
                 <div class="form-group">

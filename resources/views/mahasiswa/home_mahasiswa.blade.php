@@ -54,7 +54,7 @@
                           <td class="ctr">{{ $historysurat->created_at }}</td>
                           <td class="ctr">{{ $historysurat->perihal }}</td>
                           <td class="ctr">{{ $historysurat->penerimaSurat }}</td>
-                          <td class="ctr">{{ $historysurat->formatsurats_id }}</td>
+                          <td class="ctr">{{ $historysurat->formatsurat->jenis_surat }}</td>
                         </tr>
                       @endforeach
                   @endif

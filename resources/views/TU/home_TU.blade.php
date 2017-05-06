@@ -1,6 +1,6 @@
 <!DOCTYPE html>
   <head>
-      <title>Home</title>
+      <title>Home - TU</title>
       <link href="{{ asset("/bootstrap-3.3.7-dist/css/bootstrap.css") }}" rel="stylesheet" type="text/css" />
       <link href="{{ asset("/css/styles_list_surat.css") }}" rel="stylesheet" type="text/css">
 
@@ -53,14 +53,15 @@
                     </tr>
                     @foreach($pesanansurats as $pesanansurat)
                         <tr>
-                          <td class="ctr">{{ $pesanansurat->formatsurat_id }}</td>
+                          <td class="ctr">{{ $pesanansurat->formatsurat->jenis_surat }}</td>
                           <td class="ctr">{{ $pesanansurat->perihal }}</td>
-                          <td class="ctr">{{ $pesanansurat->mahasiswa_id }}</td>
+                          <td class="ctr">{{ $pesanansurat->mahasiswa->nama_mahasiswa  }}</td>
                           <td class="ctr">{{ $pesanansurat->penerimaSurat }}</td>
                           <td class="ctr">{{ $pesanansurat->created_at }}</td>
                           <td class="ctr"><textarea rows="5" cols="30" style="border: none" readonly>{{ $pesanansurat->dataSurat }}</textarea></td>
                           <td class="ctr">
                             <form action="/proses_surat" method="post">
+                              <input type="hidden" value="{{ $pesanansurat->id }}" name="id">
                               <input type="hidden" value="{{ $pesanansurat->formatsurat_id }}" name="idFormatSurat">
                               <input type="hidden" value="{{ $pesanansurat->dataSurat }}" name="prosesSurat">
                               {!! csrf_field() !!}

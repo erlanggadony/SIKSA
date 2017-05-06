@@ -37,7 +37,8 @@
                 <div class="form-group">
                   <label for="npm" class="col-sm-3 prevLabel">Program Studi</label>
                   <div class="col-sm-9">
-                    {{ $prodi }}
+                    <span>{{ $user->jurusan->nama_jurusan }}</span>
+                    <input type="hidden" name="prodi" value="{{ $prodi }}"/>
                   </div>
                 </div>
                 <div class="form-group">

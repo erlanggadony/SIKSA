@@ -31,7 +31,7 @@
                 <div class="form-group">
                   <label for="npm" class="col-sm-3">NPM</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="npm" name="npm" value="{{ $user->nama_mahasiswa }}" readonly style="border: none" />
+                    <input type="text" class="form-control" id="npm" name="npm" value="{{ $user->npm }}" readonly style="border: none" />
                   </div>
                 </div>
                 <div class="form-group">

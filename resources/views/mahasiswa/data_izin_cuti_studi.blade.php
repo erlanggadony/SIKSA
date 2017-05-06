@@ -37,13 +37,15 @@
                 <div class="form-group">
                   <label for="prodi" class="col-sm-3">Program studi</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="prodi" name="prodi" value="" readonly style="border: none" />
+                    <span type="text" class="form-control" readonly style="border: none" >{{ $user->jurusan->nama_jurusan }}</span>
+                    <input type="hidden" name="prodi" value="{{ $user->jurusan_id }}"/>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="fakultas" class="col-sm-3">Fakultas</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="fakultas" name="fakultas" value="" readonly style="border: none" />
+                    <span type="text" class="form-control" readonly style="border: none" >{{ $user->fakultas->nama_fakultas }}</span>
+                    <input type="hidden" name="fakultas" value="{{ $user->fakultas_id }}"/>
                   </div>
                 </div>
                 <div class="form-group">
@@ -67,7 +69,8 @@
                 <div class="form-group">
                   <label for="dosenWali" class="col-sm-3">Dosen wali</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="dosenWali" name="dosenWali" value="" readonly style="border: none" />
+                    <span type="text" class="form-control" readonly style="border: none" >{{ $user->dosen->nama_dosen }}</span>
+                    <input type="hidden" name="dosenWali" value="{{ $user->dosen_id }}"/>
                   </div>
                 </div>
                 <div class="form-group">

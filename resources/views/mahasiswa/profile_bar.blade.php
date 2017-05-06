@@ -4,14 +4,14 @@
 
       </div>
       <div class="avatar">
-          <img alt="" src="http://lorempixel.com/100/100/people/9/">
+          <img alt="" src="{{ $user->foto_mahasiswa }}" />
       </div>
       <div class="info">
           <div class="title">
               {{ $user->nama_mahasiswa }}
           </div>
           <div class="desc">{{ $user->npm }}</div>
-          <div class="desc">{{ $user->jurusan_id }}</div>
+          <div class="desc">{{ $user->jurusan->nama_jurusan }}</div>
       </div>
   </div>
 </div>

@@ -198,7 +198,7 @@ h2, h3, h4{
     padding-top: 0;
     overflow: hidden;
     text-align: center;
-    background-color: rgba(214, 224, 226, 0.2);
+    background-color: rgba(255, 255, 255, 255);
 }
 
 .card.hovercard .cardheader {
@@ -226,7 +226,7 @@ h2, h3, h4{
 
 .card.hovercard .info .title {
     margin-bottom: 4px;
-    font-size: 24px;
+    font-size: 18px;
     line-height: 1;
     color: #262626;
     vertical-align: middle;

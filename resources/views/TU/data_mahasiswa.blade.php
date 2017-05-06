@@ -62,11 +62,11 @@
                         <td class="ctr">{{ $mahasiswa->nirm }}</td>
                         <td class="ctr">{{ $mahasiswa->npm }}</td>
                         <td class="ctr">{{ $mahasiswa->nama_mahasiswa }}</td>
-                        <td class="ctr">{{ $mahasiswa->jurusan_id }}</td>
+                        <td class="ctr">{{ $mahasiswa->jurusan->nama_jurusan }}</td>
                         <td class="ctr">{{ $mahasiswa->angkatan }}</td>
                         <td class="ctr">{{ $mahasiswa->kota_lahir }}</td>
                         <td class="ctr">{{ $mahasiswa->tanggal_lahir }}</td>
-                        <td class="ctr">{{ $mahasiswa->nama_dosen }}</td>
+                        <td class="ctr">{{ $mahasiswa->dosen->nama_dosen }}</td>
                         <td style="text-align:center"><a href = "{{ $mahasiswa->foto }}">klik disini</a></td>
                         <td>
                           <form action="/hapusMahasiswa" method="post">

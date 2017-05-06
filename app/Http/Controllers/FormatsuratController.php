@@ -40,10 +40,11 @@ class FormatsuratController extends Controller
         // dd($loggedInUser);
         $realUser = $this->getRealUser($loggedInUser);
         // dd($realUser);
-
+        $foto = $realUser->foto_mahasiswa;
         return view('mahasiswa.pilih_jenis_surat',[
             'formatsurats' => $formatsurats,
-            'user' => $realUser
+            'user' => $realUser,
+            'foto' => $foto
         ]);
 	}
 
@@ -167,6 +168,8 @@ public function tampilkanSeluruhFormat(Request $request){
     */
     public function tampilkanFormulir(Request $request){
       $loggedInUser = Auth::user();
+      $realUser = $this->getRealUser($loggedInUser);
+      $foto = $realUser->foto_mahasiswa;
       // dd($loggedInUser);
       $realUser = $this->getRealUser($loggedInUser);
       // dd($realUser);
@@ -174,122 +177,142 @@ public function tampilkanSeluruhFormat(Request $request){
         if($request->jenis_surat == "1"){
           return view('mahasiswa.data_keterangan_beasiswa', [
             'formatsurat_id' => $request->jenis_surat,
-            'user' => $realUser
+            'user' => $realUser,
+            'foto' => $foto
           ]);
         }
         else if($request->jenis_surat == "2"){
           return view('mahasiswa.data_keterangan_mahasiswa_aktif', [
             'formatsurat_id' => $request->jenis_surat,
-            'user' => $realUser
+            'user' => $realUser,
+            'foto' => $foto
           ]);
         }
         else if($request->jenis_surat == "3"){
           return view('mahasiswa.data_pembuatan_visa', [
             'formatsurat_id' => $request->jenis_surat,
-            'user' => $realUser
+            'user' => $realUser,
+            'foto' => $foto
           ]);
         }
         else if($request->jenis_surat == "4"){
           // dd($request->jenis_surat);
           return view('mahasiswa.data_izin_studi_lapangan_1org', [
             'formatsurat_id' => $request->jenis_surat,
-            'user' => $realUser
+            'user' => $realUser,
+            'foto' => $foto
           ]);
         }
         else if($request->jenis_surat == "5"){
           return view('mahasiswa.data_izin_studi_lapangan_2org', [
             'formatsurat_id' => $request->jenis_surat,
-            'user' => $realUser
+            'user' => $realUser,
+            'foto' => $foto
           ]);
         }
         else if($request->jenis_surat == "6"){
           return view('mahasiswa.data_izin_studi_lapangan_3org', [
             'formatsurat_id' => $request->jenis_surat,
-            'user' => $realUser
+            'user' => $realUser,
+            'foto' => $foto
           ]);
         }
         else if($request->jenis_surat == "7"){
           return view('mahasiswa.data_izin_studi_lapangan_4org', [
             'formatsurat_id' => $request->jenis_surat,
-            'user' => $realUser
+            'user' => $realUser,
+            'foto' => $foto
           ]);
         }
         else if($request->jenis_surat == "8"){
           return view('mahasiswa.data_izin_studi_lapangan_5org', [
             'formatsurat_id' => $request->jenis_surat,
-            'user' => $realUser
+            'user' => $realUser,
+            'foto' => $foto
           ]);
         }
         else if($request->jenis_surat == "9"){
           return view('mahasiswa.data_izin_cuti_studi', [
             'formatsurat_id' => $request->jenis_surat,
-            'user' => $realUser
+            'user' => $realUser,
+            'foto' => $foto
           ]);
         }
         else if($request->jenis_surat == "10"){
           return view('mahasiswa.data_izin_pengunduran_diri', [
             'formatsurat_id' => $request->jenis_surat,
-            'user' => $realUser
+            'user' => $realUser,
+            'foto' => $foto
           ]);
         }
         else if($request->jenis_surat == "11"){
           return view('mahasiswa.data_perwakilan_perwalian_1mk', [
             'formatsurat_id' => $request->jenis_surat,
-            'user' => $realUser
+            'user' => $realUser,
+            'foto' => $foto
           ]);
         }
         else if($request->jenis_surat == "12"){
           return view('mahasiswa.data_perwakilan_perwalian_2mk', [
             'formatsurat_id' => $request->jenis_surat,
-            'user' => $realUser
+            'user' => $realUser,
+            'foto' => $foto
           ]);
         }
         else if($request->jenis_surat == "13"){
           return view('mahasiswa.data_perwakilan_perwalian_3mk', [
             'formatsurat_id' => $request->jenis_surat,
-            'user' => $realUser
+            'user' => $realUser,
+            'foto' => $foto
           ]);
         }
         else if($request->jenis_surat == "14"){
           return view('mahasiswa.data_perwakilan_perwalian_4mk', [
             'formatsurat_id' => $request->jenis_surat,
-            'user' => $realUser
+            'user' => $realUser,
+            'foto' => $foto
           ]);
         }
         else if($request->jenis_surat == "15"){
           return view('mahasiswa.data_perwakilan_perwalian_5mk', [
             'formatsurat_id' => $request->jenis_surat,
-            'user' => $realUser
+            'user' => $realUser,
+            'foto' => $foto
           ]);
         }
         else if($request->jenis_surat == "16"){
           return view('mahasiswa.data_perwakilan_perwalian_6mk', [
             'formatsurat_id' => $request->jenis_surat,
-            'user' => $realUser
+            'user' => $realUser,
+            'foto' => $foto
           ]);
         }
         else if($request->jenis_surat == "17"){
           return view('mahasiswa.data_perwakilan_perwalian_7mk', [
             'formatsurat_id' => $request->jenis_surat,
-            'user' => $realUser
+            'user' => $realUser,
+            'foto' => $foto
           ]);
         }
         else if($request->jenis_surat == "18"){
           return view('mahasiswa.data_perwakilan_perwalian_8mk', [
             'formatsurat_id' => $request->jenis_surat,
-            'user' => $realUser
+            'user' => $realUser,
+            'foto' => $foto
           ]);
         }
         else if($request->jenis_surat == "19"){
           return view('mahasiswa.data_perwakilan_perwalian_9mk', [
             'formatsurat_id' => $request->jenis_surat,
-            'user' => $realUser
+            'user' => $realUser,
+            'foto' => $foto
           ]);
         }
         else if($request->jenis_surat == "20"){
           return view('mahasiswa.data_perwakilan_perwalian_10mk', [
             'formatsurat_id' => $request->jenis_surat,
-            'user' => $realUser
+            'user' => $realUser,
+            'foto' => $foto
           ]);
         }
     }

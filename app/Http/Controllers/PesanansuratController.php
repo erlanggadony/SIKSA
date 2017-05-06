@@ -239,7 +239,10 @@ class PesanansuratController extends Controller
         $thnAkademik = $json->thnAkademik;
         $penyediabeasiswa = $json->penyediabeasiswa;
         $formatsurat_id = $request->idFormatSurat;
-        // dd($dataSurat);
+        $pesananID = $this->pesanansuratRepo->findPesananSuratById($request->id);
+        $pemesan = $pesananID->mahasiswa_id;
+        // dd($request->id);
+        // dd($pemesan);
         return view('TU.proses_surat_keterangan_beasiswa', [
             'nama' => $nama,
             'prodi' => $prodi,
@@ -249,7 +252,8 @@ class PesanansuratController extends Controller
             'penyediabeasiswa' => $penyediabeasiswa,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat,
-            'user' => $realUser
+            'user' => $realUser,
+            'pemesan' => $pemesan
         ]);
       }
       else if($request->idFormatSurat == "2"){
@@ -263,6 +267,8 @@ class PesanansuratController extends Controller
         $semester = $json->semester;
         $alamat = $json->alamat;
         $formatsurat_id = $request->idFormatSurat;
+        $pesananID = $this->pesanansuratRepo->findPesananSuratById($request->id);
+        $pemesan = $pesananID->mahasiswa_id;
         // dd($dataSurat);
         return view('TU.proses_surat_keterangan_mahasiswa_aktif', [
             'nama' => $nama,
@@ -274,7 +280,8 @@ class PesanansuratController extends Controller
             'semester' => $semester,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat,
-            'user' => $realUser
+            'user' => $realUser,
+            'pemesan' => $pemesan
         ]);
       }
       else if($request->idFormatSurat == "3"){
@@ -288,6 +295,8 @@ class PesanansuratController extends Controller
         $negaraTujuan = $json->negaraTujuan;
         $tanggalKunjungan = $json->tanggalKunjungan;
         $formatsurat_id = $request->idFormatSurat;
+        $pesananID = $this->pesanansuratRepo->findPesananSuratById($request->id);
+        $pemesan = $pesananID->mahasiswa_id;
         // dd($dataSurat);
         return view('TU.proses_surat_pembuatan_visa', [
             'nama' => $nama,
@@ -299,7 +308,8 @@ class PesanansuratController extends Controller
             'tanggalKunjungan' => $tanggalKunjungan,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat,
-            'user' => $realUser
+            'user' => $realUser,
+            'pemesan' => $pemesan
         ]);
       }
       else if($request->idFormatSurat == "4"){
@@ -316,6 +326,8 @@ class PesanansuratController extends Controller
         $kota = $json->kota;
         $kepada = $json->kepada;
         $formatsurat_id = $request->idFormatSurat;
+        $pesananID = $this->pesanansuratRepo->findPesananSuratById($request->id);
+        $pemesan = $pesananID->mahasiswa_id;
         // dd($request);
         return view('TU.proses_surat_izin_studi_lapangan_1org', [
             'nama' => $nama,
@@ -330,7 +342,8 @@ class PesanansuratController extends Controller
             'kepada' => $kepada,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat,
-            'user' => $realUser
+            'user' => $realUser,
+            'pemesan' => $pemesan
         ]);
       }
       else if($request->idFormatSurat == "5"){
@@ -349,6 +362,9 @@ class PesanansuratController extends Controller
         $namaAnggota = $json->namaAnggota;
         $npmAnggota = $json->npmAnggota;
         $formatsurat_id = $request->idFormatSurat;
+        $pesananID = $this->pesanansuratRepo->findPesananSuratById($request->id);
+        $pemesan = $pesananID->mahasiswa_id;
+
         return view('TU.proses_surat_izin_studi_lapangan_2org', [
             'nama' => $nama,
             'npm' => $npm,
@@ -364,7 +380,8 @@ class PesanansuratController extends Controller
             'npmAnggota' => $npmAnggota,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat,
-            'user' => $realUser
+            'user' => $realUser,
+            'pemesan' => $pemesan
         ]);
       }
       else if($request->idFormatSurat == "6"){
@@ -385,6 +402,8 @@ class PesanansuratController extends Controller
         $namaAnggota2 = $json->namaAnggota2;
         $npmAnggota2 = $json->npmAnggota2;
         $formatsurat_id = $request->idFormatSurat;
+        $pesananID = $this->pesanansuratRepo->findPesananSuratById($request->id);
+        $pemesan = $pesananID->mahasiswa_id;
         return view('TU.proses_surat_izin_studi_lapangan_3org', [
             'nama' => $nama,
             'npm' => $npm,
@@ -402,7 +421,8 @@ class PesanansuratController extends Controller
             'npmAnggota2' => $npmAnggota2,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat,
-            'user' => $realUser
+            'user' => $realUser,
+            'pemesan' => $pemesan
         ]);
       }
       else if($request->idFormatSurat == "7"){
@@ -425,6 +445,8 @@ class PesanansuratController extends Controller
         $namaAnggota3 = $json->namaAnggota3;
         $npmAnggota3 = $json->npmAnggota3;
         $formatsurat_id = $request->idFormatSurat;
+        $pesananID = $this->pesanansuratRepo->findPesananSuratById($request->id);
+        $pemesan = $pesananID->mahasiswa_id;
         return view('TU.proses_surat_izin_studi_lapangan_4org', [
             'nama' => $nama,
             'npm' => $npm,
@@ -444,7 +466,8 @@ class PesanansuratController extends Controller
             'npmAnggota3' => $npmAnggota3,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat,
-            'user' => $realUser
+            'user' => $realUser,
+            'pemesan' => $pemesan
         ]);
       }
       else if($request->idFormatSurat == "8"){
@@ -469,6 +492,8 @@ class PesanansuratController extends Controller
         $namaAnggota4 = $json->namaAnggota4;
         $npmAnggota4 = $json->npmAnggota4;
         $formatsurat_id = $request->idFormatSurat;
+        $pesananID = $this->pesanansuratRepo->findPesananSuratById($request->id);
+        $pemesan = $pesananID->mahasiswa_id;
         return view('TU.proses_surat_izin_studi_lapangan_5org', [
             'nama' => $nama,
             'npm' => $npm,
@@ -490,7 +515,8 @@ class PesanansuratController extends Controller
             'npmAnggota4' => $npmAnggota4,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat,
-            'user' => $realUser
+            'user' => $realUser,
+            'pemesan' => $pemesan
         ]);
       }
       else if($request->idFormatSurat == "9"){
@@ -506,6 +532,8 @@ class PesanansuratController extends Controller
         $dosenWali = $json->dosenWali;
         $semester = $json->semester;
         $thnAkademik = $json->thnAkademik;
+        $pesananID = $this->pesanansuratRepo->findPesananSuratById($request->id);
+        $pemesan = $pesananID->mahasiswa_id;
         //upload
         // $lampiran = $request->file('lampiran_CutiStudi');
         // $destination_path = ('lampiran/cuti_studi/');
@@ -547,7 +575,8 @@ class PesanansuratController extends Controller
             'persetujuanDekan' => $persetujuanDekan,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat,
-            'user' => $realUser
+            'user' => $realUser,
+            'pemesan' => $pemesan
         ]);
       }
       else if($request->idFormatSurat == "10"){
@@ -560,6 +589,8 @@ class PesanansuratController extends Controller
         $namaOrtu = $json->namaOrtu;
         $dosenWali = $json->dosenWali;
         $semester = $json->semester;
+        $pesananID = $this->pesanansuratRepo->findPesananSuratById($request->id);
+        $pemesan = $pesananID->mahasiswa_id;
         //upload
         // $lampiran = $request->file('lampiran_CutiStudi');
         // $destination_path = ('lampiran/cuti_studi/');
@@ -598,7 +629,8 @@ class PesanansuratController extends Controller
             'persetujuanDekan' => $persetujuanDekan,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat,
-            'user' => $realUser
+            'user' => $realUser,
+            'pemesan' => $pemesan
         ]);
       }
       else if($request->idFormatSurat == "11"){
@@ -617,6 +649,8 @@ class PesanansuratController extends Controller
         $matkul = $json->matkul;
         $sks = $json->sks;
         $formatsurat_id = $request->idFormatSurat;
+        $pesananID = $this->pesanansuratRepo->findPesananSuratById($request->id);
+        $pemesan = $pesananID->mahasiswa_id;
         return view('TU.proses_surat_perwakilan_perwalian_1mk', [
             'semester' => $semester,
             'thnAkademik' => $thnAkademik,
@@ -632,7 +666,8 @@ class PesanansuratController extends Controller
             'sks' => $sks,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat,
-            'user' => $realUser
+            'user' => $realUser,
+            'pemesan' => $pemesan
         ]);
       }
       else if($request->idFormatSurat == "12"){
@@ -653,6 +688,8 @@ class PesanansuratController extends Controller
         $matkul2 = $json->matkul2;
         $sks2 = $json->sks2;
         $formatsurat_id = $request->idFormatSurat;
+        $pesananID = $this->pesanansuratRepo->findPesananSuratById($request->id);
+        $pemesan = $pesananID->mahasiswa_id;
         return view('TU.proses_surat_perwakilan_perwalian_2mk', [
             'semester' => $semester,
             'thnAkademik' => $thnAkademik,
@@ -670,7 +707,8 @@ class PesanansuratController extends Controller
             'sks2' => $sks2,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat,
-            'user' => $realUser
+            'user' => $realUser,
+            'pemesan' => $pemesan
         ]);
       }
       else if($request->idFormatSurat == "13"){
@@ -693,6 +731,8 @@ class PesanansuratController extends Controller
         $matkul3 = $request->matkul3;
         $sks3 = $json->sks3;;
         $formatsurat_id = $request->idFormatSurat;
+        $pesananID = $this->pesanansuratRepo->findPesananSuratById($request->id);
+        $pemesan = $pesananID->mahasiswa_id;
         return view('TU.proses_surat_perwakilan_perwalian_3mk', [
             'semester' => $semester,
             'thnAkademik' => $thnAkademik,
@@ -712,7 +752,8 @@ class PesanansuratController extends Controller
             'sks3' => $sks3,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat,
-            'user' => $realUser
+            'user' => $realUser,
+            'pemesan' => $pemesan
         ]);
       }
       else if($request->idFormatSurat == "14"){
@@ -737,6 +778,8 @@ class PesanansuratController extends Controller
         $matkul4 = $request->matkul4;
         $sks4 = $json->sks4;;
         $formatsurat_id = $request->idFormatSurat;
+        $pesananID = $this->pesanansuratRepo->findPesananSuratById($request->id);
+        $pemesan = $pesananID->mahasiswa_id;
         return view('TU.proses_surat_perwakilan_perwalian_4mk', [
             'semester' => $semester,
             'thnAkademik' => $thnAkademik,
@@ -758,7 +801,8 @@ class PesanansuratController extends Controller
             'sks4' => $sks4,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat,
-            'user' => $realUser
+            'user' => $realUser,
+            'pemesan' => $pemesan
         ]);
       }
       else if($request->idFormatSurat == "15"){
@@ -785,6 +829,8 @@ class PesanansuratController extends Controller
         $matkul5 = $json->matkul5;
         $sks5 = $json->sks5;
         $formatsurat_id = $request->idFormatSurat;
+        $pesananID = $this->pesanansuratRepo->findPesananSuratById($request->id);
+        $pemesan = $pesananID->mahasiswa_id;
         return view('TU.proses_surat_perwakilan_perwalian_5mk', [
             'semester' => $semester,
             'thnAkademik' => $thnAkademik,
@@ -808,7 +854,8 @@ class PesanansuratController extends Controller
             'sks5' => $sks5,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat,
-            'user' => $realUser
+            'user' => $realUser,
+            'pemesan' => $pemesan
         ]);
       }
       else if($request->idFormatSurat == "16"){
@@ -837,6 +884,8 @@ class PesanansuratController extends Controller
         $matkul6 = $json->matkul6;
         $sks6 = $json->sks6;
         $formatsurat_id = $request->idFormatSurat;
+        $pesananID = $this->pesanansuratRepo->findPesananSuratById($request->id);
+        $pemesan = $pesananID->mahasiswa_id;
         return view('TU.proses_surat_perwakilan_perwalian_6mk', [
             'semester' => $semester,
             'thnAkademik' => $thnAkademik,
@@ -862,7 +911,8 @@ class PesanansuratController extends Controller
             'sks6' => $sks6,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat,
-            'user' => $realUser
+            'user' => $realUser,
+            'pemesan' => $pemesan
         ]);
       }
       else if($request->idFormatSurat == "17"){
@@ -893,6 +943,8 @@ class PesanansuratController extends Controller
         $matkul7 = $json->matkul7;
         $sks7 = $json->sks7;
         $formatsurat_id = $request->idFormatSurat;
+        $pesananID = $this->pesanansuratRepo->findPesananSuratById($request->id);
+        $pemesan = $pesananID->mahasiswa_id;
         return view('TU.proses_surat_perwakilan_perwalian_7mk', [
             'semester' => $semester,
             'thnAkademik' => $thnAkademik,
@@ -920,7 +972,8 @@ class PesanansuratController extends Controller
             'sks7' => $sks7,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat,
-            'user' => $realUser
+            'user' => $realUser,
+            'pemesan' => $pemesan
         ]);
       }
       else if($request->idFormatSurat == "18"){
@@ -953,6 +1006,8 @@ class PesanansuratController extends Controller
         $matkul8 = $json->matkul8;
         $sks8 = $json->sks8;
         $formatsurat_id = $request->idFormatSurat;
+        $pesananID = $this->pesanansuratRepo->findPesananSuratById($request->id);
+        $pemesan = $pesananID->mahasiswa_id;
         return view('TU.proses_surat_perwakilan_perwalian_8mk', [
             'semester' => $semester,
             'thnAkademik' => $thnAkademik,
@@ -982,7 +1037,8 @@ class PesanansuratController extends Controller
             'sks8' => $sks8,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat,
-            'user' => $realUser
+            'user' => $realUser,
+            'pemesan' => $pemesan
         ]);
       }
       else if($request->idFormatSurat == "19"){
@@ -1017,6 +1073,8 @@ class PesanansuratController extends Controller
         $matkul9 = $json->matkul9;
         $sks9 = $json->sks9;
         $formatsurat_id = $request->idFormatSurat;
+        $pesananID = $this->pesanansuratRepo->findPesananSuratById($request->id);
+        $pemesan = $pesananID->mahasiswa_id;
         return view('TU.proses_surat_perwakilan_perwalian_9mk', [
             'semester' => $semester,
             'thnAkademik' => $thnAkademik,
@@ -1048,7 +1106,8 @@ class PesanansuratController extends Controller
             'sks9' => $sks9,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat,
-            'user' => $realUser
+            'user' => $realUser,
+            'pemesan' => $pemesan
         ]);
       }
       else if($request->idFormatSurat == "20"){
@@ -1085,6 +1144,8 @@ class PesanansuratController extends Controller
         $matkul10 = $json->matkul10;
         $sks10 = $json->sks10;
         $formatsurat_id = $request->idFormatSurat;
+        $pesananID = $this->pesanansuratRepo->findPesananSuratById($request->id);
+        $pemesan = $pesananID->mahasiswa_id;
         return view('TU.proses_surat_perwakilan_perwalian_10mk', [
             'semester' => $semester,
             'thnAkademik' => $thnAkademik,
@@ -1118,7 +1179,8 @@ class PesanansuratController extends Controller
             'sks10' => $sks10,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat,
-            'user' => $realUser
+            'user' => $realUser,
+            'pemesan' => $pemesan
         ]);
       }
     }
@@ -1867,7 +1929,7 @@ class PesanansuratController extends Controller
           'dataSurat' => $request->dataSurat
         ];
       }
-      // return json_encode($obj);
+      return json_encode($obj);
     }
 
     /**
@@ -1877,9 +1939,9 @@ class PesanansuratController extends Controller
       $loggedInUser = Auth::user();
       // dd($loggedInUser);
       $realUser = $this->getRealUser($loggedInUser);
-
+      $foto = $realUser->foto_mahasiswa;
       if($request->jenis_surat == "1"){
-        // dd($request->jenis_surat);
+        // dd($request);
         $nama = $request->nama;
         $prodi = $request->prodi;
         $npm = $request->npm;

@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
   <head>
-      <title>Data Mahasiswa</title>
+      <title>History Surat - TU</title>
       <link href="{{ asset("/bootstrap-3.3.7-dist/css/bootstrap.css") }}" rel="stylesheet" type="text/css" />
       <link href="{{ asset("/css/styles_list_surat.css") }}" rel="stylesheet" type="text/css" />
   </head>
@@ -58,9 +58,9 @@
                       @foreach($historysurats as $historysurat)
                         <tr>
                           <td class="ctr">{{ $historysurat->no_surat }}</td>
-                          <td class="ctr">{{ $historysurat->formatsurats_id }}</td>
+                          <td class="ctr">{{ $historysurat->formatsurat->jenis_surat }}</td>
                           <td class="ctr">{{ $historysurat->perihal }}</td>
-                          <td class="ctr">{{ $historysurat->mahasiswa_id }}</td>
+                          <td class="ctr">{{ $historysurat->mahasiswa->nama_mahasiswa }}</td>
                           <td class="ctr">{{ $historysurat->penerimaSurat }}</td>
                           <td class="ctr">{{ $historysurat->created_at }}</td>
                           <td class="ctr">
