@@ -95,7 +95,7 @@
                       </tr>
                       <tr>
                         <td>1</td>
-                        <td>AIF201</td>
+                        <td>{{ $kodeMK }}</td>
                         <td>{{ $matkul }}</td>
                         <td>{{ $sks }}</td>
                       </tr>

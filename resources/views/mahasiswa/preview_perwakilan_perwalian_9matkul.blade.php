@@ -95,55 +95,55 @@
                       </tr>
                       <tr>
                         <td>1</td>
-                        <td>AIF201</td>
+                        <td>{{ $kodeMK1 }}</td>
                         <td>{{ $matkul1 }}</td>
                         <td>{{ $sks1 }}</td>
                       </tr>
                       <tr>
                         <td>2</td>
-                        <td>AIF201</td>
+                        <td>{{ $kodeMK2 }}</td>
                         <td>{{ $matkul2 }}</td>
                         <td>{{ $sks2 }}</td>
                       </tr>
                       <tr>
                         <td>3</td>
-                        <td>AIF201</td>
+                        <td>{{ $kodeMK3 }}</td>
                         <td>{{ $matkul3 }}</td>
                         <td>{{ $sks3 }}</td>
                       </tr>
                       <tr>
                         <td>4</td>
-                        <td>AIF201</td>
+                        <td>{{ $kodeMK4 }}</td>
                         <td>{{ $matkul4 }}</td>
                         <td>{{ $sks4 }}</td>
                       </tr>
                       <tr>
                         <td>5</td>
-                        <td>AIF201</td>
+                        <td>{{ $kodeMK5 }}</td>
                         <td>{{ $matkul5 }}</td>
                         <td>{{ $sks5 }}</td>
                       </tr>
                       <tr>
                         <td>6</td>
-                        <td>AIF201</td>
+                        <td>{{ $kodeMK6 }}</td>
                         <td>{{ $matkul6 }}</td>
                         <td>{{ $sks6 }}</td>
                       </tr>
                       <tr>
                         <td>7</td>
-                        <td>AIF201</td>
+                        <td>{{ $kodeMK7 }}</td>
                         <td>{{ $matkul7 }}</td>
                         <td>{{ $sks7 }}</td>
                       </tr>
                       <tr>
                         <td>8</td>
-                        <td>AIF201</td>
+                        <td>{{ $kodeMK8 }}</td>
                         <td>{{ $matkul8 }}</td>
                         <td>{{ $sks8 }}</td>
                       </tr>
                       <tr>
                         <td>9</td>
-                        <td>AIF201</td>
+                        <td>{{ $kodeMK9 }}</td>
                         <td>{{ $matkul9 }}</td>
                         <td>{{ $sks9 }}</td>
                       </tr>

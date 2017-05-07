@@ -5,6 +5,7 @@
                <a href="/history_TU"><li>History Surat</li></a>
                <a href="/data_mahasiswa"><li>Data Mahasiswa</li></a>
                <a href="/format_surat"><li>Format Surat</li></a>
+               <a href="/setting"><li>Setting</li></a>
            <a href="{{ url('/logout') }}"
                onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();"><li>

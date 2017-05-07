@@ -75,8 +75,7 @@ class HistorysuratController extends Controller
       // dd($foto);
       return view('mahasiswa.home_mahasiswa',[
         'user' => $realUser,
-        'historysurats' => $histories,
-
+        'historysurats' => $histories
       ]);
     }
 
@@ -732,6 +731,7 @@ class HistorysuratController extends Controller
         $npmWakil = $json->npmWakil;
         $dosenWali = $json->dosenWali;
         $alasan = $json->alasan;
+        $kodeMK = $json->kodeMK;
         $matkul = $json->matkul;
         $sks = $json->sks;
         $pemesan = $request->pemesan;
@@ -746,6 +746,7 @@ class HistorysuratController extends Controller
           $npmWakil . ',' .
           $dosenWali . ',' .
           $alasan . ',' .
+          $kodeMK . ',' .
           $matkul . ',' .
           $sks . ',' .
           '}';
@@ -807,10 +808,30 @@ class HistorysuratController extends Controller
           $npmWakil . ',' .
           $dosenWali . ',' .
           $alasan . ',' .
-          $matkul1 . ',' .
-          $sks1 . ',' .
-          $matkul2 . ',' .
-          $sks2 . ',' .
+          $kodeMK1 = $json->kodeMK1;
+          $matkul1 = $json->matkul1;
+          $sks1 = $json->sks1;
+          $kodeMK2 = $json->kodeMK2;
+          $matkul2 = $json->matkul2;
+          $sks2 = $json->sks2;
+          $pemesan = $request->pemesan;
+
+          $entry = '\mailentry{' .
+            $noSurat . ',' .
+            $nama . ',' .
+            $prodi . ',' .
+            $npm . ',' .
+            $namaWakil . ',' .
+            $prodiWakil . ',' .
+            $npmWakil . ',' .
+            $dosenWali . ',' .
+            $alasan . ',' .
+            $kodeMK1 . ',' .
+            $matkul1 . ',' .
+            $sks1 . ',' .
+            $kodeMK2 . ',' .
+            $matkul2 . ',' .
+            $sks2 . ',' .
           '}';
         $fileTemplate = file('format_surat_latex/surat_perwakilan_perwalian_2mk.tex');
         $stringFormat = "";
@@ -854,10 +875,13 @@ class HistorysuratController extends Controller
         $npmWakil = $json->npmWakil;
         $dosenWali = $json->dosenWali;
         $alasan = $json->alasan;
+        $kodeMK1 = $json->kodeMK1;
         $matkul1 = $json->matkul1;
         $sks1 = $json->sks1;
+        $kodeMK2 = $json->kodeMK2;
         $matkul2 = $json->matkul2;
         $sks2 = $json->sks2;
+        $kodeMK3 = $json->kodeMK3;
         $matkul3 = $json->matkul3;
         $sks3 = $json->sks3;
         $pemesan = $request->pemesan;
@@ -872,10 +896,13 @@ class HistorysuratController extends Controller
           $npmWakil . ',' .
           $dosenWali . ',' .
           $alasan . ',' .
+          $kodeMK1 . ',' .
           $matkul1 . ',' .
           $sks1 . ',' .
+          $kodeMK2 . ',' .
           $matkul2 . ',' .
           $sks2 . ',' .
+          $kodeMK3 . ',' .
           $matkul3 . ',' .
           $sks3 . ',' .
           '}';
@@ -921,12 +948,16 @@ class HistorysuratController extends Controller
         $npmWakil = $json->npmWakil;
         $dosenWali = $json->dosenWali;
         $alasan = $json->alasan;
+        $kodeMK1 = $json->kodeMK1;
         $matkul1 = $json->matkul1;
         $sks1 = $json->sks1;
+        $kodeMK2 = $json->kodeMK2;
         $matkul2 = $json->matkul2;
         $sks2 = $json->sks2;
+        $kodeMK3 = $json->kodeMK3;
         $matkul3 = $json->matkul3;
         $sks3 = $json->sks3;
+        $kodeMK4 = $json->kodeMK4;
         $matkul4 = $json->matkul4;
         $sks4 = $json->sks4;
         $pemesan = $request->pemesan;
@@ -941,12 +972,16 @@ class HistorysuratController extends Controller
           $npmWakil . ',' .
           $dosenWali . ',' .
           $alasan . ',' .
+          $kodeMK1 . ',' .
           $matkul1 . ',' .
           $sks1 . ',' .
+          $kodeMK2 . ',' .
           $matkul2 . ',' .
           $sks2 . ',' .
+          $kodeMK3 . ',' .
           $matkul3 . ',' .
           $sks3 . ',' .
+          $kodeMK4 . ',' .
           $matkul4 . ',' .
           $sks4 . ',' .
           '}';
@@ -992,14 +1027,19 @@ class HistorysuratController extends Controller
         $npmWakil = $json->npmWakil;
         $dosenWali = $json->dosenWali;
         $alasan = $json->alasan;
+        $kodeMK1 = $json->kodeMK1;
         $matkul1 = $json->matkul1;
         $sks1 = $json->sks1;
+        $kodeMK2 = $json->kodeMK2;
         $matkul2 = $json->matkul2;
         $sks2 = $json->sks2;
+        $kodeMK3 = $json->kodeMK3;
         $matkul3 = $json->matkul3;
         $sks3 = $json->sks3;
+        $kodeMK4 = $json->kodeMK4;
         $matkul4 = $json->matkul4;
         $sks4 = $json->sks4;
+        $kodeMK5 = $json->kodeMK5;
         $matkul5 = $json->matkul5;
         $sks5 = $json->sks5;
         $pemesan = $request->pemesan;
@@ -1014,14 +1054,19 @@ class HistorysuratController extends Controller
           $npmWakil . ',' .
           $dosenWali . ',' .
           $alasan . ',' .
+          $kodeMK1 . ',' .
           $matkul1 . ',' .
           $sks1 . ',' .
+          $kodeMK2 . ',' .
           $matkul2 . ',' .
           $sks2 . ',' .
+          $kodeMK3 . ',' .
           $matkul3 . ',' .
           $sks3 . ',' .
+          $kodeMK4 . ',' .
           $matkul4 . ',' .
           $sks4 . ',' .
+          $kodeMK5 . ',' .
           $matkul5 . ',' .
           $sks5 . ',' .
           '}';
@@ -1067,16 +1112,22 @@ class HistorysuratController extends Controller
         $npmWakil = $json->npmWakil;
         $dosenWali = $json->dosenWali;
         $alasan = $json->alasan;
+        $kodeMK1 = $json->kodeMK1;
         $matkul1 = $json->matkul1;
         $sks1 = $json->sks1;
+        $kodeMK2 = $json->kodeMK2;
         $matkul2 = $json->matkul2;
         $sks2 = $json->sks2;
+        $kodeMK3 = $json->kodeMK3;
         $matkul3 = $json->matkul3;
         $sks3 = $json->sks3;
+        $kodeMK4 = $json->kodeMK4;
         $matkul4 = $json->matkul4;
         $sks4 = $json->sks4;
+        $kodeMK5 = $json->kodeMK5;
         $matkul5 = $json->matkul5;
         $sks5 = $json->sks5;
+        $kodeMK6 = $json->kodeMK6;
         $matkul6 = $json->matkul6;
         $sks6 = $json->sks6;
         $pemesan = $request->pemesan;
@@ -1091,16 +1142,22 @@ class HistorysuratController extends Controller
           $npmWakil . ',' .
           $dosenWali . ',' .
           $alasan . ',' .
+          $kodeMK1 . ',' .
           $matkul1 . ',' .
           $sks1 . ',' .
+          $kodeMK2 . ',' .
           $matkul2 . ',' .
           $sks2 . ',' .
+          $kodeMK3 . ',' .
           $matkul3 . ',' .
           $sks3 . ',' .
+          $kodeMK4 . ',' .
           $matkul4 . ',' .
           $sks4 . ',' .
+          $kodeMK5 . ',' .
           $matkul5 . ',' .
           $sks5 . ',' .
+          $kodeMK6 . ',' .
           $matkul6 . ',' .
           $sks6 . ',' .
           '}';
@@ -1146,18 +1203,25 @@ class HistorysuratController extends Controller
         $npmWakil = $json->npmWakil;
         $dosenWali = $json->dosenWali;
         $alasan = $json->alasan;
+        $kodeMK1 = $json->kodeMK1;
         $matkul1 = $json->matkul1;
         $sks1 = $json->sks1;
+        $kodeMK2 = $json->kodeMK2;
         $matkul2 = $json->matkul2;
         $sks2 = $json->sks2;
+        $kodeMK3 = $json->kodeMK3;
         $matkul3 = $json->matkul3;
         $sks3 = $json->sks3;
+        $kodeMK4 = $json->kodeMK4;
         $matkul4 = $json->matkul4;
         $sks4 = $json->sks4;
+        $kodeMK5 = $json->kodeMK5;
         $matkul5 = $json->matkul5;
         $sks5 = $json->sks5;
+        $kodeMK6 = $json->kodeMK6;
         $matkul6 = $json->matkul6;
         $sks6 = $json->sks6;
+        $kodeMK7 = $json->kodeMK7;
         $matkul7 = $json->matkul7;
         $sks7 = $json->sks7;
         $pemesan = $request->pemesan;
@@ -1172,18 +1236,25 @@ class HistorysuratController extends Controller
           $npmWakil . ',' .
           $dosenWali . ',' .
           $alasan . ',' .
+          $kodeMK1 . ',' .
           $matkul1 . ',' .
           $sks1 . ',' .
+          $kodeMK2 . ',' .
           $matkul2 . ',' .
           $sks2 . ',' .
+          $kodeMK3 . ',' .
           $matkul3 . ',' .
           $sks3 . ',' .
+          $kodeMK4 . ',' .
           $matkul4 . ',' .
           $sks4 . ',' .
+          $kodeMK5 . ',' .
           $matkul5 . ',' .
           $sks5 . ',' .
+          $kodeMK6 . ',' .
           $matkul6 . ',' .
           $sks6 . ',' .
+          $kodeMK7 . ',' .
           $matkul7 . ',' .
           $sks7 . ',' .
           '}';
@@ -1229,20 +1300,28 @@ class HistorysuratController extends Controller
         $npmWakil = $json->npmWakil;
         $dosenWali = $json->dosenWali;
         $alasan = $json->alasan;
+        $kodeMK1 = $json->kodeMK1;
         $matkul1 = $json->matkul1;
         $sks1 = $json->sks1;
+        $kodeMK2 = $json->kodeMK2;
         $matkul2 = $json->matkul2;
         $sks2 = $json->sks2;
+        $kodeMK3 = $json->kodeMK3;
         $matkul3 = $json->matkul3;
         $sks3 = $json->sks3;
+        $kodeMK4 = $json->kodeMK4;
         $matkul4 = $json->matkul4;
         $sks4 = $json->sks4;
+        $kodeMK5 = $json->kodeMK5;
         $matkul5 = $json->matkul5;
         $sks5 = $json->sks5;
+        $kodeMK6 = $json->kodeMK6;
         $matkul6 = $json->matkul6;
         $sks6 = $json->sks6;
+        $kodeMK7 = $json->kodeMK7;
         $matkul7 = $json->matkul7;
         $sks7 = $json->sks7;
+        $kodeMK8 = $json->kodeMK8;
         $matkul8 = $json->matkul8;
         $sks8 = $json->sks8;
         $pemesan = $request->pemesan;
@@ -1257,20 +1336,28 @@ class HistorysuratController extends Controller
           $npmWakil . ',' .
           $dosenWali . ',' .
           $alasan . ',' .
+          $kodeMK1 . ',' .
           $matkul1 . ',' .
           $sks1 . ',' .
+          $kodeMK2 . ',' .
           $matkul2 . ',' .
           $sks2 . ',' .
+          $kodeMK3 . ',' .
           $matkul3 . ',' .
           $sks3 . ',' .
+          $kodeMK4 . ',' .
           $matkul4 . ',' .
           $sks4 . ',' .
+          $kodeMK5 . ',' .
           $matkul5 . ',' .
           $sks5 . ',' .
+          $kodeMK6 . ',' .
           $matkul6 . ',' .
           $sks6 . ',' .
+          $kodeMK7 . ',' .
           $matkul7 . ',' .
           $sks7 . ',' .
+          $kodeMK8 . ',' .
           $matkul8 . ',' .
           $sks8 . ',' .
           '}';
@@ -1316,22 +1403,31 @@ class HistorysuratController extends Controller
         $npmWakil = $json->npmWakil;
         $dosenWali = $json->dosenWali;
         $alasan = $json->alasan;
+        $kodeMK1 = $json->kodeMK1;
         $matkul1 = $json->matkul1;
         $sks1 = $json->sks1;
+        $kodeMK2 = $json->kodeMK2;
         $matkul2 = $json->matkul2;
         $sks2 = $json->sks2;
+        $kodeMK3 = $json->kodeMK3;
         $matkul3 = $json->matkul3;
         $sks3 = $json->sks3;
+        $kodeMK4 = $json->kodeMK4;
         $matkul4 = $json->matkul4;
         $sks4 = $json->sks4;
+        $kodeMK5 = $json->kodeMK5;
         $matkul5 = $json->matkul5;
         $sks5 = $json->sks5;
+        $kodeMK6 = $json->kodeMK6;
         $matkul6 = $json->matkul6;
         $sks6 = $json->sks6;
+        $kodeMK7 = $json->kodeMK7;
         $matkul7 = $json->matkul7;
         $sks7 = $json->sks7;
+        $kodeMK8 = $json->kodeMK8;
         $matkul8 = $json->matkul8;
         $sks8 = $json->sks8;
+        $kodeMK9 = $json->kodeMK9;
         $matkul9 = $json->matkul9;
         $sks9 = $json->sks9;
         $pemesan = $request->pemesan;
@@ -1346,22 +1442,31 @@ class HistorysuratController extends Controller
           $npmWakil . ',' .
           $dosenWali . ',' .
           $alasan . ',' .
+          $kodeMK1 . ',' .
           $matkul1 . ',' .
           $sks1 . ',' .
+          $kodeMK2 . ',' .
           $matkul2 . ',' .
           $sks2 . ',' .
+          $kodeMK3 . ',' .
           $matkul3 . ',' .
           $sks3 . ',' .
+          $kodeMK4 . ',' .
           $matkul4 . ',' .
           $sks4 . ',' .
+          $kodeMK5 . ',' .
           $matkul5 . ',' .
           $sks5 . ',' .
+          $kodeMK6 . ',' .
           $matkul6 . ',' .
           $sks6 . ',' .
+          $kodeMK7 . ',' .
           $matkul7 . ',' .
           $sks7 . ',' .
+          $kodeMK8 . ',' .
           $matkul8 . ',' .
           $sks8 . ',' .
+          $kodeMK9 . ',' .
           $matkul9 . ',' .
           $sks9 . ',' .
           '}';
@@ -1407,24 +1512,34 @@ class HistorysuratController extends Controller
         $npmWakil = $json->npmWakil;
         $dosenWali = $json->dosenWali;
         $alasan = $json->alasan;
+        $kodeMK1 = $json->kodeMK1;
         $matkul1 = $json->matkul1;
         $sks1 = $json->sks1;
+        $kodeMK2 = $json->kodeMK2;
         $matkul2 = $json->matkul2;
         $sks2 = $json->sks2;
+        $kodeMK3 = $json->kodeMK3;
         $matkul3 = $json->matkul3;
         $sks3 = $json->sks3;
+        $kodeMK4 = $json->kodeMK4;
         $matkul4 = $json->matkul4;
         $sks4 = $json->sks4;
+        $kodeMK5 = $json->kodeMK5;
         $matkul5 = $json->matkul5;
         $sks5 = $json->sks5;
+        $kodeMK6 = $json->kodeMK6;
         $matkul6 = $json->matkul6;
         $sks6 = $json->sks6;
+        $kodeMK7 = $json->kodeMK7;
         $matkul7 = $json->matkul7;
         $sks7 = $json->sks7;
+        $kodeMK8 = $json->kodeMK8;
         $matkul8 = $json->matkul8;
         $sks8 = $json->sks8;
+        $kodeMK9 = $json->kodeMK9;
         $matkul9 = $json->matkul9;
         $sks9 = $json->sks9;
+        $kodeMK10 = $json->kodeMK10;
         $matkul10 = $json->matkul10;
         $sks10 = $json->sks10;
         $pemesan = $request->pemesan;
@@ -1439,24 +1554,34 @@ class HistorysuratController extends Controller
           $npmWakil . ',' .
           $dosenWali . ',' .
           $alasan . ',' .
+          $kodeMK1 . ',' .
           $matkul1 . ',' .
           $sks1 . ',' .
+          $kodeMK2 . ',' .
           $matkul2 . ',' .
           $sks2 . ',' .
+          $kodeMK3 . ',' .
           $matkul3 . ',' .
           $sks3 . ',' .
+          $kodeMK4 . ',' .
           $matkul4 . ',' .
           $sks4 . ',' .
+          $kodeMK5 . ',' .
           $matkul5 . ',' .
           $sks5 . ',' .
+          $kodeMK6 . ',' .
           $matkul6 . ',' .
           $sks6 . ',' .
+          $kodeMK7 . ',' .
           $matkul7 . ',' .
           $sks7 . ',' .
+          $kodeMK8 . ',' .
           $matkul8 . ',' .
           $sks8 . ',' .
+          $kodeMK9 . ',' .
           $matkul9 . ',' .
           $sks9 . ',' .
+          $kodeMK10 . ',' .
           $matkul10 . ',' .
           $sks10 . ',' .
           '}';

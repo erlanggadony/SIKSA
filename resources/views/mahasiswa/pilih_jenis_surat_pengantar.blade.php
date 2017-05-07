@@ -25,12 +25,14 @@
               <div class="form-group">
                 <div class="col-sm-9">
                     @foreach($formatsurats as $formatsurat)
-                    <div class="radio">
-                      <label>
-                        <input type="radio"  name="jenis_surat" value="{{ $formatsurat->id }}" required>
-                        {{ $formatsurat->jenis_surat }}
-                      </label>
-                    </div>
+                      @if(($formatsurat->id > 2) && ($formatsurat->id <= 8))
+                        <div class="radio">
+                          <label>
+                            <input type="radio"  name="jenis_surat" value="{{ $formatsurat->id }}" required>
+                            {{ $formatsurat->jenis_surat }}
+                          </label>
+                        </div>
+                      @endif
                     @endforeach
                 </div>
               </div>

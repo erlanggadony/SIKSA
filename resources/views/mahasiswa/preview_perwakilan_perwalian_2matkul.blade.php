@@ -95,13 +95,13 @@
                       </tr>
                       <tr>
                         <td>1</td>
-                        <td>AIF201</td>
+                        <td>{{ $kodeMK1 }}</td>
                         <td>{{ $matkul1 }}</td>
                         <td>{{ $sks1 }}</td>
                       </tr>
                       <tr>
                         <td>2</td>
-                        <td>AIF201</td>
+                        <td>{{ $kodeMK2 }}</td>
                         <td>{{ $matkul2 }}</td>
                         <td>{{ $sks2 }}</td>
                       </tr>

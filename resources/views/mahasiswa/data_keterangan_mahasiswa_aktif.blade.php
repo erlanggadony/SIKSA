@@ -44,9 +44,9 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="smstr" class="col-sm-3">Semester</label>
+                  <label for="semester" class="col-sm-3">Semester</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="semester" name="semester" value="{{ $user->semester }}" readonly style="border: none" />
+                    <input type="text" class="form-control" name="semester" value="{{ $user->semester }}" readonly style="border: none" />
                   </div>
                 </div>
                 <div class="form-group">

@@ -41,11 +41,35 @@ class FormatsuratController extends Controller
         $realUser = $this->getRealUser($loggedInUser);
         // dd($realUser);
         $foto = $realUser->foto_mahasiswa;
-        return view('mahasiswa.pilih_jenis_surat',[
-            'formatsurats' => $formatsurats,
-            'user' => $realUser,
-            'foto' => $foto
-        ]);
+        if($request->jenis_surat == "surat_keterangan"){
+          return view('mahasiswa.pilih_jenis_surat_keterangan',[
+              'formatsurats' => $formatsurats,
+              'user' => $realUser,
+              'foto' => $foto
+          ]);
+        }
+        else if($request->jenis_surat == "surat_pengantar"){
+          return view('mahasiswa.pilih_jenis_surat_pengantar',[
+              'formatsurats' => $formatsurats,
+              'user' => $realUser,
+              'foto' => $foto
+          ]);
+        }
+        else if($request->jenis_surat == "surat_izin"){
+          return view('mahasiswa.pilih_jenis_surat_izin',[
+              'formatsurats' => $formatsurats,
+              'user' => $realUser,
+              'foto' => $foto
+          ]);
+        }
+        else if($request->jenis_surat == "surat_perwakilan"){
+          return view('mahasiswa.pilih_jenis_surat_perwakilan',[
+              'formatsurats' => $formatsurats,
+              'user' => $realUser,
+              'foto' => $foto
+          ]);
+        }
+
 	}
 
   private function getRealUser($loggedInUser){

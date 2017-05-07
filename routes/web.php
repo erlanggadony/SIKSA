@@ -31,10 +31,8 @@ Route::post('/home', 'AuthController@authenticate');
     // halaman utama mahasiswa
     Route::get('/home_mahasiswa', 'HistorysuratController@tampilkanProfil');
     //halaman untuk memilih jenis surat
-    Route::get('/pilih_kategori_surat', function(){
-      return view('/pilih_kategori_surat');
-    });
-    Route::get('/pilih_jenis_surat', 'FormatsuratController@pilihSurat');
+    Route::get('/pilih_kategori_surat', 'MahasiswaController@kategoriSurat');
+    Route::post('/pilih_jenis_surat', 'FormatsuratController@pilihSurat');
     //halaman untuk pengisian data diri untuk masing-masing surat
     Route::post('/isi_data_diri', 'FormatsuratController@tampilkanFormulir');
     //halaman untuk menampilkan preview surat
@@ -61,12 +59,13 @@ Route::post('/home', 'AuthController@authenticate');
     // halaman untuk menambahkan data mahasiswa
     Route::post('/uploadDataMhs', 'MahasiswaController@uploadMahasiswa');
     Route::post('/generatePDF', 'HistorysuratController@buatPDF');
+    Route::get('/setting', 'MahasiswaController@setting');
+    Route::post('/updateSemester', 'MahasiswaController@updateSemester');
 //<--------------------------------------------------------PEJABAT-------------------------------------------------------->
     // halaman utama pejabat
     Route::get('/home_pejabat', 'PesanansuratController@tampilkanPesananDiPejabat');
     Route::post('/persetujuan', 'PesanansuratController@tambahPersetujuan');
     Route::post('/previewCatatan', 'PesanansuratController@previewDosen');
-
     Route::get('/history_pejabat', 'HistorysuratController@tampilkanHistoryDiPejabat');
     Route::post('/ubahStatusPenandatanganan', 'HistorysuratController@ubahStatusPenandatanganan');
     Route::post('/ubahStatusPengambilan', 'HistorysuratController@ubahStatusPengambilan');

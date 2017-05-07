@@ -22,18 +22,18 @@
               <h1>Isi Data Diri Anda</h1>
               <br>
               <form class="form-horizontal" action="{{ url('/preview') }}" method="post">
-                  <div class="form-group">
-                    <label for="semester" class="col-sm-3">Semester</label>
-                    <div class="col-sm-9">
-                      <input type="text" class="form-control-static" id="semester" name="semseter" value="" readonly style="border: none" />
-                    </div>
+                <div class="form-group">
+                  <label for="semester" class="col-sm-3">Semester</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" name="semester" value="{{ $user->semester }}" readonly style="border: none" />
                   </div>
-                  <div class="form-group">
-                    <label for="tahunakademik" class="col-sm-3">Tahun akademik</label>
-                    <div class="col-sm-9">
-                      <input type="text" class="form-control date" id="thnAkademik" name="thnAkademik" value="" readonly style="border: none" />
-                    </div>
+                </div>
+                <div class="form-group">
+                  <label for="thnAkademik" class="col-sm-3">Tahun akademik</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" name="thnAkademik" value="{{ $user->thnAkademik }}" readonly style="border: none" />
                   </div>
+                </div>
                   <p class="col-sm-12" style="font-weight:bold">
                     IDENTITAS MAHASISWA YANG PERWALIANNYA DIWAKILKAN :
                   </p>
@@ -92,8 +92,11 @@
                   <div class=" form-group">
                     <label for="matkul" class="col-sm-3">Mata kuliah yang diambil</label>
                     <div class="row">
-                      <div class="col-xs-5">
-                        <input type="text" class="form-control" name="matkul1" placeholder="Nama mata kuliah" required>
+                      <div class="col-xs-2">
+                        <input type="text" class="form-control" name="kodeMK" placeholder="Kode" required>
+                      </div>
+                      <div class="col-xs-4">
+                        <input type="text" class="form-control" name="matkul" placeholder="Nama mata kuliah" required>
                       </div>
                       <div class="col-xs-2">
                         <input type="text" class="form-control" name="sks1" placeholder="sks" required>
@@ -101,7 +104,10 @@
                     </div>
                   </div>
                   <div class=" form-group">
-                      <div class="col-sm-offset-3 col-sm-5">
+                      <div class="col-xs-2 col-sm-offset-3 ">
+                        <input type="text" class="form-control" name="kodeMK2" placeholder="Kode" required>
+                      </div>
+                      <div class="col-xs-4">
                         <input type="text" class="form-control" name="matkul2" placeholder="Nama mata kuliah" required>
                       </div>
                       <div class="col-xs-2">

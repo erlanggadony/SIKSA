@@ -9,9 +9,12 @@
       $mahasiswas = Mahasiswa::orderBy('id', 'ASC')->paginate(15);
       return $mahasiswas;
     }
-
+    public function findAllMhs(){
+      $mahasiswas = Mahasiswa::all();
+      return $mahasiswas;
+    }
     public function findMahasiswaByNIRM($nirm){
-      $mahasiswas = Mahasiswa::where('nirm', $nirm)
+      $mahasiswas = Mahasiswa::where('nirm', 'like',  $nirm)
                                   ->orderBy('id', 'ASC')
                                   ->paginate(16);
       return $mahasiswas;
@@ -23,13 +26,13 @@
       return $mahasiswas;
     }
     public function findMahasiswaByNama($nama_mahasiswa){
-      $mahasiswas = Mahasiswa::where('nama_mahasiswa', $nama_mahasiswa)
+      $mahasiswas = Mahasiswa::where('nama_mahasiswa', 'like', $nama_mahasiswa)
                                   ->orderBy('id', 'ASC')
                                   ->paginate(16);
       return $mahasiswas;
     }
     public function findMahasiswaByProdi($prodi){
-      $mahasiswas = Mahasiswa::where('jurusan_id', $prodi)
+      $mahasiswas = Mahasiswa::where('jurusan_id','like' , $prodi)
                                   ->orderBy('id', 'ASC')
                                   ->paginate(16);
       return $mahasiswas;
@@ -41,7 +44,7 @@
       return $mahasiswas;
     }
     public function findMahasiswaByKotaLahir($kota_lahir){
-      $mahasiswas = Mahasiswa::where('kota_lahir', $kota_lahir)
+      $mahasiswas = Mahasiswa::where('kota_lahir','like', $kota_lahir)
                                   ->orderBy('id', 'ASC')
                                   ->paginate(16);
       return $mahasiswas;

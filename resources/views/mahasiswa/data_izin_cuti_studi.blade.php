@@ -21,7 +21,7 @@
             <div class="col-md-8 content">
               <h1>Isi Data Diri Anda</h1>
               <br>
-              <form class="form-horizontal" action = "{{ url('/preview') }}" method="post">
+              <form class="form-horizontal" action = "{{ url('/preview') }}" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                   <label for="nama" class="col-sm-3">Nama</label>
                   <div class="col-sm-9">
@@ -76,13 +76,13 @@
                 <div class="form-group">
                   <label for="semester" class="col-sm-3">Semester</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control-static" id="semester" name="semseter" value="" readonly style="border: none" />
+                    <input type="text" class="form-control" name="semester" value="{{ $user->semester }}" readonly style="border: none" />
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="thnAkademik" class="col-sm-3">Tahun akademik</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="thnAkademik" name="thnAkademik" value="" readonly style="border: none" />
+                    <input type="text" class="form-control" name="thnAkademik" value="{{ $user->thnAkademik }}" readonly style="border: none" />
                   </div>
                 </div>
                 <div class="form-group">

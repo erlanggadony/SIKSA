@@ -18,7 +18,6 @@ class MahasiswaController extends Controller
     public function __construct(MahasiswaRepository $mahasiswaRepo){
       // dd($formatsuratRepo);
         $this->mahasiswaRepo = $mahasiswaRepo;
-        //dd($this->orders->getAllActive());
     }
 
     public function tambahDataMahasiswa(){
@@ -28,6 +27,33 @@ class MahasiswaController extends Controller
       return view('TU.tambah_data_mahasiswa', [
         'user' => $realUser
       ]);
+    }
+
+    public function kategoriSurat(){
+      $loggedInUser = Auth::user();
+      // dd($loggedInUser);
+      $realUser = $this->getRealUser($loggedInUser);
+      return view('mahasiswa.pilih_kategori_surat', [
+        'user' => $realUser
+      ]);
+    }
+
+    public function setting(){
+      $loggedInUser = Auth::user();
+      // dd($loggedInUser);
+      $realUser = $this->getRealUser($loggedInUser);
+      return view('tu.setting_semester_thnAjaran', [
+        'user' => $realUser
+      ]);
+    }
+
+    public function updateSemester(Request $request){
+      $mahasiswas = $this->mahasiswaRepo->findAllMhs();
+      foreach ($mahasiswas as $mhs) {
+        $mhs->semester = $request->semester;
+        $mhs->thnAkademik = $request->thnAkademik;
+        $mhs->save();
+      }
     }
 
     public function tampilkanSeluruhSurat(Request $request){

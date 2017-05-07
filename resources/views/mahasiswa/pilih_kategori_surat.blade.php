@@ -22,7 +22,7 @@
           <div class="col-md-8 content">
             <h1>Pilih Jenis Surat</h1>
             <br>
-            <form class="form-horizontal" action="{{ url('/isi_data_diri') }}" method="post">
+            <form class="form-horizontal" action="{{ url('/pilih_jenis_surat') }}" method="post">
               <div class="form-group">
                 <div class="col-sm-9">
                     <div class="radio">
@@ -33,8 +33,20 @@
                     </div>
                     <div class="radio">
                       <label>
-                        <input type="radio"  name="jenis_surat" value="surat_izin" required>
+                        <input type="radio"  name="jenis_surat" value="surat_keterangan" required>
                         Surat Keterangan
+                      </label>
+                    </div>
+                    <div class="radio">
+                      <label>
+                        <input type="radio"  name="jenis_surat" value="surat_perwakilan" required>
+                        Surat Perwakilan
+                      </label>
+                    </div>
+                    <div class="radio">
+                      <label>
+                        <input type="radio"  name="jenis_surat" value="surat_pengantar" required>
+                        Surat Pengantar
                       </label>
                     </div>
                 </div>

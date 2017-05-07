@@ -6,7 +6,15 @@
   class PesanansuratRepository{
 
     public function findAllPesananSurat(){
-      $pesanansurats = PesananSurat::orderBy('created_at', 'DESC')->paginate(9);
+      $pesanansurats = PesananSurat::where([
+                                    ['persetujuanDekan','=',true],
+                                    ['persetujuanWDI','=',true],
+                                    ['persetujuanWDII','=',true],
+                                    ['persetujuanKaprodi','=',true],
+                                    ['persetujuanDosenWali','=',true],
+                                  ])
+                                    ->orderBy('created_at', 'DESC')
+                                    ->paginate(9);
       return $pesanansurats;
     }
     public function findPesananSuratByIdPesanan($idPesanan){
