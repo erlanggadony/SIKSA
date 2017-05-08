@@ -25,13 +25,57 @@ class PesanansuratController extends Controller
         //dd($this->orders->getAllActive());
     }
     public function tampilkanPesananDiPejabat(Request $request){
-      $pesanansurats = $this->pesanansuratRepo->findAllPesananSurat();
+      // $pesanansurats = $this->pesanansuratRepo->findAllPesananSurat();
 
       $loggedInUser = Auth::user();
       $realUser = $this->getRealUser($loggedInUser);
 
+      $results = [];
+
+      //CEK USER DEKAN
+      if($realUser->id == $realUser->fakultas->id_dekan){
+        $tempPesananSurats = PesananSurat::where('count','=',4)->get();
+        foreach ($results as $key => $surat) {
+          array_push($results,$surat);
+        }
+        return view('pejabat.home_pejabat', [
+          'pesanansurats' => $results,
+          'user' => $realUser
+        ]);
+      }
+
+      //CEK USER WD1
+      if($realUser->id == $realUser->fakultas->id_WDI){
+        $tempPesananSurats = PesananSurat::where('count','=',3)->get();
+        foreach ($results as $key => $surat) {
+          array_push($results,$surat);
+        }
+      }
+
+      //CEK USER WD2
+      if($realUser->id == $realUser->fakultas->id_WDII){
+        $tempPesananSurats = PesananSurat::where('count','=',2)->get();
+        foreach ($results as $key => $surat) {
+          array_push($results,$surat);
+        }
+      }
+
+      // CEK KALO USER ADALAH KETUA JURUSAN
+      if($realUser->id == $realUser->jurusan->dosen->id){
+        $tempPesananSurats = PesananSurat::where('count','=',1)->get();
+        foreach ($tempPesananSurats as $key => $surat) {
+          array_push($results,$surat);
+        }
+      }
+
+      foreach ($realUser->mahasiswas as $key => $mhs) {
+        foreach ($mhs->pesanansurats as $key => $surat) {
+          array_push($results,$surat);
+        }
+      }
+
       return view('pejabat.home_pejabat', [
-        'pesanansurats' => $pesanansurats,
+        'pesanansurats' => $results,
         'user' => $realUser
       ]);
     }
@@ -39,19 +83,29 @@ class PesanansuratController extends Controller
     public function tambahPersetujuan(Request $request){
       $loggedInUser = Auth::user();
       $realUser = $this->getRealUser($loggedInUser);
+      // dd($request->idPesananSurat);
+      // $surat = PesananSurat::find($request->idPesananSurat);
+      // dd($surat);
+      // $surat->count += 1;
+      // dd($surat);
+      // $surat->save();
 
       $dataSurat = $request->dataSurat;
       $formatsurat_id = $request->idFormatSurat;
       return view('pejabat.tambah_persetujuan',[
         'dataSurat' => $dataSurat,
         'formatsurat_id' => $formatsurat_id,
-        'user' => $realUser
+        'user' => $realUser,
+        'idPesananSurat' => $request->idPesananSurat
       ]);
     }
 
     public function previewDosen(Request $request){
+      // dd("asd");
         $loggedInUser = Auth::user();
       // dd($loggedInUser);
+        $idPesanansurat = $request->idPesananSurat;
+        // dd($idPesanansurat);
         $realUser = Dosen::find($loggedInUser->ref);
         // dd($realUser);
         if($request->formatsurat_id == "9"){
@@ -70,9 +124,11 @@ class PesanansuratController extends Controller
           $formatsurat_id = $request->idFormatSurat;
           $dataSurat = $this->buatJSON($request);
           // dd($request->formatsurat_id);
+          // dd("asd "+$request->idPesananSurat);
           if($realUser->id == "5"){
               $persetujuanDekan = $request->persetujuan;
               return view('pejabat.preview_izin_cuti_studi', [
+                'idPesanansurat' => $idPesanansurat,
                 'nama' => $nama,
                 'npm' => $npm,
                 'prodi' => $prodi,
@@ -94,13 +150,15 @@ class PesanansuratController extends Controller
                 'catatanWDII' => $catatanWDII,
                 'persetujuanWDI' => $persetujuanWDI,
                 'catatanWDI' => $catatanWDI,
-                'persetujuanDekan' => $persetujuanDekan
+                'persetujuanDekan' => $persetujuanDekan,
+                'idPesananSurat' => $request->idPesananSurat
               ]);
           }
           else if($realUser->id == "4"){
               $persetujuanWDI = $request->persetujuan;
               $catatanWDI = $request->catatan;
               return view('pejabat.preview_izin_cuti_studi', [
+                'idPesanansurat' => $idPesanansurat,
                 'nama' => $nama,
                 'npm' => $npm,
                 'prodi' => $prodi,
@@ -130,6 +188,7 @@ class PesanansuratController extends Controller
               $persetujuanWDII = $request->persetujuan;
               $catatanWDII = $request->catatan;
               return view('pejabat.preview_izin_cuti_studi', [
+                'idPesanansurat' => $idPesanansurat,
                 'nama' => $nama,
                 'npm' => $npm,
                 'prodi' => $prodi,
@@ -159,6 +218,7 @@ class PesanansuratController extends Controller
               $persetujuanKaprodi = $request->persetujuan;
               $catatanKaprodi = $request->catatan;
               return view('pejabat.preview_izin_cuti_studi', [
+                'idPesanansurat' => $idPesanansurat,
                 'nama' => $nama,
                 'npm' => $npm,
                 'prodi' => $prodi,
@@ -187,6 +247,7 @@ class PesanansuratController extends Controller
               $persetujuanDosenWali = $request->persetujuan;
               $catatanDosenWali = $request->catatan;
               return view('pejabat.preview_izin_cuti_studi', [
+                'idPesanansurat' => $idPesanansurat,
                 'nama' => $nama,
                 'npm' => $npm,
                 'prodi' => $prodi,
@@ -245,6 +306,7 @@ class PesanansuratController extends Controller
           $formatsurat_id = $request->jenis_surat;
           $dataSurat = $this->buatJSON($request);
           return view('mahasiswa.preview_izin_pengunduran_diri', [
+              'idPesanansurat' => $idPesanansurat,
               'nama' => $nama,
               'npm' => $npm,
               'alamat' => $alamat,
@@ -1387,6 +1449,7 @@ class PesanansuratController extends Controller
     public function store(Request $request){
       $loggedInUser = Auth::user();
       // dd($loggedInUser);
+      dd("DI LINE 1452 PesananSuratController.php | "+$request->idPesanansurat);
       $realUser = $this->getRealUser($loggedInUser);
         if($request->idFormat == "1"){
           $pesanansurat = new PesananSurat;

@@ -42,6 +42,7 @@
                 {!! csrf_field() !!}
                 <input type="hidden" value="{{ $dataSurat }}" name="dataSurat">
                 <input type="hidden" value="{{ $formatsurat_id }}" name="formatsurat_id">
+                <input type="hidden" value="{{ $idPesananSurat }}" name="idPesananSurat">
                 <div class="form-group">
                   <div class="col-sm-offset-3 col-sm-10">
                     <button type="submit" class="btn btn-primary">Lanjutkan</button>

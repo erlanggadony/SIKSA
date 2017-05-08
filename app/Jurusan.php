@@ -24,6 +24,6 @@ class Jurusan extends Model
     }
 
     public function dosen(){
-      return $this->hasOne(Dosen::class);
+      return $this->belongsTo(Dosen::class);
     }
 }

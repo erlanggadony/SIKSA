@@ -75,6 +75,7 @@
                             <form action="/persetujuan" method="post">
                               <input type="hidden" value="{{ $pesanansurat->formatsurat_id }}" name="idFormatSurat">
                               <input type="hidden" value="{{ $pesanansurat->dataSurat }}" name="dataSurat">
+                              <input type="hidden" value="{{ $pesanansurat->id }}" name="idPesananSurat">
                               {!! csrf_field() !!}
                               <button type="submit" class="btn btn-default">Tambah<br>Persetujuan</button>
                             </form>
