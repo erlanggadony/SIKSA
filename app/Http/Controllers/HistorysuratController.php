@@ -632,19 +632,7 @@ class HistorysuratController extends Controller
         $thnAkademik = $json->thnAkademik;
         $pemesan = $request->pemesan;
 
-        $entry = '\mailentry{' .
-          $noSurat . ',' .
-          $nama . ',' .
-          $npm . ',' .
-          $prodi . ',' .
-          $fakultas . ',' .
-          $alamat . ',' .
-          $cutiStudiKe . ',' .
-          $alasanCutiStudi . ',' .
-          $dosenWali . ',' .
-          $semester . ',' .
-          $thnAkademik . ',' .
-          '}';
+        $entry = '\mailentry{' . $noSurat . ',' . $nama . ',' . $npm . ',' . $prodi . ',' . $fakultas . ',' . $alamat . ',' . $cutiStudiKe . ',' . $alasanCutiStudi . ',' . $dosenWali . ',' . $semester . ',' . $thnAkademik . '}';
         $fileTemplate = file('format_surat_latex/surat_izin_cuti_studi.tex');
         $stringFormat = "";
         $baris = count($fileTemplate);

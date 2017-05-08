@@ -69,6 +69,7 @@ Route::post('/home', 'AuthController@authenticate');
     Route::get('/history_pejabat', 'HistorysuratController@tampilkanHistoryDiPejabat');
     Route::post('/ubahStatusPenandatanganan', 'HistorysuratController@ubahStatusPenandatanganan');
     Route::post('/ubahStatusPengambilan', 'HistorysuratController@ubahStatusPengambilan');
+    Route::post('/updateFormulir','PesanansuratController@updateFormulir');
 
 Auth::routes();
 
