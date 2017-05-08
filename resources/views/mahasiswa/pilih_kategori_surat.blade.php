@@ -20,7 +20,7 @@
       <div class="main">
         <div class="row">
           <div class="col-md-8 content">
-            <h1>Pilih Jenis Surat</h1>
+            <h1>Pilih Kategori Surat</h1>
             <br>
             <form class="form-horizontal" action="{{ url('/pilih_jenis_surat') }}" method="post">
               <div class="form-group">

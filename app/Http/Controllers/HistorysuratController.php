@@ -867,6 +867,8 @@ class HistorysuratController extends Controller
         $dataSurat = $request->data;
         $json = json_decode($dataSurat);
         $noSurat = $request->noSurat;
+        $semester = $json->semester;
+        $thnAkademik = $json->thnAkademik;
         $nama = $json->nama;
         $prodi = $json->prodi;
         $npm = $json->npm;
@@ -886,26 +888,8 @@ class HistorysuratController extends Controller
         $sks3 = $json->sks3;
         $pemesan = $request->pemesan;
 
-        $entry = '\mailentry{' .
-          $noSurat . ',' .
-          $nama . ',' .
-          $prodi . ',' .
-          $npm . ',' .
-          $namaWakil . ',' .
-          $prodiWakil . ',' .
-          $npmWakil . ',' .
-          $dosenWali . ',' .
-          $alasan . ',' .
-          $kodeMK1 . ',' .
-          $matkul1 . ',' .
-          $sks1 . ',' .
-          $kodeMK2 . ',' .
-          $matkul2 . ',' .
-          $sks2 . ',' .
-          $kodeMK3 . ',' .
-          $matkul3 . ',' .
-          $sks3 . ',' .
-          '}';
+        $entry = '\mailentry{' . $semester . ',' .$thnAkademik . ','. $nama . ',' . $prodi . ',' . $npm . ',' . $namaWakil . ',' . $prodiWakil . ',' . $npmWakil . ',' . $alasan . ',' . $kodeMK1 . ',' . $matkul1 . ',' . $sks1 . ',' . $kodeMK2 . ',' . $matkul2 . ',' . $sks2 . ',' . $kodeMK3 . ',' . $matkul3 . ','. $sks3 .'}';
+        // dd($entry);
         $fileTemplate = file('format_surat_latex/surat_perwakilan_perwalian_3mk.tex');
         $stringFormat = "";
         $baris = count($fileTemplate);
@@ -929,7 +913,7 @@ class HistorysuratController extends Controller
         $historysurat->perihal = '-';
         $historysurat->penerimaSurat = '-';
         $historysurat->mahasiswa_id = $pemesan;
-        $historysurat->formatsurats_id = $request->idFormatSurat;
+        $historysurat->formatsurat_id = $request->idFormatSurat;
         $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $npm . '_surat_perwakilan_perwalian_3mk.pdf';
         $historysurat->penandatanganan = false;
         $historysurat->pengambilan = false;

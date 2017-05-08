@@ -66,6 +66,7 @@ Route::post('/home', 'AuthController@authenticate');
     Route::get('/home_pejabat', 'PesanansuratController@tampilkanPesananDiPejabat');
     Route::post('/persetujuan', 'PesanansuratController@tambahPersetujuan');
     Route::post('/previewCatatan', 'PesanansuratController@previewDosen');
+    Route::post('/updateCatatan', 'PesanansuratController@updateCatatan');
     Route::get('/history_pejabat', 'HistorysuratController@tampilkanHistoryDiPejabat');
     Route::post('/ubahStatusPenandatanganan', 'HistorysuratController@ubahStatusPenandatanganan');
     Route::post('/ubahStatusPengambilan', 'HistorysuratController@ubahStatusPengambilan');

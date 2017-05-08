@@ -21,7 +21,7 @@
             <div class="col-md-8 contentPreview form-horizontal">
               <h4 style="font-weight:bold">FORMULIR PERMOHONAN CUTI STUDI</h4>
               <br>
-              <form action = "{{ url('/kirimFormulir') }}" method="post">
+              <form action = "{{ url('/updateFormulir') }}" method="post">
                 <div class="form-group">
                   <label for="nama" class="col-sm-3 prevLabel">Nama</label>
                   <div class="col-sm-9" name="nama">

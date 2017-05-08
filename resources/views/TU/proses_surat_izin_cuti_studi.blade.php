@@ -36,13 +36,15 @@
                 <div class="form-group">
                   <label for="prodi" class="col-sm-3 prevLabel">Program Studi</label>
                   <div class="col-sm-9" name="prodi">
-                    {{ $prodi }}
+                    <span>{{ $user->jurusan->nama_jurusan }}</span>
+                    <input type="hidden" name="prodi" value="{{ $prodi }}"/>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="fakultas" class="col-sm-3 prevLabel">Fakultas</label>
                   <div class="col-sm-9" name="fakultas">
-                    {{ $fakultas }}
+                    <span>{{ $user->fakultas->nama_fakultas }}</span>
+                    <input type="hidden" name="fakultas" value="{{ $fakultas }}"/>
                   </div>
                 </div>
                 <div class="form-group">
@@ -61,7 +63,8 @@
                 <div class="form-group prev">
                   <label for="catatanDosenWali" class="col-sm-3 prevLabel">Catatan dosen wali </label>
                   <div class="col-sm-9" name="catatanDosenWali">
-                    Nama : {{ $dosenWali }}<br>
+                    Nama : <span>{{ $user->dosen->nama_dosen }}</span>
+                    <input type="hidden" name="dosenWali" value="{{ $dosenWali }}"/><br>
                     {{ $persetujuanDosenWali }}<br>
                     {{ $catatanDosenWali }}
                   </div>

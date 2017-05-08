@@ -68,7 +68,7 @@ class PesanansuratController extends Controller
           $semester = $json->semester;
           $thnAkademik = $json->thnAkademik;
           $formatsurat_id = $request->idFormatSurat;
-          // $dataSurat = $this->buatJSON($request);
+          $dataSurat = $this->buatJSON($request);
           // dd($request->formatsurat_id);
           if($realUser->id == "5"){
               $persetujuanDekan = $request->persetujuan;
@@ -1525,7 +1525,7 @@ class PesanansuratController extends Controller
         else if($request->idFormat == "10"){
           $pesanansurat = new PesananSurat;
           $pesanansurat->perihal = '-';
-          $pesanansurat->mahasiswa_id = 'anonim';
+          $pesanansurat->mahasiswa_id = $realUser->id;
           $pesanansurat->formatsurat_id = $request->idFormat;
           // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
           // $pesanansurat->dataSurat = $request->data;
@@ -1540,7 +1540,7 @@ class PesanansuratController extends Controller
         else if($request->idFormat == "11"){
           $pesanansurat = new PesananSurat;
           $pesanansurat->perihal = '-';
-          $pesanansurat->mahasiswa_id = 'anonim';
+          $pesanansurat->mahasiswa_id = $realUser->id;
           $pesanansurat->formatsurat_id = $request->idFormat;
           // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
           // $pesanansurat->dataSurat = $request->data;
@@ -1555,7 +1555,7 @@ class PesanansuratController extends Controller
         else if($request->idFormat == "12"){
           $pesanansurat = new PesananSurat;
           $pesanansurat->perihal = '-';
-          $pesanansurat->mahasiswa_id = 'anonim';
+          $pesanansurat->mahasiswa_id = $realUser->id;
           $pesanansurat->formatsurat_id = $request->idFormat;
           // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
           // $pesanansurat->dataSurat = $request->data;
@@ -1570,7 +1570,7 @@ class PesanansuratController extends Controller
         else if($request->idFormat == "13"){
           $pesanansurat = new PesananSurat;
           $pesanansurat->perihal = '-';
-          $pesanansurat->mahasiswa_id = 'anonim';
+          $pesanansurat->mahasiswa_id = $realUser->id;
           $pesanansurat->formatsurat_id = $request->idFormat;
           // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
           // $pesanansurat->dataSurat = $request->data;
@@ -1585,7 +1585,7 @@ class PesanansuratController extends Controller
         else if($request->idFormat == "14"){
           $pesanansurat = new PesananSurat;
           $pesanansurat->perihal = '-';
-          $pesanansurat->mahasiswa_id = 'anonim';
+          $pesanansurat->mahasiswa_id = $realUser->id;
           $pesanansurat->formatsurat_id = $request->idFormat;
           // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
           // $pesanansurat->dataSurat = $request->data;
@@ -1600,7 +1600,7 @@ class PesanansuratController extends Controller
         else if($request->idFormat == "15"){
           $pesanansurat = new PesananSurat;
           $pesanansurat->perihal = '-';
-          $pesanansurat->mahasiswa_id = 'anonim';
+          $pesanansurat->mahasiswa_id = $realUser->id;
           $pesanansurat->formatsurat_id = $request->idFormat;
           // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
           // $pesanansurat->dataSurat = $request->data;
@@ -1615,7 +1615,7 @@ class PesanansuratController extends Controller
         else if($request->idFormat == "16"){
           $pesanansurat = new PesananSurat;
           $pesanansurat->perihal = '-';
-          $pesanansurat->mahasiswa_id = 'anonim';
+          $pesanansurat->mahasiswa_id = $realUser->id;
           $pesanansurat->formatsurat_id = $request->idFormat;
           // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
           // $pesanansurat->dataSurat = $request->data;
@@ -1630,7 +1630,7 @@ class PesanansuratController extends Controller
         else if($request->idFormat == "17"){
           $pesanansurat = new PesananSurat;
           $pesanansurat->perihal = '-';
-          $pesanansurat->mahasiswa_id = 'anonim';
+          $pesanansurat->mahasiswa_id = $realUser->id;
           $pesanansurat->formatsurat_id = $request->idFormat;
           // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
           // $pesanansurat->dataSurat = $request->data;
@@ -1645,7 +1645,7 @@ class PesanansuratController extends Controller
         else if($request->idFormat == "18"){
           $pesanansurat = new PesananSurat;
           $pesanansurat->perihal = '-';
-          $pesanansurat->mahasiswa_id = 'anonim';
+          $pesanansurat->mahasiswa_id = $realUser->id;
           $pesanansurat->formatsurat_id = $request->idFormat;
           // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
           // $pesanansurat->dataSurat = $request->data;
@@ -1660,7 +1660,7 @@ class PesanansuratController extends Controller
         else if($request->idFormat == "19"){
           $pesanansurat = new PesananSurat;
           $pesanansurat->perihal = '-';
-          $pesanansurat->mahasiswa_id = 'anonim';
+          $pesanansurat->mahasiswa_id = $realUser->id;
           $pesanansurat->formatsurat_id = $request->idFormat;
           // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
           // $pesanansurat->dataSurat = $request->data;
@@ -1675,7 +1675,7 @@ class PesanansuratController extends Controller
         else if($request->idFormat == "20"){
           $pesanansurat = new PesananSurat;
           $pesanansurat->perihal = '-';
-          $pesanansurat->mahasiswa_id = 'anonim';
+          $pesanansurat->mahasiswa_id = $realUser->id;
           $pesanansurat->formatsurat_id = $request->idFormat;
           // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
           // $pesanansurat->dataSurat = $request->data;

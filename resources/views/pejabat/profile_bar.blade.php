@@ -11,7 +11,7 @@
               {{ $user->nama_dosen }}
           </div>
           <div class="desc">{{ $user->nik }}</div>
-          <div class="desc">{{ $user->jurusan_id }}</div>
+          <div class="desc">{{ $user->jurusan->nama_jurusan }}</div>
       </div>
   </div>
 </div>

@@ -24,7 +24,7 @@
                 <div class="form-group">
                   <label class="col-sm-3 prevLabel">NIRM</label>
                   <div class="col-sm-9" >
-                    123456789
+                    {{ $nirm }}
                   </div>
                 </div>
                 <div class="form-group">
