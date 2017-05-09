@@ -49,7 +49,7 @@
                 <div class="form-group">
                   <label for="alamat" class="col-sm-3 prevLabel">Alamat</label>
                   <div class="col-sm-9" name="alamat">
-                    {{ $alamat}}
+                    {{ $alamat }}
                   </div>
                 </div>
                 <div class="form-group prev">
@@ -65,6 +65,7 @@
                     Nama : {{ $dosenWali }}<br>
                     {{ $persetujuanDosenWali }}<br>
                     {{ $catatanDosenWali }}
+                    <input type="hidden" name="dosenWali" value="{{ $persetujuanDosenWali }}|{{ $catatanDosenWali }}" />
                   </div>
                 </div>
                 <div class="form-group prev">
@@ -72,6 +73,7 @@
                   <div class="col-sm-9" name="catatanKaprodi">
                     {{ $persetujuanKaprodi }}<br>
                     {{ $catatanKaprodi }}
+                    <input type="hidden" name="kaprodi" value="{{ $persetujuanKaprodi }}|{{ $catatanKaprodi }}" />
                   </div>
                 </div>
                 <div class="form-group prev">
@@ -79,6 +81,7 @@
                   <div class="col-sm-9" name="catatanWDII">
                     {{ $persetujuanWDII }}<br>
                     {{ $catatanWDII }}
+                    <input type="hidden" name="wd2" value="{{ $persetujuanWDII }}|{{ $catatanWDII }}" />
                   </div>
                 </div>
                 <div class="form-group prev">
@@ -86,12 +89,14 @@
                   <div class="col-sm-9" name="catatanWDI">
                     {{ $persetujuanWDI }}<br>
                     {{ $catatanWDI }}
+                    <input type="hidden" name="wd1" value="{{ $persetujuanWDI }}|{{ $catatanWDI }}" />
                   </div>
                 </div>
                 <div class="form-group prev">
                   <label for="persetujuanDekan" class="col-sm-3 prevLabel">Persetujuan Dekan</label>
                   <div class="col-sm-9" name="persetujuanDekan" >
                     {{ $persetujuanDekan }}
+                    <input type="hidden" name="dekan" value="{{ $persetujuanDekan }}" />
                   </div>
                 </div>
                 <div class="form-group prev">

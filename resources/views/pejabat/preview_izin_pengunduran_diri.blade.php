@@ -29,7 +29,7 @@
               <br>
               Dengan ini saya,
               </p>
-              <form action = "{{ url('/kirimFormulir') }}" method="post">
+              <form action = "{{ url('/updateFormulir') }}" method="post">
                 <div class="form-group">
                   <label class="col-sm-3 prevLabel">NIRM</label>
                   <div class="col-sm-9" >

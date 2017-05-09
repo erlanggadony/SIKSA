@@ -72,6 +72,7 @@
                           <td class="ctr">{{ $pesanansurat->created_at }}</td>
                           <td class="ctr"><textarea rows="5" cols="30" style="border: none" readonly>{{ $pesanansurat->dataSurat }}</textarea></td>
                           <td class="ctr">
+                            @if($pesanansurat->formatsurat->id == 9 || $pesanansurat->formatsurat->id == 10)
                             <form action="/persetujuan" method="post">
                               <input type="hidden" value="{{ $pesanansurat->formatsurat_id }}" name="idFormatSurat">
                               <input type="hidden" value="{{ $pesanansurat->dataSurat }}" name="dataSurat">
@@ -79,6 +80,9 @@
                               {!! csrf_field() !!}
                               <button type="submit" class="btn btn-default">Tambah<br>Persetujuan</button>
                             </form>
+                            @else
+                              <!-- <span class="btn btn-default"></span> -->
+                            @endif
                           </td>
                         </tr>
                     @endforeach

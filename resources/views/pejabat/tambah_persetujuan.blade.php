@@ -36,7 +36,7 @@
                 <div class="form-group">
                   <label for="catatanDekan" class="col-sm-3">Catatan (Opsional)</label>
                   <div class="col-sm-9">
-                    <textarea class="form-control" id="catatan" row="5" name="catatanDekan"></textarea>
+                    <textarea class="form-control" id="catatan" row="5" name="catatan"></textarea>
                   </div>
                 </div>
                 {!! csrf_field() !!}
