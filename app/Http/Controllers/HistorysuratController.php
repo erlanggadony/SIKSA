@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Repositories\PesanansuratRepository;
 use App\Repositories\HistorysuratRepository;
+use App\Repositories\JurusanRepository;
 use App\Repositories\FormatsuratRepository;
 use App\Mahasiswa;
 use App\Formatsurat;
@@ -20,12 +21,14 @@ class HistorysuratController extends Controller
     protected $historysuratRepo;
     protected $pesananSuratRepo;
     protected $formatSuratRepo;
+    protected $jurusanRepo;
 
-    public function __construct(HistorysuratRepository $historysuratRepo, PesanansuratRepository $pesananSuratRepo, FormatsuratRepository $formatsuratRepo){
+    public function __construct(HistorysuratRepository $historysuratRepo, PesanansuratRepository $pesananSuratRepo, FormatsuratRepository $formatsuratRepo, JurusanRepository $jurusanRepo){
       // dd($formatsuratRepo);
         $this->historysuratRepo = $historysuratRepo;
         $this->pesananSuratRepo = $pesananSuratRepo;
         $this->formatsuratRepo = $formatsuratRepo;
+        $this->jurusanRepo = $jurusanRepo;
         //dd($this->orders->getAllActive());
     }
 
@@ -161,7 +164,7 @@ class HistorysuratController extends Controller
         $json = json_decode($dataSurat);
         $noSurat = $request->noSurat;
         $nama = $json->nama;
-        $prodi = $this->prodiRepo->findProdiById($json->prodi);
+        $prodi = $this->jurusanRepo->findJurusanById($json->prodi);
         $npm = $json->npm;
         $semester = $json->semester;
         $thnAkademik = $json->thnAkademik;
@@ -169,6 +172,7 @@ class HistorysuratController extends Controller
         $pemesan = $request->pemesan;
         // $tanggal = $this->pesananSuratRepo->findHistorySuratById($request->id)->created_at;
 
+        //concat data input dgn format surat
         $entry = '\mailentry{' . $noSurat . ',' . $nama . ',' . $prodi . ',' . $npm . ',' . $semester . ',' . $thnAkademik . ',' . $penyediabeasiswa . '}';
         // dd($entry);
         $fileTemplate = file('format_surat_latex/surat_keterangan_beasiswa.tex');
@@ -183,6 +187,8 @@ class HistorysuratController extends Controller
             }
         }
         // dd($stringFormat);
+
+        //inject ke file baru lalu compile
         $file = fopen("arsip_surat/" . $noSurat. "_" . $npm . "_surat_keterangan_beasiswa.tex", "w");
         fwrite($file, $stringFormat);
         fclose($file);
@@ -194,7 +200,7 @@ class HistorysuratController extends Controller
         $historysurat->perihal = '-';
         $historysurat->penerimaSurat = $json->penyediabeasiswa;
         $historysurat->mahasiswa_id = $pemesan;
-        $historysurat->formatsurats_id = $request->idFormatSurat;
+        $historysurat->formatsurat_id = $request->idFormatSurat;
         $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $npm . '_surat_keterangan_beasiswa.pdf';
         $historysurat->penandatanganan = false;
         $historysurat->pengambilan = false;
@@ -214,8 +220,8 @@ class HistorysuratController extends Controller
         $semester = $json->semester;
         $pemesan = $request->pemesan;
 
-        //input entry
-        $entry = '\mailentry{' . $noSurat . ',' . $nama . ',' . $prodi . ',' . $npm . ',' . $kota_lahir . ',' . $tglLahir . ',' . $alamat . ',' . $semester . '}';
+        //concat data input dgn format surat
+        $entry = '\mailentry{' . $noSurat . ',' . $nama . ',' . $npm . ',' . $prodi . ',' . $kota_lahir . ',' . $tglLahir . ',' . $alamat . ',' . $semester . '}';
         // dd($entry);
         $fileTemplate = file('format_surat_latex/surat_keterangan_mahasiswa_aktif.tex');
         $stringFormat = "";
@@ -229,7 +235,7 @@ class HistorysuratController extends Controller
             }
         }
         // dd($stringFormat);
-        //inject ke file baru
+        //inject ke file baru  lalu compile
         $file = fopen("arsip_surat/" . $noSurat. "_" . $npm . "_surat_keterangan_mahasiswa_aktif.tex", "w");
         fwrite($file, $stringFormat);
         fclose($file);
@@ -241,7 +247,7 @@ class HistorysuratController extends Controller
         $historysurat->perihal = '-';
         $historysurat->penerimaSurat = $nama;
         $historysurat->mahasiswa_id = $pemesan;
-        $historysurat->formatsurats_id = $request->idFormatSurat;
+        $historysurat->formatsurat_id = $request->idFormatSurat;
         $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $npm . '_surat_keterangan_mahasiswa_aktif.pdf';
         $historysurat->penandatanganan = false;
         $historysurat->pengambilan = false;
@@ -254,14 +260,17 @@ class HistorysuratController extends Controller
         $noSurat = $request->noSurat;
         $nama = $json->nama;
         $tglLahir = $json->tglLahir;
-        $organisasiTujuan = $json->organisasiTujuan;
+        $kewarganegaraan = $json->kewarganegaraan;
+        $tahunKe =
         $thnAkademik = $json->thnAkademik;
         $negaraTujuan = $json->negaraTujuan;
         $tanggalKunjungan = $json->tanggalKunjungan;
+        $organisasiTujuan = $json->organisasiTujuan;
         $pemesan = $request->pemesan;
         $npm = $this->mahasiswaRepo->findMahasiswaById($pemesan);
 
-        $entry = '\mailentry{' . $noSurat . ',' . $nama . ',' . $tglLahir . ',' . $organisasiTujuan . ',' . $thnAkademik . ',' . $negaraTujuan . ',' . $tanggalKunjungan . '}';
+        //concat data input dgn format surat
+        $entry = '\mailentry{' . $nama . ',' . $tglLahir . ',' . $kewarganegaraan . ',' .$tahunKe . ',' . $thnAkademik . ',' . $negaraTujuan . ',' . $tanggalKunjungan . ',' . $organisasiTujuan . '}';
         $fileTemplate = file('format_surat_latex/surat_pengantar_pembuatan_visa.tex');
         $stringFormat = "";
         $baris = count($fileTemplate);
@@ -274,7 +283,7 @@ class HistorysuratController extends Controller
             }
         }
         // dd($stringFormat);
-
+        //inject ke file baru  lalu compile
         $file = fopen("arsip_surat/" . $noSurat. "_" . $npm . "_surat_pengantar_pembuatan_visa.tex", "w");
         fwrite($file, $stringFormat);
         fclose($file);
@@ -310,7 +319,7 @@ class HistorysuratController extends Controller
         $pemesan = $request->pemesan;
 
         $entry = '\mailentry{' .
-          $noSurat . ',' . $nama . ',' . $npm . ',' . $prodi . ',' . $matkul . ',' . $topik . ',' . $organisasi . ',' . $alamatOrganisasi . ',' . $keperluanKunjungan . ',' .$kota . ',' . $kepada . ',' . '}';
+          $noSurat . ',' . $nama . ',' . $npm . ',' . $prodi . ',' . $matkul . ',' . $topik . ',' . $organisasi . ',' . $alamatOrganisasi . ',' . $keperluanKunjungan . ',' . $kepada . ',' . $kota . '}';
         $fileTemplate = file('format_surat_latex/surat_pengantar_studi_lapangan_1orang.tex');
         $stringFormat = "";
         $baris = count($fileTemplate);
@@ -331,9 +340,9 @@ class HistorysuratController extends Controller
         $historysurat = new Historysurat;
         $historysurat->no_surat = $noSurat;
         $historysurat->perihal = 'Permohonan' . $keperluanKunjungan;
-        $historysurat->penerimaSurat = $kepada;
+        $historysurat->penerimaSurat = $organisasi;
         $historysurat->mahasiswa_id = $pemesan;
-        $historysurat->formatsurats_id = $request->idFormatSurat;
+        $historysurat->formatsurat_id = $request->idFormatSurat;
         $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $npm . '_surat_pengantar_studi_lapangan_1orang.pdf';
         $historysurat->penandatanganan = false;
         $historysurat->pengambilan = false;
@@ -358,21 +367,7 @@ class HistorysuratController extends Controller
         $npmAnggota = $json->npmAnggota;
         $pemesan = $request->pemesan;
 
-        $entry = '\mailentry{' .
-          $noSurat . ',' .
-          $nama . ',' .
-          $npm . ',' .
-          $prodi . ',' .
-          $matkul . ',' .
-          $topik . ',' .
-          $organisasi . ',' .
-          $alamatOrganisasi . ',' .
-          $keperluanKunjungan . ',' .
-          $kota . ',' .
-          $kepada . ',' .
-          $namaAnggota . ',' .
-          $npmAnggota . ',' .
-          '}';
+        $entry = '\mailentry{' . $noSurat . ',' . $nama . ',' . $npm . ',' . $prodi . ',' . $matkul . ',' . $topik . ',' . $organisasi . ',' . $alamatOrganisasi . ',' . $keperluanKunjungan . ',' . $kota . ',' . $kepada . ',' . $namaAnggota . ',' . $npmAnggota . '}';
         $fileTemplate = file('format_surat_latex/surat_pengantar_studi_lapangan_2orang.tex');
         $stringFormat = "";
         $baris = count($fileTemplate);

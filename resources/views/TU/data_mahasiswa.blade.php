@@ -17,7 +17,7 @@
       <div class="main">
           <div class="row">
             <div class="col-md-8 content">
-              <a href="{{ URL::to('/tambah_data_mahasiswa') }}" class="btn btn-default">Tambah Data Mahasiswa</a>
+              <!-- <a href="{{ URL::to('/tambah_data_mahasiswa') }}" class="btn btn-default">Tambah Data Mahasiswa</a> -->
               <form class="form-inline" action= "{{ url('/data_mahasiswa') }}" method="get">
                 <div class="form-group">
                   <label for="kategori_mahasiswa">Cari berdasarkan :</label><br>

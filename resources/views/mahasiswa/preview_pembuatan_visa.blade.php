@@ -44,6 +44,7 @@
                     <label class="col-sm-3 prevLabel">Organisasi tujuan</label>
                     <div class="col-sm-9">
                         {{ $organisasiTujuan }}
+                        <input type="hidden" value="{{ $organisasiTujuan }}" name="organisasiTujuan">
                     </div>
                   </div>
                   <div class="form-group">

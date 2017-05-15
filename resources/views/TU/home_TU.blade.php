@@ -55,7 +55,7 @@
                         <tr>
                           <td class="ctr">{{ $pesanansurat->formatsurat->jenis_surat }}</td>
                           <td class="ctr">{{ $pesanansurat->perihal }}</td>
-                          <td class="ctr">{{ $pesanansurat->mahasiswa->nama_mahasiswa  }}</td>
+                          <td class="ctr">{{ $pesanansurat->mahasiswa->nama_mahasiswa }}</td>
                           <td class="ctr">{{ $pesanansurat->penerimaSurat }}</td>
                           <td class="ctr">{{ $pesanansurat->created_at }}</td>
                           <td class="ctr"><textarea rows="5" cols="30" style="border: none" readonly>{{ $pesanansurat->dataSurat }}</textarea></td>

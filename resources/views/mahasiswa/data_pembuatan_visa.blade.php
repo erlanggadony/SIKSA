@@ -37,7 +37,7 @@
                 <div class="form-group">
                   <label for="kewarganegaraan" class="col-sm-3">Kewarganegaraan</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="kewarganegaraan" name="kewarganegaraan" value="{{ $user->nama_mahasiswa }}" readonly style="border: none" />
+                    <input type="text" class="form-control" id="kewarganegaraan" name="kewarganegaraan" value="{{ $user->kewarganegaraan }}" readonly style="border: none" />
                   </div>
                 </div>
                 <div class="form-group">

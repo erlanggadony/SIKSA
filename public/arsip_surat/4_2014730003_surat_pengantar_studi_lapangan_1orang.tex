@@ -3,7 +3,7 @@
 \usepackage{mailmerge}
 
 \begin{document}
-\mailfields{noSurat,nama,npm,prodi,tujuanKunjungan,kepada,alamat,matkul,judulTopik,instansi,tanggal,wdIIIS}
+\mailfields{noSurat,nama,npm,prodi,matkul,judulTopik,instansi,alamat,tujuanKunjungan,kepada,kota,tanggal}
 
 \mailrepeat{
 Nomor : \field{noSurat}\\
@@ -14,7 +14,7 @@ Lamp\hspace{0.35cm}: -\\
 \textbf{Kepada YTH.\\
 KEPALA \field{kepada}\\
 \field{alamat}\\
-BANDUNG}
+\field{kota}}
 
  Dengan hormat,\\
 
@@ -26,20 +26,19 @@ Bersama ini kami informasikan bahwa salah seorang mahasiswa kami, yaitu:
 	Program Studi\hspace{0.8cm}: \field{prodi}
 	\end{quote}
 	saat ini sedang mengambil Matakuliah \field{matkul} dengan topik "\field{judulTopik}". Ybs. memerlukan informasi sehubungan dengan hal-hal yang terkait dengan masalah tersebut yang diterapkan di \field{instansi}.\
-	
+
 Untuk itu kami memohonkan ijin bagi mahasiswa kami tersebut agar diperbolehkan untuk melakukan \field{tujuanKunjungan} di \field{instansi}.\
 
 Atas perhatian dan kerjasamanya yang diberikan kami mengucapkan terima kasih.
 \vspace{2cm}
 		\begin{flushright}
-			Bandung, \field{tanggal}\\ 
+			Bandung, \field{tanggal}\\
 					Wakil Dekan III\\
 			\vspace{2cm}
-			\underline{\field{wdIII}}
+			\underline{Flaviana Catherine, S.Si, M.T}
 		\end{flushright}
 \thispagestyle{empty}
 	\newpage
 }
- 
-\mailentry{4,,,,ASD,Queue,TU,Kopo,belajar,}\mailentry{noSurat,nama,npm,prodi,tujuanKunjungan,kepada,alamat,matkul,judulTopik,instansi,tanggal,wdIIIS}
+\mailentry{4,MARCELL TRIXIE ALEXANDER,2014730003,3,Modsim,Queue,GraPARI,Dago,survey,,}
 \end{document}

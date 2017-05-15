@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
   <head>
       <title>Data Mahasiswa</title>

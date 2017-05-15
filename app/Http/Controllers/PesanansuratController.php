@@ -174,9 +174,10 @@ class PesanansuratController extends Controller
           $semester = $json->semester;
           $thnAkademik = $json->thnAkademik;
           $formatsurat_id = $request->idFormatSurat;
-          $dataSurat = $this->buatJSON($request);
+          // $dataSurat = $this->buatJSON($request);
           // dd($request->formatsurat_id);
           // dd("asd "+$request->idPesananSurat);
+          // dd("asd");
           if($realUser->id == "5"){
               $persetujuanDekan = $request->persetujuan;
               $arrayJson = json_decode(PesananSurat::find($idPesanansurat)->dataSurat);
@@ -304,6 +305,7 @@ class PesanansuratController extends Controller
                   'persetujuanDekan' => '-'
                 ]);
               }else{
+                // dd("asd");
                 $persetujuanKaprodi = $request->persetujuan;
                 $catatanKaprodi = $request->catatan;
                 $jsonArray = json_decode(PesananSurat::find($idPesanansurat)->dataSurat);
@@ -463,6 +465,7 @@ class PesanansuratController extends Controller
           else{
             $pesanansurats = $this->pesanansuratRepo->findAllPesananSurat();
           }
+          // dd($pesanansurats[0]);
           return view('TU.home_TU',[
               'pesanansurats' => $pesanansurats,
               'user' => $realUser
@@ -479,6 +482,8 @@ class PesanansuratController extends Controller
         $nama = $json->nama;
         $prodi = $json->prodi;
         $npm = $json->npm;
+        $user = Mahasiswa::where('npm',$json->npm)->first();
+        // dd($user);
         $semester = $json->semester;
         $thnAkademik = $json->thnAkademik;
         $penyediabeasiswa = $json->penyediabeasiswa;
@@ -496,7 +501,7 @@ class PesanansuratController extends Controller
             'penyediabeasiswa' => $penyediabeasiswa,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat,
-            'user' => $realUser,
+            'user' => $user,
             'pemesan' => $pemesan
         ]);
       }
@@ -513,6 +518,7 @@ class PesanansuratController extends Controller
         $formatsurat_id = $request->idFormatSurat;
         $pesananID = $this->pesanansuratRepo->findPesananSuratById($request->id);
         $pemesan = $pesananID->mahasiswa_id;
+        $user = Mahasiswa::where('npm',$json->npm)->first();
         // dd($dataSurat);
         return view('TU.proses_surat_keterangan_mahasiswa_aktif', [
             'nama' => $nama,
@@ -524,7 +530,7 @@ class PesanansuratController extends Controller
             'semester' => $semester,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat,
-            'user' => $realUser,
+            'user' => $user,
             'pemesan' => $pemesan
         ]);
       }
@@ -541,6 +547,7 @@ class PesanansuratController extends Controller
         $formatsurat_id = $request->idFormatSurat;
         $pesananID = $this->pesanansuratRepo->findPesananSuratById($request->id);
         $pemesan = $pesananID->mahasiswa_id;
+        $user = Mahasiswa::where('npm',$json->npm)->first();
         // dd($dataSurat);
         return view('TU.proses_surat_pembuatan_visa', [
             'nama' => $nama,
@@ -552,7 +559,7 @@ class PesanansuratController extends Controller
             'tanggalKunjungan' => $tanggalKunjungan,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat,
-            'user' => $realUser,
+            'user' => $user,
             'pemesan' => $pemesan
         ]);
       }
@@ -572,6 +579,7 @@ class PesanansuratController extends Controller
         $formatsurat_id = $request->idFormatSurat;
         $pesananID = $this->pesanansuratRepo->findPesananSuratById($request->id);
         $pemesan = $pesananID->mahasiswa_id;
+        $user = Mahasiswa::where('npm',$json->npm)->first();
         // dd($request);
         return view('TU.proses_surat_izin_studi_lapangan_1org', [
             'nama' => $nama,
@@ -586,7 +594,7 @@ class PesanansuratController extends Controller
             'kepada' => $kepada,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat,
-            'user' => $realUser,
+            'user' => $user,
             'pemesan' => $pemesan
         ]);
       }
@@ -608,7 +616,7 @@ class PesanansuratController extends Controller
         $formatsurat_id = $request->idFormatSurat;
         $pesananID = $this->pesanansuratRepo->findPesananSuratById($request->id);
         $pemesan = $pesananID->mahasiswa_id;
-
+        $user = Mahasiswa::where('npm',$json->npm)->first();
         return view('TU.proses_surat_izin_studi_lapangan_2org', [
             'nama' => $nama,
             'npm' => $npm,
@@ -624,7 +632,7 @@ class PesanansuratController extends Controller
             'npmAnggota' => $npmAnggota,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat,
-            'user' => $realUser,
+            'user' => $user,
             'pemesan' => $pemesan
         ]);
       }
@@ -648,6 +656,7 @@ class PesanansuratController extends Controller
         $formatsurat_id = $request->idFormatSurat;
         $pesananID = $this->pesanansuratRepo->findPesananSuratById($request->id);
         $pemesan = $pesananID->mahasiswa_id;
+        $user = Mahasiswa::where('npm',$json->npm)->first();
         return view('TU.proses_surat_izin_studi_lapangan_3org', [
             'nama' => $nama,
             'npm' => $npm,
@@ -665,7 +674,7 @@ class PesanansuratController extends Controller
             'npmAnggota2' => $npmAnggota2,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat,
-            'user' => $realUser,
+            'user' => $user,
             'pemesan' => $pemesan
         ]);
       }
@@ -691,6 +700,7 @@ class PesanansuratController extends Controller
         $formatsurat_id = $request->idFormatSurat;
         $pesananID = $this->pesanansuratRepo->findPesananSuratById($request->id);
         $pemesan = $pesananID->mahasiswa_id;
+        $user = Mahasiswa::where('npm',$json->npm)->first();
         return view('TU.proses_surat_izin_studi_lapangan_4org', [
             'nama' => $nama,
             'npm' => $npm,
@@ -710,7 +720,7 @@ class PesanansuratController extends Controller
             'npmAnggota3' => $npmAnggota3,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat,
-            'user' => $realUser,
+            'user' => $user,
             'pemesan' => $pemesan
         ]);
       }
@@ -738,6 +748,7 @@ class PesanansuratController extends Controller
         $formatsurat_id = $request->idFormatSurat;
         $pesananID = $this->pesanansuratRepo->findPesananSuratById($request->id);
         $pemesan = $pesananID->mahasiswa_id;
+        $user = Mahasiswa::where('npm',$json->npm)->first();
         return view('TU.proses_surat_izin_studi_lapangan_5org', [
             'nama' => $nama,
             'npm' => $npm,
@@ -759,7 +770,7 @@ class PesanansuratController extends Controller
             'npmAnggota4' => $npmAnggota4,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat,
-            'user' => $realUser,
+            'user' => $user,
             'pemesan' => $pemesan
         ]);
       }
@@ -788,6 +799,7 @@ class PesanansuratController extends Controller
         $catatanWDI = $json->catatanWDI;
         $persetujuanDekan = $json->persetujuanDekan;
         $formatsurat_id = $request->idFormatSurat;
+        $user = Mahasiswa::where('npm',$json->npm)->first();
         return view('TU.proses_surat_izin_cuti_studi', [
             'nama' => $nama,
             'npm' => $npm,
@@ -810,7 +822,7 @@ class PesanansuratController extends Controller
             'persetujuanDekan' => $persetujuanDekan,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat,
-            'user' => $realUser,
+            'user' => $user,
             'pemesan' => $pemesan
         ]);
       }
@@ -826,6 +838,7 @@ class PesanansuratController extends Controller
         $semester = $json->semester;
         $pesananID = $this->pesanansuratRepo->findPesananSuratById($request->id);
         $pemesan = $pesananID->mahasiswa_id;
+        $user = Mahasiswa::where('npm',$json->npm)->first();
         //upload
         // $lampiran = $request->file('lampiran_CutiStudi');
         // $destination_path = ('lampiran/cuti_studi/');
@@ -864,7 +877,7 @@ class PesanansuratController extends Controller
             'persetujuanDekan' => $persetujuanDekan,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat,
-            'user' => $realUser,
+            'user' => $user,
             'pemesan' => $pemesan
         ]);
       }
@@ -887,6 +900,7 @@ class PesanansuratController extends Controller
         $formatsurat_id = $request->idFormatSurat;
         $pesananID = $this->pesanansuratRepo->findPesananSuratById($request->id);
         $pemesan = $pesananID->mahasiswa_id;
+        $user = Mahasiswa::where('npm',$json->npm)->first();
         return view('TU.proses_surat_perwakilan_perwalian_1mk', [
             'semester' => $semester,
             'thnAkademik' => $thnAkademik,
@@ -903,7 +917,7 @@ class PesanansuratController extends Controller
             'sks' => $sks,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat,
-            'user' => $realUser,
+            'user' => $user,
             'pemesan' => $pemesan
         ]);
       }
@@ -929,6 +943,7 @@ class PesanansuratController extends Controller
         $formatsurat_id = $request->idFormatSurat;
         $pesananID = $this->pesanansuratRepo->findPesananSuratById($request->id);
         $pemesan = $pesananID->mahasiswa_id;
+        $user = Mahasiswa::where('npm',$json->npm)->first();
         return view('TU.proses_surat_perwakilan_perwalian_2mk', [
             'semester' => $semester,
             'thnAkademik' => $thnAkademik,
@@ -948,7 +963,7 @@ class PesanansuratController extends Controller
             'sks2' => $sks2,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat,
-            'user' => $realUser,
+            'user' => $user,
             'pemesan' => $pemesan
         ]);
       }
@@ -977,6 +992,7 @@ class PesanansuratController extends Controller
         $formatsurat_id = $request->idFormatSurat;
         $pesananID = $this->pesanansuratRepo->findPesananSuratById($request->id);
         $pemesan = $pesananID->mahasiswa_id;
+        $user = Mahasiswa::where('npm',$json->npm)->first();
         return view('TU.proses_surat_perwakilan_perwalian_3mk', [
             'semester' => $semester,
             'thnAkademik' => $thnAkademik,
@@ -999,7 +1015,7 @@ class PesanansuratController extends Controller
             'sks3' => $sks3,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat,
-            'user' => $realUser,
+            'user' => $user,
             'pemesan' => $pemesan
         ]);
       }
@@ -1031,6 +1047,7 @@ class PesanansuratController extends Controller
         $formatsurat_id = $request->idFormatSurat;
         $pesananID = $this->pesanansuratRepo->findPesananSuratById($request->id);
         $pemesan = $pesananID->mahasiswa_id;
+        $user = Mahasiswa::where('npm',$json->npm)->first();
         return view('TU.proses_surat_perwakilan_perwalian_4mk', [
             'semester' => $semester,
             'thnAkademik' => $thnAkademik,
@@ -1056,7 +1073,7 @@ class PesanansuratController extends Controller
             'sks4' => $sks4,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat,
-            'user' => $realUser,
+            'user' => $user,
             'pemesan' => $pemesan
         ]);
       }
@@ -1091,6 +1108,7 @@ class PesanansuratController extends Controller
         $formatsurat_id = $request->idFormatSurat;
         $pesananID = $this->pesanansuratRepo->findPesananSuratById($request->id);
         $pemesan = $pesananID->mahasiswa_id;
+        $user = Mahasiswa::where('npm',$json->npm)->first();
         return view('TU.proses_surat_perwakilan_perwalian_5mk', [
             'semester' => $semester,
             'thnAkademik' => $thnAkademik,
@@ -1119,7 +1137,7 @@ class PesanansuratController extends Controller
             'sks5' => $sks5,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat,
-            'user' => $realUser,
+            'user' => $user,
             'pemesan' => $pemesan
         ]);
       }
@@ -1157,6 +1175,7 @@ class PesanansuratController extends Controller
         $formatsurat_id = $request->idFormatSurat;
         $pesananID = $this->pesanansuratRepo->findPesananSuratById($request->id);
         $pemesan = $pesananID->mahasiswa_id;
+        $user = Mahasiswa::where('npm',$json->npm)->first();
         return view('TU.proses_surat_perwakilan_perwalian_6mk', [
             'semester' => $semester,
             'thnAkademik' => $thnAkademik,
@@ -1188,7 +1207,7 @@ class PesanansuratController extends Controller
             'sks6' => $sks6,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat,
-            'user' => $realUser,
+            'user' => $user,
             'pemesan' => $pemesan
         ]);
       }
@@ -1229,6 +1248,7 @@ class PesanansuratController extends Controller
         $formatsurat_id = $request->idFormatSurat;
         $pesananID = $this->pesanansuratRepo->findPesananSuratById($request->id);
         $pemesan = $pesananID->mahasiswa_id;
+        $user = Mahasiswa::where('npm',$json->npm)->first();
         return view('TU.proses_surat_perwakilan_perwalian_7mk', [
             'semester' => $semester,
             'thnAkademik' => $thnAkademik,
@@ -1263,7 +1283,7 @@ class PesanansuratController extends Controller
             'sks7' => $sks7,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat,
-            'user' => $realUser,
+            'user' => $user,
             'pemesan' => $pemesan
         ]);
       }
@@ -1307,6 +1327,7 @@ class PesanansuratController extends Controller
         $formatsurat_id = $request->idFormatSurat;
         $pesananID = $this->pesanansuratRepo->findPesananSuratById($request->id);
         $pemesan = $pesananID->mahasiswa_id;
+        $user = Mahasiswa::where('npm',$json->npm)->first();
         return view('TU.proses_surat_perwakilan_perwalian_8mk', [
             'semester' => $semester,
             'thnAkademik' => $thnAkademik,
@@ -1344,7 +1365,7 @@ class PesanansuratController extends Controller
             'sks8' => $sks8,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat,
-            'user' => $realUser,
+            'user' => $user,
             'pemesan' => $pemesan
         ]);
       }
@@ -1391,6 +1412,7 @@ class PesanansuratController extends Controller
         $formatsurat_id = $request->idFormatSurat;
         $pesananID = $this->pesanansuratRepo->findPesananSuratById($request->id);
         $pemesan = $pesananID->mahasiswa_id;
+        $user = Mahasiswa::where('npm',$json->npm)->first();
         return view('TU.proses_surat_perwakilan_perwalian_9mk', [
             'semester' => $semester,
             'thnAkademik' => $thnAkademik,
@@ -1431,7 +1453,7 @@ class PesanansuratController extends Controller
             'sks9' => $sks9,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat,
-            'user' => $realUser,
+            'user' => $user,
             'pemesan' => $pemesan
         ]);
       }
@@ -1481,6 +1503,7 @@ class PesanansuratController extends Controller
         $formatsurat_id = $request->idFormatSurat;
         $pesananID = $this->pesanansuratRepo->findPesananSuratById($request->id);
         $pemesan = $pesananID->mahasiswa_id;
+        $user = Mahasiswa::where('npm',$json->npm)->first();
         return view('TU.proses_surat_perwakilan_perwalian_10mk', [
             'semester' => $semester,
             'thnAkademik' => $thnAkademik,
@@ -1524,19 +1547,18 @@ class PesanansuratController extends Controller
             'sks10' => $sks10,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat,
-            'user' => $realUser,
+            'user' => $user,
             'pemesan' => $pemesan
         ]);
       }
     }
     public function store(Request $request){
       $loggedInUser = Auth::user();
-      // dd($loggedInUser);
+      // dd($request->idFormat);
       // dd("DI LINE 1452 PesananSuratController.php | "+$request->idPesanansurat);
       $realUser = $this->getRealUser($loggedInUser);
         if($request->idFormat == "1"){
           $pesanansurat = new PesananSurat;
-          $pesanansurat->perihal = '-';
           $pesanansurat->mahasiswa_id = $realUser->id;
           $pesanansurat->formatsurat_id = $request->idFormat;
           $pesanansurat->penerimaSurat = $request->provider;
@@ -1550,11 +1572,9 @@ class PesanansuratController extends Controller
         }
         else if($request->idFormat == "2"){
           $pesanansurat = new PesananSurat;
-          $pesanansurat->perihal = '-';
-          $pesanansurat->mahasiswa_id = 'anonim';
+          $pesanansurat->mahasiswa_id = $realUser->id;
           $pesanansurat->formatsurat_id = $request->idFormat;
-          // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
-          // $pesanansurat->dataSurat = $request->data;
+          $pesanansurat->penerimaSurat = '-';
           $pesanansurat->dataSurat = $request->dataSurat;
           $pesanansurat->persetujuanDosenWali = true ;
           $pesanansurat->persetujuanKaprodi = true;
@@ -1565,13 +1585,12 @@ class PesanansuratController extends Controller
         }
         else if($request->idFormat == "3"){
           $pesanansurat = new PesananSurat;
-          $pesanansurat->perihal = '-';
-          $pesanansurat->mahasiswa_id = 'anonim';
+          $pesanansurat->mahasiswa_id = $realUser->id;
           $pesanansurat->formatsurat_id = $request->idFormat;
-          // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
-          // $pesanansurat->dataSurat = $request->data;
+          $pesanansurat->penerimaSurat = $request->organisasiTujuan;
+          // dd($request->organisasiTujuan);
           $pesanansurat->dataSurat = $request->dataSurat;
-          $pesanansurat->persetujuanDosenWali = true ;
+          $pesanansurat->persetujuanDosenWali = true;
           $pesanansurat->persetujuanKaprodi = true;
           $pesanansurat->persetujuanWDII = true;
           $pesanansurat->persetujuanWDI = true;
@@ -1580,13 +1599,12 @@ class PesanansuratController extends Controller
         }
         else if($request->idFormat == "4"){
           $pesanansurat = new PesananSurat;
-          $pesanansurat->perihal = '-';
-          $pesanansurat->mahasiswa_id = 'anonim';
+          $pesanansurat->mahasiswa_id = $realUser->id;
           $pesanansurat->formatsurat_id = $request->idFormat;
-          // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
-          // $pesanansurat->dataSurat = $request->data;
+          $pesanansurat->penerimaSurat = $request->organisasi;
+          // dd($request->organisasi);
           $pesanansurat->dataSurat = $request->dataSurat;
-          $pesanansurat->persetujuanDosenWali = true ;
+          $pesanansurat->persetujuanDosenWali = true;
           $pesanansurat->persetujuanKaprodi = true;
           $pesanansurat->persetujuanWDII = true;
           $pesanansurat->persetujuanWDI = true;
@@ -1595,11 +1613,9 @@ class PesanansuratController extends Controller
         }
         else if($request->idFormat == "5"){
           $pesanansurat = new PesananSurat;
-          $pesanansurat->perihal = '-';
-          $pesanansurat->mahasiswa_id = 'anonim';
+          $pesanansurat->mahasiswa_id = $realUser->id;
           $pesanansurat->formatsurat_id = $request->idFormat;
-          // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
-          // $pesanansurat->dataSurat = $request->data;
+          $pesanansurat->penerimaSurat = $request->organisasi;
           $pesanansurat->dataSurat = $request->dataSurat;
           $pesanansurat->persetujuanDosenWali = true ;
           $pesanansurat->persetujuanKaprodi = true;
@@ -1610,11 +1626,9 @@ class PesanansuratController extends Controller
         }
         else if($request->idFormat == "6"){
           $pesanansurat = new PesananSurat;
-          $pesanansurat->perihal = '-';
-          $pesanansurat->mahasiswa_id = 'anonim';
+          $pesanansurat->mahasiswa_id = $realUser->id;
           $pesanansurat->formatsurat_id = $request->idFormat;
-          // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
-          // $pesanansurat->dataSurat = $request->data;
+          $pesanansurat->penerimaSurat = $request->organisasi;
           $pesanansurat->dataSurat = $request->dataSurat;
           $pesanansurat->persetujuanDosenWali = true ;
           $pesanansurat->persetujuanKaprodi = true;
@@ -1626,10 +1640,9 @@ class PesanansuratController extends Controller
         else if($request->idFormat == "7"){
           $pesanansurat = new PesananSurat;
           $pesanansurat->perihal = '-';
-          $pesanansurat->mahasiswa_id = 'anonim';
+          $pesanansurat->mahasiswa_id = $realUser->id;
           $pesanansurat->formatsurat_id = $request->idFormat;
-          // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
-          // $pesanansurat->dataSurat = $request->data;
+          $pesanansurat->penerimaSurat = $request->organisasi;
           $pesanansurat->dataSurat = $request->dataSurat;
           $pesanansurat->persetujuanDosenWali = true ;
           $pesanansurat->persetujuanKaprodi = true;
@@ -1640,11 +1653,9 @@ class PesanansuratController extends Controller
         }
         else if($request->idFormat == "8"){
           $pesanansurat = new PesananSurat;
-          $pesanansurat->perihal = '-';
-          $pesanansurat->mahasiswa_id = 'anonim';
+          $pesanansurat->mahasiswa_id = $realUser->id;
           $pesanansurat->formatsurat_id = $request->idFormat;
-          // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
-          // $pesanansurat->dataSurat = $request->data;
+          $pesanansurat->penerimaSurat = $request->organisasi;
           $pesanansurat->dataSurat = $request->dataSurat;
           $pesanansurat->persetujuanDosenWali = true ;
           $pesanansurat->persetujuanKaprodi = true;
@@ -1655,7 +1666,6 @@ class PesanansuratController extends Controller
         }
         else if($request->idFormat == "9"){
           $pesanansurat = new PesananSurat;
-          $pesanansurat->perihal = 'Surat Ijin Berhenti Studi Sementara';
           $pesanansurat->mahasiswa_id = $realUser->id;
           $pesanansurat->formatsurat_id = $request->idFormat;
           $pesanansurat->penerimaSurat = $realUser->nama_mahasiswa;
@@ -1670,10 +1680,9 @@ class PesanansuratController extends Controller
         }
         else if($request->idFormat == "10"){
           $pesanansurat = new PesananSurat;
-          $pesanansurat->perihal = '-';
           $pesanansurat->mahasiswa_id = $realUser->id;
           $pesanansurat->formatsurat_id = $request->idFormat;
-          // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
+          $pesanansurat->penerimaSurat = 'Rektor';
           // $pesanansurat->dataSurat = $request->data;
           $pesanansurat->dataSurat = $request->dataSurat;
           $pesanansurat->persetujuanDosenWali = false ;
@@ -1685,10 +1694,9 @@ class PesanansuratController extends Controller
         }
         else if($request->idFormat == "11"){
           $pesanansurat = new PesananSurat;
-          $pesanansurat->perihal = '-';
           $pesanansurat->mahasiswa_id = $realUser->id;
           $pesanansurat->formatsurat_id = $request->idFormat;
-          // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
+          $pesanansurat->penerimaSurat = $request->dosen->nama_dosen;
           // $pesanansurat->dataSurat = $request->data;
           $pesanansurat->dataSurat = $request->dataSurat;
           $pesanansurat->persetujuanDosenWali = true ;
@@ -1700,11 +1708,9 @@ class PesanansuratController extends Controller
         }
         else if($request->idFormat == "12"){
           $pesanansurat = new PesananSurat;
-          $pesanansurat->perihal = '-';
           $pesanansurat->mahasiswa_id = $realUser->id;
           $pesanansurat->formatsurat_id = $request->idFormat;
-          // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
-          // $pesanansurat->dataSurat = $request->data;
+          $pesanansurat->penerimaSurat = $request->dosen->nama_dosen;
           $pesanansurat->dataSurat = $request->dataSurat;
           $pesanansurat->persetujuanDosenWali = true ;
           $pesanansurat->persetujuanKaprodi = true;
@@ -1715,11 +1721,9 @@ class PesanansuratController extends Controller
         }
         else if($request->idFormat == "13"){
           $pesanansurat = new PesananSurat;
-          $pesanansurat->perihal = '-';
           $pesanansurat->mahasiswa_id = $realUser->id;
           $pesanansurat->formatsurat_id = $request->idFormat;
-          // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
-          // $pesanansurat->dataSurat = $request->data;
+          $pesanansurat->penerimaSurat = $request->dosen->nama_dosen;
           $pesanansurat->dataSurat = $request->dataSurat;
           $pesanansurat->persetujuanDosenWali = true ;
           $pesanansurat->persetujuanKaprodi = true;
@@ -1730,11 +1734,9 @@ class PesanansuratController extends Controller
         }
         else if($request->idFormat == "14"){
           $pesanansurat = new PesananSurat;
-          $pesanansurat->perihal = '-';
           $pesanansurat->mahasiswa_id = $realUser->id;
           $pesanansurat->formatsurat_id = $request->idFormat;
-          // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
-          // $pesanansurat->dataSurat = $request->data;
+          $pesanansurat->penerimaSurat = $request->dosen->nama_dosen;
           $pesanansurat->dataSurat = $request->dataSurat;
           $pesanansurat->persetujuanDosenWali = true ;
           $pesanansurat->persetujuanKaprodi = true;
@@ -1745,11 +1747,9 @@ class PesanansuratController extends Controller
         }
         else if($request->idFormat == "15"){
           $pesanansurat = new PesananSurat;
-          $pesanansurat->perihal = '-';
           $pesanansurat->mahasiswa_id = $realUser->id;
           $pesanansurat->formatsurat_id = $request->idFormat;
-          // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
-          // $pesanansurat->dataSurat = $request->data;
+          $pesanansurat->penerimaSurat = $request->dosen->nama_dosen;
           $pesanansurat->dataSurat = $request->dataSurat;
           $pesanansurat->persetujuanDosenWali = true ;
           $pesanansurat->persetujuanKaprodi = true;
@@ -1760,11 +1760,9 @@ class PesanansuratController extends Controller
         }
         else if($request->idFormat == "16"){
           $pesanansurat = new PesananSurat;
-          $pesanansurat->perihal = '-';
           $pesanansurat->mahasiswa_id = $realUser->id;
           $pesanansurat->formatsurat_id = $request->idFormat;
-          // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
-          // $pesanansurat->dataSurat = $request->data;
+          $pesanansurat->penerimaSurat = $request->dosen->nama_dosen;
           $pesanansurat->dataSurat = $request->dataSurat;
           $pesanansurat->persetujuanDosenWali = true ;
           $pesanansurat->persetujuanKaprodi = true;
@@ -1775,11 +1773,9 @@ class PesanansuratController extends Controller
         }
         else if($request->idFormat == "17"){
           $pesanansurat = new PesananSurat;
-          $pesanansurat->perihal = '-';
           $pesanansurat->mahasiswa_id = $realUser->id;
           $pesanansurat->formatsurat_id = $request->idFormat;
-          // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
-          // $pesanansurat->dataSurat = $request->data;
+          $pesanansurat->penerimaSurat = $request->dosen->nama_dosen;
           $pesanansurat->dataSurat = $request->dataSurat;
           $pesanansurat->persetujuanDosenWali = true ;
           $pesanansurat->persetujuanKaprodi = true;
@@ -1790,11 +1786,9 @@ class PesanansuratController extends Controller
         }
         else if($request->idFormat == "18"){
           $pesanansurat = new PesananSurat;
-          $pesanansurat->perihal = '-';
           $pesanansurat->mahasiswa_id = $realUser->id;
           $pesanansurat->formatsurat_id = $request->idFormat;
-          // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
-          // $pesanansurat->dataSurat = $request->data;
+          $pesanansurat->penerimaSurat = $request->dosen->nama_dosen;
           $pesanansurat->dataSurat = $request->dataSurat;
           $pesanansurat->persetujuanDosenWali = true ;
           $pesanansurat->persetujuanKaprodi = true;
@@ -1805,11 +1799,9 @@ class PesanansuratController extends Controller
         }
         else if($request->idFormat == "19"){
           $pesanansurat = new PesananSurat;
-          $pesanansurat->perihal = '-';
           $pesanansurat->mahasiswa_id = $realUser->id;
           $pesanansurat->formatsurat_id = $request->idFormat;
-          // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
-          // $pesanansurat->dataSurat = $request->data;
+          $pesanansurat->penerimaSurat = $request->dosen->nama_dosen;
           $pesanansurat->dataSurat = $request->dataSurat;
           $pesanansurat->persetujuanDosenWali = true ;
           $pesanansurat->persetujuanKaprodi = true;
@@ -1820,11 +1812,9 @@ class PesanansuratController extends Controller
         }
         else if($request->idFormat == "20"){
           $pesanansurat = new PesananSurat;
-          $pesanansurat->perihal = '-';
           $pesanansurat->mahasiswa_id = $realUser->id;
           $pesanansurat->formatsurat_id = $request->idFormat;
-          // $pesanansurat->penerimaSurat = $request->penyediabeasiswa;
-          // $pesanansurat->dataSurat = $request->data;
+          $pesanansurat->penerimaSurat = $request->dosen->nama_dosen;
           $pesanansurat->dataSurat = $request->dataSurat;
           $pesanansurat->persetujuanDosenWali = true ;
           $pesanansurat->persetujuanKaprodi = true;

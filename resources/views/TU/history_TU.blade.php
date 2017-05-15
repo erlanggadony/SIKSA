@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
   <head>
       <title>History Surat - TU</title>
