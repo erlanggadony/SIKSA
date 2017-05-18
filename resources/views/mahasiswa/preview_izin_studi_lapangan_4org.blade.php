@@ -57,6 +57,7 @@
                   <label for="npm" class="col-sm-3 prevLabel">Organisasi Tujuan</label>
                   <div class="col-sm-9">
                     {{ $organisasi }}
+                    <input type="hidden" value="{{ $organisasi }}" name="organisasi">
                   </div>
                 </div>
                 <div class="form-group">

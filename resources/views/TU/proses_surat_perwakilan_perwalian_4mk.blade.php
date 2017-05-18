@@ -133,7 +133,8 @@
                 </div>
                 <input type="hidden" value="{{ $dataSurat }}" id="format" name="data">
                 <input type="hidden" value="{{ $formatsurat_id }}" name="idFormatSurat">
-                <input type="hidden" value="{{ $pemesan }}" name="pemesan">
+                  <input type="hidden" value="{{ $tanggal }}" name="tanggal">
+                  <input type="hidden" value="{{ $pemesan }}" name="pemesan">
                 {!! csrf_field() !!}
                 <br>
                 <div class="form-group">

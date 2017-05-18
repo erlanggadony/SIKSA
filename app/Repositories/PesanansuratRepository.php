@@ -41,20 +41,20 @@
                                     ->paginate(15);
       return $pesanansurats;
     }
-    public function findMahasiswaByPengirimSurat($pengirimSurat){
+    public function findPesananSuratByPengirimSurat($pengirimSurat){
       $pesanansurats = PesananSurat::where('mahasiswa_id', $pengirimSurat)
                                     ->orderBy('timestamps', 'DESC')
                                     ->paginate(15);
       return $pesanansurats;
     }
-    public function findMahasiswaByTanggalPembuatan($tanggalPembuatan){
+    public function findPesananSuratByTanggalPembuatan($tanggalPembuatan){
       $pesanansurats = PesananSurat::where('timestamps', $tanggalPembuatan)
                                     ->orderBy('timestamps', 'DESC')
                                     ->paginate(15);
       return $pesanansurats;
     }
     public function findPesananSuratById($id){
-      $pesanansurat = Pesanansurat::where('id', $id)->first();
+      $pesanansurat = PesananSurat::where('id', $id)->first();
       return $pesanansurat;
     }
 
