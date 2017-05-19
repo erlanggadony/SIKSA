@@ -35,7 +35,7 @@
                   <div class="form-group">
                     <label class="col-sm-3 prevLabel">Program Studi</label>
                     <div class="col-sm-9">
-                      <span>{{ $user->jurusan->nama_jurusan }}</span>
+                      <span>{{ $mhs->jurusan->nama_jurusan }}</span>
                       <input type="hidden" name="prodi" value="{{ $prodi }}"/>
                     </div>
                   </div>
@@ -48,7 +48,7 @@
                   <div class="form-group">
                     <label class="col-sm-3 prevLabel">Tempat, Tanggal Lahir</label>
                     <div class="col-sm-9">
-                      {{ $kota_lahir}}, {{ $tglLahir}}
+                      {{ $kota_lahir }}, {{ $tglLahir }}
                     </div>
                   </div>
                   <div class="form-group">

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.2.1)  12 MAY 2017 14:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.2.1)  19 MAY 2017 17:53
 entering extended mode
 **./arsip_surat/2_2014730003_surat_keterangan_mahasiswa_aktif.tex
 (arsip_surat/2_2014730003_surat_keterangan_mahasiswa_aktif.tex
@@ -23,8 +23,7 @@ Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 \c@MAILMcount=\count80
 \c@MAILMentry=\count81
 )
-("F:\Skripsi\Source code Skripsi\SIKSA\public\arsip_surat\2_2014730003_surat_ke
-terangan_mahasiswa_aktif.aux")
+No file 2_2014730003_surat_keterangan_mahasiswa_aktif.aux.
 \openout1 = `2_2014730003_surat_keterangan_mahasiswa_aktif.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
@@ -66,19 +65,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 43--43
 ("F:\Skripsi\Source code Skripsi\SIKSA\public\arsip_surat\2_2014730003_surat_ke
 terangan_mahasiswa_aktif.aux") ) 
 Here is how much of TeX's memory you used:
- 261 strings out of 493333
- 3745 string characters out of 3139169
- 54242 words of memory out of 3000000
+ 259 strings out of 493333
+ 3535 string characters out of 3139169
+ 55242 words of memory out of 3000000
  3857 multiletter control sequences out of 15000+200000
  6683 words of font info for 24 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 22i,4n,19p,188b,112s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 22i,4n,19p,205b,112s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public
 /amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
 s/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr1
 2.pfb>
 Output written on "F:/Skripsi/Source code Skripsi/SIKSA/public/arsip_surat/2_20
-14730003_surat_keterangan_mahasiswa_aktif.pdf" (1 page, 37023 bytes).
+14730003_surat_keterangan_mahasiswa_aktif.pdf" (1 page, 36978 bytes).
 PDF statistics:
  18 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

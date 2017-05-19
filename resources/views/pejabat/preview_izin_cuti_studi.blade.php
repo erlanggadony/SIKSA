@@ -13,7 +13,7 @@
 
 
     <!-- Navigation here -->
-    @include('mahasiswa.menu')
+    @include('pejabat.menu')
 
     <div class="container">
       <div class="main">
@@ -37,13 +37,15 @@
                 <div class="form-group">
                   <label for="prodi" class="col-sm-3 prevLabel">Program Studi</label>
                   <div class="col-sm-9" name="prodi">
-                    {{ $prodi }}
+                    <span>{{ $mhs->jurusan->nama_jurusan }}</span>
+                    <input type="hidden" name="prodi" value="{{ $prodi }}"/>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="fakultas" class="col-sm-3 prevLabel">Fakultas</label>
                   <div class="col-sm-9" name="fakultas">
-                    {{ $fakultas }}
+                    <span>{{ $mhs->fakultas->nama_fakultas }}</span>
+                    <input type="hidden" name="fakultas" value="{{ $fakultas }}"/>
                   </div>
                 </div>
                 <div class="form-group">
@@ -62,10 +64,11 @@
                 <div class="form-group prev">
                   <label for="catatanDosenWali" class="col-sm-3 prevLabel">Catatan dosen wali </label>
                   <div class="col-sm-9" name="catatanDosenWali">
-                    Nama : {{ $dosenWali }}<br>
+                    Nama : <span>{{ $mhs->dosen->nama_dosen }}</span>
+                    <input type="hidden" name="dosenWali" value="{{ $dosenWali }}"/><br>
                     {{ $persetujuanDosenWali }}<br>
                     {{ $catatanDosenWali }}
-                    <input type="hidden" name="dosenWali" value="{{ $persetujuanDosenWali }}|{{ $catatanDosenWali }}" />
+                    <input type="hidden" name="catatan" value="{{ $persetujuanDosenWali }}|{{ $catatanDosenWali }}" />
                   </div>
                 </div>
                 <div class="form-group prev">
@@ -125,7 +128,7 @@
                 </div>
               </form>
             </div>
-            @include('mahasiswa.profile_bar')
+            @include('pejabat.profile_bar')
           </div>
       </div>
     </div>

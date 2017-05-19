@@ -31,7 +31,7 @@
                 <div class="form-group">
                   <label for="tglLahir" class="col-sm-3">Tanggal Lahir</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="tglLahir" name="tglLahir" value="{{ $user->tanggal_lahir }}" readonly style="border: none" />
+                    <input type="text" class="form-control" id="tglLahir" name="tglLahir" value="{{ date_create($user->tanggal_lahir)->format("j F Y") }}" readonly style="border: none" />
                   </div>
                 </div>
                 <div class="form-group">
@@ -64,6 +64,8 @@
                     <input type="date" class="form-control" id="tanggalKunjungan" name="tanggalKunjungan" required>
                   </div>
                 </div>
+                <input type="hidden" value="{{ $user->npm }}" name="npm">
+                <input type="hidden" value="{{ $user->angkatan }}" name="angkatan">
                 <input type="hidden" value="{{ $formatsurat_id }}" name="jenis_surat">
                 {!! csrf_field() !!}
                 <div class="form-group">

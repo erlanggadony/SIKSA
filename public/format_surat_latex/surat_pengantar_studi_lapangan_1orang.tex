@@ -3,7 +3,7 @@
 \usepackage{mailmerge}
 
 \begin{document}
-\mailfields{noSurat,nama,npm,prodi,matkul,judulTopik,instansi,alamat,tujuanKunjungan,kepada,kota,tanggal}
+\mailfields{noSurat,nama,npm,prodi,matkul,judulTopik,instansi,alamat,tujuanKunjungan,tanggal}
 
 \mailrepeat{
 Nomor : \field{noSurat}\\
@@ -11,10 +11,9 @@ Hal\hspace{0.75cm}: Permohonan \field{tujuanKunjungan}\\
 Lamp\hspace{0.35cm}: -\\
 
 
-\textbf{Kepada YTH.\\
-KEPALA \field{kepada}\\
+\textbf{Kepada YTH.}\\
+\field{instansi}\\
 \field{alamat}\\
-\field{kota}}
 
  Dengan hormat,\\
 

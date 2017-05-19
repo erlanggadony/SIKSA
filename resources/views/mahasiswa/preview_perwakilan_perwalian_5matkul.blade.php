@@ -78,6 +78,13 @@
                   </div>
                 </div>
                 <div class="form-group">
+                  <label for="npm" class="col-sm-3 prevLabel">Dosen Wali</label>
+                  <div class="col-sm-9">
+                    <span>{{ $user->dosen->nama_dosen }}</span>
+                    <input type="hidden" value="{{ $dosenWali }}" name="dosenWali">
+                  </div>
+                </div>
+                <div class="form-group">
                   <label for="npm" class="col-sm-3 prevLabel">Alasan tidak bisa hadir perwalian</label>
                   <div class="col-sm-9">
                     {{ $alasan }}

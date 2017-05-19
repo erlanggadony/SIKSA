@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.2.1)  16 MAY 2017 21:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.2.1)  19 MAY 2017 23:45
 entering extended mode
-**./arsip_surat/6537_2014730003_surat_pengantar_studi_lapangan_1orang.tex
-(arsip_surat/6537_2014730003_surat_pengantar_studi_lapangan_1orang.tex
+**./arsip_surat/12_2014730003_surat_perwakilan_perwalian_2mk.tex
+(arsip_surat/12_2014730003_surat_perwakilan_perwalian_2mk.tex
 LaTeX2e <2016/03/31> patch level 3
 Babel <3.9r> and hyphenation patterns for 75 language(s) loaded.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\letter.cls"
@@ -54,8 +54,8 @@ Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 \c@MAILMcount=\count83
 \c@MAILMentry=\count84
 )
-No file 6537_2014730003_surat_pengantar_studi_lapangan_1orang.aux.
-\openout1 = `6537_2014730003_surat_pengantar_studi_lapangan_1orang.aux'.
+No file 12_2014730003_surat_perwakilan_perwalian_2mk.aux.
+\openout1 = `12_2014730003_surat_perwakilan_perwalian_2mk.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
 LaTeX Font Info:    ... okay on input line 5.
@@ -78,14 +78,14 @@ LaTeX Font Info:    ... okay on input line 5.
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
 * h-part:(L,W,R)=(99.58464pt, 463.4954pt, 51.21495pt)
-* v-part:(T,H,B)=(156.49014pt, 812.61073pt, 42.67912pt)
+* v-part:(T,H,B)=(71.13188pt, 897.969pt, 42.67912pt)
 * \paperwidth=614.295pt
 * \paperheight=1011.78pt
 * \textwidth=463.4954pt
-* \textheight=812.61073pt
+* \textheight=897.969pt
 * \oddsidemargin=27.31465pt
 * \evensidemargin=27.31465pt
-* \topmargin=27.22015pt
+* \topmargin=-58.1381pt
 * \headheight=12.0pt
 * \headsep=45.0pt
 * \topskip=12.0pt
@@ -104,46 +104,52 @@ LaTeX Font Info:    ... okay on input line 5.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 43--43
+Underfull \hbox (badness 10000) in paragraph at lines 64--64
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 43--43
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 43--43
+Underfull \hbox (badness 10000) in paragraph at lines 64--64
 
  []
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 43.
+(Font)              <12> on input line 64.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 43.
+(Font)              <8> on input line 64.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 43.
+(Font)              <6> on input line 64.
+
+Underfull \hbox (badness 10000) in paragraph at lines 64--64
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 64--64
+
+ []
+
 [1
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
-("F:\Skripsi\Source code Skripsi\SIKSA\public\arsip_surat\6537_2014730003_surat
-_pengantar_studi_lapangan_1orang.aux") ) 
+("F:\Skripsi\Source code Skripsi\SIKSA\public\arsip_surat\12_2014730003_surat_p
+erwakilan_perwalian_2mk.aux") ) 
 Here is how much of TeX's memory you used:
- 781 strings out of 493333
- 11444 string characters out of 3139169
- 69512 words of memory out of 3000000
- 4358 multiletter control sequences out of 15000+200000
- 6683 words of font info for 24 fonts, out of 3000000 for 9000
+ 796 strings out of 493333
+ 11620 string characters out of 3139169
+ 70507 words of memory out of 3000000
+ 4371 multiletter control sequences out of 15000+200000
+ 7597 words of font info for 27 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 23i,4n,19p,289b,116s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX 2.9/fonts/type
-1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public
-/amsfonts/cm/cmr12.pfb>
-Output written on "F:/Skripsi/Source code Skripsi/SIKSA/public/arsip_surat/6537
-_2014730003_surat_pengantar_studi_lapangan_1orang.pdf" (1 page, 31474 bytes).
+ 23i,6n,19p,257b,132s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/
+amsfonts/cm/cmbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts
+/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr1
+2.pfb>
+Output written on "F:/Skripsi/Source code Skripsi/SIKSA/public/arsip_surat/12_2
+014730003_surat_perwakilan_perwalian_2mk.pdf" (1 page, 47547 bytes).
 PDF statistics:
- 14 PDF objects out of 1000 (max. 8388607)
+ 18 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

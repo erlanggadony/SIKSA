@@ -30,8 +30,9 @@ Route::post('/home', 'AuthController@authenticate');
 //<-------------------------------------------------------MAHASISWA------------------------------------------------------->
     // halaman utama mahasiswa
     Route::get('/home_mahasiswa', 'HistorysuratController@tampilkanProfil');
-    //halaman untuk memilih jenis surat
+    //halaman untuk memilih kategori surat
     Route::get('/pilih_kategori_surat', 'MahasiswaController@kategoriSurat');
+    //halaman untuk memilih jenis surat
     Route::post('/pilih_jenis_surat', 'FormatsuratController@pilihSurat');
     //halaman untuk pengisian data diri untuk masing-masing surat
     Route::post('/isi_data_diri', 'FormatsuratController@tampilkanFormulir');

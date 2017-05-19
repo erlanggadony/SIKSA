@@ -3,7 +3,7 @@
 \usepackage{mailmerge}
 
 \begin{document}
-\mailfields{noSurat,namaPemohon,npmPemohon,prodi,namaAnggota1,npmAnggota1,namaAnggota2,npmAnggota2,tujuanKunjungan,kepada,alamat,matkul,judulTopik,instansi,tanggal,wdIII,kota}
+\mailfields{noSurat,namaPemohon,npmPemohon,prodi,matkul,judulTopik,instansi,alamat,tujuanKunjungan,namaAnggota1,npmAnggota1,namaAnggota2,npmAnggota2,tanggal}
 
 \mailrepeat{
 Nomor : \field{noSurat}\\
@@ -11,10 +11,9 @@ Hal\hspace{0.75cm}: Permohonan \field{tujuanKunjungan}\\
 Lamp\hspace{0.35cm}: -\\
 
 
-\textbf{Kepada YTH.\\
-KEPALA \field{kepada}\\
-\field{alamat}\\
-\field{kota}}
+\textbf{Kepada YTH.}\\
+\field{instansi}\\
+\field{alamat}
 
  Dengan hormat,\\
 
@@ -44,7 +43,7 @@ Atas perhatian dan kerjasamanya yang diberikan kami mengucapkan terima kasih.
 			Bandung, \field{tanggal}\\
 					Wakil Dekan III\\
 			\vspace{2cm}
-			\underline{\field{wdIII}}
+			\underline{Flaviana Catherine, S.Si, M.T}
 		\end{flushright}
 \thispagestyle{empty}
 	\newpage

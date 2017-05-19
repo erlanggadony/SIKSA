@@ -37,7 +37,7 @@
                 <p class="col-sm-12" style="font-weight:bold">
                   IDENTITAS MAHASISWA YANG PERWALIANNYA DIWAKILKAN :
                 </p>
-                <div class="form-group">
+                   <div class="form-group">
                   <label for="nama" class="col-sm-3 prevLabel">Nama</label>
                   <div class="col-sm-9">
                     {{ $nama }}
@@ -56,10 +56,10 @@
                     <input type="hidden" name="prodi" value="{{ $prodi }}"/>
                   </div>
                 </div>
-                <p class="col-md-12" style="font-weight:bold">
-                  IDENTITAS MAHASISWA YANG DIBERI KUASA PERWALIAN :
-                </p>
-                <div class="form-group">
+                  <p class="col-md-12" style="font-weight:bold">
+                    IDENTITAS MAHASISWA YANG DIBERI KUASA PERWALIAN :
+                  </p>
+                  <div class="form-group">
                   <label for="nama" class="col-sm-3 prevLabel">Nama</label>
                   <div class="col-sm-9">
                     {{ $namaWakil }}
@@ -75,6 +75,13 @@
                   <label for="npm" class="col-sm-3 prevLabel">Program Studi</label>
                   <div class="col-sm-9">
                     {{ $prodiWakil }}
+                  </div>
+                </div>
+                  <div class="form-group">
+                  <label for="npm" class="col-sm-3 prevLabel">Dosen Wali</label>
+                  <div class="col-sm-9">
+                    <span>{{ $user->dosen->nama_dosen }}</span>
+                    <input type="hidden" value="{{ $dosenWali }}" name="dosenWali">
                   </div>
                 </div>
                 <div class="form-group">

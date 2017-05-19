@@ -58,7 +58,7 @@
                 <div class="form-group">
                   <label for="tglLahir" class="col-sm-3">Tanggal lahir</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="tglLahir" name="tglLahir" value="{{ $user->tanggal_lahir }}" readonly style="border: none" /></input>
+                    <input type="text" class="form-control" id="tglLahir" name="tglLahir" value="{{ date_create($user->tanggal_lahir)->format("j F Y") }}" readonly style="border: none" /></input>
                   </div>
                 </div>
                 <div class="form-group">

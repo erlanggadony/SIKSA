@@ -50,7 +50,8 @@
                 <div class="form-group">
                   <label for="npm" class="col-sm-3 prevLabel">Program Studi</label>
                   <div class="col-sm-9">
-                    {{ $prodi }}
+                    <span>{{ $mhs->jurusan->nama_jurusan }}</span>
+                    <input type="hidden" name="prodi" value="{{ $prodi }}"/>
                   </div>
                 </div>
                 <p class="col-md-12" style="font-weight:bold">
@@ -75,6 +76,13 @@
                   </div>
                 </div>
                 <div class="form-group">
+                  <label for="npm" class="col-sm-3 prevLabel">Dosen Wali</label>
+                  <div class="col-sm-9">
+                    <span>{{ $mhs->dosen->nama_dosen }}</span>
+                    <input type="hidden" name="dosenWali" value="{{ $dosenWali }}"/>
+                  </div>
+                </div>
+                <div class="form-group">
                   <label for="npm" class="col-sm-3 prevLabel">Alasan tidak bisa hadir perwalian</label>
                   <div class="col-sm-9">
                     {{ $alasan }}
@@ -92,19 +100,19 @@
                       </tr>
                       <tr>
                         <td>1</td>
-                        <td>AIF201</td>
+                        <td>{{ $kodeMK1 }}</td>
                         <td>{{ $matkul1 }}</td>
                         <td>{{ $sks1 }}</td>
                       </tr>
                       <tr>
                         <td>2</td>
-                        <td>AIF201</td>
+                        <td>{{ $kodeMK2 }}</td>
                         <td>{{ $matkul2 }}</td>
                         <td>{{ $sks2 }}</td>
                       </tr>
                       <tr>
                         <td>3</td>
-                        <td>AIF201</td>
+                        <td>{{ $kodeMK3 }}</td>
                         <td>{{ $matkul3 }}</td>
                         <td>{{ $sks3 }}</td>
                       </tr>
