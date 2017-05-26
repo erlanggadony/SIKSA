@@ -3,7 +3,6 @@
       <title>Isi Catatan Dekan</title>
       <link href="{{ asset("/bootstrap-3.3.7-dist/css/bootstrap.css") }}" rel="stylesheet" type="text/css" />
       <link href="{{ asset("/css/styles_list_surat.css") }}" rel="stylesheet" type="text/css">
-
   </head>
 
   <body>
@@ -21,6 +20,16 @@
             <div class="col-md-8 content">
               <h1>Isi Persetujuan & Catatan</h1>
               <br>
+              <form action="/downloadLampiran" class="form-horizontal" method="post">
+                <div class="form-group">
+                  <label for="catatanDekan" class="col-sm-3">Lihat lampiran </label>
+                  <div class="col-sm-9">
+                    <input type="hidden" value="{{ $link }}" name="link">
+                      <button type="submit" class="btn btn-link">Klik disini</button>
+                      {!! csrf_field() !!}
+                  </div>
+                </div> 
+              </form>
               <form class="form-horizontal" method="post" action="/previewCatatan">
                 <div class="form-group">
                   <label for="persetujuan" class="col-sm-3">Persetujuan</label>

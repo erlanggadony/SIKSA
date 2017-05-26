@@ -6,7 +6,7 @@
   class MahasiswaRepository{
 
     public function findAllMahasiswa(){
-      $mahasiswas = Mahasiswa::orderBy('id', 'ASC')->paginate(15);
+      $mahasiswas = Mahasiswa::orderBy('npm', 'ASC')->paginate(15);
       return $mahasiswas;
     }
     public function findAllMhs(){

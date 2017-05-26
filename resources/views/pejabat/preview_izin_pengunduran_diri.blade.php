@@ -13,7 +13,7 @@
 
 
     <!-- Navigation here -->
-    @include('mahasiswa.menu')
+    @include('pejabat.menu')
 
     <div class="container">
       <div class="main">
@@ -33,7 +33,7 @@
                 <div class="form-group">
                   <label class="col-sm-3 prevLabel">NIRM</label>
                   <div class="col-sm-9" >
-                    123456789
+                    {{ $nirm }}
                   </div>
                 </div>
                 <div class="form-group">
@@ -74,6 +74,7 @@
                   <div class="col-sm-9">
                     {{ $persetujuanDosenWali }}<br>
                     {{ $catatanDosenWali }}
+                    <input type="hidden" name="catatan" value="{{ $persetujuanDosenWali }}|{{ $catatanDosenWali }}" />
                   </div>
                 </div>
                 <div class="form-group prev">
@@ -81,32 +82,36 @@
                   <div class="col-sm-9">
                     {{ $persetujuanKaprodi }}<br>
                     {{ $catatanKaprodi }}
+                    <input type="hidden" name="kaprodi" value="{{ $persetujuanKaprodi }}|{{ $catatanKaprodi }}" />
                   </div>
                 </div>
                 <div class="form-group prev">
                   <label for="npm" class="col-sm-3 prevLabel">WAKIL DEKAN II </label>
                   <div class="col-sm-9">
                     {{ $persetujuanWDII }}<br>
-                    {{ $catatanKaprodi }}
+                    {{ $catatanWDII }}
+                    <input type="hidden" name="wd2" value="{{ $persetujuanWDII }}|{{ $catatanWDII }}" />
                   </div>
                 </div>
                 <div class="form-group prev">
                   <label for="npm" class="col-sm-3 prevLabel">WAKIL DEKAN I</label>
                   <div class="col-sm-9">
-                    {{ $persetujuanKaprodi }}<br>
-                    {{ $catatanKaprodi }}
+                    {{ $persetujuanWDI }}<br>
+                    {{ $catatanWDI }}
+                    <input type="hidden" name="wd1" value="{{ $persetujuanWDI }}|{{ $catatanWDI }}" />
                   </div>
                 </div>
                 <div class="form-group prev">
                   <label for="npm" class="col-sm-3 prevLabel">DEKAN</label>
                   <div class="col-sm-9">
-                    {{ $persetujuanKaprodi }}<br>
-                    {{ $catatanKaprodi }}
+                    {{ $persetujuanDekan }}<br>
+                    {{ $catatanDekan }}
+                    <input type="hidden" name="dekan" value="{{ $persetujuanDekan }}|{{ $catatanDekan }}" />
                   </div>
                 </div>
                 <input type="hidden" value="{{ $formatsurat_id }}" name="idFormat">
                 <input type="hidden" value="{{ $dataSurat }}" name="dataSurat">
-                <input type="hidden" name="idPesanansurat" value="{{$idPesanansurat}}">
+                <input type="hidden" name="idPesanansurat" value="{{ $idPesanansurat }}">
                 {!! csrf_field() !!}
                 <br>
                 <div class="form-group">
@@ -117,7 +122,7 @@
                 </div>
               </form>
             </div>
-              @include('mahasiswa.profile_bar')
+              @include('pejabat.profile_bar')
           </div>
       </div>
     </div>

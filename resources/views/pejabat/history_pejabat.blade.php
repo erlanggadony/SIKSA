@@ -85,7 +85,6 @@
                   @endif
                 @endif
               </table>
-              <div style="text-align:center">{!! $historysurats->links() !!}</div>
             </div>
             @include('pejabat.profile_bar')
           </div>

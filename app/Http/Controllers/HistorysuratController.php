@@ -33,35 +33,63 @@ class HistorysuratController extends Controller
     }
 
     public function tampilkanHistoryDiPejabat(Request $request){
-          $historysurats;
-          if($request->kategori_history_surat == "noSurat"){
-            $historysurats = $this->historysuratRepo->findHistorySuratByNomorSurat($request->searchBox);
-          }
-          else if($request->kategori_history_surat == "jenis_surat"){
-            $historysurats = $this->historysuratRepo->findHistoryByJenisSurat($request->searchBox);
-          }
-          else if($request->kategori_history_surat == "perihal"){
-            $historysurats = $this->historysuratRepo->findHistoryByPerihal($request->searchBox);
-          }
-          else if($request->kategori_history_surat == "penerima_surat"){
-            $historysurats = $this->historysuratRepo->findHistorySuratByPenerimaSurat($request->searchBox);
-          }
-          else if($request->kategori_history_surat == "pengirimSurat"){
-            $historysurats = $this->historysuratRepo->findHistoryByPengirimSurat($request->searchBox);
-          }
-          else if($request->kategori_history_surat == "tanggalPembuatan"){
-            $historysurats = $this->historysuratRepo->findHistoryByTanggalPembuatan($request->searchBox);
-          }
-          else{
-            $historysurats = $this->historysuratRepo->findAllHistorySurat();
-          }
-          // dd($formatsurats);
-          $loggedInUser = Auth::user();
-          $realUser = $this->getRealUser($loggedInUser);
-          return view('pejabat.history_pejabat', [
-            'historysurats' => $historysurats,
-            'user' => $realUser
-          ]);
+         $loggedInUser = Auth::user();
+      $realUser = $this->getRealUser($loggedInUser);
+
+      $results = [];
+
+      //CEK USER DEKAN
+      if($realUser->id == $realUser->fakultas->id_dekan){
+        // dd("s");
+        $tempHistorysurats = Historysurat::where('formatsurat_id','=',9)->get();
+        foreach ($tempHistorysurats as $key => $surat) {
+          array_push($results,$surat);
+        }
+        // dd($results);
+        return view('pejabat.history_pejabat', [
+          'historysurats' => $results,
+          'user' => $realUser
+        ]);
+      }
+
+      //CEK USER WD1
+      if($realUser->id == $realUser->fakultas->id_WD_I){
+        $tempHistorysurats = Historysurat::where('formatsurat_id','=',2)
+                                           ->orWhere('formatsurat_id','=',11)
+                                           ->orWhere('formatsurat_id','=',12)
+                                           ->orWhere('formatsurat_id','=',13)
+                                           ->orWhere('formatsurat_id','=',14)
+                                           ->orWhere('formatsurat_id','=',15)
+                                           ->orWhere('formatsurat_id','=',16)
+                                           ->orWhere('formatsurat_id','=',17)
+                                           ->orWhere('formatsurat_id','=',18)
+                                           ->orWhere('formatsurat_id','=',19)
+                                           ->orWhere('formatsurat_id','=',20)
+                                           ->get();
+        foreach ($tempHistorysurats as $key => $surat) {
+          array_push($results,$surat);
+        }
+      }
+
+      //CEK USER WD1
+      if($realUser->id == $realUser->fakultas->id_WD_III){
+        $tempHistorysurats = Historysurat::where('formatsurat_id','=',1)
+                                           ->orWhere('formatsurat_id','=',3)
+                                           ->orWhere('formatsurat_id','=',4)
+                                           ->orWhere('formatsurat_id','=',5)
+                                           ->orWhere('formatsurat_id','=',6)
+                                           ->orWhere('formatsurat_id','=',7)
+                                           ->orWhere('formatsurat_id','=',8)
+                                           ->get();
+        foreach ($tempHistorysurats as $key => $surat) {
+          array_push($results,$surat);
+        }
+      }
+
+      return view('pejabat.history_pejabat', [
+          'historysurats' => $results,
+          'user' => $realUser
+        ]);
   	}
 
     public function tampilkanProfil(){
@@ -157,8 +185,6 @@ class HistorysuratController extends Controller
 	}
 
   public function buatPDF(Request $request){
-      $loggedInUser = Auth::user();
-      $realUser = $this->getRealUser($loggedInUser);
       if($request->idFormatSurat == "1"){
         $dataSurat = $request->data;
         $json = json_decode($dataSurat);
@@ -170,8 +196,14 @@ class HistorysuratController extends Controller
         $thnAkademik = $json->thnAkademik;
         $penyediabeasiswa = $json->penyediabeasiswa;
         $pemesan = $request->pemesan;
-        $getDate = date_create($request->tanggal);
-        $tanggal = $getDate->format("j F Y");
+        
+        //tanggal surat dibuat
+        $getLocal = getdate();
+        $toString = implode(" ", $getLocal);
+        $getDate = explode(" ",$toString);
+        $arrTanggal = $getDate[6].'-'.$getDate[5].'-'.$getDate[3];
+        $getTanggal = date_create($arrTanggal);
+        $tanggal = $getTanggal->format("j F Y");
 
         //concat data input dgn format surat
         $entry = '\mailentry{' . $noSurat . ',' . $nama . ',' . $prodi . ',' . $npm . ',' . $semester . ',' . $thnAkademik . ',' . $penyediabeasiswa . ',' . $tanggal . '}';
@@ -218,8 +250,13 @@ class HistorysuratController extends Controller
         $alamat = $json->alamat;
         $semester = $json->semester;
         $pemesan = $request->pemesan;
-        $getDate = date_create($request->tanggal);
-        $tanggal = $getDate->format("j F Y");
+         //tanggal surat dibuat
+        $getLocal = getdate();
+        $toString = implode(" ", $getLocal);
+        $getDate = explode(" ",$toString);
+        $arrTanggal = $getDate[6].'-'.$getDate[5].'-'.$getDate[3];
+        $getTanggal = date_create($arrTanggal);
+        $tanggal = $getTanggal->format("j F Y");
 
         //concat data input dgn format surat
         $entry = '\mailentry{' . $noSurat . ',' . $nama . ',' . $npm . ',' . $prodi . ',' . $kota_lahir . ',' . $tglLahir . ',' . $alamat . ',' . $semester . ',' . $tanggal . '}';
@@ -271,8 +308,13 @@ class HistorysuratController extends Controller
         $organisasiTujuan = $json->organisasiTujuan;
         $pemesan = $request->pemesan;
         $npm = $json->npm;
-        $getDate = date_create($request->tanggal);
-        $tanggal = $getDate->format("j F Y");
+         //tanggal surat dibuat
+        $getLocal = getdate();
+        $toString = implode(" ", $getLocal);
+        $getDate = explode(" ",$toString);
+        $arrTanggal = $getDate[6].'-'.$getDate[5].'-'.$getDate[3];
+        $getTanggal = date_create($arrTanggal);
+        $tanggal = $getTanggal->format("j F Y");
 
         //concat data input dgn format surat
         $entry = '\mailentry{' . $nama . ',' . $tglLahir . ',' . $kewarganegaraan  . ',' . $tahunKe . ',' . $thnAkademik . ',' . $negaraTujuan . ',' . $tanggalKunjungan . ',' . $organisasiTujuan . ',' . $tanggal . '}';
@@ -320,8 +362,13 @@ class HistorysuratController extends Controller
         $alamatOrganisasi = $json->alamatOrganisasi;
         $keperluanKunjungan = $json->keperluanKunjungan;
         $pemesan = $request->pemesan;
-        $getDate = date_create($request->tanggal);
-        $tanggal = $getDate->format("j F Y");
+         //tanggal surat dibuat
+        $getLocal = getdate();
+        $toString = implode(" ", $getLocal);
+        $getDate = explode(" ",$toString);
+        $arrTanggal = $getDate[6].'-'.$getDate[5].'-'.$getDate[3];
+        $getTanggal = date_create($arrTanggal);
+        $tanggal = $getTanggal->format("j F Y");
 
         $entry = '\mailentry{' .
           $noSurat . ',' . $nama . ',' . $npm . ',' . $prodi . ',' . $matkul . ',' . $topik . ',' . $organisasi . ',' . $alamatOrganisasi . ',' . $keperluanKunjungan . ',' . $tanggal . '}';
@@ -369,8 +416,13 @@ class HistorysuratController extends Controller
         $namaAnggota = $json->namaAnggota;
         $npmAnggota = $json->npmAnggota;
         $pemesan = $request->pemesan;
-        $getDate = date_create($request->tanggal);
-        $tanggal = $getDate->format("j F Y");
+         //tanggal surat dibuat
+        $getLocal = getdate();
+        $toString = implode(" ", $getLocal);
+        $getDate = explode(" ",$toString);
+        $arrTanggal = $getDate[6].'-'.$getDate[5].'-'.$getDate[3];
+        $getTanggal = date_create($arrTanggal);
+        $tanggal = $getTanggal->format("j F Y");
 
         $entry = '\mailentry{' . $noSurat . ',' . $nama . ',' . $npm . ',' . $prodi . ',' . $matkul . ',' . $topik . ',' . $organisasi . ',' . $alamatOrganisasi . ',' . $keperluanKunjungan . ',' . $namaAnggota . ',' . $npmAnggota . ',' . $tanggal .  '}';
         $fileTemplate = file('format_surat_latex/surat_pengantar_studi_lapangan_2orang.tex');
@@ -420,8 +472,13 @@ class HistorysuratController extends Controller
         $namaAnggota2 = $json->namaAnggota2;
         $npmAnggota2 = $json->npmAnggota2;
         $pemesan = $request->pemesan;
-        $getDate = date_create($request->tanggal);
-        $tanggal = $getDate->format("j F Y");
+         //tanggal surat dibuat
+        $getLocal = getdate();
+        $toString = implode(" ", $getLocal);
+        $getDate = explode(" ",$toString);
+        $arrTanggal = $getDate[6].'-'.$getDate[5].'-'.$getDate[3];
+        $getTanggal = date_create($arrTanggal);
+        $tanggal = $getTanggal->format("j F Y");
 
         $entry = '\mailentry{' . $noSurat . ',' . $nama . ',' . $npm . ',' . $prodi . ',' . $matkul . ',' . $topik . ',' . $organisasi . ',' . $alamatOrganisasi . ',' . $keperluanKunjungan . ',' . $namaAnggota1 . ',' . $npmAnggota1 . ',' . $namaAnggota2 . ',' . $npmAnggota2 . ',' . $tanggal .  '}';
         $fileTemplate = file('format_surat_latex/surat_pengantar_studi_lapangan_3orang.tex');
@@ -473,8 +530,13 @@ class HistorysuratController extends Controller
         $namaAnggota3 = $json->namaAnggota3;
         $npmAnggota3 = $json->npmAnggota3;
         $pemesan = $request->pemesan;
-        $getDate = date_create($request->tanggal);
-        $tanggal = $getDate->format("j F Y");
+         //tanggal surat dibuat
+        $getLocal = getdate();
+        $toString = implode(" ", $getLocal);
+        $getDate = explode(" ",$toString);
+        $arrTanggal = $getDate[6].'-'.$getDate[5].'-'.$getDate[3];
+        $getTanggal = date_create($arrTanggal);
+        $tanggal = $getTanggal->format("j F Y");
 
         $entry = '\mailentry{' . $noSurat . ',' . $nama . ',' . $npm . ',' . $prodi . ',' . $matkul . ',' . $topik . ',' . $organisasi . ',' . $alamatOrganisasi . ',' . $keperluanKunjungan . ',' . $namaAnggota1 . ',' . $npmAnggota1 . ',' . $namaAnggota2 . ',' . $npmAnggota2 . ',' . $namaAnggota3 . ',' . $npmAnggota3 . ',' . $tanggal . '}';
         $fileTemplate = file('format_surat_latex/surat_pengantar_studi_lapangan_4orang.tex');
@@ -528,8 +590,13 @@ class HistorysuratController extends Controller
         $namaAnggota4 = $json->namaAnggota4;
         $npmAnggota4 = $json->npmAnggota4;
         $pemesan = $request->pemesan;
-        $getDate = date_create($request->tanggal);
-        $tanggal = $getDate->format("j F Y");
+         //tanggal surat dibuat
+        $getLocal = getdate();
+        $toString = implode(" ", $getLocal);
+        $getDate = explode(" ",$toString);
+        $arrTanggal = $getDate[6].'-'.$getDate[5].'-'.$getDate[3];
+        $getTanggal = date_create($arrTanggal);
+        $tanggal = $getTanggal->format("j F Y");
 
         $entry = '\mailentry{' . $noSurat . ',' . $nama . ',' . $npm . ',' . $prodi . ',' . $matkul . ',' . $topik . ',' . $organisasi . ',' . $alamatOrganisasi . ',' . $keperluanKunjungan . ',' . $namaAnggota1 . ',' . $npmAnggota1 . ',' . $namaAnggota2 . ',' . $npmAnggota2 . ',' . $namaAnggota3 . ',' . $npmAnggota3 . ',' . $namaAnggota4 . ',' . $npmAnggota4 . ',' . $tanggal . '}';
         $fileTemplate = file('format_surat_latex/surat_pengantar_studi_lapangan_5orang.tex');
@@ -582,8 +649,13 @@ class HistorysuratController extends Controller
         }
         // dd($semester,$thnAkademik,$nextThnAkademik);
         $pemesan = $request->pemesan;
-        $getDate = date_create($request->tanggal);
-        $tanggal = $getDate->format("j F Y");
+         //tanggal surat dibuat
+        $getLocal = getdate();
+        $toString = implode(" ", $getLocal);
+        $getDate = explode(" ",$toString);
+        $arrTanggal = $getDate[6].'-'.$getDate[5].'-'.$getDate[3];
+        $getTanggal = date_create($arrTanggal);
+        $tanggal = $getTanggal->format("j F Y");
 
         $entry = '\mailentry{' . $noSurat . ',' . $nama . ',' . $npm . ',' . $tanggal . ',' . $semester . ',' . $thnAkademik . ',' .  $prodi . ',' . $nextSemester . ',' . $nextThnAkademik . '}';
         // dd($entry);
@@ -623,16 +695,23 @@ class HistorysuratController extends Controller
         $noSurat = $request->noSurat;
         $nama = $json->nama;
         $npm = $json->npm;
-        $alamat = $json->alamat;
-        $noTelepon = $json->noTelepon;
-        $namaOrtu = $json->namaOrtu;
-        $dosenWali = $json->dosenWali;
+        $prodi = $this->jurusanRepo->findJurusanById($json->prodi)->nama_jurusan;
+        // dd($prodi);
         $semester = $json->semester;
         $pemesan = $request->pemesan;
-        $getDate = date_create($request->tanggal);
-        $tanggal = $getDate->format("j F Y");
+        //tanggal mahasiswa mengisi formulir
+        $getTanggalBuat = date_create($request->tanggal);
+        $tanggalBuat = $getTanggalBuat->format("j F Y");
+        
+        //tanggal surat dibuat
+        $getLocal = getdate();
+        $toString = implode(" ", $getLocal);
+        $getDate = explode(" ",$toString);
+        $arrTanggal = $getDate[6].'-'.$getDate[5].'-'.$getDate[3];
+        $getTanggal = date_create($arrTanggal);
+        $tanggal = $getTanggal->format("j F Y");
 
-        $entry = '\mailentry{' . $noSurat . ',' . $nama . ',' . $npm . ',' . $alamat . ',' . $noTelepon . ',' . $namaOrtu . ',' . $dosenWali . ',' . $semester . ',' . '}';
+        $entry = '\mailentry{' . $noSurat . ',' . $nama . ',' . $npm . ',' . $prodi . ',' . $tanggalBuat . ',' . $semester . ',' . $tanggal . '}';
         $fileTemplate = file('format_surat_latex/surat_pengunduran_diri.tex');
         $stringFormat = "";
         $baris = count($fileTemplate);
@@ -681,8 +760,13 @@ class HistorysuratController extends Controller
         $matkul = $json->matkul;
         $sks = $json->sks;
         $pemesan = $request->pemesan;
-        $getDate = date_create($request->tanggal);
-        $tanggal = $getDate->format("j F Y");
+         //tanggal surat dibuat
+        $getLocal = getdate();
+        $toString = implode(" ", $getLocal);
+        $getDate = explode(" ",$toString);
+        $arrTanggal = $getDate[6].'-'.$getDate[5].'-'.$getDate[3];
+        $getTanggal = date_create($arrTanggal);
+        $tanggal = $getTanggal->format("j F Y");
 
         $entry = '\mailentry{' . $semester . ',' . $thnAkademik . ',' . $nama . ',' . $prodi . ',' . $npm . ',' . $namaWakil . ',' . $prodiWakil . ',' . $npmWakil . ',' . $dosenWali . ',' . $alasan . ',' . $kodeMK . ',' . $matkul . ',' . $sks . ',' . $tanggal . '}';
         $fileTemplate = file('format_surat_latex/surat_perwakilan_perwalian_1mk.tex');
@@ -736,8 +820,13 @@ class HistorysuratController extends Controller
         $matkul2 = $json->matkul2;
         $sks2 = $json->sks2;
         $pemesan = $request->pemesan;
-        $getDate = date_create($request->tanggal);
-        $tanggal = $getDate->format("j F Y");
+         //tanggal surat dibuat
+        $getLocal = getdate();
+        $toString = implode(" ", $getLocal);
+        $getDate = explode(" ",$toString);
+        $arrTanggal = $getDate[6].'-'.$getDate[5].'-'.$getDate[3];
+        $getTanggal = date_create($arrTanggal);
+        $tanggal = $getTanggal->format("j F Y");
 
         $entry = '\mailentry{' . $semester . ',' . $thnAkademik  . ',' . $nama . ',' . $prodi . ',' . $npm . ',' . $namaWakil . ',' . $prodiWakil . ',' . $npmWakil . ',' . $dosenWali . ',' . $alasan . ',' . $kodeMK1 . ',' . $matkul1 . ',' . $sks1 . ',' . $kodeMK2 . ',' . $matkul2 . ',' . $sks2 . ',' . $tanggal . '}';
         $fileTemplate = file('format_surat_latex/surat_perwakilan_perwalian_2mk.tex');
@@ -794,8 +883,13 @@ class HistorysuratController extends Controller
         $matkul3 = $json->matkul3;
         $sks3 = $json->sks3;
         $pemesan = $request->pemesan;
-        $getDate = date_create($request->tanggal);
-        $tanggal = $getDate->format("j F Y");
+         //tanggal surat dibuat
+        $getLocal = getdate();
+        $toString = implode(" ", $getLocal);
+        $getDate = explode(" ",$toString);
+        $arrTanggal = $getDate[6].'-'.$getDate[5].'-'.$getDate[3];
+        $getTanggal = date_create($arrTanggal);
+        $tanggal = $getTanggal->format("j F Y");
 
         $entry = '\mailentry{' . $semester . ',' .$thnAkademik . ','. $nama . ',' . $prodi . ',' . $npm . ',' . $namaWakil . ',' . $prodiWakil . ',' . $npmWakil . ',' . $dosenWali . ',' . $alasan . ',' . $kodeMK1 . ',' . $matkul1 . ',' . $sks1 . ',' . $kodeMK2 . ',' . $matkul2 . ',' . $sks2 . ',' . $kodeMK3 . ',' . $matkul3 . ','. $sks3 . ',' . $tanggal . '}';
         // dd($entry);
@@ -856,8 +950,13 @@ class HistorysuratController extends Controller
         $matkul4 = $json->matkul4;
         $sks4 = $json->sks4;
         $pemesan = $request->pemesan;
-        $getDate = date_create($request->tanggal);
-        $tanggal = $getDate->format("j F Y");
+         //tanggal surat dibuat
+        $getLocal = getdate();
+        $toString = implode(" ", $getLocal);
+        $getDate = explode(" ",$toString);
+        $arrTanggal = $getDate[6].'-'.$getDate[5].'-'.$getDate[3];
+        $getTanggal = date_create($arrTanggal);
+        $tanggal = $getTanggal->format("j F Y");
 
         $entry = '\mailentry{' . $semester . ',' . $thnAkademik  . ',' . $nama . ',' . $prodi . ',' . $npm . ',' . $namaWakil . ',' . $prodiWakil . ',' . $npmWakil . ',' . $dosenWali . ',' . $alasan . ',' . $kodeMK1 . ',' . $matkul1 . ',' . $sks1 . ',' . $kodeMK2 . ',' . $matkul2 . ',' . $sks2 . ',' . $kodeMK3 . ',' . $matkul3 . ',' . $sks3 . ',' . $kodeMK4 . ',' . $matkul4 . ',' . $sks4 . ',' . $tanggal . '}';
         $fileTemplate = file('format_surat_latex/surat_perwakilan_perwalian_4mk.tex');
@@ -920,8 +1019,13 @@ class HistorysuratController extends Controller
         $matkul5 = $json->matkul5;
         $sks5 = $json->sks5;
         $pemesan = $request->pemesan;
-        $getDate = date_create($request->tanggal);
-        $tanggal = $getDate->format("j F Y");
+         //tanggal surat dibuat
+        $getLocal = getdate();
+        $toString = implode(" ", $getLocal);
+        $getDate = explode(" ",$toString);
+        $arrTanggal = $getDate[6].'-'.$getDate[5].'-'.$getDate[3];
+        $getTanggal = date_create($arrTanggal);
+        $tanggal = $getTanggal->format("j F Y");
 
         $entry = '\mailentry{' . $semester . ',' . $thnAkademik  . ',' . $nama . ',' . $prodi . ',' . $npm . ',' . $namaWakil . ',' . $prodiWakil . ',' . $npmWakil . ',' . $dosenWali . ',' . $alasan . ',' . $kodeMK1 . ',' . $matkul1 . ',' . $sks1 . ',' . $kodeMK2 . ',' . $matkul2 . ',' . $sks2 . ',' . $kodeMK3 . ',' . $matkul3 . ',' . $sks3 . ',' . $kodeMK4 . ',' . $matkul4 . ',' . $sks4 . ',' . $kodeMK5 . ',' . $matkul5 . ',' . $sks5 . ',' . $tanggal . '}';
         $fileTemplate = file('format_surat_latex/surat_perwakilan_perwalian_5mk.tex');
@@ -987,8 +1091,13 @@ class HistorysuratController extends Controller
         $matkul6 = $json->matkul6;
         $sks6 = $json->sks6;
         $pemesan = $request->pemesan;
-        $getDate = date_create($request->tanggal);
-        $tanggal = $getDate->format("j F Y");
+         //tanggal surat dibuat
+        $getLocal = getdate();
+        $toString = implode(" ", $getLocal);
+        $getDate = explode(" ",$toString);
+        $arrTanggal = $getDate[6].'-'.$getDate[5].'-'.$getDate[3];
+        $getTanggal = date_create($arrTanggal);
+        $tanggal = $getTanggal->format("j F Y");
 
         $entry = '\mailentry{' . $semester . ',' . $thnAkademik . ',' . $nama . ',' . $prodi . ',' . $npm . ',' . $namaWakil . ',' . $prodiWakil . ',' . $npmWakil . ',' . $dosenWali . ',' . $alasan . ',' . $kodeMK1 . ',' . $matkul1 . ',' . $sks1 . ',' . $kodeMK2 . ',' . $matkul2 . ',' . $sks2 . ',' . $kodeMK3 . ',' . $matkul3 . ',' . $sks3 . ',' . $kodeMK4 . ',' . $matkul4 . ',' . $sks4 . ',' . $kodeMK5 . ',' . $matkul5 . ',' . $sks5 . ',' . $kodeMK6 . ',' . $matkul6 . ',' . $sks6 . ',' . $tanggal . '}';
         $fileTemplate = file('format_surat_latex/surat_perwakilan_perwalian_6mk.tex');
@@ -1057,8 +1166,13 @@ class HistorysuratController extends Controller
         $matkul7 = $json->matkul7;
         $sks7 = $json->sks7;
         $pemesan = $request->pemesan;
-        $getDate = date_create($request->tanggal);
-        $tanggal = $getDate->format("j F Y");
+         //tanggal surat dibuat
+        $getLocal = getdate();
+        $toString = implode(" ", $getLocal);
+        $getDate = explode(" ",$toString);
+        $arrTanggal = $getDate[6].'-'.$getDate[5].'-'.$getDate[3];
+        $getTanggal = date_create($arrTanggal);
+        $tanggal = $getTanggal->format("j F Y");
 
         $entry = '\mailentry{' . $semester . ',' . $thnAkademik . ',' . $nama . ',' . $prodi . ',' . $npm . ',' . $namaWakil . ',' . $prodiWakil . ',' . $npmWakil . ',' . $dosenWali . ',' . $alasan . ',' . $kodeMK1 . ',' . $matkul1 . ',' . $sks1 . ',' . $kodeMK2 . ',' . $matkul2 . ',' . $sks2 . ',' . $kodeMK3 . ',' . $matkul3 . ',' . $sks3 . ',' . $kodeMK4 . ',' . $matkul4 . ',' . $sks4 . ',' . $kodeMK5 . ',' . $matkul5 . ',' . $sks5 . ',' . $kodeMK6 . ',' . $matkul6 . ',' . $sks6 . ',' . $kodeMK7 . ',' . $matkul7 . ',' . $sks7 . ',' . $tanggal . '}';
         $fileTemplate = file('format_surat_latex/surat_perwakilan_perwalian_7mk.tex');
@@ -1130,8 +1244,13 @@ class HistorysuratController extends Controller
         $matkul8 = $json->matkul8;
         $sks8 = $json->sks8;
         $pemesan = $request->pemesan;
-        $getDate = date_create($request->tanggal);
-        $tanggal = $getDate->format("j F Y");
+         //tanggal surat dibuat
+        $getLocal = getdate();
+        $toString = implode(" ", $getLocal);
+        $getDate = explode(" ",$toString);
+        $arrTanggal = $getDate[6].'-'.$getDate[5].'-'.$getDate[3];
+        $getTanggal = date_create($arrTanggal);
+        $tanggal = $getTanggal->format("j F Y");
 
         $entry = '\mailentry{' . $semester . ',' . $thnAkademik . ',' . $nama . ',' . $prodi . ',' . $npm . ',' . $namaWakil . ',' . $prodiWakil . ',' . $npmWakil . ',' . $dosenWali . ',' . $alasan . ',' . $kodeMK1 . ',' . $matkul1 . ',' . $sks1 . ',' . $kodeMK2 . ',' . $matkul2 . ',' . $sks2 . ',' . $kodeMK3 . ',' . $matkul3 . ',' . $sks3 . ',' . $kodeMK4 . ',' . $matkul4 . ',' . $sks4 . ',' . $kodeMK5 . ',' . $matkul5 . ',' . $sks5 . ',' . $kodeMK6 . ',' . $matkul6 . ',' . $sks6 . ',' . $kodeMK7 . ',' . $matkul7 . ',' . $sks7 . ',' . $kodeMK8 . ',' . $matkul8 . ',' . $sks8 . ',' . $tanggal .  '}';
         $fileTemplate = file('format_surat_latex/surat_perwakilan_perwalian_8mk.tex');
@@ -1206,8 +1325,13 @@ class HistorysuratController extends Controller
         $matkul9 = $json->matkul9;
         $sks9 = $json->sks9;
         $pemesan = $request->pemesan;
-        $getDate = date_create($request->tanggal);
-        $tanggal = $getDate->format("j F Y");
+         //tanggal surat dibuat
+        $getLocal = getdate();
+        $toString = implode(" ", $getLocal);
+        $getDate = explode(" ",$toString);
+        $arrTanggal = $getDate[6].'-'.$getDate[5].'-'.$getDate[3];
+        $getTanggal = date_create($arrTanggal);
+        $tanggal = $getTanggal->format("j F Y");
 
         $entry = '\mailentry{' . $semester . ',' . $thnAkademik . ',' . $nama . ',' . $prodi . ',' . $npm . ',' . $namaWakil . ',' . $prodiWakil . ',' . $npmWakil . ',' . $dosenWali . ',' . $alasan . ',' . $kodeMK1 . ',' . $matkul1 . ',' . $sks1 . ',' . $kodeMK2 . ',' . $matkul2 . ',' . $sks2 . ',' . $kodeMK3 . ',' . $matkul3 . ',' . $sks3 . ',' . $kodeMK4 . ',' . $matkul4 . ',' . $sks4 . ',' . $kodeMK5 . ',' . $matkul5 . ',' . $sks5 . ',' . $kodeMK6 . ',' . $matkul6 . ',' . $sks6 . ',' . $kodeMK7 . ',' . $matkul7 . ',' . $sks7 . ',' . $kodeMK8 . ',' . $matkul8 . ',' . $sks8 . ',' . $kodeMK9 . ',' . $matkul9 . ',' . $sks9 . ',' . $tanggal . '}';
         $fileTemplate = file('format_surat_latex/surat_perwakilan_perwalian_9mk.tex');
@@ -1285,8 +1409,13 @@ class HistorysuratController extends Controller
         $matkul10 = $json->matkul10;
         $sks10 = $json->sks10;
         $pemesan = $request->pemesan;
-        $getDate = date_create($request->tanggal);
-        $tanggal = $getDate->format("j F Y");
+         //tanggal surat dibuat
+        $getLocal = getdate();
+        $toString = implode(" ", $getLocal);
+        $getDate = explode(" ",$toString);
+        $arrTanggal = $getDate[6].'-'.$getDate[5].'-'.$getDate[3];
+        $getTanggal = date_create($arrTanggal);
+        $tanggal = $getTanggal->format("j F Y");
 
         $entry = '\mailentry{' . $semester . ',' . $thnAkademik . ',' . $nama . ',' . $prodi . ',' . $npm . ',' . $namaWakil . ',' . $prodiWakil . ',' . $npmWakil . ',' . $dosenWali . ',' . $alasan . ',' . $kodeMK1 . ',' . $matkul1 . ',' . $sks1 . ',' . $kodeMK2 . ',' . $matkul2 . ',' . $sks2 . ',' . $kodeMK3 . ',' . $matkul3 . ',' . $sks3 . ',' . $kodeMK4 . ',' . $matkul4 . ',' . $sks4 . ',' . $kodeMK5 . ',' . $matkul5 . ',' . $sks5 . ',' . $kodeMK6 . ',' . $matkul6 . ',' . $sks6 . ',' .$kodeMK7 . ',' . $matkul7 . ',' . $sks7 . ',' . $kodeMK8 . ',' . $matkul8 . ',' . $sks8 . ',' . $kodeMK9 . ',' . $matkul9 . ',' . $sks9 . ',' . $kodeMK10 . ',' . $matkul10 . ',' . $sks10 . ',' . $tanggal . '}';
         $fileTemplate = file('format_surat_latex/surat_perwakilan_perwalian_10mk.tex');

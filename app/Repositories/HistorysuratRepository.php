@@ -70,6 +70,7 @@
       $historysurats = Historysurat::where('id', $id)
                                     ->orderBy('timestamps', 'DESC')
                                     ->paginate(11);
+      return $historysurats;                                    
     }
   }
 

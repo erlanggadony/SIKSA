@@ -14,9 +14,7 @@ Route::get('/reg', function(){
   return view('auth/register');
 });
 Route::post('/register', 'Auth\RegisterController@register');
-Route::group(['prefix' => 'Api'], function(){
-    Route::get('/showFormatSurat', 'Api\FormatsuratAPIController@tampilkanFormat');
-});
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -62,6 +60,9 @@ Route::post('/home', 'AuthController@authenticate');
     Route::post('/generatePDF', 'HistorysuratController@buatPDF');
     Route::get('/setting', 'MahasiswaController@setting');
     Route::post('/updateSemester', 'MahasiswaController@updateSemester');
+    Route::group(['prefix' => 'Api'], function(){
+        Route::get('/showFormatSurat', 'Api\FormatsuratAPIController@tampilkanFormat');
+    });Route::post('/tampilkanFoto','MahasiswaController@tampilkanFoto');
 //<--------------------------------------------------------PEJABAT-------------------------------------------------------->
     // halaman utama pejabat
     Route::get('/home_pejabat', 'PesanansuratController@tampilkanPesananDiPejabat');
@@ -72,6 +73,7 @@ Route::post('/home', 'AuthController@authenticate');
     Route::post('/ubahStatusPenandatanganan', 'HistorysuratController@ubahStatusPenandatanganan');
     Route::post('/ubahStatusPengambilan', 'HistorysuratController@ubahStatusPengambilan');
     Route::post('/updateFormulir','PesanansuratController@updateFormulir');
+    Route::post('/downloadLampiran','PesanansuratController@downloadLampiran');
 
 Auth::routes();
 

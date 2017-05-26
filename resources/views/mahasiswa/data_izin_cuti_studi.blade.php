@@ -86,7 +86,7 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="lampiran_CutiStudi" class="col-sm-3">Unggah surat permohonan cuti studi</label>
+                  <label for="lampiran_CutiStudi" class="col-sm-3">Unggah surat lampiran</label>
                   <div class="col-sm-9">
                     <input type="file" class="form-control" id="lampiran_CutiStudi" name="lampiran_CutiStudi" required>
                   </div>

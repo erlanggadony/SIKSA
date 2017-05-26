@@ -15,7 +15,6 @@ class FormatsuratAPIController extends Controller{
     public function __construct(FormatsuratRepository $formatsuratRepo){
       // dd($formatsuratRepo);
         $this->formatsuratRepo = $formatsuratRepo;
-        //dd($this->orders->getAllActive());
     }
 
     public function tampilkanFormat(Request $request){
@@ -34,6 +33,5 @@ class FormatsuratAPIController extends Controller{
         return response()->json([
           'stringFormat' =>$stringFormat
         ]);
-
     }
 }

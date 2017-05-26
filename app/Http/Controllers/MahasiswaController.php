@@ -20,6 +20,12 @@ class MahasiswaController extends Controller
         $this->mahasiswaRepo = $mahasiswaRepo;
     }
 
+    public function tampilkanFoto(Request $request){
+      $mhs = $this->mahasiswaRepo->findMahasiswaById($request->mahasiswa_id);
+      $link = $mhs->foto_mahasiswa;
+      return redirect($link);
+    }
+
     public function tambahDataMahasiswa(){
       $loggedInUser = Auth::user();
       // dd($loggedInUser);

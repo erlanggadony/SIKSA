@@ -3,7 +3,6 @@
       <title>Data Mahasiswa</title>
       <link href="{{ asset("/bootstrap-3.3.7-dist/css/bootstrap.css") }}" rel="stylesheet" type="text/css" />
       <link href="{{ asset("/css/styles_list_surat.css") }}" rel="stylesheet" type="text/css">
-
   </head>
 
   <body>
@@ -12,6 +11,12 @@
     </div>
 
       @include('tu.menu')
+
+      <div id="myModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="img01">
+        <div id="caption"></div>
+      </div>
 
     <div class="container">
       <div class="main">
@@ -67,7 +72,13 @@
                         <td class="ctr">{{ $mahasiswa->kota_lahir }}</td>
                         <td class="ctr">{{ $mahasiswa->tanggal_lahir }}</td>
                         <td class="ctr">{{ $mahasiswa->dosen->nama_dosen }}</td>
-                        <td style="text-align:center"><a href = "{{ $mahasiswa->foto }}">klik disini</a></td>
+                        <td style="text-align:center">
+                          <form action="/tampilkanFoto" class="form-horizontal" method="post">
+                              <input type="hidden" value="{{ $mahasiswa->id }}" name="mahasiswa_id">
+                              <button type="submit" class="btn btn-link">Klik disini</button>
+                              {!! csrf_field() !!}
+                          </form>
+                        </td>
                         <td>
                           <form action="/hapusMahasiswa" method="post">
                             <input type="hidden" value="{{ $mahasiswa->id }}" name="deleteID">

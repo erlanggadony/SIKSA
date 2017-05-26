@@ -33,7 +33,7 @@
                 <div class="form-group">
                   <label class="col-sm-3 prevLabel">NIRM</label>
                   <div class="col-sm-9" >
-                    123456789
+                    {{ $nirm }}
                   </div>
                 </div>
                 <div class="form-group">
@@ -87,21 +87,21 @@
                   <label for="npm" class="col-sm-3 prevLabel">WAKIL DEKAN II </label>
                   <div class="col-sm-9">
                     {{ $persetujuanWDII }}<br>
-                    {{ $catatanKaprodi }}
+                    {{ $catatanWDII }}
                   </div>
                 </div>
                 <div class="form-group prev">
                   <label for="npm" class="col-sm-3 prevLabel">WAKIL DEKAN I</label>
                   <div class="col-sm-9">
-                    {{ $persetujuanKaprodi }}<br>
-                    {{ $catatanKaprodi }}
+                    {{ $persetujuanWDI }}<br>
+                    {{ $catatanWDI }}
                   </div>
                 </div>
                 <div class="form-group prev">
                   <label for="npm" class="col-sm-3 prevLabel">DEKAN</label>
                   <div class="col-sm-9">
-                    {{ $persetujuanKaprodi }}<br>
-                    {{ $catatanKaprodi }}
+                    {{ $persetujuanDekan }}<br>
+                    {{ $catatanDekan }}
                   </div>
                 </div>
                 <input type="hidden" value="{{ $formatsurat_id }}" name="idFormat">

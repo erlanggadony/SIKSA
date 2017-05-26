@@ -24,6 +24,7 @@ class PesanansuratController extends Controller
         $this->mahasiswaRepo = $mahasiswaRepo;
         //dd($this->orders->getAllActive());
     }
+    
     public function tampilkanPesananDiPejabat(Request $request){
       // $pesanansurats = $this->pesanansuratRepo->findAllPesananSurat();
 
@@ -67,10 +68,12 @@ class PesanansuratController extends Controller
 
       // CEK KALO USER ADALAH KETUA JURUSAN
       if($realUser->id == $realUser->jurusan->dosen->id){
-        $tempPesananSurats = PesananSurat::where('count','=',1)->get();
-        foreach ($tempPesananSurats as $key => $surat) {
-          array_push($results,$surat);
-        }
+          $tempPesananSurats = PesananSurat::where('count','=',1)->get();
+          foreach ($tempPesananSurats as $key => $surat) {
+            if($realUser->jurusan->id == $surat->mahasiswa->jurusan->id){
+              array_push($results,$surat);
+            }
+          }
       }
 
       foreach ($realUser->mahasiswas as $key => $mhs) {
@@ -83,6 +86,13 @@ class PesanansuratController extends Controller
         'pesanansurats' => $results,
         'user' => $realUser
       ]);
+    }
+
+    public function downloadLampiran(Request $request){
+      $reqLink = $request->link;
+      $getLink = explode("/", $reqLink);
+      $link = $getLink[1] . "/" . $getLink[2] . "/" . $getLink[3];
+      return redirect($link);
     }
 
     public function updateFormulir(Request $request){
@@ -118,8 +128,9 @@ class PesanansuratController extends Controller
         $surat->persetujuanWDI = true;
       }else if($surat->count == 4){
         // DEKAN = 4
-        $jsonArray->persetujuanDekan = $request->dekan;
-        $surat->persetujuanDekan = true;
+          $jsonArray->persetujuanDekan = $request->dekan;
+          $surat->persetujuanDekan = true;
+        
       }else{
         dd("count lebih dari 4 "+$surat->count);
       }
@@ -143,12 +154,17 @@ class PesanansuratController extends Controller
       // $surat->save();
 
       $dataSurat = $request->dataSurat;
+      $json = json_decode($dataSurat);
+      $link = $json->link; 
+      // dd($link);
       $formatsurat_id = $request->idFormatSurat;
+      // dd($formatsurat_id);
       return view('pejabat.tambah_persetujuan',[
         'dataSurat' => $dataSurat,
         'formatsurat_id' => $formatsurat_id,
         'user' => $realUser,
-        'idPesananSurat' => $request->idPesananSurat
+        'idPesananSurat' => $request->idPesananSurat,
+        'link' => $link
       ]);
     }
 
@@ -206,74 +222,141 @@ class PesanansuratController extends Controller
                 'catatanWDII' => $arrayJson->catatanWDII,
                 'persetujuanWDI' => $arrayJson->persetujuanWDI,
                 'catatanWDI' => $arrayJson->catatanWDI,
-                'persetujuanDekan' => $persetujuanDekan,
-                'idPesananSurat' => $request->idPesananSurat
+                'persetujuanDekan' => $persetujuanDekan
               ]);
           }
           else if($realUser->id == "4"){
-              $persetujuanWDI = $request->persetujuan;
-              $catatanWDI = $request->catatan;
-              $arrayJson = json_decode(PesananSurat::find($idPesanansurat)->dataSurat);
-              return view('pejabat.preview_izin_cuti_studi', [
-                'idPesanansurat' => $idPesanansurat,
-                'nama' => $nama,
-                'npm' => $npm,
-                'prodi' => $prodi,
-                'fakultas' => $fakultas,
-                'alamat' => $alamat,
-                'cutiStudiKe' => $cutiStudiKe,
-                'alasanCutiStudi' => $alasanCutiStudi,
-                'dosenWali' => $dosenWali,
-                'semester' => $semester,
-                'thnAkademik' => $thnAkademik,
-                'formatsurat_id' => $formatsurat_id,
-                'dataSurat' => $dataSurat,
-                'user' => $realUser,
-                'mhs' => $mhs,
-                'persetujuanDosenWali' => $arrayJson->persetujuanDosenWali,
-                'catatanDosenWali' => $arrayJson->catatanDosenWali,
-                'persetujuanKaprodi' => $arrayJson->persetujuanKaprodi,
-                'catatanKaprodi' => $arrayJson->catatanKaprodi,
-                'persetujuanWDII' => $arrayJson->persetujuanWDII,
-                'catatanWDII' => $arrayJson->catatanWDII,
-                'persetujuanWDI' => $persetujuanWDI,
-                'catatanWDI' => $catatanWDI,
-                'persetujuanDekan' => '-'
+            $surat = PesananSurat::find($idPesanansurat);
+              // dd($surat);
+              if($surat->count == 0){
+                $persetujuanDosenWali = $request->persetujuan;
+                $catatanDosenWali = $request->catatan;
+                return view('pejabat.preview_izin_cuti_studi', [
+                  'idPesanansurat' => $idPesanansurat,
+                  'nama' => $nama,
+                  'npm' => $npm,
+                  'prodi' => $prodi,
+                  'fakultas' => $fakultas,
+                  'alamat' => $alamat,
+                  'cutiStudiKe' => $cutiStudiKe,
+                  'alasanCutiStudi' => $alasanCutiStudi,
+                  'dosenWali' => $dosenWali,
+                  'semester' => $semester,
+                  'thnAkademik' => $thnAkademik,
+                  'formatsurat_id' => $formatsurat_id,
+                  'dataSurat' => $dataSurat,
+                  'user' => $realUser,
+                  'mhs' => $mhs,
+                  'persetujuanDosenWali' => $persetujuanDosenWali,
+                  'catatanDosenWali' => $catatanDosenWali,
+                  'persetujuanKaprodi' => '-',
+                  'catatanKaprodi' => '-',
+                  'persetujuanWDII' => '-',
+                  'catatanWDII' => '-',
+                  'persetujuanWDI'  => '-',
+                  'catatanWDI' => '-',
+                  'persetujuanDekan' => '-'
+                ]);
+              }
+              else{
+                $persetujuanWDI = $request->persetujuan;
+                $catatanWDI = $request->catatan;
+                $arrayJson = json_decode(PesananSurat::find($idPesanansurat)->dataSurat);
+                return view('pejabat.preview_izin_cuti_studi', [
+                  'idPesanansurat' => $idPesanansurat,
+                  'nama' => $nama,
+                  'npm' => $npm,
+                  'prodi' => $prodi,
+                  'fakultas' => $fakultas,
+                  'alamat' => $alamat,
+                  'cutiStudiKe' => $cutiStudiKe,
+                  'alasanCutiStudi' => $alasanCutiStudi,
+                  'dosenWali' => $dosenWali,
+                  'semester' => $semester,
+                  'thnAkademik' => $thnAkademik,
+                  'formatsurat_id' => $formatsurat_id,
+                  'dataSurat' => $dataSurat,
+                  'user' => $realUser,
+                  'mhs' => $mhs,
+                  'persetujuanDosenWali' => $arrayJson->persetujuanDosenWali,
+                  'catatanDosenWali' => $arrayJson->catatanDosenWali,
+                  'persetujuanKaprodi' => $arrayJson->persetujuanKaprodi,
+                  'catatanKaprodi' => $arrayJson->catatanKaprodi,
+                  'persetujuanWDII' => $arrayJson->persetujuanWDII,
+                  'catatanWDII' => $arrayJson->catatanWDII,
+                  'persetujuanWDI' => $persetujuanWDI,
+                  'catatanWDI' => $catatanWDI,
+                  'persetujuanDekan' => '-'
 
-              ]);
+                ]);
+              }
           }
           else if($realUser->id == "3"){
-              $persetujuanWDII = $request->persetujuan;
-              $catatanWDII = $request->catatan;
-              $arrayJson = json_decode(PesananSurat::find($idPesanansurat)->dataSurat);
-              // dd($arrayJson);
-              return view('pejabat.preview_izin_cuti_studi', [
-                'idPesanansurat' => $idPesanansurat,
-                'nama' => $nama,
-                'npm' => $npm,
-                'prodi' => $prodi,
-                'fakultas' => $fakultas,
-                'alamat' => $alamat,
-                'cutiStudiKe' => $cutiStudiKe,
-                'alasanCutiStudi' => $alasanCutiStudi,
-                'dosenWali' => $dosenWali,
-                'semester' => $semester,
-                'thnAkademik' => $thnAkademik,
-                'formatsurat_id' => $formatsurat_id,
-                'dataSurat' => $dataSurat,
-                'user' => $realUser,
-                'mhs' => $mhs,
-                'persetujuanDosenWali' => $arrayJson->persetujuanDosenWali,
-                'catatanDosenWali' => $arrayJson->catatanDosenWali,
-                'persetujuanKaprodi' => $arrayJson->persetujuanKaprodi,
-                'catatanKaprodi' => $arrayJson->catatanKaprodi,
-                'persetujuanWDII' => $persetujuanWDII,
-                'catatanWDII' => $catatanWDII,
-                'persetujuanWDI'  => '-',
-                'catatanWDI' => '-',
-                'persetujuanDekan' => '-'
+            $surat = PesananSurat::find($idPesanansurat);
+              // dd($surat);
+              if($surat->count == 0){
+                $persetujuanDosenWali = $request->persetujuan;
+                $catatanDosenWali = $request->catatan;
+                return view('pejabat.preview_izin_cuti_studi', [
+                  'idPesanansurat' => $idPesanansurat,
+                  'nama' => $nama,
+                  'npm' => $npm,
+                  'prodi' => $prodi,
+                  'fakultas' => $fakultas,
+                  'alamat' => $alamat,
+                  'cutiStudiKe' => $cutiStudiKe,
+                  'alasanCutiStudi' => $alasanCutiStudi,
+                  'dosenWali' => $dosenWali,
+                  'semester' => $semester,
+                  'thnAkademik' => $thnAkademik,
+                  'formatsurat_id' => $formatsurat_id,
+                  'dataSurat' => $dataSurat,
+                  'user' => $realUser,
+                  'mhs' => $mhs,
+                  'persetujuanDosenWali' => $persetujuanDosenWali,
+                  'catatanDosenWali' => $catatanDosenWali,
+                  'persetujuanKaprodi' => '-',
+                  'catatanKaprodi' => '-',
+                  'persetujuanWDII' => '-',
+                  'catatanWDII' => '-',
+                  'persetujuanWDI'  => '-',
+                  'catatanWDI' => '-',
+                  'persetujuanDekan' => '-'
+                ]);
+              }
+              else{
+                $persetujuanWDII = $request->persetujuan;
+                $catatanWDII = $request->catatan;
+                $arrayJson = json_decode(PesananSurat::find($idPesanansurat)->dataSurat);
+                // dd($arrayJson);
+                return view('pejabat.preview_izin_cuti_studi', [
+                  'idPesanansurat' => $idPesanansurat,
+                  'nama' => $nama,
+                  'npm' => $npm,
+                  'prodi' => $prodi,
+                  'fakultas' => $fakultas,
+                  'alamat' => $alamat,
+                  'cutiStudiKe' => $cutiStudiKe,
+                  'alasanCutiStudi' => $alasanCutiStudi,
+                  'dosenWali' => $dosenWali,
+                  'semester' => $semester,
+                  'thnAkademik' => $thnAkademik,
+                  'formatsurat_id' => $formatsurat_id,
+                  'dataSurat' => $dataSurat,
+                  'user' => $realUser,
+                  'mhs' => $mhs,
+                  'persetujuanDosenWali' => $arrayJson->persetujuanDosenWali,
+                  'catatanDosenWali' => $arrayJson->catatanDosenWali,
+                  'persetujuanKaprodi' => $arrayJson->persetujuanKaprodi,
+                  'catatanKaprodi' => $arrayJson->catatanKaprodi,
+                  'persetujuanWDII' => $persetujuanWDII,
+                  'catatanWDII' => $catatanWDII,
+                  'persetujuanWDI'  => '-',
+                  'catatanWDI' => '-',
+                  'persetujuanDekan' => '-'
 
-              ]);
+                ]);
+              }
           }
           else if($realUser->id == "6"){
               $surat = PesananSurat::find($idPesanansurat);
@@ -296,7 +379,7 @@ class PesanansuratController extends Controller
                   'formatsurat_id' => $formatsurat_id,
                   'dataSurat' => $dataSurat,
                   'user' => $realUser,
-                'mhs' => $mhs,
+                  'mhs' => $mhs,
                   'persetujuanDosenWali' => $persetujuanDosenWali,
                   'catatanDosenWali' => $catatanDosenWali,
                   'persetujuanKaprodi' => '-',
@@ -328,7 +411,139 @@ class PesanansuratController extends Controller
                   'formatsurat_id' => $formatsurat_id,
                   'dataSurat' => $dataSurat,
                   'user' => $realUser,
-                'mhs' => $mhs,
+                  'mhs' => $mhs,
+                  'persetujuanDosenWali' => $jsonArray->persetujuanDosenWali,
+                  'catatanDosenWali' => $jsonArray->catatanDosenWali,
+                  'persetujuanKaprodi' => $persetujuanKaprodi,
+                  'catatanKaprodi' => $catatanKaprodi,
+                  'persetujuanWDII' => '-',
+                  'catatanWDII' => '-',
+                  'persetujuanWDI'  => '-',
+                  'catatanWDI' => '-',
+                  'persetujuanDekan' => '-'
+                ]);
+              }
+          }
+          else if($realUser->id == "8"){
+              $surat = PesananSurat::find($idPesanansurat);
+              // dd($surat);
+              if($surat->count == 0){
+                $persetujuanDosenWali = $request->persetujuan;
+                $catatanDosenWali = $request->catatan;
+                return view('pejabat.preview_izin_cuti_studi', [
+                  'idPesanansurat' => $idPesanansurat,
+                  'nama' => $nama,
+                  'npm' => $npm,
+                  'prodi' => $prodi,
+                  'fakultas' => $fakultas,
+                  'alamat' => $alamat,
+                  'cutiStudiKe' => $cutiStudiKe,
+                  'alasanCutiStudi' => $alasanCutiStudi,
+                  'dosenWali' => $dosenWali,
+                  'semester' => $semester,
+                  'thnAkademik' => $thnAkademik,
+                  'formatsurat_id' => $formatsurat_id,
+                  'dataSurat' => $dataSurat,
+                  'user' => $realUser,
+                  'mhs' => $mhs,
+                  'persetujuanDosenWali' => $persetujuanDosenWali,
+                  'catatanDosenWali' => $catatanDosenWali,
+                  'persetujuanKaprodi' => '-',
+                  'catatanKaprodi' => '-',
+                  'persetujuanWDII' => '-',
+                  'catatanWDII' => '-',
+                  'persetujuanWDI'  => '-',
+                  'catatanWDI' => '-',
+                  'persetujuanDekan' => '-'
+                ]);
+              }else{
+                // dd("asd");
+                $persetujuanKaprodi = $request->persetujuan;
+                $catatanKaprodi = $request->catatan;
+                $jsonArray = json_decode(PesananSurat::find($idPesanansurat)->dataSurat);
+                // dd($jsonArray);
+                return view('pejabat.preview_izin_cuti_studi', [
+                  'idPesanansurat' => $idPesanansurat,
+                  'nama' => $nama,
+                  'npm' => $npm,
+                  'prodi' => $prodi,
+                  'fakultas' => $fakultas,
+                  'alamat' => $alamat,
+                  'cutiStudiKe' => $cutiStudiKe,
+                  'alasanCutiStudi' => $alasanCutiStudi,
+                  'dosenWali' => $dosenWali,
+                  'semester' => $semester,
+                  'thnAkademik' => $thnAkademik,
+                  'formatsurat_id' => $formatsurat_id,
+                  'dataSurat' => $dataSurat,
+                  'user' => $realUser,
+                  'mhs' => $mhs,
+                  'persetujuanDosenWali' => $jsonArray->persetujuanDosenWali,
+                  'catatanDosenWali' => $jsonArray->catatanDosenWali,
+                  'persetujuanKaprodi' => $persetujuanKaprodi,
+                  'catatanKaprodi' => $catatanKaprodi,
+                  'persetujuanWDII' => '-',
+                  'catatanWDII' => '-',
+                  'persetujuanWDI'  => '-',
+                  'catatanWDI' => '-',
+                  'persetujuanDekan' => '-'
+                ]);
+              }
+          }
+          else if($realUser->id == "9"){
+              $surat = PesananSurat::find($idPesanansurat);
+              // dd($surat);
+              if($surat->count == 0){
+                $persetujuanDosenWali = $request->persetujuan;
+                $catatanDosenWali = $request->catatan;
+                return view('pejabat.preview_izin_cuti_studi', [
+                  'idPesanansurat' => $idPesanansurat,
+                  'nama' => $nama,
+                  'npm' => $npm,
+                  'prodi' => $prodi,
+                  'fakultas' => $fakultas,
+                  'alamat' => $alamat,
+                  'cutiStudiKe' => $cutiStudiKe,
+                  'alasanCutiStudi' => $alasanCutiStudi,
+                  'dosenWali' => $dosenWali,
+                  'semester' => $semester,
+                  'thnAkademik' => $thnAkademik,
+                  'formatsurat_id' => $formatsurat_id,
+                  'dataSurat' => $dataSurat,
+                  'user' => $realUser,
+                  'mhs' => $mhs,
+                  'persetujuanDosenWali' => $persetujuanDosenWali,
+                  'catatanDosenWali' => $catatanDosenWali,
+                  'persetujuanKaprodi' => '-',
+                  'catatanKaprodi' => '-',
+                  'persetujuanWDII' => '-',
+                  'catatanWDII' => '-',
+                  'persetujuanWDI'  => '-',
+                  'catatanWDI' => '-',
+                  'persetujuanDekan' => '-'
+                ]);
+              }else{
+                // dd("asd");
+                $persetujuanKaprodi = $request->persetujuan;
+                $catatanKaprodi = $request->catatan;
+                $jsonArray = json_decode(PesananSurat::find($idPesanansurat)->dataSurat);
+                // dd($jsonArray);
+                return view('pejabat.preview_izin_cuti_studi', [
+                  'idPesanansurat' => $idPesanansurat,
+                  'nama' => $nama,
+                  'npm' => $npm,
+                  'prodi' => $prodi,
+                  'fakultas' => $fakultas,
+                  'alamat' => $alamat,
+                  'cutiStudiKe' => $cutiStudiKe,
+                  'alasanCutiStudi' => $alasanCutiStudi,
+                  'dosenWali' => $dosenWali,
+                  'semester' => $semester,
+                  'thnAkademik' => $thnAkademik,
+                  'formatsurat_id' => $formatsurat_id,
+                  'dataSurat' => $dataSurat,
+                  'user' => $realUser,
+                  'mhs' => $mhs,
                   'persetujuanDosenWali' => $jsonArray->persetujuanDosenWali,
                   'catatanDosenWali' => $jsonArray->catatanDosenWali,
                   'persetujuanKaprodi' => $persetujuanKaprodi,
@@ -371,13 +586,12 @@ class PesanansuratController extends Controller
                 'persetujuanDekan' => '-'
               ]);
           }
-
           // dd($request);
-
         }
         else if($request->formatsurat_id == "10"){
           $dataSurat = $request->dataSurat;
           $json = json_decode($dataSurat);
+          $nirm = $json->nirm;
           $nama = $json->nama;
           $npm = $json->npm;
           $alamat = $json->alamat;
@@ -385,30 +599,49 @@ class PesanansuratController extends Controller
           $namaOrtu = $json->namaOrtu;
           $dosenWali = $json->dosenWali;
           $semester = $json->semester;
-          $formatsurat_id == $request->idFormatSurat;
+          $formatsurat_id = $request->formatsurat_id;
           $mhs = Mahasiswa::where('npm',$json->npm)->first();
           if($realUser->id == "5"){
               $persetujuanDekan = $request->persetujuan;
-          }
-          else if($realUser->id == "4"){
-              $persetujuanWDI = $request->persetujuan;
-              $catatanWDI = $request->catatan;
-          }
-          else if($realUser->id == "3"){
-              $persetujuanWDII = $request->persetujuan;
-              $catatanWDII = $request->catatan;
-          }
-          else if($realUser->id == "6"){
-              $persetujuanKaprodi = $request->persetujuan;
-              $catatanKaprodi = $request->catatan;
-              return view('mahasiswa.preview_izin_pengunduran_diri', [
+              $catatanDekan = $request->catatan;
+              $arrayJson = json_decode(PesananSurat::find($idPesanansurat)->dataSurat);
+              return view('pejabat.preview_izin_pengunduran_diri', [
                 'idPesanansurat' => $idPesanansurat,
+                'nirm' => $nirm,
                 'nama' => $nama,
                 'npm' => $npm,
                 'alamat' => $alamat,
                 'noTelepon' => $noTelepon,
                 'namaOrtu' => $namaOrtu,
-                'dosenWali' => $dosenWali,
+                'semester' => $semester,
+                'persetujuanDosenWali' => $arrayJson->persetujuanDosenWali,
+                'catatanDosenWali' => $arrayJson->catatanDosenWali,
+                'persetujuanKaprodi' => $arrayJson->persetujuanKaprodi,
+                'catatanKaprodi' => $arrayJson->catatanKaprodi,
+                'persetujuanWDII' => $arrayJson->persetujuanWDII,
+                'catatanWDII' => $arrayJson->catatanWDII,
+                'persetujuanWDI' => $arrayJson->persetujuanWDI,
+                'catatanWDI' => $arrayJson->catatanWDI,
+                'persetujuanDekan' => $persetujuanDekan,
+                'catatanDekan' => $catatanDekan,
+                'formatsurat_id' => $formatsurat_id,
+                'dataSurat' => $dataSurat,
+                'user' => $realUser
+              ]);
+          }
+          else if($realUser->id == "4"){
+            $surat = PesananSurat::find($idPesanansurat);
+            if($surat->count == 0){
+              $persetujuanDosenWali = $request->persetujuan;
+              $catatanDosenWali = $request->catatan;
+              return view('pejabat.preview_izin_pengunduran_diri', [
+                'idPesanansurat' => $idPesanansurat,
+                'nirm' => $nirm,
+                'nama' => $nama,
+                'npm' => $npm,
+                'alamat' => $alamat,
+                'noTelepon' => $noTelepon,
+                'namaOrtu' => $namaOrtu,
                 'semester' => $semester,
                 'persetujuanDosenWali' => $persetujuanDosenWali,
                 'catatanDosenWali' => $catatanDosenWali,
@@ -419,22 +652,279 @@ class PesanansuratController extends Controller
                 'persetujuanWDI' => '-',
                 'catatanWDI' => '-',
                 'persetujuanDekan' => '-',
-                'formatsurat_id' => '$formatsurat_id',
+                'catatanDekan' => '-',
+                'formatsurat_id' => $formatsurat_id,
                 'dataSurat' => $dataSurat,
                 'user' => $realUser
-            ]);
+              ]);
+            }else{
+              $persetujuanWDI = $request->persetujuan;
+              $catatanWDI = $request->catatan;
+              $jsonArray = json_decode(PesananSurat::find($idPesanansurat)->dataSurat);
+              return view('pejabat.preview_izin_pengunduran_diri', [
+                'idPesanansurat' => $idPesanansurat,
+                'nirm' => $nirm,
+                'nama' => $nama,
+                'npm' => $npm,
+                'alamat' => $alamat,
+                'noTelepon' => $noTelepon,
+                'namaOrtu' => $namaOrtu,
+                'semester' => $semester,
+                'persetujuanDosenWali' => $jsonArray->persetujuanDosenWali,
+                'catatanDosenWali' => $jsonArray->catatanDosenWali,
+                'persetujuanKaprodi' => $jsonArray->persetujuanKaprodi,
+                'catatanKaprodi' => $jsonArray->catatanKaprodi,
+                'persetujuanWDII' => $jsonArray->persetujuanWDII,
+                'catatanWDII' => $jsonArray->catatanWDII,
+                'persetujuanWDI' => $persetujuanWDI,
+                'catatanWDI' => $catatanWDI,
+                'persetujuanDekan' => '-',
+                'catatanDekan' => '-',
+                'formatsurat_id' => $formatsurat_id,
+                'dataSurat' => $dataSurat,
+                'user' => $realUser
+              ]);
+            }
+          }
+          else if($realUser->id == "3"){
+            $surat = PesananSurat::find($idPesanansurat);
+            if($surat->count == 0){
+              $persetujuanDosenWali = $request->persetujuan;
+              $catatanDosenWali = $request->catatan;
+              return view('pejabat.preview_izin_pengunduran_diri', [
+                'idPesanansurat' => $idPesanansurat,
+                'nirm' => $nirm,
+                'nama' => $nama,
+                'npm' => $npm,
+                'alamat' => $alamat,
+                'noTelepon' => $noTelepon,
+                'namaOrtu' => $namaOrtu,
+                'semester' => $semester,
+                'persetujuanDosenWali' => $persetujuanDosenWali,
+                'catatanDosenWali' => $catatanDosenWali,
+                'persetujuanKaprodi' => '-',
+                'catatanKaprodi' => '-',
+                'persetujuanWDII' => '-',
+                'catatanWDII' => '-',
+                'persetujuanWDI' => '-',
+                'catatanWDI' => '-',
+                'persetujuanDekan' => '-',
+                'catatanDekan' => '-',
+                'formatsurat_id' => $formatsurat_id,
+                'dataSurat' => $dataSurat,
+                'user' => $realUser
+              ]);
+            }else{
+              $persetujuanWDII = $request->persetujuan;
+              $catatanWDII = $request->catatan;
+              $jsonArray = json_decode(PesananSurat::find($idPesanansurat)->dataSurat);
+              return view('pejabat.preview_izin_pengunduran_diri', [
+                'idPesanansurat' => $idPesanansurat,
+                'nirm' => $nirm,
+                'nama' => $nama,
+                'npm' => $npm,
+                'alamat' => $alamat,
+                'noTelepon' => $noTelepon,
+                'namaOrtu' => $namaOrtu,
+                'semester' => $semester,
+                'persetujuanDosenWali' => $jsonArray->persetujuanDosenWali,
+                'catatanDosenWali' => $jsonArray->catatanDosenWali,
+                'persetujuanKaprodi' => $jsonArray->persetujuanKaprodi,
+                'catatanKaprodi' => $jsonArray->catatanKaprodi,
+                'persetujuanWDII' => $persetujuanWDII,
+                'catatanWDII' => $catatanWDII,
+                'persetujuanWDI' => '-',
+                'catatanWDI' => '-',
+                'persetujuanDekan' => '-',
+                'catatanDekan' => '-',
+                'formatsurat_id' => $formatsurat_id,
+                'dataSurat' => $dataSurat,
+                'user' => $realUser
+              ]);
+            }
+          }
+          else if($realUser->id == "6"){
+            $surat = PesananSurat::find($idPesanansurat);
+            if($surat->count == 0){
+              $persetujuanDosenWali = $request->persetujuan;
+              $catatanDosenWali = $request->catatan;
+              return view('pejabat.preview_izin_pengunduran_diri', [
+                'idPesanansurat' => $idPesanansurat,
+                'nirm' => $nirm,
+                'nama' => $nama,
+                'npm' => $npm,
+                'alamat' => $alamat,
+                'noTelepon' => $noTelepon,
+                'namaOrtu' => $namaOrtu,
+                'semester' => $semester,
+                'persetujuanDosenWali' => $persetujuanDosenWali,
+                'catatanDosenWali' => $catatanDosenWali,
+                'persetujuanKaprodi' => '-',
+                'catatanKaprodi' => '-',
+                'persetujuanWDII' => '-',
+                'catatanWDII' => '-',
+                'persetujuanWDI' => '-',
+                'catatanWDI' => '-',
+                'persetujuanDekan' => '-',
+                'catatanDekan' => '-',
+                'formatsurat_id' => $formatsurat_id,
+                'dataSurat' => $dataSurat,
+                'user' => $realUser
+              ]);
+            }else{
+              $persetujuanKaprodi = $request->persetujuan;
+              $catatanKaprodi = $request->catatan;
+              $jsonArray = json_decode(PesananSurat::find($idPesanansurat)->dataSurat);
+              return view('pejabat.preview_izin_pengunduran_diri', [
+                'idPesanansurat' => $idPesanansurat,
+                'nirm' => $nirm,
+                'nama' => $nama,
+                'npm' => $npm,
+                'alamat' => $alamat,
+                'noTelepon' => $noTelepon,
+                'namaOrtu' => $namaOrtu,
+                'semester' => $semester,
+                'persetujuanDosenWali' => $jsonArray->persetujuanDosenWali,
+                'catatanDosenWali' => $jsonArray->catatanDosenWali,
+                'persetujuanKaprodi' => $persetujuanKaprodi,
+                'catatanKaprodi' => $catatanKaprodi,
+                'persetujuanWDII' => '-',
+                'catatanWDII' => '-',
+                'persetujuanWDI' => '-',
+                'catatanWDI' => '-',
+                'persetujuanDekan' => '-',
+                'catatanDekan' => '-',
+                'formatsurat_id' => $formatsurat_id,
+                'dataSurat' => $dataSurat,
+                'user' => $realUser
+              ]);
+            }
+          }
+          else if($realUser->id == "8"){
+            $surat = PesananSurat::find($idPesanansurat);
+            if($surat->count == 0){
+              $persetujuanDosenWali = $request->persetujuan;
+              $catatanDosenWali = $request->catatan;
+              return view('pejabat.preview_izin_pengunduran_diri', [
+                'idPesanansurat' => $idPesanansurat,
+                'nirm' => $nirm,
+                'nama' => $nama,
+                'npm' => $npm,
+                'alamat' => $alamat,
+                'noTelepon' => $noTelepon,
+                'namaOrtu' => $namaOrtu,
+                'semester' => $semester,
+                'persetujuanDosenWali' => $persetujuanDosenWali,
+                'catatanDosenWali' => $catatanDosenWali,
+                'persetujuanKaprodi' => '-',
+                'catatanKaprodi' => '-',
+                'persetujuanWDII' => '-',
+                'catatanWDII' => '-',
+                'persetujuanWDI' => '-',
+                'catatanWDI' => '-',
+                'persetujuanDekan' => '-',
+                'catatanDekan' => '-',
+                'formatsurat_id' => $formatsurat_id,
+                'dataSurat' => $dataSurat,
+                'user' => $realUser
+              ]);
+            }else{
+              $persetujuanKaprodi = $request->persetujuan;
+              $catatanKaprodi = $request->catatan;
+              $jsonArray = json_decode(PesananSurat::find($idPesanansurat)->dataSurat);
+              return view('pejabat.preview_izin_pengunduran_diri', [
+                'idPesanansurat' => $idPesanansurat,
+                'nirm' => $nirm,
+                'nama' => $nama,
+                'npm' => $npm,
+                'alamat' => $alamat,
+                'noTelepon' => $noTelepon,
+                'namaOrtu' => $namaOrtu,
+                'semester' => $semester,
+                'persetujuanDosenWali' => $jsonArray->persetujuanDosenWali,
+                'catatanDosenWali' => $jsonArray->catatanDosenWali,
+                'persetujuanKaprodi' => $persetujuanKaprodi,
+                'catatanKaprodi' => $catatanKaprodi,
+                'persetujuanWDII' => '-',
+                'catatanWDII' => '-',
+                'persetujuanWDI' => '-',
+                'catatanWDI' => '-',
+                'persetujuanDekan' => '-',
+                'catatanDekan' => '-',
+                'formatsurat_id' => $formatsurat_id,
+                'dataSurat' => $dataSurat,
+                'user' => $realUser
+              ]);
+            }
+          }
+          else if($realUser->id == "9"){
+            $surat = PesananSurat::find($idPesanansurat);
+            if($surat->count == 0){
+              $persetujuanDosenWali = $request->persetujuan;
+              $catatanDosenWali = $request->catatan;
+              return view('pejabat.preview_izin_pengunduran_diri', [
+                'idPesanansurat' => $idPesanansurat,
+                'nirm' => $nirm,
+                'nama' => $nama,
+                'npm' => $npm,
+                'alamat' => $alamat,
+                'noTelepon' => $noTelepon,
+                'namaOrtu' => $namaOrtu,
+                'semester' => $semester,
+                'persetujuanDosenWali' => $persetujuanDosenWali,
+                'catatanDosenWali' => $catatanDosenWali,
+                'persetujuanKaprodi' => '-',
+                'catatanKaprodi' => '-',
+                'persetujuanWDII' => '-',
+                'catatanWDII' => '-',
+                'persetujuanWDI' => '-',
+                'catatanWDI' => '-',
+                'persetujuanDekan' => '-',
+                'catatanDekan' => '-',
+                'formatsurat_id' => $formatsurat_id,
+                'dataSurat' => $dataSurat,
+                'user' => $realUser
+              ]);
+            }else{
+              $persetujuanKaprodi = $request->persetujuan;
+              $catatanKaprodi = $request->catatan;
+              $jsonArray = json_decode(PesananSurat::find($idPesanansurat)->dataSurat);
+              return view('pejabat.preview_izin_pengunduran_diri', [
+                'idPesanansurat' => $idPesanansurat,
+                'nirm' => $nirm,
+                'nama' => $nama,
+                'npm' => $npm,
+                'alamat' => $alamat,
+                'noTelepon' => $noTelepon,
+                'namaOrtu' => $namaOrtu,
+                'semester' => $semester,
+                'persetujuanDosenWali' => $jsonArray->persetujuanDosenWali,
+                'catatanDosenWali' => $jsonArray->catatanDosenWali,
+                'persetujuanKaprodi' => $persetujuanKaprodi,
+                'catatanKaprodi' => $catatanKaprodi,
+                'persetujuanWDII' => '-',
+                'catatanWDII' => '-',
+                'persetujuanWDI' => '-',
+                'catatanWDI' => '-',
+                'persetujuanDekan' => '-',
+                'catatanDekan' => '-',
+                'formatsurat_id' => $formatsurat_id,
+                'dataSurat' => $dataSurat,
+                'user' => $realUser
+              ]);
+            }
           }
           else{
               $persetujuanDosenWali = $request->persetujuan;
               $catatanDosenWali = $request->catatan;
-              return view('mahasiswa.preview_izin_pengunduran_diri', [
+              return view('pejabat.preview_izin_pengunduran_diri', [
                 'idPesanansurat' => $idPesanansurat,
+                'nirm' => $nirm,
                 'nama' => $nama,
                 'npm' => $npm,
                 'alamat' => $alamat,
                 'noTelepon' => $noTelepon,
                 'namaOrtu' => $namaOrtu,
-                'dosenWali' => $dosenWali,
                 'semester' => $semester,
                 'persetujuanDosenWali' => $persetujuanDosenWali,
                 'catatanDosenWali' => $catatanDosenWali,
@@ -445,12 +935,12 @@ class PesanansuratController extends Controller
                 'persetujuanWDI' => '-',
                 'catatanWDI' => '-',
                 'persetujuanDekan' => '-',
-                'formatsurat_id' => '$formatsurat_id',
+                'catatanDekan' => '-',
+                'formatsurat_id' => $formatsurat_id,
                 'dataSurat' => $dataSurat,
                 'user' => $realUser
             ]);
-          }
-          
+          }   
       }
     }
 
@@ -501,6 +991,7 @@ class PesanansuratController extends Controller
               'user' => $realUser
           ]);
   	}
+
     public function sendDataSurat(Request $request){
       $loggedInUser = Auth::user();
       // dd($loggedInUser);
@@ -885,6 +1376,7 @@ class PesanansuratController extends Controller
       else if($request->idFormatSurat == "10"){
         $dataSurat = $request->prosesSurat;
         $json = json_decode($dataSurat);
+        $nirm = $json->nirm;
         $nama = $json->nama;
         $npm = $json->npm;
         $alamat = $json->alamat;
@@ -896,17 +1388,18 @@ class PesanansuratController extends Controller
         $pemesan = $pesananID->mahasiswa_id;
         $tanggal = $pesananID->created_at;
         $mhs = Mahasiswa::where('npm',$json->npm)->first();
-        $persetujuanDosenWali = '-';
-        $catatanDosenWali = '-';
-        $persetujuanKaprodi = '-';
-        $catatanKaprodi = '-';
-        $persetujuanWDII = '-';
-        $catatanWDII = '-';
-        $persetujuanWDI = '-';
-        $catatanWDI = '-';
-        $persetujuanDekan = '-';
+        $persetujuanDosenWali = $json->persetujuanDosenWali;
+        $catatanDosenWali = $json->catatanDosenWali;
+        $persetujuanKaprodi = $json->persetujuanKaprodi;
+        $catatanKaprodi = $json->catatanKaprodi;
+        $persetujuanWDII = $json->persetujuanWDII;
+        $catatanWDII = $json->catatanWDII;
+        $persetujuanWDI = $json->persetujuanWDI;
+        $catatanWDI = $json->catatanWDI;
+        $persetujuanDekan = $json->persetujuanDekan;
         $formatsurat_id = $request->idFormatSurat;
         return view('TU.proses_surat_izin_pengunduran_diri', [
+            'nirm' => $nirm,
             'nama' => $nama,
             'npm' => $npm,
             'alamat' => $alamat,
@@ -2037,9 +2530,18 @@ class PesanansuratController extends Controller
         ];
       }
       else if($request->jenis_surat == "9"){
+        //upload
+        $npm = $request->npm;
+        $lampiran = $request->file('lampiran_CutiStudi');
+        $destination_path = ('lampiran/cuti_studi/');
+        $filename = $lampiran->getClientOriginalName();
+        $savedLampiran = ($npm . '_' .$filename);
+        $lampiran->move($destination_path, $savedLampiran);
+
+        $link = '127.0.0.1:8000/lampiran/cuti_studi/' . $savedLampiran;
         $obj = [
           'nama' => $request->nama,
-          'npm' => $request->npm,
+          'npm' => $npm,
           'prodi' => $request->prodi,
           'fakultas' => $request->fakultas,
           'alamat' => $request->alamat,
@@ -2056,13 +2558,25 @@ class PesanansuratController extends Controller
           'catatanWDII' => $request->catatanWDII,
           'persetujuanWDI' => $request->persetujuanWDI,
           'catatanWDI' => $request->catatanWDI,
-          'persetujuanDekan' => $request->persetujuanDekan
+          'persetujuanDekan' => $request->persetujuanDekan,
+          'link' => $link
         ];
       }
       else if($request->jenis_surat == "10"){
+        //upload
+        $npm = $request->npm;
+        $lampiran = $request->file('lampiran_PengunduranDiri');
+        $destination_path = ('lampiran/pengunduran_diri/');
+        // dd($lampiran);
+        $filename = $lampiran->getClientOriginalName();
+        $savedLampiran = ($npm . '_' .$filename);
+        $lampiran->move($destination_path, $savedLampiran);
+        // dd($request);
+        $link = '127.0.0.1:8000/lampiran/' . $savedLampiran;
         $obj = [
+          'nirm' => $request->nirm,
           'nama' => $request->nama,
-          'npm' => $request->npm,
+          'npm' => $npm,
           'alamat' => $request->alamat,
           'noTelepon' => $request->noTelepon,
           'namaOrtu' => $request->namaOrtu,
@@ -2076,7 +2590,10 @@ class PesanansuratController extends Controller
           'catatanWDII' => $request->catatanWDII,
           'persetujuanWDI' => $request->persetujuanWDI,
           'catatanWDI' => $request->catatanWDI,
-          'persetujuanDekan' => $request->persetujuanDekan
+          'persetujuanDekan' => $request->persetujuanDekan,
+          'catatanDekan' => $request->catatanDekan,
+          'prodi' => $request->prodi,
+          'link' => $link
         ];
       }
       else if($request->jenis_surat == "11"){
@@ -2689,14 +3206,7 @@ class PesanansuratController extends Controller
         $dosenWali = $request->dosenWali;
         $semester = $request->semester;
         $thnAkademik = $request->thnAkademik;
-        //upload
-        $lampiran = $request->file('lampiran_CutiStudi');
-        $destination_path = ('lampiran/cuti_studi/');
-        $filename = $lampiran->getClientOriginalName();
-        $savedLampiran = ($npm . '_' .$filename);
-        $lampiran->move($destination_path, $savedLampiran);
-
-        $link = '127.0.0.1:8000/lampiran/cuti_studi/' . $filename;
+        
         $persetujuanDosenWali = '-';
         $catatanDosenWali = '-';
         $persetujuanKaprodi = '-';
@@ -2708,6 +3218,7 @@ class PesanansuratController extends Controller
         $persetujuanDekan = '-';
         $formatsurat_id = $request->jenis_surat;
         $dataSurat = $this->buatJSON($request);
+        // dd($dataSurat);
         return view('mahasiswa.preview_izin_cuti_studi', [
             'nama' => $nama,
             'npm' => $npm,
@@ -2734,6 +3245,7 @@ class PesanansuratController extends Controller
         ]);
       }
       else if($request->jenis_surat == "10"){
+        $nirm = $request->nirm;
         $nama = $request->nama;
         $npm = $request->npm;
         $alamat = $request->alamat;
@@ -2741,14 +3253,7 @@ class PesanansuratController extends Controller
         $namaOrtu = $request->namaOrtu;
         $dosenWali = $request->dosenWali;
         $semester = $request->semester;
-        //upload
-        $lampiran = $request->file('lampiran_CutiStudi');
-        $destination_path = ('lampiran/pengunduran_diri/');
-        $filename = $lampiran->getClientOriginalName();
-        $savedLampiran = ($npm . '_' .$filename);
-        $lampiran->move($destination_path, $savedLampiran);
-
-        $link = '127.0.0.1:8000/lampiran/' . $filename;
+        
         $persetujuanDosenWali = '-';
         $catatanDosenWali = '-';
         $persetujuanKaprodi = '-';
@@ -2758,9 +3263,13 @@ class PesanansuratController extends Controller
         $persetujuanWDI = '-';
         $catatanWDI = '-';
         $persetujuanDekan = '-';
+        $catatanDekan = '-';
         $formatsurat_id = $request->jenis_surat;
         $dataSurat = $this->buatJSON($request);
+        $prodi = $request->prodi;
+        // dd($dataSurat);
         return view('mahasiswa.preview_izin_pengunduran_diri', [
+            'nirm' => $nirm,
             'nama' => $nama,
             'npm' => $npm,
             'alamat' => $alamat,
@@ -2777,6 +3286,8 @@ class PesanansuratController extends Controller
             'persetujuanWDI' => $persetujuanWDI,
             'catatanWDI' => $catatanWDI,
             'persetujuanDekan' => $persetujuanDekan,
+            'catatanDekan' => $catatanDekan,
+            'prodi' => $prodi,
             'formatsurat_id' => $formatsurat_id,
             'dataSurat' => $dataSurat,
             'user' => $realUser

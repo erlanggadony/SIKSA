@@ -56,7 +56,6 @@
                 @else
                     <tr>
                       <th>JENIS SURAT</th>
-                      <th>PERIHAL</th>
                       <th>PEMOHON</th>
                       <th>PENERIMA</th>
                       <th>TANGGAL PEMBUATAN</th>
@@ -66,7 +65,6 @@
                     @foreach($pesanansurats as $pesanansurat)
                         <tr>
                           <td class="ctr">{{ $pesanansurat->formatsurat->jenis_surat }}</td>
-                          <td class="ctr">{{ $pesanansurat->perihal }}</td>
                           <td class="ctr">{{ $pesanansurat->mahasiswa->nama_mahasiswa }}</td>
                           <td class="ctr">{{ $pesanansurat->penerimaSurat }}</td>
                           <td class="ctr">{{ $pesanansurat->created_at }}</td>

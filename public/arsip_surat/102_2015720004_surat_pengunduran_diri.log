@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.2.1)  19 MAY 2017 19:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.2.1)  25 MAY 2017 22:53
 entering extended mode
-**./arsip_surat/5_2014730003_surat_pengantar_studi_lapangan_2orang.tex
-(arsip_surat/5_2014730003_surat_pengantar_studi_lapangan_2orang.tex
+**./arsip_surat/102_2015720004_surat_pengunduran_diri.tex
+(arsip_surat/102_2015720004_surat_pengunduran_diri.tex
 LaTeX2e <2016/03/31> patch level 3
 Babel <3.9r> and hyphenation patterns for 75 language(s) loaded.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\letter.cls"
@@ -54,21 +54,26 @@ Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 \c@MAILMcount=\count83
 \c@MAILMentry=\count84
 )
-No file 5_2014730003_surat_pengantar_studi_lapangan_2orang.aux.
-\openout1 = `5_2014730003_surat_pengantar_studi_lapangan_2orang.aux'.
+("C:\Program Files\MiKTeX 2.9\tex\latex\changepage\changepage.sty"
+Package: changepage 2009/10/20 v1.0c check page and change page layout
+\c@cp@cntr=\count85
+\cp@tempcnt=\count86
+)
+No file 102_2015720004_surat_pengunduran_diri.aux.
+\openout1 = `102_2015720004_surat_pengunduran_diri.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -78,11 +83,11 @@ LaTeX Font Info:    ... okay on input line 5.
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
 * h-part:(L,W,R)=(99.58464pt, 463.4954pt, 51.21495pt)
-* v-part:(T,H,B)=(156.49014pt, 812.61073pt, 42.67912pt)
+* v-part:(T,H,B)=(156.49014pt, 835.37294pt, 19.91692pt)
 * \paperwidth=614.295pt
 * \paperheight=1011.78pt
 * \textwidth=463.4954pt
-* \textheight=812.61073pt
+* \textheight=835.37294pt
 * \oddsidemargin=27.31465pt
 * \evensidemargin=27.31465pt
 * \topmargin=27.22015pt
@@ -104,41 +109,37 @@ LaTeX Font Info:    ... okay on input line 5.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 45--45
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 45--45
+Underfull \hbox (badness 10000) in paragraph at lines 57--57
 
  []
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 45.
+(Font)              <12> on input line 57.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 45.
+(Font)              <8> on input line 57.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 45.
+(Font)              <6> on input line 57.
 [1
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
-("F:\Skripsi\Source code Skripsi\SIKSA\public\arsip_surat\5_2014730003_surat_pe
-ngantar_studi_lapangan_2orang.aux") ) 
+("F:\Skripsi\Source code Skripsi\SIKSA\public\arsip_surat\102_2015720004_surat_
+pengunduran_diri.aux") ) 
 Here is how much of TeX's memory you used:
- 781 strings out of 493333
- 11445 string characters out of 3139169
- 69512 words of memory out of 3000000
- 4358 multiletter control sequences out of 15000+200000
- 6683 words of font info for 24 fonts, out of 3000000 for 9000
+ 816 strings out of 493333
+ 11856 string characters out of 3139169
+ 70270 words of memory out of 3000000
+ 4388 multiletter control sequences out of 15000+200000
+ 7042 words of font info for 25 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 23i,6n,19p,286b,159s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX 2.9/fonts/type1/p
-ublic/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
-sfonts/cm/cmr12.pfb>
-Output written on "F:/Skripsi/Source code Skripsi/SIKSA/public/arsip_surat/5_20
-14730003_surat_pengantar_studi_lapangan_2orang.pdf" (1 page, 31832 bytes).
+ 23i,4n,19p,272b,131s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
+s/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmb
+xti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb
+><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb>
+Output written on "F:/Skripsi/Source code Skripsi/SIKSA/public/arsip_surat/102_
+2015720004_surat_pengunduran_diri.pdf" (1 page, 56034 bytes).
 PDF statistics:
- 14 PDF objects out of 1000 (max. 8388607)
+ 22 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

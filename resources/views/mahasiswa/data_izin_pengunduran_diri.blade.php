@@ -23,6 +23,12 @@
               <br>
               <form class="form-horizontal" action="{{ url('/preview') }}" method="post" enctype="multipart/form-data">
                 <div class="form-group">
+                  <label for="nirm" class="col-sm-3">NIRM</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="nirm" name="nirm" value="{{ $user->nirm }}" readonly style="border: none" />
+                  </div>
+                </div>
+                <div class="form-group">
                   <label for="nama" class="col-sm-3">Nama</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="nama" name="nama" value="{{ $user->nama_mahasiswa }}" readonly style="border: none" />
@@ -59,11 +65,12 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="smstr" class="col-sm-3">Unggah surat permohonan pengunduran diri</label>
+                  <label for="smstr" class="col-sm-3">Unggah surat lampiran</label>
                   <div class="col-sm-9">
                     <input type="file" class="form-control" id="lampiran_PengunduranDiri" name="lampiran_PengunduranDiri" required>
                   </div>
                 </div>
+                <input type="hidden" value="{{ $user->jurusan_id }}" name="prodi">
                 <input type="hidden" value="{{ $formatsurat_id }}" name="jenis_surat">
                 {!! csrf_field() !!}
                 <div class="form-group">
