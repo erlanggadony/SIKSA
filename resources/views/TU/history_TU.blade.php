@@ -16,17 +16,16 @@
       <div class="main">
           <div class="row">
             <div class="col-md-8 content">
-              <form class="form-inline" action= "{{ url('/format_surat') }}" method="get">
+              <form class="form-inline" action= "{{ url('/history_TU') }}" method="get">
                 <div class="form-group">
-                  <label for="kategori_format_surat">Cari berdasarkan :</label><br>
-                  <select name="kategori_mahasiswa" class="form-control">
+                  <label for="kategori_history_surat">Cari berdasarkan :</label><br>
+                  <select name="kategori_history_surat" class="form-control">
                     <option value="">Cari semua surat</option>
-                    <option value="noSurat">Nomor Surat</option>
+                    <option value="no_surat">Nomor Surat</option>
                     <option value="jenis_surat">Jenis Surat</option>
                     <option value="perihal">Perihal</option>
-                    <option value="pemohon">Pemohon</option>
-                    <option value="penerima">Penerima</option>
-                    <option value="tanggalPembuatan">Tanggal Pembuatan</option>
+                    <option value="pemohonSurat">Pemohon surat</option>
+                    <option value="penerimaSurat">Penerima surat</option>
                   </select>
                 </div>
                 <div class="form-group">
@@ -49,9 +48,10 @@
                         <th>PERIHAL</th>
                         <th>PEMOHON</th>
                         <th>PENERIMA</th>
-                        <th>TANGGAL PEMBUATAN</th>
-                        <th>PENANDATANGANAN</th>
-                        <th>PENGAMBILAN</th>
+                        <th>TANGGAL BUAT</th>
+                        <th>ARSIP</th>
+                        <th>TANDA TANGAN</th>
+                        <th>AMBIL</th>
                       </tr>
                       @foreach($historysurats as $historysurat)
                         <tr>
@@ -61,6 +61,13 @@
                           <td class="ctr">{{ $historysurat->mahasiswa->nama_mahasiswa }}</td>
                           <td class="ctr">{{ $historysurat->penerimaSurat }}</td>
                           <td class="ctr">{{ $historysurat->created_at }}</td>
+                          <td style="text-align:center">
+                            <form action="/tampilkanPDF" class="form-horizontal" method="post">
+                                <input type="hidden" value="{{ $historysurat->id }}" name="history_id">
+                                <button type="submit" class="btn btn-link">Klik<br>disini</button>
+                                {!! csrf_field() !!}
+                            </form>
+                          </td>
                           <td class="ctr">
                             @if($historysurat->penandatanganan)
                               <p>Sudah</p>

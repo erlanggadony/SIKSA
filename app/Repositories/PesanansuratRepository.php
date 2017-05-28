@@ -17,39 +17,27 @@
                                     ->paginate(9);
       return $pesanansurats;
     }
-    public function findPesananSuratByIdPesanan($idPesanan){
-      $pesanansurats = PesananSurat::where('idPesanan', $idPesanan)
-                                    ->orderBy('timestamps', 'DESC')
-                                    ->paginate(11);
-      return $pesanansurats;
-    }
-    public function findMahasiswaByJenisSurat($jenis_surat){
-      $pesanansurats = PesananSurat::where('jenis_surat', $jenis_surat)
-                                    ->orderBy('timestamps', 'DESC')
-                                    ->paginate(11);
-      return $pesanansurats;
-    }
-    public function findMahasiswaByPerihal($perihal){
-      $pesanansurats = PesananSurat::where('perihal', $perihal)
-                                    ->orderBy('timestamps', 'DESC')
+    public function findPesanansuratByJenisSurat($jenis_surat){
+      $pesanansurats = PesananSurat::where('formatsurat_id', $jenis_surat)
+                                    ->orderBy('created_at', 'DESC')
                                     ->paginate(11);
       return $pesanansurats;
     }
     public function findPesananSuratByPenerimaSurat($penerimaSurat){
       $pesanansurats = PesananSurat::where('penerimaSurat', $penerimaSurat)
-                                    ->orderBy('timestamps', 'DESC')
+                                    ->orderBy('created_at', 'DESC')
                                     ->paginate(11);
       return $pesanansurats;
     }
-    public function findPesananSuratByPengirimSurat($pengirimSurat){
-      $pesanansurats = PesananSurat::where('mahasiswa_id', $pengirimSurat)
-                                    ->orderBy('timestamps', 'DESC')
+    public function findPesananSuratByPemohonSurat($pemohonSurat){
+      $pesanansurats = PesananSurat::where('mahasiswa_id', $pemohonSurat)
+                                    ->orderBy('created_at', 'DESC')
                                     ->paginate(11);
       return $pesanansurats;
     }
     public function findPesananSuratByTanggalPembuatan($tanggalPembuatan){
-      $pesanansurats = PesananSurat::where('timestamps', $tanggalPembuatan)
-                                    ->orderBy('timestamps', 'DESC')
+      $pesanansurats = PesananSurat::where('created_at ', $tanggalPembuatan)
+                                    ->orderBy('created_at', 'DESC')
                                     ->paginate(11);
       return $pesanansurats;
     }
@@ -57,40 +45,35 @@
       $pesanansurat = PesananSurat::where('id', $id)->first();
       return $pesanansurat;
     }
-
     public function pesananDosenWali($dosen_id){
       $pesanansurats = PesananSurat::where('id', $dosen_id)
-                                    ->orderBy('timestamps', 'DESC')
+                                    ->orderBy('created_at', 'DESC')
                                     ->paginate(11);
 
       return $pesanansurats;
     }
     public function pesananKaprodi($dosen_id){
       $pesanansurats = PesananSurat::where()
-                                    ->orderBy('timestamps', 'DESC')
+                                    ->orderBy('created_at', 'DESC')
                                     ->paginate(11);
-
       return $pesanansurats;
     }
     public function pesananWDII($dosen_id){
       $pesanansurats = PesananSurat::where()
-                                    ->orderBy('timestamps', 'DESC')
+                                    ->orderBy('created_at', 'DESC')
                                     ->paginate(11);
-
       return $pesanansurats;
     }
     public function pesananWDI($dosen_id){
       $pesanansurats = PesananSurat::where()
-                                    ->orderBy('timestamps', 'DESC')
+                                    ->orderBy('created_at', 'DESC')
                                     ->paginate(11);
-
       return $pesanansurats;
     }
     public function pesananDekan(){
       $pesanansurats = PesananSurat::where()
-                                    ->orderBy('timestamps', 'DESC')
+                                    ->orderBy('created_at', 'DESC')
                                     ->paginate(11);
-
       return $pesanansurats;
     }
   }

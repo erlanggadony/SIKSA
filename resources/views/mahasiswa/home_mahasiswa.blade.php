@@ -48,6 +48,7 @@
                         <th>PERIHAL</th>
                         <th>KEPADA</th>
                         <th>JENIS SURAT</th>
+                        <th>ARSIP</th>
                       </tr>
                       @foreach($historysurats as $historysurat)
                         <tr>
@@ -55,6 +56,13 @@
                           <td class="ctr">{{ $historysurat->perihal }}</td>
                           <td class="ctr">{{ $historysurat->penerimaSurat }}</td>
                           <td class="ctr">{{ $historysurat->formatsurat->jenis_surat }}</td>
+                          <td style="text-align:center">
+                            <form action="/tampilkanPDF" class="form-horizontal" method="post">
+                                <input type="hidden" value="{{ $historysurat->id }}" name="history_id">
+                                <button type="submit" class="btn btn-link">Klik disini</button>
+                                {!! csrf_field() !!}
+                            </form>
+                          </td>
                         </tr>
                       @endforeach
                   @endif

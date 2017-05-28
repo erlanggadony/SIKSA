@@ -60,6 +60,7 @@ class MahasiswaController extends Controller
         $mhs->thnAkademik = $request->thnAkademik;
         $mhs->save();
       }
+      return redirect('/data_mahasiswa');
     }
 
     public function tampilkanSeluruhSurat(Request $request){
@@ -100,31 +101,19 @@ class MahasiswaController extends Controller
         // //--
         $mahasiswas;
         if($request->kategori_mahasiswa == "nirm"){
-          $mahasiswas = $this->mahasiswaRepo->findMahasiswaByNIRM($request->searchBox);
+          $mahasiswas = $this->mahasiswaRepo->findMahasiswaByNIRM($request->searchBoxMhs);
         }
         else if($request->kategori_mahasiswa == "npm"){
-          $mahasiswas = $this->mahasiswaRepo->findMahasiswaByNPM($request->searchBox);
+          $mahasiswas = $this->mahasiswaRepo->findMahasiswaByNPM($request->searchBoxMhs);
         }
         else if($request->kategori_mahasiswa == "nama_mahasiswa"){
-          $mahasiswas = $this->mahasiswaRepo->findMahasiswaByNama($request->searchBox);
+          $mahasiswas = $this->mahasiswaRepo->findMahasiswaByNama($request->searchBoxMhs);
         }
         else if($request->kategori_mahasiswa == "prodi"){
-          $mahasiswas = $this->mahasiswaRepo->findMahasiswaByProdi($request->searchBox);
+          $mahasiswas = $this->mahasiswaRepo->findMahasiswaByProdi($request->searchBoxMhs);
         }
         else if($request->kategori_mahasiswa == "angkatan"){
-          $mahasiswas = $this->mahasiswaRepo->findMahasiswaByAngkatan($request->searchBox);
-        }
-        else if($request->kategori_mahasiswa == "kota_lahir"){
-          $mahasiswas = $this->mahasiswaRepo->findMahasiswaByKotaLahir($request->searchBox);
-        }
-        else if($request->kategori_mahasiswa == "tanggal_lahir"){
-          $mahasiswas = $this->mahasiswaRepo->findMahasiswaByTanggalLahir($request->searchBox);
-        }
-        else if($request->kategori_mahasiswa == "fakultas"){
-          $mahasiswas = $this->mahasiswaRepo->findMahasiswaByFakultas($request->searchBox);
-        }
-        else if($request->kategori_mahasiswa == "dosenWali"){
-          $mahasiswas = $this->mahasiswaRepo->findMahasiswaByDosenWali($request->searchBox);
+          $mahasiswas = $this->mahasiswaRepo->findMahasiswaByAngkatan($request->searchBoxMhs);
         }
         else{
           $mahasiswas = $this->mahasiswaRepo->findAllMahasiswa();

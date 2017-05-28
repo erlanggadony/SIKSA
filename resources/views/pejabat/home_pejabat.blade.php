@@ -29,12 +29,9 @@
                         <td class = "search">
                           <select name="kategori" class="form-control">
                             <option value="tanggalBuat">Cari semua surat</option>
-                            <option value="noSurat">Nomor surat</option>
-                            <option value="tanggalBuat">Tanggal pembuatan</option>
-                            <option value="perihal">Perihal</option>
-                            <option value="kepada]">Kepada</option>
-                            <option value="nama">Pembuat surat</option>
                             <option value="idFormatSurat">Jenis surat</option>
+                            <option value="pemohonSurat">Pemohon Surat</option>
+                            <option value="penerimaSurat">Penerima Surat</option>
                           </select>
                         </td>
                         <td class = "search">

@@ -32,7 +32,6 @@
                     <option value="">Cari semua surat</option>
                     <option value="idFormatSurat">ID Format Surat</option>
                     <option value="jenis_surat">Jenis Surat</option>
-                    <option value="keterangan">Keterangan</option>
                   </select>
                 </div>
                 <div class="form-group">

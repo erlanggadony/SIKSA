@@ -27,20 +27,18 @@
                 <div class="form-group">
                   <label for="kategori_mahasiswa">Cari berdasarkan :</label><br>
                   <select name="kategori_mahasiswa" class="form-control">
-                    <option value="tanggalBuat">Cari semua surat</option>
+                    <option value="">Cari semua surat</option>
                     <option value="nirm">NIRM</option>
                     <option value="npm">NPM</option>
                     <option value="nama_mahasiswa">Nama Mahasiswa</option>
                     <option value="prodi">Program Studi</option>
                     <option value="angkatan">Angkatan</option>
-                    <option value="kota_lahir">Kota Lahir</option>
-                    <option value="tanggal_lahir">Tanggal Lahir</option>
                   </select>
                 </div>
                 <div class="form-group">
                   <label for="searchBox">Kata kunci :</label><br>
-                  <input type="text" name="searchBox" class="form-control" size = "65">
-                  <button type="submit" name="findmail" class="btn btn-primary">Cari mahasiswa</button>
+                  <input type="text" name="searchBoxMhs" class="form-control" size = "65">
+                  <button type="submit" name="findMhs" class="btn btn-primary">Cari mahasiswa</button>
                 </div>
               </form>
               <br>
@@ -56,8 +54,7 @@
                       <th>NAMA MAHASISWA</th>
                       <th>PROGRAM STUDI</th>
                       <th>ANGKATAN</th>
-                      <th>KOTA LAHIR</th>
-                      <th>TANGGAL LAHIR</th>
+                      <th>TEMPAT, TANGGAL LAHIR</th>
                       <th>DOSEN WALI</th>
                       <th>FOTO</th>
                       <th>KONTROL</th>
@@ -69,8 +66,7 @@
                         <td class="ctr">{{ $mahasiswa->nama_mahasiswa }}</td>
                         <td class="ctr">{{ $mahasiswa->jurusan->nama_jurusan }}</td>
                         <td class="ctr">{{ $mahasiswa->angkatan }}</td>
-                        <td class="ctr">{{ $mahasiswa->kota_lahir }}</td>
-                        <td class="ctr">{{ $mahasiswa->tanggal_lahir }}</td>
+                        <td class="ctr">{{ $mahasiswa->kota_lahir }}, {{ $mahasiswa->tanggal_lahir }}</td>
                         <td class="ctr">{{ $mahasiswa->dosen->nama_dosen }}</td>
                         <td style="text-align:center">
                           <form action="/tampilkanFoto" class="form-horizontal" method="post">

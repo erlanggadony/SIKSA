@@ -968,16 +968,13 @@ class PesanansuratController extends Controller
 
           $pesanansurats;
           if($request->kategori == "jenis_surat"){
-            $pesanansurats = $this->pesanansuratRepo->findMahasiswaByJenisSurat($request->searchBox);
+            $pesanansurats = $this->pesanansuratRepo->findPesanansuratByJenisSurat($request->searchBox);
           }
-          else if($request->kategori == "perihal"){
-            $pesanansurats = $this->pesanansuratRepo->findMahasiswaByPerihal($request->searchBox);
-          }
-          else if($request->kategori == "penerima_surat"){
+          else if($request->kategori == "penerimaSurat"){
             $pesanansurats = $this->pesanansuratRepo->findPesananSuratByPenerimaSurat($request->searchBox);
           }
-          else if($request->kategori == "pengirimSurat"){
-            $pesanansurats = $this->pesanansuratRepo->findMahasiswaByPengirimSurat($request->searchBox);
+          else if($request->kategori == "pemohonSurat"){
+            $pesanansurats = $this->pesanansuratRepo->findPesananSuratByPemohonSurat($request->searchBox);
           }
           else if($request->kategori == "tanggalPembuatan"){
             $pesanansurats = $this->pesanansuratRepo->findMahasiswaByTanggalPembuatan($request->searchBox);
@@ -985,7 +982,7 @@ class PesanansuratController extends Controller
           else{
             $pesanansurats = $this->pesanansuratRepo->findAllPesananSurat();
           }
-          // dd($pesanansurats[0]);
+          // dd($pesanansurats);
           return view('TU.home_TU',[
               'pesanansurats' => $pesanansurats,
               'user' => $realUser

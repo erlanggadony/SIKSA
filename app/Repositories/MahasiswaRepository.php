@@ -26,7 +26,7 @@
       return $mahasiswas;
     }
     public function findMahasiswaByNama($nama_mahasiswa){
-      $mahasiswas = Mahasiswa::where('nama_mahasiswa', 'like', $nama_mahasiswa)
+      $mahasiswas = Mahasiswa::where('nama_mahasiswa', $nama_mahasiswa)
                                   ->orderBy('id', 'ASC')
                                   ->paginate(16);
       return $mahasiswas;

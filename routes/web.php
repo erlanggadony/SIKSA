@@ -62,7 +62,10 @@ Route::post('/home', 'AuthController@authenticate');
     Route::post('/updateSemester', 'MahasiswaController@updateSemester');
     Route::group(['prefix' => 'Api'], function(){
         Route::get('/showFormatSurat', 'Api\FormatsuratAPIController@tampilkanFormat');
-    });Route::post('/tampilkanFoto','MahasiswaController@tampilkanFoto');
+    });
+    Route::post('/tampilkanFoto','MahasiswaController@tampilkanFoto');
+    Route::post('/tampilkanPDF','HistorysuratController@tampilkanPDF');
+    
 //<--------------------------------------------------------PEJABAT-------------------------------------------------------->
     // halaman utama pejabat
     Route::get('/home_pejabat', 'PesanansuratController@tampilkanPesananDiPejabat');

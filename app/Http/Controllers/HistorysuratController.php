@@ -41,7 +41,7 @@ class HistorysuratController extends Controller
       //CEK USER DEKAN
       if($realUser->id == $realUser->fakultas->id_dekan){
         // dd("s");
-        $tempHistorysurats = Historysurat::where('formatsurat_id','=',9)->get();
+        $tempHistorysurats = Historysurat::where('formatsurat_id','=',9)->orWhere('formatsurat_id','=',9)->get();
         foreach ($tempHistorysurats as $key => $surat) {
           array_push($results,$surat);
         }
@@ -94,16 +94,9 @@ class HistorysuratController extends Controller
 
     public function tampilkanProfil(){
       $loggedInUser = Auth::user();
-      // dd($loggedInUser);
       $realUser = $this->getRealUser($loggedInUser);
-      // dd($realUser);
-      // dd($realUser->historysurats);
       $histories = $realUser->historysurats;
-      // dd($histories);
-      // $jenis = $this->historysuratRepo->findHistoryById($history->id)
-      // dd($history);
       $foto = $realUser->foto_mahasiswa;
-      // dd($foto);
       return view('mahasiswa.home_mahasiswa',[
         'user' => $realUser,
         'historysurats' => $histories
@@ -152,28 +145,29 @@ class HistorysuratController extends Controller
 	 */
 	public function pilihHistorySurat(Request $request){
         $historysurats;
-        if($request->kategori_history_surat == "noSurat"){
-          $historysurats = $this->historysuratRepo->findHistorySuratByNomorSurat($request->searchBox);
+        if($request->kategori_history_surat == "no_surat"){
+          $historysurats = $this->historysuratRepo->findHistorysuratByNomorSurat($request->searchBox);
         }
         else if($request->kategori_history_surat == "jenis_surat"){
-          $historysurats = $this->historysuratRepo->findHistoryByJenisSurat($request->searchBox);
+          $historysurats = $this->historysuratRepo->findHistorysuratByJenisSurat($request->searchBox);
         }
         else if($request->kategori_history_surat == "perihal"){
-          $historysurats = $this->historysuratRepo->findHistoryByPerihal($request->searchBox);
+          $historysurats = $this->historysuratRepo->findHistorysuratByPerihal($request->searchBox);
         }
-        else if($request->kategori_history_surat == "penerima_surat"){
-          $historysurats = $this->historysuratRepo->findHistorySuratByPenerimaSurat($request->searchBox);
+        else if($request->kategori_history_surat == "penerimaSurat"){
+          $historysurats = $this->historysuratRepo->findHistorysuratByPenerimaSurat($request->searchBox);
         }
-        else if($request->kategori_history_surat == "pengirimSurat"){
-          $historysurats = $this->historysuratRepo->findHistoryByPengirimSurat($request->searchBox);
+        else if($request->kategori_history_surat == "pemohonSurat"){
+          $historysurats = $this->historysuratRepo->findHistorysuratByPemohonSurat($request->searchBox);
         }
         else if($request->kategori_history_surat == "tanggalPembuatan"){
-          $historysurats = $this->historysuratRepo->findHistoryByTanggalPembuatan($request->searchBox);
+          $historysurats = $this->historysuratRepo->findHistorysuratByTanggalPembuatan($request->searchBox);
         }
         else{
           $historysurats = $this->historysuratRepo->findAllHistorySurat();
+          
         }
-        // dd($formatsurats);
+        // dd($historysurats);
         $loggedInUser = Auth::user();
         $realUser = $this->getRealUser($loggedInUser);
         $foto = $realUser->foto_mahasiswa;
@@ -183,6 +177,13 @@ class HistorysuratController extends Controller
           'foto' => $foto
         ]);
 	}
+
+  public function tampilkanPDF(Request $request){
+    $history = $this->historysuratRepo->findHistoryById($request->history_id);
+    $link = $history->link_arsip_surat;
+    // dd($history);
+    return redirect($link); 
+  }
 
   public function buatPDF(Request $request){
       if($request->idFormatSurat == "1"){
@@ -220,10 +221,10 @@ class HistorysuratController extends Controller
         }
 
         //inject ke file baru lalu compile
-        $file = fopen("arsip_surat/" . $noSurat. "_" . $npm . "_surat_keterangan_beasiswa.tex", "w");
+        $file = fopen("arsip_surat/" . $npm . "_surat_keterangan_beasiswa.tex", "w");
         fwrite($file, $stringFormat);
         fclose($file);
-        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $noSurat. '_' . $npm . '_surat_keterangan_beasiswa.tex');
+        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $npm . '_surat_keterangan_beasiswa.tex');
 
         //store to db
         $historysurat = new Historysurat;
@@ -232,7 +233,7 @@ class HistorysuratController extends Controller
         $historysurat->penerimaSurat = $json->penyediabeasiswa;
         $historysurat->mahasiswa_id = $pemesan;
         $historysurat->formatsurat_id = $request->idFormatSurat;
-        $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $npm . '_surat_keterangan_beasiswa.pdf';
+        $historysurat->link_arsip_surat = 'arsip_surat/' . $npm . '_surat_keterangan_beasiswa.pdf';
         $historysurat->penandatanganan = false;
         $historysurat->pengambilan = false;
         $historysurat->save();
@@ -274,10 +275,10 @@ class HistorysuratController extends Controller
         }
         // dd($stringFormat);
         //inject ke file baru  lalu compile
-        $file = fopen("arsip_surat/" . $noSurat. "_" . $npm . "_surat_keterangan_mahasiswa_aktif.tex", "w");
+        $file = fopen("arsip_surat/" . $npm . "_surat_keterangan_mahasiswa_aktif.tex", "w");
         fwrite($file, $stringFormat);
         fclose($file);
-        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $noSurat . '_' . $npm . '_surat_keterangan_mahasiswa_aktif.tex');
+        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $npm . '_surat_keterangan_mahasiswa_aktif.tex');
 
         //store to db
         $historysurat = new Historysurat;
@@ -286,7 +287,7 @@ class HistorysuratController extends Controller
         $historysurat->penerimaSurat = $nama;
         $historysurat->mahasiswa_id = $pemesan;
         $historysurat->formatsurat_id = $request->idFormatSurat;
-        $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $npm . '_surat_keterangan_mahasiswa_aktif.pdf';
+        $historysurat->link_arsip_surat = 'arsip_surat/' . $npm . '_surat_keterangan_mahasiswa_aktif.pdf';
         $historysurat->penandatanganan = false;
         $historysurat->pengambilan = false;
         $historysurat->save();
@@ -331,10 +332,10 @@ class HistorysuratController extends Controller
         }
         // dd($stringFormat);
         //inject ke file baru  lalu compile
-        $file = fopen("arsip_surat/" . $noSurat. "_" . $npm . "_surat_pengantar_pembuatan_visa.tex", "w");
+        $file = fopen("arsip_surat/" . $npm . "_surat_pengantar_pembuatan_visa.tex", "w");
         fwrite($file, $stringFormat);
         fclose($file);
-        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $noSurat . '_' . $npm . '_surat_pengantar_pembuatan_visa.tex');
+        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $npm . '_surat_pengantar_pembuatan_visa.tex');
 
         //store to db
         $historysurat = new Historysurat;
@@ -343,7 +344,7 @@ class HistorysuratController extends Controller
         $historysurat->penerimaSurat = $organisasiTujuan;
         $historysurat->mahasiswa_id = $pemesan;
         $historysurat->formatsurat_id = $request->idFormatSurat;
-        $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $npm . '_surat_pengantar_pembuatan_visa.pdf';
+        $historysurat->link_arsip_surat = 'arsip_surat/' . $npm . '_surat_pengantar_pembuatan_visa.pdf';
         $historysurat->penandatanganan = false;
         $historysurat->pengambilan = false;
         $historysurat->save();
@@ -383,10 +384,10 @@ class HistorysuratController extends Controller
                 $stringFormat .= $entry;
             }
         }
-        $file = fopen("arsip_surat/" . $noSurat. "_" . $npm . "_surat_pengantar_studi_lapangan_1orang.tex", "w");
+        $file = fopen("arsip_surat/" . $npm . "_surat_pengantar_studi_lapangan_1orang.tex", "w");
         fwrite($file, $stringFormat);
         fclose($file);
-        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $noSurat . '_' . $npm . '_surat_pengantar_studi_lapangan_1orang.tex');
+        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $npm . '_surat_pengantar_studi_lapangan_1orang.tex');
 
         //store to db
         $historysurat = new Historysurat;
@@ -395,7 +396,7 @@ class HistorysuratController extends Controller
         $historysurat->penerimaSurat = $organisasi;
         $historysurat->mahasiswa_id = $pemesan;
         $historysurat->formatsurat_id = $request->idFormatSurat;
-        $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $npm . '_surat_pengantar_studi_lapangan_1orang.pdf';
+        $historysurat->link_arsip_surat = 'arsip_surat/' . $npm . '_surat_pengantar_studi_lapangan_1orang.pdf';
         $historysurat->penandatanganan = false;
         $historysurat->pengambilan = false;
         $historysurat->save();
@@ -437,10 +438,10 @@ class HistorysuratController extends Controller
             }
         }
         // dd($stringFormat);
-        $file = fopen("arsip_surat/" . $noSurat. "_" . $npm . "_surat_pengantar_studi_lapangan_2orang.tex", "w");
+        $file = fopen("arsip_surat/" . $npm . "_surat_pengantar_studi_lapangan_2orang.tex", "w");
         fwrite($file, $stringFormat);
         fclose($file);
-        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $noSurat . '_' . $npm . '_surat_pengantar_studi_lapangan_2orang.tex');
+        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $npm . '_surat_pengantar_studi_lapangan_2orang.tex');
 
         //store to db
         $historysurat = new Historysurat;
@@ -449,7 +450,7 @@ class HistorysuratController extends Controller
         $historysurat->penerimaSurat = $organisasi;
         $historysurat->mahasiswa_id = $pemesan;
         $historysurat->formatsurat_id = $request->idFormatSurat;
-        $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $npm . '_surat_pengantar_studi_lapangan_2orang.pdf';
+        $historysurat->link_arsip_surat = 'arsip_surat/' . $npm . '_surat_pengantar_studi_lapangan_2orang.pdf';
         $historysurat->penandatanganan = false;
         $historysurat->pengambilan = false;
         $historysurat->save();
@@ -493,10 +494,10 @@ class HistorysuratController extends Controller
             }
         }
         // dd($stringFormat);
-        $file = fopen("arsip_surat/" . $noSurat. "_" . $npm . "_surat_pengantar_studi_lapangan_3orang.tex", "w");
+        $file = fopen("arsip_surat/" . $npm . "_surat_pengantar_studi_lapangan_3orang.tex", "w");
         fwrite($file, $stringFormat);
         fclose($file);
-        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $noSurat . '_' . $npm . '_surat_pengantar_studi_lapangan_3orang.tex');
+        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $npm . '_surat_pengantar_studi_lapangan_3orang.tex');
 
         //store to db
         $historysurat = new Historysurat;
@@ -505,7 +506,7 @@ class HistorysuratController extends Controller
         $historysurat->penerimaSurat = $organisasi;
         $historysurat->mahasiswa_id = $pemesan;
         $historysurat->formatsurat_id = $request->idFormatSurat;
-        $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $npm . '_surat_pengantar_studi_lapangan_3orang.pdf';
+        $historysurat->link_arsip_surat = 'arsip_surat/' . $npm . '_surat_pengantar_studi_lapangan_3orang.pdf';
         $historysurat->penandatanganan = false;
         $historysurat->pengambilan = false;
         $historysurat->save();
@@ -551,10 +552,10 @@ class HistorysuratController extends Controller
             }
         }
         // dd($stringFormat);
-        $file = fopen("arsip_surat/" . $noSurat. "_" . $npm . "_surat_pengantar_studi_lapangan_4orang.tex", "w");
+        $file = fopen("arsip_surat/" . $npm . "_surat_pengantar_studi_lapangan_4orang.tex", "w");
         fwrite($file, $stringFormat);
         fclose($file);
-        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $noSurat . '_' . $npm . '_surat_pengantar_studi_lapangan_4orang.tex');
+        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $npm . '_surat_pengantar_studi_lapangan_4orang.tex');
 
         //store to db
         $historysurat = new Historysurat;
@@ -563,7 +564,7 @@ class HistorysuratController extends Controller
         $historysurat->penerimaSurat = $organisasi;
         $historysurat->mahasiswa_id = $pemesan;
         $historysurat->formatsurat_id = $request->idFormatSurat;
-        $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $npm . '_surat_pengantar_studi_lapangan_4orang.pdf';
+        $historysurat->link_arsip_surat = 'arsip_surat/' . $npm . '_surat_pengantar_studi_lapangan_4orang.pdf';
         $historysurat->penandatanganan = false;
         $historysurat->pengambilan = false;
         $historysurat->save();
@@ -611,10 +612,10 @@ class HistorysuratController extends Controller
             }
         }
         // dd($stringFormat);
-        $file = fopen("arsip_surat/" . $noSurat. "_" . $npm . "_surat_pengantar_studi_lapangan_5orang.tex", "w");
+        $file = fopen("arsip_surat/" . $npm . "_surat_pengantar_studi_lapangan_5orang.tex", "w");
         fwrite($file, $stringFormat);
         fclose($file);
-        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $noSurat . '_' . $npm . '_surat_pengantar_studi_lapangan_5orang.tex');
+        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $npm . '_surat_pengantar_studi_lapangan_5orang.tex');
 
         //store to db
         $historysurat = new Historysurat;
@@ -623,7 +624,7 @@ class HistorysuratController extends Controller
         $historysurat->penerimaSurat = $organisasi;
         $historysurat->mahasiswa_id = $pemesan;
         $historysurat->formatsurat_id = $request->idFormatSurat;
-        $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $npm . '_surat_pengantar_studi_lapangan_5orang.pdf';
+        $historysurat->link_arsip_surat = 'arsip_surat/' . $npm . '_surat_pengantar_studi_lapangan_5orang.pdf';
         $historysurat->penandatanganan = false;
         $historysurat->pengambilan = false;
         $historysurat->save();
@@ -671,10 +672,10 @@ class HistorysuratController extends Controller
             }
         }
         // dd($stringFormat);
-        $file = fopen("arsip_surat/" . $noSurat. "_" . $npm . "_surat_izin_cuti_studi.tex", "w");
+        $file = fopen("arsip_surat/" . $npm . "_surat_izin_cuti_studi.tex", "w");
         fwrite($file, $stringFormat);
         fclose($file);
-        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $noSurat . '_' . $npm . '_surat_izin_cuti_studi.tex');
+        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $npm . '_surat_izin_cuti_studi.tex');
 
         //store to db
         $historysurat = new Historysurat;
@@ -683,7 +684,7 @@ class HistorysuratController extends Controller
         $historysurat->penerimaSurat = $nama;
         $historysurat->mahasiswa_id = $pemesan;
         $historysurat->formatsurat_id = $request->idFormatSurat;
-        $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $nama . '_surat_izin_cuti_studi.pdf';
+        $historysurat->link_arsip_surat = 'arsip_surat/' . $npm . '_surat_izin_cuti_studi.pdf';
         $historysurat->penandatanganan = false;
         $historysurat->pengambilan = false;
         $historysurat->save();
@@ -724,10 +725,10 @@ class HistorysuratController extends Controller
             }
         }
         // dd($stringFormat);
-        $file = fopen("arsip_surat/" . $noSurat. "_" . $npm . "_surat_pengunduran_diri.tex", "w");
+        $file = fopen("arsip_surat/" . $npm . "_surat_pengunduran_diri.tex", "w");
         fwrite($file, $stringFormat);
         fclose($file);
-        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $noSurat . '_' . $npm . '_surat_pengunduran_diri.tex');
+        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $npm . '_surat_pengunduran_diri.tex');
 
         //store to db
         $historysurat = new Historysurat;
@@ -736,7 +737,7 @@ class HistorysuratController extends Controller
         $historysurat->penerimaSurat = 'Rektor';
         $historysurat->mahasiswa_id = $pemesan;
         $historysurat->formatsurat_id = $request->idFormatSurat;
-        $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $npm . '_surat_pengunduran_diri.pdf';
+        $historysurat->link_arsip_surat = 'arsip_surat/' . $npm . '_surat_pengunduran_diri.pdf';
         $historysurat->penandatanganan = false;
         $historysurat->pengambilan = false;
         $historysurat->save();
@@ -781,10 +782,10 @@ class HistorysuratController extends Controller
             }
         }
         // dd($stringFormat);
-        $file = fopen("arsip_surat/" . $noSurat. "_" . $npm . "_surat_perwakilan_perwalian_1mk.tex", "w");
+        $file = fopen("arsip_surat/" . $npm . "_surat_perwakilan_perwalian_1mk.tex", "w");
         fwrite($file, $stringFormat);
         fclose($file);
-        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $noSurat . '_' . $npm . '_surat_perwakilan_perwalian_1mk.tex');
+        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $npm . '_surat_perwakilan_perwalian_1mk.tex');
 
         //store to db
         $historysurat = new Historysurat;
@@ -793,7 +794,7 @@ class HistorysuratController extends Controller
         $historysurat->penerimaSurat = Mahasiswa::where('id',$pemesan)->first()->dosen->nama_dosen;
         $historysurat->mahasiswa_id = $pemesan;
         $historysurat->formatsurat_id = $request->idFormatSurat;
-        $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $npm . '_surat_perwakilan_perwalian_1mk.pdf';
+        $historysurat->link_arsip_surat = 'arsip_surat/' . $npm . '_surat_perwakilan_perwalian_1mk.pdf';
         $historysurat->penandatanganan = false;
         $historysurat->pengambilan = false;
         $historysurat->save();
@@ -841,10 +842,10 @@ class HistorysuratController extends Controller
             }
         }
         // dd($stringFormat);
-        $file = fopen("arsip_surat/" . $noSurat. "_" . $npm . "_surat_perwakilan_perwalian_2mk.tex", "w");
+        $file = fopen("arsip_surat/" . $npm . "_surat_perwakilan_perwalian_2mk.tex", "w");
         fwrite($file, $stringFormat);
         fclose($file);
-        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $noSurat . '_' . $npm . '_surat_perwakilan_perwalian_2mk.tex');
+        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $npm . '_surat_perwakilan_perwalian_2mk.tex');
 
         //store to db
         $historysurat = new Historysurat;
@@ -853,7 +854,7 @@ class HistorysuratController extends Controller
         $historysurat->penerimaSurat = Mahasiswa::where('id',$pemesan)->first()->dosen->nama_dosen;
         $historysurat->mahasiswa_id = $pemesan;
         $historysurat->formatsurat_id = $request->idFormatSurat;
-        $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $npm . '_surat_perwakilan_perwalian_2mk.pdf';
+        $historysurat->link_arsip_surat = 'arsip_surat/' . $npm . '_surat_perwakilan_perwalian_2mk.pdf';
         $historysurat->penandatanganan = false;
         $historysurat->pengambilan = false;
         $historysurat->save();
@@ -905,10 +906,10 @@ class HistorysuratController extends Controller
             }
         }
         // dd($stringFormat);
-        $file = fopen("arsip_surat/" . $noSurat. "_" . $npm . "_surat_perwakilan_perwalian_3mk.tex", "w");
+        $file = fopen("arsip_surat/" . $npm . "_surat_perwakilan_perwalian_3mk.tex", "w");
         fwrite($file, $stringFormat);
         fclose($file);
-        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $noSurat . '_' . $npm . '_surat_perwakilan_perwalian_3mk.tex');
+        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $npm . '_surat_perwakilan_perwalian_3mk.tex');
 
         //store to db
         $historysurat = new Historysurat;
@@ -917,7 +918,7 @@ class HistorysuratController extends Controller
         $historysurat->penerimaSurat = Mahasiswa::where('id',$pemesan)->first()->dosen->nama_dosen;
         $historysurat->mahasiswa_id = $pemesan;
         $historysurat->formatsurat_id = $request->idFormatSurat;
-        $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $npm . '_surat_perwakilan_perwalian_3mk.pdf';
+        $historysurat->link_arsip_surat = 'arsip_surat/' . $npm . '_surat_perwakilan_perwalian_3mk.pdf';
         $historysurat->penandatanganan = false;
         $historysurat->pengambilan = false;
         $historysurat->save();
@@ -971,10 +972,10 @@ class HistorysuratController extends Controller
             }
         }
         // dd($stringFormat);
-        $file = fopen("arsip_surat/" . $noSurat. "_" . $npm . "_surat_perwakilan_perwalian_4mk.tex", "w");
+        $file = fopen("arsip_surat/" . $npm . "_surat_perwakilan_perwalian_4mk.tex", "w");
         fwrite($file, $stringFormat);
         fclose($file);
-        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $noSurat . '_' . $npm . '_surat_perwakilan_perwalian_4mk.tex');
+        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $npm . '_surat_perwakilan_perwalian_4mk.tex');
 
         //store to db
         $historysurat = new Historysurat;
@@ -983,7 +984,7 @@ class HistorysuratController extends Controller
         $historysurat->penerimaSurat = Mahasiswa::where('id',$pemesan)->first()->dosen->nama_dosen;
         $historysurat->mahasiswa_id = $pemesan;
         $historysurat->formatsurat_id = $request->idFormatSurat;
-        $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $npm . '_surat_perwakilan_perwalian_4mk.pdf';
+        $historysurat->link_arsip_surat = 'arsip_surat/' . $npm . '_surat_perwakilan_perwalian_4mk.pdf';
         $historysurat->penandatanganan = false;
         $historysurat->pengambilan = false;
         $historysurat->save();
@@ -1040,10 +1041,10 @@ class HistorysuratController extends Controller
             }
         }
         // dd($stringFormat);
-        $file = fopen("arsip_surat/" . $noSurat. "_" . $npm . "_surat_perwakilan_perwalian_5mk.tex", "w");
+        $file = fopen("arsip_surat/" . $npm . "_surat_perwakilan_perwalian_5mk.tex", "w");
         fwrite($file, $stringFormat);
         fclose($file);
-        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $noSurat . '_' . $npm . '_surat_perwakilan_perwalian_5mk.tex');
+        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $npm . '_surat_perwakilan_perwalian_5mk.tex');
 
         //store to db
         $historysurat = new Historysurat;
@@ -1052,7 +1053,7 @@ class HistorysuratController extends Controller
         $historysurat->penerimaSurat = Mahasiswa::where('id',$pemesan)->first()->dosen->nama_dosen;
         $historysurat->mahasiswa_id = $pemesan;
         $historysurat->formatsurat_id = $request->idFormatSurat;
-        $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $npm . '_surat_perwakilan_perwalian_5mk.pdf';
+        $historysurat->link_arsip_surat = 'arsip_surat/' . $npm . '_surat_perwakilan_perwalian_5mk.pdf';
         $historysurat->penandatanganan = false;
         $historysurat->pengambilan = false;
         $historysurat->save();
@@ -1112,10 +1113,10 @@ class HistorysuratController extends Controller
             }
         }
         // dd($stringFormat);
-        $file = fopen("arsip_surat/" . $noSurat. "_" . $npm . "_surat_perwakilan_perwalian_6mk.tex", "w");
+        $file = fopen("arsip_surat/" . $npm . "_surat_perwakilan_perwalian_6mk.tex", "w");
         fwrite($file, $stringFormat);
         fclose($file);
-        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $noSurat . '_' . $npm . '_surat_perwakilan_perwalian_6mk.tex');
+        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $npm . '_surat_perwakilan_perwalian_6mk.tex');
 
         //store to db
         $historysurat = new Historysurat;
@@ -1124,7 +1125,7 @@ class HistorysuratController extends Controller
         $historysurat->penerimaSurat = Mahasiswa::where('id',$pemesan)->first()->dosen->nama_dosen;
         $historysurat->mahasiswa_id = $pemesan;
         $historysurat->formatsurat_id = $request->idFormatSurat;
-        $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $npm . '_surat_perwakilan_perwalian_6mk.pdf';
+        $historysurat->link_arsip_surat = 'arsip_surat/' . $npm . '_surat_perwakilan_perwalian_6mk.pdf';
         $historysurat->penandatanganan = false;
         $historysurat->pengambilan = false;
         $historysurat->save();
@@ -1187,10 +1188,10 @@ class HistorysuratController extends Controller
             }
         }
         // dd($stringFormat);
-        $file = fopen("arsip_surat/" . $noSurat. "_" . $npm . "_surat_perwakilan_perwalian_7mk.tex", "w");
+        $file = fopen("arsip_surat/" . $npm . "_surat_perwakilan_perwalian_7mk.tex", "w");
         fwrite($file, $stringFormat);
         fclose($file);
-        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $noSurat . '_' . $npm . '_surat_perwakilan_perwalian_7mk.tex');
+        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $npm . '_surat_perwakilan_perwalian_7mk.tex');
 
         //store to db
         $historysurat = new Historysurat;
@@ -1199,7 +1200,7 @@ class HistorysuratController extends Controller
         $historysurat->penerimaSurat = Mahasiswa::where('id',$pemesan)->first()->dosen->nama_dosen;
         $historysurat->mahasiswa_id = $pemesan;
         $historysurat->formatsurat_id = $request->idFormatSurat;
-        $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $npm . '_surat_perwakilan_perwalian_7mk.pdf';
+        $historysurat->link_arsip_surat = 'arsip_surat/' . $npm . '_surat_perwakilan_perwalian_7mk.pdf';
         $historysurat->penandatanganan = false;
         $historysurat->pengambilan = false;
         $historysurat->save();
@@ -1265,10 +1266,10 @@ class HistorysuratController extends Controller
             }
         }
         // dd($stringFormat);
-        $file = fopen("arsip_surat/" . $noSurat. "_" . $npm . "_surat_perwakilan_perwalian_8mk.tex", "w");
+        $file = fopen("arsip_surat/" . $npm . "_surat_perwakilan_perwalian_8mk.tex", "w");
         fwrite($file, $stringFormat);
         fclose($file);
-        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $noSurat . '_' . $npm . '_surat_perwakilan_perwalian_8mk.tex');
+        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $npm . '_surat_perwakilan_perwalian_8mk.tex');
 
         //store to db
         $historysurat = new Historysurat;
@@ -1277,7 +1278,7 @@ class HistorysuratController extends Controller
         $historysurat->penerimaSurat = Mahasiswa::where('id',$pemesan)->first()->dosen->nama_dosen;
         $historysurat->mahasiswa_id = $pemesan;
         $historysurat->formatsurat_id = $request->idFormatSurat;
-        $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $npm . '_surat_perwakilan_perwalian_8mk.pdf';
+        $historysurat->link_arsip_surat = 'arsip_surat/' . $npm . '_surat_perwakilan_perwalian_8mk.pdf';
         $historysurat->penandatanganan = false;
         $historysurat->pengambilan = false;
         $historysurat->save();
@@ -1346,10 +1347,10 @@ class HistorysuratController extends Controller
             }
         }
         // dd($stringFormat);
-        $file = fopen("arsip_surat/" . $noSurat. "_" . $npm . "_surat_perwakilan_perwalian_9mk.tex", "w");
+        $file = fopen("arsip_surat/" . $npm . "_surat_perwakilan_perwalian_9mk.tex", "w");
         fwrite($file, $stringFormat);
         fclose($file);
-        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $noSurat . '_' . $npm . '_surat_perwakilan_perwalian_9mk.tex');
+        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $npm . '_surat_perwakilan_perwalian_9mk.tex');
 
         //store to db
         $historysurat = new Historysurat;
@@ -1358,7 +1359,7 @@ class HistorysuratController extends Controller
         $historysurat->penerimaSurat = Mahasiswa::where('id',$pemesan)->first()->dosen->nama_dosen;
         $historysurat->mahasiswa_id = $pemesan;
         $historysurat->formatsurat_id = $request->idFormatSurat;
-        $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $npm . '_surat_perwakilan_perwalian_9mk.pdf';
+        $historysurat->link_arsip_surat = 'arsip_surat/' . $npm . '_surat_perwakilan_perwalian_9mk.pdf';
         $historysurat->penandatanganan = false;
         $historysurat->pengambilan = false;
         $historysurat->save();
@@ -1430,10 +1431,10 @@ class HistorysuratController extends Controller
             }
         }
         // dd($stringFormat);
-        $file = fopen("arsip_surat/" . $noSurat. "_" . $npm . "_surat_perwakilan_perwalian_10mk.tex", "w");
+        $file = fopen("arsip_surat/" . $npm . "_surat_perwakilan_perwalian_10mk.tex", "w");
         fwrite($file, $stringFormat);
         fclose($file);
-        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $noSurat . '_' . $npm . '_surat_perwakilan_perwalian_10mk.tex');
+        shell_exec('pdflatex -output-directory arsip_surat arsip_surat/' . $npm . '_surat_perwakilan_perwalian_10mk.tex');
 
         //store to db
         $historysurat = new Historysurat;
@@ -1442,7 +1443,7 @@ class HistorysuratController extends Controller
         $historysurat->penerimaSurat = Mahasiswa::where('id',$pemesan)->first()->dosen->nama_dosen;
         $historysurat->mahasiswa_id = $pemesan;
         $historysurat->formatsurat_id = $request->idFormatSurat;
-        $historysurat->link_arsip_surat = '127.0.0.1:8000/arsip_surat/' . $noSurat. '_' . $npm . '_surat_perwakilan_perwalian_10mk.pdf';
+        $historysurat->link_arsip_surat = 'arsip_surat/' . $npm . '_surat_perwakilan_perwalian_10mk.pdf';
         $historysurat->penandatanganan = false;
         $historysurat->pengambilan = false;
         $historysurat->save();
