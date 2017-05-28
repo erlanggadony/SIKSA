@@ -18,14 +18,13 @@
       <div class="main">
           <div class="row">
             <div class="col-md-8 content">
-              <form class="form-inline" action= "{{ url('/data_mahasiswa') }}" method="get">
+              <form class="form-inline" action= "{{ url('/home_mahasiswa') }}" method="get">
                 <div class="form-group">
                   <label for="kategori_mahasiswa">Cari berdasarkan :</label><br>
-                  <select name="kategori" class="form-control">
-                    <option value="tanggalBuat">Cari semua surat</option>
-                    <option value="tanggalBuat">Tanggal pembuatan</option>
+                  <select name="kategori_mahasiswa" class="form-control">
+                    <option value="">Cari semua surat</option>
                     <option value="perihal">Perihal</option>
-                    <option value="kepada">Kepada</option>
+                    <option value="penerimaSurat">Penerima surat</option>
                     <option value="jenis_surat">Jenis surat</option>
                   </select>
                 </div>
@@ -46,7 +45,7 @@
                       <tr>
                         <th>TANGGAL PEMBUATAN</th>
                         <th>PERIHAL</th>
-                        <th>KEPADA</th>
+                        <th>PENERIMA SURAT</th>
                         <th>JENIS SURAT</th>
                         <th>ARSIP</th>
                       </tr>

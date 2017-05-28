@@ -23,13 +23,13 @@
                                     ->paginate(11);
       return $pesanansurats;
     }
-    public function findPesananSuratByPenerimaSurat($penerimaSurat){
+    public function findPesanansuratByPenerimaSurat($penerimaSurat){
       $pesanansurats = PesananSurat::where('penerimaSurat', $penerimaSurat)
                                     ->orderBy('created_at', 'DESC')
                                     ->paginate(11);
       return $pesanansurats;
     }
-    public function findPesananSuratByPemohonSurat($pemohonSurat){
+    public function findPesanansuratByPemohonSurat($pemohonSurat){
       $pesanansurats = PesananSurat::where('mahasiswa_id', $pemohonSurat)
                                     ->orderBy('created_at', 'DESC')
                                     ->paginate(11);

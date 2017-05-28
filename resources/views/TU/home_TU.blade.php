@@ -22,9 +22,9 @@
                   <label for="kategori">Cari berdasarkan :</label><br>
                   <select name="kategori" class="form-control">
                     <option value="">Cari semua surat</option>
-                    <option value="jenis_surat">Jenis Surat</option>
-                    <option value="pemohonSurat">Pemohon Surat</option>
-                    <option value="penerimaSurat">Penerima Surat</option>
+                    <option value="jenis_surat">Jenis surat</option>
+                    <option value="pemohonSurat">Pemohon surat</option>
+                    <option value="penerimaSurat">Penerima surat</option>
                   </select>
                 </div>
                 <div class="form-group">

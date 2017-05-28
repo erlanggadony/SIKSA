@@ -41,20 +41,106 @@ class HistorysuratController extends Controller
       //CEK USER DEKAN
       if($realUser->id == $realUser->fakultas->id_dekan){
         // dd("s");
-        $tempHistorysurats = Historysurat::where('formatsurat_id','=',9)->orWhere('formatsurat_id','=',9)->get();
-        foreach ($tempHistorysurats as $key => $surat) {
-          array_push($results,$surat);
+        if($request->kategori_history_surat == "no_surat"){
+          $tempHistorysurats = Historysurat::where('no_surat', $request->searchBox_pejabat)->where('formatsurat_id','=',9)->orWhere('no_surat', $request->searchBox_pejabat)->where('formatsurat_id','=',10)->get();
         }
-        // dd($results);
+        else if($request->kategori_history_surat == "jenis_surat"){
+          $tempHistorysurats = Historysurat::where('formatsurat_id', $request->searchBox_pejabat)->where('formatsurat_id','=',9)->orWhere('formatsurat_id', $request->searchBox_pejabat)->where('formatsurat_id','=',10)->get();
+        }
+        else if($request->kategori_history_surat == "perihal"){
+          $tempHistorysurats = Historysurat::where('perihal', $request->searchBox_pejabat)->where('formatsurat_id','=',9)->orWhere('perihal', $request->searchBox_pejabat)->where('formatsurat_id','=',10)->get();
+        }
+        else if($request->kategori_history_surat == "pemohonSurat"){
+          $tempHistorysurats = Historysurat::where('mahasiswa_id', $request->searchBox_pejabat)->where('formatsurat_id','=',9)->orWhere('mahasiswa_id', $request->searchBox_pejabat)->where('formatsurat_id','=',10)->get();
+        }
+        else if($request->kategori_history_surat == "penerimaSurat"){
+          $tempHistorysurats = Historysurat::where('penerimaSurat', $request->searchBox_pejabat)->where('formatsurat_id','=',9)->orWhere('penerimaSurat', $request->searchBox_pejabat)->where('formatsurat_id','=',10)->get();
+        }
+        else{
+          $tempHistorysurats = Historysurat::where('formatsurat_id','=',9)->orWhere('formatsurat_id','=',10)->get();
+        }
+        
+        // dd($);
         return view('pejabat.history_pejabat', [
-          'historysurats' => $results,
+          'historysurats' => $tempHistorysurats,
           'user' => $realUser
         ]);
       }
 
       //CEK USER WD1
       if($realUser->id == $realUser->fakultas->id_WD_I){
-        $tempHistorysurats = Historysurat::where('formatsurat_id','=',2)
+        if($request->kategori_history_surat == "no_surat"){
+          $tempHistorysurats = Historysurat::where('no_surat', $request->searchBox_pejabat)->where('formatsurat_id','=',2)
+                                           ->orWhere('no_surat', $request->searchBox_pejabat)->where('formatsurat_id','=',11)
+                                           ->orWhere('no_surat', $request->searchBox_pejabat)->where('formatsurat_id','=',12)
+                                           ->orWhere('no_surat', $request->searchBox_pejabat)->where('formatsurat_id','=',13)
+                                           ->orWhere('no_surat', $request->searchBox_pejabat)->where('formatsurat_id','=',14)
+                                           ->orWhere('no_surat', $request->searchBox_pejabat)->where('formatsurat_id','=',15)
+                                           ->orWhere('no_surat', $request->searchBox_pejabat)->where('formatsurat_id','=',16)
+                                           ->orWhere('no_surat', $request->searchBox_pejabat)->where('formatsurat_id','=',17)
+                                           ->orWhere('no_surat', $request->searchBox_pejabat)->where('formatsurat_id','=',18)
+                                           ->orWhere('no_surat', $request->searchBox_pejabat)->where('formatsurat_id','=',19)
+                                           ->orWhere('no_surat', $request->searchBox_pejabat)->where('formatsurat_id','=',20)
+                                           ->get();
+        }
+        else if($request->kategori_history_surat == "jenis_surat"){
+           $tempHistorysurats = Historysurat::where('formatsurat_id', $request->searchBox_pejabat)->where('formatsurat_id','=',2)
+                                           ->orWhere('formatsurat_id', $request->searchBox_pejabat)->where('formatsurat_id','=',11)
+                                           ->orWhere('formatsurat_id', $request->searchBox_pejabat)->where('formatsurat_id','=',12)
+                                           ->orWhere('formatsurat_id', $request->searchBox_pejabat)->where('formatsurat_id','=',13)
+                                           ->orWhere('formatsurat_id', $request->searchBox_pejabat)->where('formatsurat_id','=',14)
+                                           ->orWhere('formatsurat_id', $request->searchBox_pejabat)->where('formatsurat_id','=',15)
+                                           ->orWhere('formatsurat_id', $request->searchBox_pejabat)->where('formatsurat_id','=',16)
+                                           ->orWhere('formatsurat_id', $request->searchBox_pejabat)->where('formatsurat_id','=',17)
+                                           ->orWhere('formatsurat_id', $request->searchBox_pejabat)->where('formatsurat_id','=',18)
+                                           ->orWhere('formatsurat_id', $request->searchBox_pejabat)->where('formatsurat_id','=',19)
+                                           ->orWhere('formatsurat_id', $request->searchBox_pejabat)->where('formatsurat_id','=',20)
+                                           ->get();
+        }
+        else if($request->kategori_history_surat == "perihal"){
+          $tempHistorysurats = Historysurat::where('perihal', $request->searchBox_pejabat)->where('formatsurat_id','=',2)
+                                           ->orWhere('perihal', $request->searchBox_pejabat)->where('formatsurat_id','=',11)
+                                           ->orWhere('perihal', $request->searchBox_pejabat)->where('formatsurat_id','=',12)
+                                           ->orWhere('perihal', $request->searchBox_pejabat)->where('formatsurat_id','=',13)
+                                           ->orWhere('perihal', $request->searchBox_pejabat)->where('formatsurat_id','=',14)
+                                           ->orWhere('perihal', $request->searchBox_pejabat)->where('formatsurat_id','=',15)
+                                           ->orWhere('perihal', $request->searchBox_pejabat)->where('formatsurat_id','=',16)
+                                           ->orWhere('perihal', $request->searchBox_pejabat)->where('formatsurat_id','=',17)
+                                           ->orWhere('perihal', $request->searchBox_pejabat)->where('formatsurat_id','=',18)
+                                           ->orWhere('perihal', $request->searchBox_pejabat)->where('formatsurat_id','=',19)
+                                           ->orWhere('perihal', $request->searchBox_pejabat)->where('formatsurat_id','=',20)
+                                           ->get();
+        }
+        else if($request->kategori_history_surat == "pemohonSurat"){
+          $tempHistorysurats = Historysurat::where('mahasiswa_id', $request->searchBox_pejabat)->where('formatsurat_id','=',2)
+                                           ->orWhere('mahasiswa_id', $request->searchBox_pejabat)->where('formatsurat_id','=',11)
+                                           ->orWhere('mahasiswa_id', $request->searchBox_pejabat)->where('formatsurat_id','=',12)
+                                           ->orWhere('mahasiswa_id', $request->searchBox_pejabat)->where('formatsurat_id','=',13)
+                                           ->orWhere('mahasiswa_id', $request->searchBox_pejabat)->where('formatsurat_id','=',14)
+                                           ->orWhere('mahasiswa_id', $request->searchBox_pejabat)->where('formatsurat_id','=',15)
+                                           ->orWhere('mahasiswa_id', $request->searchBox_pejabat)->where('formatsurat_id','=',16)
+                                           ->orWhere('mahasiswa_id', $request->searchBox_pejabat)->where('formatsurat_id','=',17)
+                                           ->orWhere('mahasiswa_id', $request->searchBox_pejabat)->where('formatsurat_id','=',18)
+                                           ->orWhere('mahasiswa_id', $request->searchBox_pejabat)->where('formatsurat_id','=',19)
+                                           ->orWhere('mahasiswa_id', $request->searchBox_pejabat)->where('formatsurat_id','=',20)
+                                           ->get();
+        }
+        else if($request->kategori_history_surat == "penerimaSurat"){
+          $tempHistorysurats = Historysurat::where('penerimaSurat', $request->searchBox_pejabat)->where('formatsurat_id','=',2)
+                                           ->orWhere('penerimaSurat', $request->searchBox_pejabat)->where('formatsurat_id','=',11)
+                                           ->orWhere('penerimaSurat', $request->searchBox_pejabat)->where('formatsurat_id','=',12)
+                                           ->orWhere('penerimaSurat', $request->searchBox_pejabat)->where('formatsurat_id','=',13)
+                                           ->orWhere('penerimaSurat', $request->searchBox_pejabat)->where('formatsurat_id','=',14)
+                                           ->orWhere('penerimaSurat', $request->searchBox_pejabat)->where('formatsurat_id','=',15)
+                                           ->orWhere('penerimaSurat', $request->searchBox_pejabat)->where('formatsurat_id','=',16)
+                                           ->orWhere('penerimaSurat', $request->searchBox_pejabat)->where('formatsurat_id','=',17)
+                                           ->orWhere('penerimaSurat', $request->searchBox_pejabat)->where('formatsurat_id','=',18)
+                                           ->orWhere('penerimaSurat', $request->searchBox_pejabat)->where('formatsurat_id','=',19)
+                                           ->orWhere('penerimaSurat', $request->searchBox_pejabat)->where('formatsurat_id','=',20)
+                                           ->get();
+        }
+        else{
+          $tempHistorysurats = Historysurat::where('formatsurat_id','=',2)
                                            ->orWhere('formatsurat_id','=',11)
                                            ->orWhere('formatsurat_id','=',12)
                                            ->orWhere('formatsurat_id','=',13)
@@ -66,14 +152,67 @@ class HistorysuratController extends Controller
                                            ->orWhere('formatsurat_id','=',19)
                                            ->orWhere('formatsurat_id','=',20)
                                            ->get();
-        foreach ($tempHistorysurats as $key => $surat) {
-          array_push($results,$surat);
         }
+        return view('pejabat.history_pejabat', [
+          'historysurats' => $tempHistorysurats,
+          'user' => $realUser
+        ]);
       }
 
-      //CEK USER WD1
+      //CEK USER WD3
       if($realUser->id == $realUser->fakultas->id_WD_III){
-        $tempHistorysurats = Historysurat::where('formatsurat_id','=',1)
+        if($request->kategori_history_surat == "no_surat"){
+          $tempHistorysurats = Historysurat::where('no_surat', $request->searchBox_pejabat)->where('formatsurat_id','=',1)
+                                           ->orWhere('no_surat', $request->searchBox_pejabat)->where('formatsurat_id','=',3)
+                                           ->orWhere('no_surat', $request->searchBox_pejabat)->where('formatsurat_id','=',4)
+                                           ->orWhere('no_surat', $request->searchBox_pejabat)->where('formatsurat_id','=',5)
+                                           ->orWhere('no_surat', $request->searchBox_pejabat)->where('formatsurat_id','=',6)
+                                           ->orWhere('no_surat', $request->searchBox_pejabat)->where('formatsurat_id','=',7)
+                                           ->orWhere('no_surat', $request->searchBox_pejabat)->where('formatsurat_id','=',8)
+                                           ->get();
+        }
+        else if($request->kategori_history_surat == "jenis_surat"){
+           $tempHistorysurats = Historysurat::where('formatsurat_id', $request->searchBox_pejabat)->where('formatsurat_id','=',1)
+                                           ->orWhere('formatsurat_id', $request->searchBox_pejabat)->where('formatsurat_id','=',3)
+                                           ->orWhere('formatsurat_id', $request->searchBox_pejabat)->where('formatsurat_id','=',4)
+                                           ->orWhere('formatsurat_id', $request->searchBox_pejabat)->where('formatsurat_id','=',5)
+                                           ->orWhere('formatsurat_id', $request->searchBox_pejabat)->where('formatsurat_id','=',6)
+                                           ->orWhere('formatsurat_id', $request->searchBox_pejabat)->where('formatsurat_id','=',7)
+                                           ->orWhere('formatsurat_id', $request->searchBox_pejabat)->where('formatsurat_id','=',8)
+                                           ->get();
+        }
+        else if($request->kategori_history_surat == "perihal"){
+          $tempHistorysurats = Historysurat::where('perihal', $request->searchBox_pejabat)->where('formatsurat_id','=',1)
+                                           ->orWhere('perihal', $request->searchBox_pejabat)->where('formatsurat_id','=',3)
+                                           ->orWhere('perihal', $request->searchBox_pejabat)->where('formatsurat_id','=',4)
+                                           ->orWhere('perihal', $request->searchBox_pejabat)->where('formatsurat_id','=',5)
+                                           ->orWhere('perihal', $request->searchBox_pejabat)->where('formatsurat_id','=',6)
+                                           ->orWhere('perihal', $request->searchBox_pejabat)->where('formatsurat_id','=',7)
+                                           ->orWhere('perihal', $request->searchBox_pejabat)->where('formatsurat_id','=',8)
+                                           ->get();
+        }
+        else if($request->kategori_history_surat == "pemohonSurat"){
+          $tempHistorysurats = Historysurat::where('mahasiswa_id', $request->searchBox_pejabat)->where('formatsurat_id','=',1)
+                                           ->orWhere('mahasiswa_id', $request->searchBox_pejabat)->where('formatsurat_id','=',3)
+                                           ->orWhere('mahasiswa_id', $request->searchBox_pejabat)->where('formatsurat_id','=',4)
+                                           ->orWhere('mahasiswa_id', $request->searchBox_pejabat)->where('formatsurat_id','=',5)
+                                           ->orWhere('mahasiswa_id', $request->searchBox_pejabat)->where('formatsurat_id','=',6)
+                                           ->orWhere('mahasiswa_id', $request->searchBox_pejabat)->where('formatsurat_id','=',7)
+                                           ->orWhere('mahasiswa_id', $request->searchBox_pejabat)->where('formatsurat_id','=',8)
+                                           ->get();
+        }
+        else if($request->kategori_history_surat == "penerimaSurat"){
+          $tempHistorysurats = Historysurat::where('penerimaSurat', $request->searchBox_pejabat)->where('formatsurat_id','=',1)
+                                           ->orWhere('penerimaSurat', $request->searchBox_pejabat)->where('formatsurat_id','=',3)
+                                           ->orWhere('penerimaSurat', $request->searchBox_pejabat)->where('formatsurat_id','=',4)
+                                           ->orWhere('penerimaSurat', $request->searchBox_pejabat)->where('formatsurat_id','=',5)
+                                           ->orWhere('penerimaSurat', $request->searchBox_pejabat)->where('formatsurat_id','=',6)
+                                           ->orWhere('penerimaSurat', $request->searchBox_pejabat)->where('formatsurat_id','=',7)
+                                           ->orWhere('penerimaSurat', $request->searchBox_pejabat)->where('formatsurat_id','=',8)
+                                           ->get();
+        }
+        else{
+          $tempHistorysurats = Historysurat::where('formatsurat_id','=',1)
                                            ->orWhere('formatsurat_id','=',3)
                                            ->orWhere('formatsurat_id','=',4)
                                            ->orWhere('formatsurat_id','=',5)
@@ -81,6 +220,8 @@ class HistorysuratController extends Controller
                                            ->orWhere('formatsurat_id','=',7)
                                            ->orWhere('formatsurat_id','=',8)
                                            ->get();
+        }
+        
         foreach ($tempHistorysurats as $key => $surat) {
           array_push($results,$surat);
         }
@@ -92,10 +233,22 @@ class HistorysuratController extends Controller
         ]);
   	}
 
-    public function tampilkanProfil(){
+    public function tampilkanProfil(Request $request){
       $loggedInUser = Auth::user();
       $realUser = $this->getRealUser($loggedInUser);
-      $histories = $realUser->historysurats;
+      if($request->kategori_mahasiswa == "perihal"){
+        $histories = Historysurat::where('perihal', $request->searchBox)->where('mahasiswa_id', $realUser->id)->get();
+      }
+      else if($request->kategori_mahasiswa == "penerimaSurat"){
+        $histories = Historysurat::where('penerimaSurat', $request->searchBox)->where('mahasiswa_id', $realUser->id)->get();
+      }
+      else if($request->kategori_mahasiswa == "jenis_surat"){
+        $histories = Historysurat::where('formatsurat_id', $request->searchBox)->where('mahasiswa_id', $realUser->id)->get();
+      }
+      else{
+        $histories = $realUser->historysurats;
+      }
+      
       $foto = $realUser->foto_mahasiswa;
       return view('mahasiswa.home_mahasiswa',[
         'user' => $realUser,

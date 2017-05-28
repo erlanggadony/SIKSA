@@ -18,30 +18,21 @@
       <div class="main">
           <div class="row">
             <div class="col-md-8 content">
-              <form>
-                    <table>
-                      <tr>
-                        <td><label>Kata kunci :</label></td>
-                        <td><label>Cari berdasarkan :</label></td>
-                      </tr>
-
-                      <tr>
-                        <td class = "search">
-                          <select name="kategori" class="form-control">
-                            <option value="tanggalBuat">Cari semua surat</option>
-                            <option value="idFormatSurat">Jenis surat</option>
-                            <option value="pemohonSurat">Pemohon Surat</option>
-                            <option value="penerimaSurat">Penerima Surat</option>
-                          </select>
-                        </td>
-                        <td class = "search">
-                          <input type="text" name="searchBox" class="form-control" size="68" />
-                        </td>
-                        <td>
-                          <input type="submit" name="findmail" class="btn btn-primary" value="Cari surat" />
-                        </td>
-                      </tr>
-                    </table>
+              <form class="form-inline" action= "{{ url('/home_pejabat') }}" method="get">
+                <div class="form-group">
+                  <label for="kategori">Cari berdasarkan :</label><br>
+                  <select name="kategori" class="form-control">
+                    <option value="">Cari semua surat</option>
+                    <option value="jenis_surat">Jenis surat</option>
+                    <option value="pemohonSurat">Pemohon surat</option>
+                    <option value="penerimaSurat">Penerima surat</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="searchBox">Kata kunci :</label><br>
+                  <input type="text" name="searchBox" class="form-control" size="69" />
+                  <button type="submit" name="findmail" class="btn btn-primary">Cari surat</button>
+                </div>
               </form>
               <br>
               <table class="table table-striped">

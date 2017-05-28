@@ -68,24 +68,44 @@ class PesanansuratController extends Controller
 
       // CEK KALO USER ADALAH KETUA JURUSAN
       if($realUser->id == $realUser->jurusan->dosen->id){
-          $tempPesananSurats = PesananSurat::where('count','=',1)->get();
-          foreach ($tempPesananSurats as $key => $surat) {
-            if($realUser->jurusan->id == $surat->mahasiswa->jurusan->id){
-              array_push($results,$surat);
-            }
+          $pesanansurats;
+          if($request->kategori == "jenis_surat"){
+            $tempPesananSurats = PesananSurat::where('count','=',1)
+                                              ->where('formatsurat_id', $request->searchBox)
+                                              ->get();
+            
           }
-      }
-
-      foreach ($realUser->mahasiswas as $key => $mhs) {
-        foreach ($mhs->pesanansurats as $key => $surat) {
-          array_push($results,$surat);
+          else if($request->kategori == "penerimaSurat"){
+            $tempPesananSurats = PesananSurat::where('count','=',1)
+                                              ->where('penerimaSurat', $request->searchBox)
+                                              ->get();
+            
+          }
+          else if($request->kategori == "pemohonSurat"){
+            $tempPesananSurats = PesananSurat::where('count','=',1)
+                                              ->where('mahasiswa_id', $request->searchBox)
+                                              ->get();
+            
+          }
+          else{
+            $tempPesananSurats = PesananSurat::where('count','=',1)->get();
+            
+          }
+        foreach ($realUser->mahasiswas as $key => $mhs) {
+          foreach ($mhs->pesanansurats as $key => $surat) {
+            array_push($results,$surat);
+          }
         }
+
+        return view('pejabat.home_pejabat', [
+          'pesanansurats' => $results,
+          'user' => $realUser
+        ]);    
       }
 
-      return view('pejabat.home_pejabat', [
-        'pesanansurats' => $results,
-        'user' => $realUser
-      ]);
+      
+
+      
     }
 
     public function downloadLampiran(Request $request){

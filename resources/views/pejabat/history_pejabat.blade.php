@@ -30,8 +30,8 @@
                   </select>
                 </div>
                 <div class="form-group">
-                  <label for="searchBox_format_surat">Kata kunci :</label><br>
-                  <input type="text" name="searchBox" class="form-control" size="68" />
+                  <label for="searchBox_pejabat">Kata kunci :</label><br>
+                  <input type="text" name="searchBox_pejabat" class="form-control" size="68" />
                   <button type="submit" name="findmail" class="btn btn-primary">Cari surat</button>
                 </div>
               </form>
@@ -65,7 +65,7 @@
                           <td style="text-align:center">
                             <form action="/tampilkanPDF" class="form-horizontal" method="post">
                                 <input type="hidden" value="{{ $historysurat->id }}" name="history_id">
-                                <button type="submit" class="btn btn-link">Klik disini</button>
+                                <button type="submit" class="btn btn-link">Klik<br>disini</button>
                                 {!! csrf_field() !!}
                             </form>
                           </td>
